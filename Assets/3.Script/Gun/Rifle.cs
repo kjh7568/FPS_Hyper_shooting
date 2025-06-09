@@ -37,7 +37,44 @@ public class Rifle : Gun
     {
         currentAmmo--;
         Debug.Log($"[발사] {gunData.gunName} Lv.{currentLevel} → 데미지: {currentStat.damage} | 남은 탄약: {currentAmmo}");
+
+        // Raycast 쏘기
+        Camera cam = Camera.main;
+        Ray ray = new Ray(cam.transform.position, cam.transform.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 100f))
+        {
+            Debug.DrawLine(ray.origin, hit.point, Color.red, 1f); // 디버그용 레이 시각화
+
+            if (hit.collider.CompareTag("Zombie"))
+            {
+
+                var monster = CombatSystem.Instance.GetMonsterOrNull(hit.collider);
+
+                if (monster != null)
+                {
+                    CombatEvent combatEvent = new CombatEvent();
+                    combatEvent.Sender = FindObjectOfType<PlayerController>();
+                    combatEvent.Receiver = monster;
+                    combatEvent.Damage = (int)currentStat.damage;
+                    combatEvent.HitPosition = hit.point;
+                    combatEvent.Collider = hit.collider;
+                
+                    CombatSystem.Instance.AddInGameEvent(combatEvent);
+                }
+            }
+            else
+            {
+                Debug.Log($"적이 아님: {hit.collider.gameObject.name}");
+            }
+        }
+        else
+        {
+            Debug.Log("무언가를 맞추지 못함.");
+        }
     }
+
 
     public override void Reload()
     {

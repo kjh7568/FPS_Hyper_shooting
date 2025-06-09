@@ -7,8 +7,9 @@ public abstract class Gun : MonoBehaviour
 
     [Header("상태")]
     [SerializeField] protected int currentLevel;
-    [SerializeField] protected GunLevelStat currentStat;
     [SerializeField] protected int currentAmmo;
+    [SerializeField] protected GunLevelStat currentStat;
+
     protected bool isReloading;
 
     protected virtual void Start()

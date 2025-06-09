@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamageAble
 {
     private CharacterController characterController;
     
@@ -108,4 +108,23 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(2f);
         isCanDash = true;
     }
+
+
+
+    #region MyRegion
+
+    public Collider MainCollider { get; }
+    public GameObject GameObject { get; }
+    public void TakeDamage(CombatEvent combatEvent)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void TakeHeal(HealEvent combatEvent)
+    {
+        throw new NotImplementedException();
+    }
+
+    #endregion
+    
 }
