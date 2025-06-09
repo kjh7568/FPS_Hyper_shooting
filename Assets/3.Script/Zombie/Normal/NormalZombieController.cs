@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,8 +7,14 @@ public class NormalZombieController : MonoBehaviour
     [SerializeField] private Transform target; // 따라갈 대상 (예: 플레이어)
 
     private NavMeshAgent agent;
-    private float detectionRange = 30f;
-    
+    private float detectionRange = 20f;
+
+    private float wanderRadius = 5f;
+    private float stopDuration = 2f; // 멈추는 시간 (초)
+
+    private bool isWandering = false;
+    private bool isChasingPlayer = false; // ▶️ 플레이어를 발견했는지 여부
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -24,15 +28,62 @@ public class NormalZombieController : MonoBehaviour
     private void Update()
     {
         float distance = Vector3.Distance(transform.position, target.position);
-        
 
-        if (distance < detectionRange)
+        if (isChasingPlayer || distance < detectionRange)
         {
+            // 플레이어 발견 시 추적 시작
+            if (!isChasingPlayer)
+            {
+                isChasingPlayer = true;
+                StopAllCoroutines();
+                agent.isStopped = false;
+            }
+
             agent.SetDestination(target.position);
         }
         else
         {
-            agent.ResetPath();
+            // 서성거림 상태로 전환
+            if (!isWandering)
+            {
+                StartCoroutine(WanderRoutine());
+            }
         }
+    }
+
+    private IEnumerator WanderRoutine()
+    {
+        isWandering = true;
+
+        while (!isChasingPlayer) // 플레이어 발견 시 중단 조건 추가
+        {
+            Vector3 newPos = RandomNavSphere(transform.position, wanderRadius);
+            agent.isStopped = false;
+            agent.SetDestination(newPos);
+
+            // 목적지 도착까지 기다림
+            while (agent.pathPending || agent.remainingDistance > 0.5f)
+            {
+                yield return null;
+            }
+
+            // 도착 후 멈춤
+            agent.isStopped = true;
+            yield return new WaitForSeconds(stopDuration);
+        }
+
+        // 플레이어 발견 시 루프 탈출 후 정리
+        isWandering = false;
+    }
+
+    private Vector3 RandomNavSphere(Vector3 origin, float dist)
+    {
+        Vector3 randomDirection = Random.insideUnitSphere * dist;
+        randomDirection += origin;
+
+        NavMeshHit navHit;
+        NavMesh.SamplePosition(randomDirection, out navHit, dist, NavMesh.AllAreas);
+
+        return navHit.position;
     }
 }
