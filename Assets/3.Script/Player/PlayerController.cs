@@ -5,18 +5,22 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Movement Settings")]
-    [SerializeField] private float moveSpeed = 5f;
+    [Header("Movement Settings")] [SerializeField]
+    private float moveSpeed = 5f;
+
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float jumpHeight = 2f;
-    
-    [Header("Mouse Settings")]
-    [SerializeField] private float mouseSensitivity = 100f;
+
+    [Header("Mouse Settings")] [SerializeField]
+    private float mouseSensitivity = 100f;
+
     [SerializeField] private Transform playerCamera;
 
     private CharacterController characterController;
     private Vector3 velocity;
     private float cameraPitch = 0f;
+    private bool isCanDash = true;
+    private float dashSpeed = 20f;
 
     private void Awake()
     {
@@ -40,7 +44,7 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-    
+
     private void MovePlayer()
     {
         Vector3 inputAxis = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
@@ -51,6 +55,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && characterController.isGrounded)
         {
             velocity.y = Mathf.Sqrt(2f * jumpHeight * -gravity);
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift) && isCanDash)
+        {
+            StartCoroutine(Dash(move));
         }
     }
 
@@ -68,13 +77,37 @@ public class PlayerController : MonoBehaviour
 
     private void RotatePlayer()
     {
-        Vector2 mouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")) * (mouseSensitivity * Time.deltaTime);
-        
+        Vector2 mouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")) *
+                             (mouseSensitivity * Time.deltaTime);
+
         transform.Rotate(Vector3.up * mouseInput.x);
-        
+
         cameraPitch -= mouseInput.y;
         cameraPitch = Mathf.Clamp(cameraPitch, -90f, 90f);
 
         playerCamera.localEulerAngles = new Vector3(cameraPitch, 0f, 0f);
+    }
+
+    private IEnumerator Dash(Vector3 direction)
+    {
+        float elapsed = 0f;
+        float dashDuration = 0.2f;
+        
+        isCanDash = false;
+        
+        while (elapsed < dashDuration)
+        {
+            characterController.Move(direction * (dashSpeed * Time.deltaTime));
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        StartCoroutine(DashCooldown_Coroutine());
+    }
+
+    private IEnumerator DashCooldown_Coroutine()
+    {
+        yield return new WaitForSeconds(2f);
+        isCanDash = true;
     }
 }
