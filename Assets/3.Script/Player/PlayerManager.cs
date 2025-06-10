@@ -32,7 +32,6 @@ public class PlayerManager : MonoBehaviour
         }
     }
     /// 다음 씬에서 특정 위치로 플레이어 이동
-
     public GameObject GetPlayer()
     {
         return playerInstance;

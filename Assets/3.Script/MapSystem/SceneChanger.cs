@@ -2,13 +2,12 @@ using UnityEngine;
 
 public class SceneChanger : MonoBehaviour
 {
-    [SerializeField] private string nextSceneName;
+    [SerializeField] private int nextStageIndex = -1;
     private bool canTrigger = false;
 
     private void Start()
     {
-        // 씬 시작 후 1초 후에만 트리거 활성화
-        Invoke(nameof(EnableTrigger), 1f);
+        Invoke(nameof(EnableTrigger), 1f);  // 트리거 활성화 지연
     }
 
     private void EnableTrigger()
@@ -22,8 +21,8 @@ public class SceneChanger : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            Debug.Log($"씬 전환: {nextSceneName}");
-            StageManager.Instance.LoadNextStage();
+            Debug.Log($"씬 전환 요청: 인덱스 {nextStageIndex}");
+            StageManager.Instance.LoadSceneByIndex(nextStageIndex);
         }
     }
 }
