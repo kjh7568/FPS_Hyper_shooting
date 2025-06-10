@@ -279,10 +279,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 2
   m_Height: 0
   m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.2, z: 0}
 --- !u!114 &138380021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4149,7 +4149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normalAttackCollider: {fileID: 278304487}
-  smashAttackCollider: {fileID: 0}
+  smashAttackCollider: {fileID: 138380020}
   zombieStat:
     health: 1000
     maxHealth: 1000
