@@ -49,7 +49,6 @@ public class Rifle : Gun
 
             if (hit.collider.CompareTag("Zombie"))
             {
-
                 var monster = CombatSystem.Instance.GetMonsterOrNull(hit.collider);
 
                 if (monster != null)
