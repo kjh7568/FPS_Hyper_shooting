@@ -10,7 +10,8 @@ public class Player : MonoBehaviour, IDamageAble
     public Collider MainCollider => mainCollider;
     public GameObject GameObject => gameObject;
     public PlayerStat playerStat;
-
+    public Gun myGun;
+    
     [SerializeField] private Collider mainCollider;
 
     private void Awake()

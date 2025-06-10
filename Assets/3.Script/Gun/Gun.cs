@@ -13,10 +13,6 @@ public abstract class Gun : MonoBehaviour
     public int CurrentLevel => currentLevel;
     public int CurrentAmmo => currentAmmo;
 
-
-
- 
-
     protected virtual void Start()
     {
         InitGun();

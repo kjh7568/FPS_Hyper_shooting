@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpHeight = 2f;
 
     [Header("Mouse Settings")] [SerializeField]
-    private float mouseSensitivity = 100f;
+    private float mouseSensitivity = 50f;
     private float cameraPitch = 0f;
     [SerializeField] private Transform playerCamera;
 
