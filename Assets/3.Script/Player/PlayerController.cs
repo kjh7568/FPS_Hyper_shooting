@@ -108,9 +108,6 @@ public class PlayerController : MonoBehaviour, IDamageAble
         yield return new WaitForSeconds(2f);
         isCanDash = true;
     }
-
-
-
     #region MyRegion
 
     public Collider MainCollider { get; }

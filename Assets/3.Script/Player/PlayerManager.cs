@@ -8,8 +8,6 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject playerPrefab;
 
     private GameObject playerInstance;
-
-    public GameObject player;
     
     private void Awake()
     {

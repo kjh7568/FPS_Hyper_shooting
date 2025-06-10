@@ -1,16 +1,19 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class GameData : MonoBehaviour
 {
     public static GameData Instance;
 
     public int savedGunLevel;
-    public int savedCurrentAmmo;
+    public int savedCurrentAmmo; 
+   // 잠시 보류
+   // public float moveSpeed;
+   // public int savedPlayerHealth; 
+   // public int savedPlayerShield;
     
-    // 추후 추가
-    public int savedPlayerHealth; 
-    public int savedPlayerShield;
 
+    
     private void Awake()
     {
         if (Instance == null)
