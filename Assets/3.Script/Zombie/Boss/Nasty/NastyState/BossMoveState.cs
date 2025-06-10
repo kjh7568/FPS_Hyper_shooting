@@ -5,42 +5,44 @@ public class BossMoveState : IBossState
 {
     private static readonly int WALK = Animator.StringToHash("Walk");
 
+    private float brassDelay = 5f;
+    private float brassTimer = 0f;
+    
     public void EnterState(BossController boss)
     {
         boss.animator.SetTrigger(WALK);
+        brassTimer = 0;
     }
 
     public void UpdateState(BossController boss)
     {
         float distance = Vector3.Distance(boss.transform.position, boss.target.position);
-        
         Debug.Log(distance);
-        
-        if (distance < 10.5f)
+
+        brassTimer += Time.deltaTime;
+
+        if (distance < 10f)
         {
             boss.agent.isStopped = true;
-
-            if (Random.Range(0, 100) < 60) //일반 공격
-            {
-                boss.SwitchState(new BossAttackState());
-            }
-            else //내려찍기 공격
-            {
-                boss.SwitchState(new BossSmashState());
-            }
+            boss.SwitchState(Random.Range(0, 100) < 60 ? new BossAttackState() : new BossSmashState());
         }
-        else
+        else if (distance < 20f)
         {
-            // if (Random.Range(0, 100) < 60) //일반 공격
-            if (Random.Range(0, 70) < 70) //이동
+            if (brassTimer >= brassDelay)
+            {
+                boss.agent.isStopped = true;
+                boss.SwitchState(new BossBrassState());
+            }
+            else
             {
                 boss.agent.isStopped = false;
                 boss.agent.SetDestination(boss.target.position);
             }
-            else //브래스
-            {
-                boss.SwitchState(new BossSmashState());
-            }
+        }
+        else
+        {
+            boss.agent.isStopped = false;
+            boss.agent.SetDestination(boss.target.position);
         }
     }
 
