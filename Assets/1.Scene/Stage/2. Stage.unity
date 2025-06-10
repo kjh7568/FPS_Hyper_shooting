@@ -3039,7 +3039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 551bcac0aac82f74184ebbff4ff3e0d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: BossStage
+  nextSceneName: 3. BossStage
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
