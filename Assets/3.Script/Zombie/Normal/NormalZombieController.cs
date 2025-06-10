@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NastyController : MonoBehaviour
+public class NormalZombieController : MonoBehaviour
 {
     private Transform target; // 따라갈 대상 (예: 플레이어)
 

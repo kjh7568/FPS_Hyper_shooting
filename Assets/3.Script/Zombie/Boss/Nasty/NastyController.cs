@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BossController : MonoBehaviour
+public class NastyController : BossController
 {
-    private NavMeshAgent agent;
-    private Transform target; // 따라갈 대상 (예: 플레이어)
-    
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -16,6 +13,12 @@ public class BossController : MonoBehaviour
     private void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
-        agent.SetDestination(target.position);
+        SwitchState(new BossMoveState());
+    }
+
+    private void Update()
+    {
+        CurrentState?.UpdateState(this);
+        Debug.Log(Vector3.Distance(transform.position, target.position));
     }
 }
