@@ -9,6 +9,8 @@ public class PlayerManager : MonoBehaviour
 
     private GameObject playerInstance;
 
+    public GameObject player;
+    
     private void Awake()
     {
         if (Instance == null)
@@ -32,15 +34,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
     /// 다음 씬에서 특정 위치로 플레이어 이동
-    public void SetPlayerSpawnPosition(Vector3 spawnPosition)
-    {
-        if (playerInstance != null)
-        {
-            playerInstance.transform.position = spawnPosition;
-        }
-    }
 
-    /// 현재 플레이어 객체 반환 (Gun 등에서 필요시 사용 가능)
     public GameObject GetPlayer()
     {
         return playerInstance;
