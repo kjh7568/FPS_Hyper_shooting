@@ -8,6 +8,7 @@ public class NastyController : BossController
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -19,6 +20,5 @@ public class NastyController : BossController
     private void Update()
     {
         CurrentState?.UpdateState(this);
-        Debug.Log(Vector3.Distance(transform.position, target.position));
     }
 }
