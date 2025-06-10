@@ -19,7 +19,12 @@ public class NormalZombie : MonoBehaviour, IMonster
     
     public void TakeDamage(CombatEvent combatEvent)
     {
-        Debug.Log("좀비 맞음");
+        zombieStat.health -= combatEvent.Damage;
+
+        if (zombieStat.health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void TakeHeal(HealEvent combatEvent)

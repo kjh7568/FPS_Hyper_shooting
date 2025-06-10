@@ -21,6 +21,11 @@ public class Player : MonoBehaviour, IDamageAble
     public void TakeDamage(CombatEvent combatEvent)
     {
         playerStat.health -= combatEvent.Damage;
+
+        if (playerStat.health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void TakeHeal(HealEvent combatEvent)

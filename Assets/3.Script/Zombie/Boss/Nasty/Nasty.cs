@@ -22,6 +22,11 @@ public class Nasty : MonoBehaviour, IMonster
     public void TakeDamage(CombatEvent combatEvent)
     {
         zombieStat.health -= combatEvent.Damage;
+
+        if (zombieStat.health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void TakeHeal(HealEvent combatEvent)
