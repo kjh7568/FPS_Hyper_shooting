@@ -16,5 +16,6 @@ public class BossController : MonoBehaviour
     private void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
+        agent.SetDestination(target.position);
     }
 }
