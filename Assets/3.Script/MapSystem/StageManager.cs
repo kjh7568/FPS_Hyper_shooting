@@ -23,20 +23,34 @@ public class StageManager : MonoBehaviour
         }
     }
 
+    //임시 코드
     public void LoadNextStage()
     {
-        string currentScene = SceneManager.GetActiveScene().name;
-        int index = stageOrder.IndexOf(currentScene);
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
-        if (index >= 0 && index < stageOrder.Count - 1)
+        if (currentSceneIndex >= 0 && currentSceneIndex < SceneManager.sceneCountInBuildSettings - 1)
         {
-            LoadScene(stageOrder[index + 1]);
+            SceneManager.LoadScene(currentSceneIndex + 1);
         }
         else
         {
-            Debug.Log("마지막 스테이지이거나 잘못된 씬 이름입니다.");
+            Debug.Log("마지막 스테이지이거나 잘못된 인덱스입니다.");
         }
     }
+    // public void LoadNextStage()
+    // {
+    //     string currentScene = SceneManager.GetActiveScene().name;
+    //     int index = stageOrder.IndexOf(currentScene);
+    //
+    //     if (index >= 0 && index < stageOrder.Count - 1)
+    //     {
+    //         LoadScene(stageOrder[index + 1]);
+    //     }
+    //     else
+    //     {
+    //         Debug.Log("마지막 스테이지이거나 잘못된 씬 이름입니다.");
+    //     }
+    // }
 
     private void SaveCurrentState()
     {
