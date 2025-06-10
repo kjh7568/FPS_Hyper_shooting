@@ -20,7 +20,7 @@ public class Player : MonoBehaviour, IDamageAble
 
     public void TakeDamage(CombatEvent combatEvent)
     {
-        Debug.Log("플레이어가 맞음!");
+        playerStat.health -= combatEvent.Damage;
     }
 
     public void TakeHeal(HealEvent combatEvent)

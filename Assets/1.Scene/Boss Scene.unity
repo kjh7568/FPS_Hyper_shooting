@@ -7797,7 +7797,7 @@ MonoBehaviour:
     health: 100
     moveSpeed: 5
     dashCoolTime: 2
-  mainCollider: {fileID: 0}
+  mainCollider: {fileID: 5567916890547163624}
 --- !u!4 &5567916890547163631
 Transform:
   m_ObjectHideFlags: 0

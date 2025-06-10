@@ -21,7 +21,7 @@ public class Nasty : MonoBehaviour, IMonster
     
     public void TakeDamage(CombatEvent combatEvent)
     {
-        Debug.Log("Nasty 맞음");
+        zombieStat.health -= combatEvent.Damage;
     }
 
     public void TakeHeal(HealEvent combatEvent)
