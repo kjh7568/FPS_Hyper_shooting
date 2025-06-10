@@ -227,6 +227,74 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 102256965}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &138380018
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 138380019}
+  - component: {fileID: 138380020}
+  - component: {fileID: 138380021}
+  m_Layer: 0
+  m_Name: SmashAttackPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &138380019
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 138380018}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.13917309, z: 0, w: 0.9902681}
+  m_LocalPosition: {x: 0.919, y: 0, z: 0.056}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4000013390563967}
+  m_LocalEulerAnglesHint: {x: 0, y: -16, z: 0}
+--- !u!136 &138380020
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 138380018}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 1
+  m_Height: 0
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &138380021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 138380018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03be7f59f496e6e438e0ddab6bdec957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &196051090
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,6 +664,7 @@ GameObject:
   m_Component:
   - component: {fileID: 278304486}
   - component: {fileID: 278304487}
+  - component: {fileID: 278304488}
   m_Layer: 0
   m_Name: NormalAttackPosition
   m_TagString: Untagged
@@ -641,6 +710,18 @@ CapsuleCollider:
   m_Height: 0
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &278304488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278304485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03be7f59f496e6e438e0ddab6bdec957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &443642045
 GameObject:
   m_ObjectHideFlags: 0
@@ -3827,6 +3908,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 278304486}
+  - {fileID: 138380019}
   m_Father: {fileID: 4000010918186625}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4000013436305541
@@ -4068,13 +4150,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalAttackCollider: {fileID: 278304487}
   smashAttackCollider: {fileID: 0}
-  mainCollider: {fileID: 95000011681905766}
   zombieStat:
     health: 1000
     maxHealth: 1000
     damage: 10
     moveSpeed: 5
     isCanRun: 0
+  mainCollider: {fileID: 95000011681905766}
 --- !u!114 &95000011681905770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6153,6 +6235,7 @@ GameObject:
   - component: {fileID: 5567916890547163626}
   - component: {fileID: 5567916890547163624}
   - component: {fileID: 5567916890547163628}
+  - component: {fileID: 5567916890547163630}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -7637,7 +7720,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4a764cb05543b04da1e4e9b5e54e75e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
   gravity: -9.81
   jumpHeight: 2
   mouseSensitivity: 200
@@ -7699,6 +7781,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5567916890547163541}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5567916890547163630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5567916890546867655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56dd7b6b5a0580e439014e7c71662496, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStat:
+    health: 100
+    moveSpeed: 5
+    dashCoolTime: 2
+  mainCollider: {fileID: 0}
 --- !u!4 &5567916890547163631
 Transform:
   m_ObjectHideFlags: 0

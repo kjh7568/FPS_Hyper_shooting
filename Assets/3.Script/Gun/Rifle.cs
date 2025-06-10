@@ -54,7 +54,7 @@ public class Rifle : Gun
                 if (monster != null)
                 {
                     CombatEvent combatEvent = new CombatEvent();
-                    combatEvent.Sender = FindObjectOfType<PlayerController>();
+                    combatEvent.Sender = Player.localPlayer;
                     combatEvent.Receiver = monster;
                     combatEvent.Damage = (int)currentStat.damage;
                     combatEvent.HitPosition = hit.point;

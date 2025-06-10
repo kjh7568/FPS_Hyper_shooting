@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Nasty : MonoBehaviour, IDamageAble
+public class Nasty : MonoBehaviour, IMonster
 {
     public Collider MainCollider => mainCollider;
     public GameObject GameObject => gameObject;
+    public ZombieStat ZombieStat => zombieStat;
     
     public Collider normalAttackCollider;
     public Collider smashAttackCollider;
     
-    [SerializeField] private Collider mainCollider;
     [SerializeField] private ZombieStat zombieStat;
+    [SerializeField] private Collider mainCollider;
 
     public void Start()
     {
