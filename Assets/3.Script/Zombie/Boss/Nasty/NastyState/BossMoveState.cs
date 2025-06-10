@@ -20,8 +20,7 @@ public class BossMoveState : IBossState
         {
             boss.agent.isStopped = true;
 
-            // if (Random.Range(0, 100) < 60) //일반 공격
-            if (Random.Range(0, 60) < 60) //일반 공격
+            if (Random.Range(0, 100) < 60) //일반 공격
             {
                 boss.SwitchState(new BossAttackState());
             }

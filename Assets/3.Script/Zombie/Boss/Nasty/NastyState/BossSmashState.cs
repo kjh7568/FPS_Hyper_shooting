@@ -1,20 +1,23 @@
+using UnityEngine;
+
 namespace _3.Script.Zombie.BossState
 {
     public class BossSmashState : IBossState
     {
+        private static readonly int SMASH = Animator.StringToHash("Smash");
+
         public void EnterState(BossController boss)
         {
-            // boss.animator.Play("Smash");
+            boss.animator.SetTrigger(SMASH);
+            boss.StartDelay(3f, new BossMoveState());
         }
 
         public void UpdateState(BossController boss)
         {
-            throw new System.NotImplementedException();
         }
 
         public void ExitState(BossController boss)
         {
-            throw new System.NotImplementedException();
         }
     }
 }
