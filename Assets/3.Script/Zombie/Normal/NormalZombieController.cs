@@ -4,7 +4,7 @@ using UnityEngine.AI;
 
 public class NormalZombieController : MonoBehaviour
 {
-    [SerializeField] private Transform target; // 따라갈 대상 (예: 플레이어)
+    private Transform target; // 따라갈 대상 (예: 플레이어)
 
     private NavMeshAgent agent;
     private float detectionRange = 20f;

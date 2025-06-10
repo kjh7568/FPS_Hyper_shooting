@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour, IDamageAble
+public class PlayerController : MonoBehaviour
 {
     private CharacterController characterController;
     
@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour, IDamageAble
     private const float DASH_SPEED = 20f;
     private bool isCanDash = true;
     private Vector3 velocity;
-    [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float jumpHeight = 2f;
 
@@ -48,7 +47,7 @@ public class PlayerController : MonoBehaviour, IDamageAble
         Vector3 inputAxis = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
         Vector3 move = transform.TransformDirection(inputAxis);
 
-        characterController.Move(move * (moveSpeed * Time.deltaTime));
+        characterController.Move(move * (Player.localPlayer.playerStat.moveSpeed * Time.deltaTime));
 
         if (Input.GetKey(KeyCode.Space) && characterController.isGrounded)
         {
@@ -105,23 +104,8 @@ public class PlayerController : MonoBehaviour, IDamageAble
 
     private IEnumerator DashCooldown_Coroutine()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(Player.localPlayer.playerStat.dashCoolTime);
         isCanDash = true;
     }
-    #region MyRegion
-
-    public Collider MainCollider { get; }
-    public GameObject GameObject { get; }
-    public void TakeDamage(CombatEvent combatEvent)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void TakeHeal(HealEvent combatEvent)
-    {
-        throw new NotImplementedException();
-    }
-
-    #endregion
     
 }

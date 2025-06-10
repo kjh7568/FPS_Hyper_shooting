@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalZombie : MonoBehaviour, IDamageAble
+public class NormalZombie : MonoBehaviour, IMonster
 {
+    public ZombieStat ZombieStat => zombieStat;
+    
     [SerializeField] private ZombieStat zombieStat;
 
     public void Start()
@@ -24,4 +26,5 @@ public class NormalZombie : MonoBehaviour, IDamageAble
     {
         throw new System.NotImplementedException();
     }
+
 }

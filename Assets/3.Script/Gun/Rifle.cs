@@ -49,13 +49,12 @@ public class Rifle : Gun
 
             if (hit.collider.CompareTag("Zombie"))
             {
-
                 var monster = CombatSystem.Instance.GetMonsterOrNull(hit.collider);
 
                 if (monster != null)
                 {
                     CombatEvent combatEvent = new CombatEvent();
-                    combatEvent.Sender = FindObjectOfType<PlayerController>();
+                    combatEvent.Sender = Player.localPlayer;
                     combatEvent.Receiver = monster;
                     combatEvent.Damage = (int)currentStat.damage;
                     combatEvent.HitPosition = hit.point;
