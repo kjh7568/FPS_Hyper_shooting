@@ -9,8 +9,13 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] protected int currentLevel;
     [SerializeField] protected int currentAmmo;
     [SerializeField] protected GunLevelStat currentStat;
-
     protected bool isReloading;
+    public int CurrentLevel => currentLevel;
+    public int CurrentAmmo => currentAmmo;
+
+
+
+ 
 
     protected virtual void Start()
     {
@@ -39,6 +44,10 @@ public abstract class Gun : MonoBehaviour
 
         ApplyLevel(currentLevel);
     }
+    public void ApplyAmmo(int ammo)
+    {
+        currentAmmo = ammo;
+    }
 
     public void ApplyLevel(int level)
     {
@@ -61,7 +70,6 @@ public abstract class Gun : MonoBehaviour
             Debug.Log($"[{gunData.gunName}] 최대 레벨({maxLevel})에 도달했습니다.");
         }
     }
-
     public abstract void Fire();
     public abstract void Reload();
 }
