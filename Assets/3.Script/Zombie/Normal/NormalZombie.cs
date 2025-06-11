@@ -23,7 +23,8 @@ public class NormalZombie : MonoBehaviour, IMonster
 
         if (zombieStat.health <= 0)
         {
-            Destroy(gameObject);
+            GetComponent<NormalZombieController>().Die();
+            mainCollider.enabled = false;
         }
     }
 

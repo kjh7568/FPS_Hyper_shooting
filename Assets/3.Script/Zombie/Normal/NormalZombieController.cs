@@ -7,7 +7,9 @@ public class NormalZombieController : MonoBehaviour
     private static readonly int WALK = Animator.StringToHash("Walk");
     private static readonly int IDLE = Animator.StringToHash("Idle");
     private static readonly int RUN = Animator.StringToHash("Run");
-    [SerializeField] private Animator animator;
+    private static readonly int DEATH = Animator.StringToHash("Death");
+
+    public Animator animator;
 
     private Transform target; // 따라갈 대상 (예: 플레이어)
 
@@ -98,5 +100,11 @@ public class NormalZombieController : MonoBehaviour
         NavMesh.SamplePosition(randomDirection, out navHit, dist, NavMesh.AllAreas);
 
         return navHit.position;
+    }
+
+    public void Die()
+    {
+        animator.SetTrigger(DEATH);
+        agent.isStopped = true;
     }
 }
