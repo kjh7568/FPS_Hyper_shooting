@@ -39,46 +39,69 @@ public class NormalZombieController : MonoBehaviour
     {
         float distance = Vector3.Distance(transform.position, target.position);
 
-        Debug.Log(distance);
-        
-        if (isChasingPlayer || distance < detectionRange)
+        if (ShouldChasePlayer(distance))
         {
-            // 플레이어 발견 시 추적 시작
-            if (!isChasingPlayer)
-            {
-                animator.ResetTrigger(ATTACK);
-                animator.SetTrigger(RUN);
-                
-                agent.speed = normalZombie.zombieStat.moveSpeed;
-                isChasingPlayer = true;
-                agent.isStopped = false;
-                StopAllCoroutines();
-            }
+            HandleChase(distance);
+        }
+        else if (!isWandering)
+        {
+            agent.speed = 1;
+            StartCoroutine(WanderRoutine());
+        }
+    }
 
-            if (distance < attackRange)
-            {
-                transform.LookAt(target);
-                
-                animator.ResetTrigger(RUN);
-                animator.SetTrigger(ATTACK);
-                
-                isChasingPlayer = false;
-                agent.isStopped = true;
-            }
-            else
-            {
-                agent.SetDestination(target.position);
-            }
+    private bool ShouldChasePlayer(float distance)
+    {
+        return isChasingPlayer || distance < detectionRange;
+    }
+
+    private void HandleChase(float distance)
+    {
+        if (!isChasingPlayer)
+        {
+            StartChase();
+        }
+
+        if (distance < attackRange)
+        {
+            StartAttack();
         }
         else
         {
-            // 서성거림 상태로 전환
-            if (!isWandering)
-            {
-                agent.speed = 1;
-                StartCoroutine(WanderRoutine());
-            }
+            agent.SetDestination(target.position);
         }
+    }
+
+    private void StartChase()
+    {
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        if (stateInfo.IsName("Run")) return;
+        
+        animator.ResetTrigger(ATTACK);
+        animator.SetTrigger(RUN);
+
+        isChasingPlayer = true;
+        agent.isStopped = false;
+
+        agent.speed = normalZombie.zombieStat.moveSpeed;
+        
+        StopAllCoroutines();
+    }
+
+    private void StartAttack()
+    {
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        if (stateInfo.IsName("Attack")) return;
+        
+        transform.LookAt(target);
+
+        animator.ResetTrigger(RUN);
+        animator.SetTrigger(ATTACK);
+
+        isChasingPlayer = false;
+        agent.isStopped = true;
     }
 
     private IEnumerator WanderRoutine()

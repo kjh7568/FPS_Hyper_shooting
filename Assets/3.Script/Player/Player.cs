@@ -25,7 +25,7 @@ public class Player : MonoBehaviour, IDamageAble
 
         if (playerStat.health <= 0)
         {
-            Destroy(gameObject);
+            Debug.Log("으앙 쥬금");
         }
     }
 

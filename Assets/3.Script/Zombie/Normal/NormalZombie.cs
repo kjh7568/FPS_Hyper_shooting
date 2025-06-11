@@ -17,6 +17,8 @@ public class NormalZombie : MonoBehaviour, IMonster
     
     [SerializeField] private Collider mainCollider;
     
+    public Collider normalAttackCollider;
+    
     public void TakeDamage(CombatEvent combatEvent)
     {
         zombieStat.health -= combatEvent.Damage;
