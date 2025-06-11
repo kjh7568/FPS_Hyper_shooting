@@ -1,0 +1,4 @@
+ID	Type	Value	Description
+1	MoveSpeedUp	1.5	Increase movement speed
+2	DashCooldownDown	0.5	Reduce dashcooltime
+3	MaxHealthUp	20	Increase max health

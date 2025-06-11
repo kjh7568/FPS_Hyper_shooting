@@ -3,13 +3,24 @@ using UnityEngine;
 
 public class AugmentButton : MonoBehaviour
 {
-    public void OnAugmentSelected()
+    private AugmentData augmentData;
+    
+    public void Initialize(AugmentData data)
     {
-        Debug.Log("증강이 선택되었습니다.");
+        augmentData = data;
+    }
+    
+    public void OnClick()
+    {
+        Debug.Log($"선택한 증강: {augmentData.Type}");
 
-        FindObjectOfType<PlayerController>().isOpenPanel = false;
+        GameData.Instance.augmentStat.Apply(augmentData);
+            
+        PlayerController controller = FindObjectOfType<PlayerController>();
+        if (controller != null) controller.isOpenPanel = false;
+
         Player.localPlayer.myGun.isOpenPanel = false;
-        
         AugmentPanelManager.Instance.ClosePanel();
     }
 }
+

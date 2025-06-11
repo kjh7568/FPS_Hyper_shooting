@@ -7,6 +7,8 @@ public class GameData : MonoBehaviour
 
     public int savedGunLevel;
     public int savedCurrentAmmo; 
+    
+    public AugmentStat augmentStat = new AugmentStat(); 
    // 잠시 보류
    // public float moveSpeed;
    // public int savedPlayerHealth; 
@@ -24,6 +26,13 @@ public class GameData : MonoBehaviour
         else
         {
             Destroy(gameObject); 
+        }
+    }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+          augmentStat.PrintAll();
         }
     }
 
