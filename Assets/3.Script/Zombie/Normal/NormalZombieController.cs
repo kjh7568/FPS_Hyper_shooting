@@ -4,13 +4,17 @@ using UnityEngine.AI;
 
 public class NormalZombieController : MonoBehaviour
 {
+    private static readonly int WALK = Animator.StringToHash("Walk");
+    private static readonly int IDLE = Animator.StringToHash("Idle");
+    private static readonly int RUN = Animator.StringToHash("Run");
+    [SerializeField] private Animator animator;
+
     private Transform target; // 따라갈 대상 (예: 플레이어)
 
     private NavMeshAgent agent;
     private float detectionRange = 20f;
 
-    private float wanderRadius = 5f;
-    private float stopDuration = 2f; // 멈추는 시간 (초)
+    private float wanderRadius = 15f;
 
     private bool isWandering = false;
     private bool isChasingPlayer = false; // ▶️ 플레이어를 발견했는지 여부
@@ -34,9 +38,11 @@ public class NormalZombieController : MonoBehaviour
             // 플레이어 발견 시 추적 시작
             if (!isChasingPlayer)
             {
+                agent.speed = 6;
+                animator.SetTrigger(RUN);
                 isChasingPlayer = true;
-                StopAllCoroutines();
                 agent.isStopped = false;
+                StopAllCoroutines();
             }
 
             agent.SetDestination(target.position);
@@ -46,6 +52,7 @@ public class NormalZombieController : MonoBehaviour
             // 서성거림 상태로 전환
             if (!isWandering)
             {
+                agent.speed = 1;
                 StartCoroutine(WanderRoutine());
             }
         }
@@ -54,21 +61,27 @@ public class NormalZombieController : MonoBehaviour
     private IEnumerator WanderRoutine()
     {
         isWandering = true;
-
+        
         while (!isChasingPlayer) // 플레이어 발견 시 중단 조건 추가
         {
+            animator.SetTrigger(WALK);
+
             Vector3 newPos = RandomNavSphere(transform.position, wanderRadius);
             agent.isStopped = false;
             agent.SetDestination(newPos);
 
             // 목적지 도착까지 기다림
-            while (agent.pathPending || agent.remainingDistance > 0.5f)
+            while (agent.pathPending || agent.remainingDistance > 0.25f)
             {
                 yield return null;
             }
 
             // 도착 후 멈춤
             agent.isStopped = true;
+
+            animator.SetTrigger(IDLE);
+
+            var stopDuration = Random.Range(3, 7);
             yield return new WaitForSeconds(stopDuration);
         }
 

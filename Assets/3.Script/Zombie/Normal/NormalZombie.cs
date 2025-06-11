@@ -6,7 +6,7 @@ public class NormalZombie : MonoBehaviour, IMonster
 {
     public ZombieStat ZombieStat => zombieStat;
     
-    [SerializeField] private ZombieStat zombieStat;
+    public ZombieStat zombieStat;
 
     public void Start()
     {
