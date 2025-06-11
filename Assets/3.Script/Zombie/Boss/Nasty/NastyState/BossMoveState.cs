@@ -17,13 +17,13 @@ public class BossMoveState : IBossState
     public void UpdateState(BossController boss)
     {
         float distance = Vector3.Distance(boss.transform.position, boss.target.position);
-        Debug.Log(distance);
 
         brassTimer += Time.deltaTime;
 
         if (distance < 10f)
         {
-            boss.agent.isStopped = true;
+            boss.agent.isStopped = true;                
+            boss.transform.LookAt(boss.target);
             boss.SwitchState(Random.Range(0, 100) < 60 ? new BossAttackState() : new BossSmashState());
         }
         else if (distance < 20f)
@@ -31,6 +31,7 @@ public class BossMoveState : IBossState
             if (brassTimer >= brassDelay)
             {
                 boss.agent.isStopped = true;
+                boss.transform.LookAt(boss.target);
                 boss.SwitchState(new BossBrassState());
             }
             else
