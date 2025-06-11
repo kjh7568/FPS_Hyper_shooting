@@ -8,13 +8,16 @@ public class NormalZombieController : MonoBehaviour
     private static readonly int IDLE = Animator.StringToHash("Idle");
     private static readonly int RUN = Animator.StringToHash("Run");
     private static readonly int DEATH = Animator.StringToHash("Death");
+    private static readonly int ATTACK = Animator.StringToHash("Attack");
 
     public Animator animator;
 
     private Transform target; // 따라갈 대상 (예: 플레이어)
 
     private NavMeshAgent agent;
+    private NormalZombie normalZombie;
     private float detectionRange = 20f;
+    private float attackRange = 1.3f;
 
     private float wanderRadius = 15f;
 
@@ -29,25 +32,43 @@ public class NormalZombieController : MonoBehaviour
     private void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
+        normalZombie = GetComponent<NormalZombie>();
     }
 
     private void Update()
     {
         float distance = Vector3.Distance(transform.position, target.position);
 
+        Debug.Log(distance);
+        
         if (isChasingPlayer || distance < detectionRange)
         {
             // 플레이어 발견 시 추적 시작
             if (!isChasingPlayer)
             {
-                agent.speed = 6;
+                animator.ResetTrigger(ATTACK);
                 animator.SetTrigger(RUN);
+                
+                agent.speed = normalZombie.zombieStat.moveSpeed;
                 isChasingPlayer = true;
                 agent.isStopped = false;
                 StopAllCoroutines();
             }
 
-            agent.SetDestination(target.position);
+            if (distance < attackRange)
+            {
+                transform.LookAt(target);
+                
+                animator.ResetTrigger(RUN);
+                animator.SetTrigger(ATTACK);
+                
+                isChasingPlayer = false;
+                agent.isStopped = true;
+            }
+            else
+            {
+                agent.SetDestination(target.position);
+            }
         }
         else
         {

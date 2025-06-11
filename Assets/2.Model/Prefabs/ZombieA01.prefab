@@ -555,7 +555,7 @@ MonoBehaviour:
     health: 50
     maxHealth: 50
     damage: 10
-    moveSpeed: 5
+    moveSpeed: 6
     isCanRun: 0
   mainCollider: {fileID: 5560361098929785769}
 --- !u!114 &2026857361359727490
