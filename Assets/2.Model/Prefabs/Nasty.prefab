@@ -587,8 +587,8 @@ GameObject:
   - component: {fileID: 2329590370950353594}
   - component: {fileID: 89046488495097727}
   - component: {fileID: 4150404159636916316}
-  - component: {fileID: 789132819471563456}
   - component: {fileID: 4164128693157265206}
+  - component: {fileID: 789132819471563456}
   m_Layer: 0
   m_Name: Nasty
   m_TagString: Zombie
@@ -679,21 +679,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &789132819471563456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3801941456140065451}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41739bda81553ac488685add815dc073, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 0}
-  target: {fileID: 0}
-  animator: {fileID: 0}
 --- !u!114 &4164128693157265206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -715,6 +700,22 @@ MonoBehaviour:
     moveSpeed: 10
     isCanRun: 0
   mainCollider: {fileID: 89046488495097727}
+--- !u!114 &789132819471563456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3801941456140065451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41739bda81553ac488685add815dc073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 4150404159636916316}
+  target: {fileID: 0}
+  animator: {fileID: 2329590370950353594}
+  nasty: {fileID: 4164128693157265206}
 --- !u!1 &4051746171819636163
 GameObject:
   m_ObjectHideFlags: 0

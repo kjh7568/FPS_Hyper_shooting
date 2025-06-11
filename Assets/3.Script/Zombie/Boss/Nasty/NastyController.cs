@@ -5,15 +5,19 @@ using UnityEngine.AI;
 
 public class NastyController : BossController
 {
+    [SerializeField]private Nasty nasty;
+    
     private void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>();
+        // agent = GetComponent<NavMeshAgent>();
+        // animator = GetComponent<Animator>();
+        // nasty.GetComponent<Nasty>();
     }
 
     private void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
+        
         SwitchState(new BossMoveState());
     }
 
