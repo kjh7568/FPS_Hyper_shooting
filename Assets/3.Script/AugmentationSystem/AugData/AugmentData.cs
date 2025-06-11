@@ -3,8 +3,11 @@ public enum AugmentType
 {
     MoveSpeedUp,
     DashCooldownDown,
-    MaxHealthUp
+    MaxHealthUp,
+    AttackPowerUp,
+    ReloadSpeedUp // ✅ 직관적인 이름으로 통일
 }
+
 
 public class AugmentData
 {

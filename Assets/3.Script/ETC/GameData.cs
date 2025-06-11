@@ -9,13 +9,7 @@ public class GameData : MonoBehaviour
     public int savedCurrentAmmo; 
     
     public AugmentStat augmentStat = new AugmentStat(); 
-   // 잠시 보류
-   // public float moveSpeed;
-   // public int savedPlayerHealth; 
-   // public int savedPlayerShield;
-    
 
-    
     private void Awake()
     {
         if (Instance == null)
