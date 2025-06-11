@@ -17,9 +17,6 @@ public class MonsterAttack : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         
-        Debug.Log(Owner);
-        Debug.Log(Owner.ZombieStat);
-        
         ZombieStat zombieStat = Owner.ZombieStat;
         
         CombatEvent combatEvent = new CombatEvent

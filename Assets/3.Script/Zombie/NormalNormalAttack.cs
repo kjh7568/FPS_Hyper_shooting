@@ -14,8 +14,6 @@ public class NormalNormalAttack : StateMachineBehaviour
     
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Debug.Log("애니메이션 시작!");
-        
         isPassStartNormalizedTime = false;
         isPassEndNormalizedTime = false;
         
