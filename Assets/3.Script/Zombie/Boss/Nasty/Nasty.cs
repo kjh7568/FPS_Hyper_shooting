@@ -4,22 +4,24 @@ using UnityEngine;
 
 public class Nasty : MonoBehaviour, IMonster
 {
-    private static readonly int STUNNED = Animator.StringToHash("Stunned");
     public Collider MainCollider => mainCollider;
     public GameObject GameObject => gameObject;
     public ZombieStat ZombieStat => zombieStat;
 
     public Collider normalAttackCollider;
     public Collider smashAttackCollider;
+    public int stunnedCount = 3;
 
     [SerializeField] private ZombieStat zombieStat;
     [SerializeField] private Collider mainCollider;
 
     private float desiredHealth;
+    
 
     public void Start()
     {
         CombatSystem.Instance.RegisterMonster(this);
+        SetHitAnimationHealth();
     }
 
     public void TakeDamage(CombatEvent combatEvent)
@@ -31,17 +33,20 @@ public class Nasty : MonoBehaviour, IMonster
             GetComponent<BossController>().SwitchState(new BossDieState());
             mainCollider.enabled = false;
         }
-        else if (zombieStat.health <= desiredHealth)
+        else if (zombieStat.health <= desiredHealth && stunnedCount > 0)
         {
-            GetComponent<BossController>().animator.SetTrigger(STUNNED);
+            stunnedCount--;
+            GetComponent<BossController>().SwitchState(new BossStunnedState());
+            SetHitAnimationHealth();
         }
     }
 
     private void SetHitAnimationHealth()
     {
-        var rate = Random.Range(0.1f, 0.3f);
+        var rate = Random.Range(0.2f, 0.35f);
 
-        var desiredHealth = zombieStat.health * (1 - rate);
+        desiredHealth = zombieStat.health * (1 - rate);
+        Debug.Log(desiredHealth);
     }
 
     public void TakeHeal(HealEvent combatEvent)
