@@ -4399,6 +4399,7 @@ MonoBehaviour:
   jumpHeight: 2
   mouseSensitivity: 200
   playerCamera: {fileID: 5654770805778202232}
+  animator: {fileID: 1316904921100592283}
   isOpenPanel: 0
 --- !u!143 &7470336309370885373
 CharacterController:
