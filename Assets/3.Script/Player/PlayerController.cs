@@ -6,9 +6,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private CharacterController characterController;
-    
-    [Header("Movement Settings")] 
-    private const float DASH_SPEED = 20f;
+
+    [Header("Movement Settings")] private const float DASH_SPEED = 20f;
     private bool isCanDash = true;
     private Vector3 velocity;
     [SerializeField] private float gravity = -9.81f;
@@ -16,8 +15,11 @@ public class PlayerController : MonoBehaviour
 
     [Header("Mouse Settings")] [SerializeField]
     private float mouseSensitivity = 50f;
+
     private float cameraPitch = 0f;
     [SerializeField] private Transform playerCamera;
+
+    public bool isOpenPanel = false;
 
     private void Awake()
     {
@@ -31,6 +33,13 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (isOpenPanel) return;
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            Debug.Log(characterController.isGrounded);
+        }
+
         MovePlayer();
         ApplyGravity();
         RotatePlayer();
@@ -89,9 +98,9 @@ public class PlayerController : MonoBehaviour
     {
         float elapsed = 0f;
         float dashDuration = 0.2f;
-        
+
         isCanDash = false;
-        
+
         while (elapsed < dashDuration)
         {
             characterController.Move(direction * (DASH_SPEED * Time.deltaTime));
@@ -107,5 +116,4 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(Player.localPlayer.playerStat.dashCoolTime);
         isCanDash = true;
     }
-    
 }

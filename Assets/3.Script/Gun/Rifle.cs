@@ -4,7 +4,7 @@ using System.Collections;
 public class Rifle : Gun
 {
     private float nextFireTime = 0f;
-
+    
     protected override void Update()
     {
         base.Update(); // U 키 레벨업 유지
@@ -13,7 +13,7 @@ public class Rifle : Gun
             return;
 
         // 좌클릭 발사
-        if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
+        if (Input.GetMouseButton(0) && Time.time >= nextFireTime && !isOpenPanel)
         {
             if (currentAmmo > 0)
             {

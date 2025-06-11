@@ -4366,7 +4366,6 @@ GameObject:
   - component: {fileID: 6781490441136181913}
   - component: {fileID: 2561004479487007962}
   - component: {fileID: 7470336309370885373}
-  - component: {fileID: 5700489949634746205}
   - component: {fileID: 2702276376560858301}
   m_Layer: 0
   m_Name: Player
@@ -4384,7 +4383,7 @@ Transform:
   m_GameObject: {fileID: 7026384732605954050}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.17372553, z: 0, w: 0.98479414}
-  m_LocalPosition: {x: 0.3, y: 0, z: -19.1}
+  m_LocalPosition: {x: 0.3, y: 1, z: -19.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4408,6 +4407,7 @@ MonoBehaviour:
   jumpHeight: 2
   mouseSensitivity: 200
   playerCamera: {fileID: 5654770805778202232}
+  isOpenPanel: 0
 --- !u!143 &7470336309370885373
 CharacterController:
   m_ObjectHideFlags: 0
@@ -4434,33 +4434,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
---- !u!54 &5700489949634746205
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7026384732605954050}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &2702276376560858301
 MonoBehaviour:
   m_ObjectHideFlags: 0
