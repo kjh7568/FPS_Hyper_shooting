@@ -1,10 +1,16 @@
+using System;
 using UnityEngine;
 using System.Collections;
 
 public class Rifle : Gun
 {
     private float nextFireTime = 0f;
-    
+    private PlayerController playerController;
+    private void OnEnable()
+    {
+        playerController = FindObjectOfType<PlayerController>();
+    }
+
     protected override void Update()
     {
         base.Update(); // U 키 레벨업 유지
@@ -18,11 +24,15 @@ public class Rifle : Gun
             if (currentAmmo > 0)
             {
                 Fire();
+                playerController.SetShootAnimation(true);
                 nextFireTime = Time.time + currentStat.fireRate;
             }
             else
             {
-                Debug.Log("탄약 없음! 장전이 필요함.");
+                playerController.SetShootAnimation(false);
+                
+                Reload();
+                playerController.SetReloadAnimation();
             }
         }
 
@@ -30,6 +40,12 @@ public class Rifle : Gun
         if (Input.GetKeyDown(KeyCode.R))
         {
             Reload();
+            playerController.SetReloadAnimation();
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            playerController.SetShootAnimation(false);
         }
     }
 

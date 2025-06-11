@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private static readonly int RELOAD = Animator.StringToHash("Reload");
+    private static readonly int SHOOT = Animator.StringToHash("Shoot");
     private CharacterController characterController;
 
     [Header("Movement Settings")] private const float DASH_SPEED = 20f;
@@ -19,8 +21,11 @@ public class PlayerController : MonoBehaviour
     private float cameraPitch = 0f;
     [SerializeField] private Transform playerCamera;
 
+    [Header("Animation Settings")]
+    [SerializeField]private Animator animator;
+    
     public bool isOpenPanel = false;
-
+    
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -115,5 +120,15 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(Player.localPlayer.playerStat.dashCoolTime);
         isCanDash = true;
+    }
+
+    public void SetShootAnimation(bool shoot)
+    {
+        animator.SetBool(SHOOT, shoot);
+    }
+
+    public void SetReloadAnimation()
+    {
+        animator.SetTrigger(RELOAD);
     }
 }
