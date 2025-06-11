@@ -29,7 +29,10 @@ public class Rifle : Gun
             }
             else
             {
-                Debug.Log("탄약 없음! 장전이 필요함.");
+                playerController.SetShootAnimation(false);
+                
+                Reload();
+                playerController.SetReloadAnimation();
             }
         }
 
