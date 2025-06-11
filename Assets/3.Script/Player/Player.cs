@@ -25,7 +25,8 @@ public class Player : MonoBehaviour, IDamageAble
 
         if (playerStat.health <= 0)
         {
-            Debug.Log("으앙 쥬금");
+            //todo 플레이어 사망 처리
+            Debug.Log("플레이어 사망처리 할 것");
         }
     }
 
