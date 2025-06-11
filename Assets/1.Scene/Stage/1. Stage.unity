@@ -3391,6 +3391,10 @@ MonoBehaviour:
     moveSpeedBonus: 0
     maxHealthBonus: 0
     dashCooldownReduction: 0
+    attackPowerBonus: 0
+    reloadSpeedBonus: 0
+    reloadDamageBonus: 0
+    reloadBuffDuration: 3
 --- !u!4 &383410006
 Transform:
   m_ObjectHideFlags: 0
