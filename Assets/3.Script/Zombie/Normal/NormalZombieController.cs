@@ -37,6 +37,8 @@ public class NormalZombieController : MonoBehaviour
 
     private void Update()
     {
+        if (normalZombie.isDead) return;
+        
         float distance = Vector3.Distance(transform.position, target.position);
 
         if (ShouldChasePlayer(distance))

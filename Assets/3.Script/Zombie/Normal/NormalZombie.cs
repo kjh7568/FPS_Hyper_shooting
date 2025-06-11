@@ -18,6 +18,7 @@ public class NormalZombie : MonoBehaviour, IMonster
     [SerializeField] private Collider mainCollider;
     
     public Collider normalAttackCollider;
+    public bool isDead = false;
     
     public void TakeDamage(CombatEvent combatEvent)
     {
@@ -25,6 +26,7 @@ public class NormalZombie : MonoBehaviour, IMonster
 
         if (zombieStat.health <= 0)
         {
+            isDead = true;
             GetComponent<NormalZombieController>().Die();
             mainCollider.enabled = false;
         }
