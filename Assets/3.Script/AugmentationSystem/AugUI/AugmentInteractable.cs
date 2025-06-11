@@ -47,6 +47,9 @@ public class AugmentInteractable : MonoBehaviour
             // 커서 락 해제 및 보이게 설정
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+
+            FindObjectOfType<PlayerController>().isOpenPanel = true;
+            Player.localPlayer.myGun.isOpenPanel = true;
         }
     }
 
