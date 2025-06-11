@@ -52,7 +52,6 @@ public class Rifle : Gun
     public override void Fire()
     {
         currentAmmo--;
-        Debug.Log($"[발사] {gunData.gunName} Lv.{currentLevel} → 데미지: {currentStat.damage} | 남은 탄약: {currentAmmo}");
 
         // Raycast 쏘기
         Camera cam = Camera.main;
@@ -95,13 +94,11 @@ public class Rifle : Gun
     {
         if (isReloading)
         {
-            Debug.Log("이미 장전 중입니다.");
             return;
         }
 
         if (currentAmmo == gunData.maxAmmo)
         {
-            Debug.Log("탄약이 이미 가득 찼습니다.");
             return;
         }
 
@@ -111,14 +108,10 @@ public class Rifle : Gun
     {
         isReloading = true;
 
-        Debug.Log($"[장전 시작] {gunData.gunName}... ({currentStat.reloadTime}초)");
-
         yield return new WaitForSeconds(currentStat.reloadTime);
 
         currentAmmo = gunData.maxAmmo;
         isReloading = false;
-
-        Debug.Log($"[장전 완료] 탄약 {currentAmmo}/{gunData.maxAmmo}");
     }
 
 }

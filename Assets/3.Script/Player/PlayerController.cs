@@ -40,11 +40,6 @@ public class PlayerController : MonoBehaviour
     {
         if (isOpenPanel) return;
 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            Debug.Log(characterController.isGrounded);
-        }
-
         MovePlayer();
         ApplyGravity();
         RotatePlayer();

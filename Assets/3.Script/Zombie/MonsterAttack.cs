@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MonsterAttack : MonoBehaviour
 {
+    [SerializeField] private float damageMultiplier = 1f;
+    
     private IMonster Owner;
     
     private void Start()
@@ -26,7 +28,7 @@ public class MonsterAttack : MonoBehaviour
             Receiver = Player.localPlayer,
             HitPosition = other.ClosestPoint(transform.position),
             Collider = other,
-            Damage = zombieStat.damage,
+            Damage = zombieStat.damage * damageMultiplier,
         };
         
         CombatSystem.Instance.AddInGameEvent(combatEvent);
