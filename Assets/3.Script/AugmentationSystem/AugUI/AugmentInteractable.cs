@@ -21,10 +21,6 @@ public class AugmentInteractable : MonoBehaviour
                 pressETextUI.SetActive(true);
                 Debug.Log("플레이어가 증강 오브젝트에 닿았습니다.");
             }
-            else
-            {
-                Debug.LogWarning("pressETextUI가 null입니다. 참조 확인 필요");
-            }
         }
     }
 
