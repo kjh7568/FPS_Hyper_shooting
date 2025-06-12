@@ -236,6 +236,36 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3861892776674868926, guid: 3f2cc36618ff83b409bfb99cb03eb64b,
+        type: 3}
+      propertyPath: StancePosition.y
+      value: -1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3861892776674868926, guid: 3f2cc36618ff83b409bfb99cb03eb64b,
+        type: 3}
+      propertyPath: StancePosition.z
+      value: -0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 3861892776674868926, guid: 3f2cc36618ff83b409bfb99cb03eb64b,
+        type: 3}
+      propertyPath: StanceRotation.w
+      value: 0.9848077
+      objectReference: {fileID: 0}
+    - target: {fileID: 3861892776674868926, guid: 3f2cc36618ff83b409bfb99cb03eb64b,
+        type: 3}
+      propertyPath: StanceRotation.y
+      value: 0.17364818
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058150518488954172, guid: 3f2cc36618ff83b409bfb99cb03eb64b,
+        type: 3}
+      propertyPath: stancePosition.y
+      value: -1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058150518488954172, guid: 3f2cc36618ff83b409bfb99cb03eb64b,
+        type: 3}
+      propertyPath: stancePosition.z
+      value: -0.07
+      objectReference: {fileID: 0}
     - target: {fileID: 4743540237382481851, guid: 3f2cc36618ff83b409bfb99cb03eb64b,
         type: 3}
       propertyPath: m_LocalPosition.x

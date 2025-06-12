@@ -19,7 +19,7 @@ public class Knife : Gun
 
         Camera cam = Camera.main;
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
-        if (Physics.Raycast(ray, out RaycastHit hit, 4f))
+        if (Physics.Raycast(ray, out RaycastHit hit, 1.5f))
         {
             Debug.DrawLine(ray.origin, hit.point, Color.red, 1f);
             var target = hit.collider.GetComponent<IDamageAble>();

@@ -87,6 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb4fced0896a7d24c8ab6b713ad44fb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startNormalizedTime: 0.5
 --- !u!1101 &-5356775712677408926
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -178,6 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb4fced0896a7d24c8ab6b713ad44fb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startNormalizedTime: 0
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0

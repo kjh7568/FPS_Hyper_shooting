@@ -14,6 +14,7 @@ public class WeaponManager : MonoBehaviour
     public Gun primaryWeapon;
     public Gun secondaryWeapon;
     public Gun knifeWeapon;
+    
     public Gun currentWeapon;
     public bool isPrimary = true;
 
@@ -48,7 +49,6 @@ public class WeaponManager : MonoBehaviour
     private void Update()
     {
         var stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        Debug.Log(stateInfo.IsName("Stab"));
             
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {

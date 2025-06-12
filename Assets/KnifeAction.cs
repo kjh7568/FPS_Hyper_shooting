@@ -4,19 +4,28 @@ using UnityEngine;
 
 public class KnifeAction : StateMachineBehaviour
 {
-    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    [Range(0f, 1f)] public float startNormalizedTime;
 
-    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    private bool isPassStartNormalizedTime;
+    
+    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        isPassStartNormalizedTime = false;
+    }
 
-    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
+    public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        float time = stateInfo.normalizedTime % 1f;
+
+        // 콜라이더 켜기 시점
+        if (!isPassStartNormalizedTime && time >= startNormalizedTime)
+        {
+            isPassStartNormalizedTime = true;
+            Debug.Log("찌르기!");
+            WeaponManager.instance.knifeWeapon.Fire();
+        }
+    }
+
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         var weaponManager = WeaponManager.instance;
