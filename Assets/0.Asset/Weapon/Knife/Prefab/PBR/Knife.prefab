@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4146482183437740}
   - component: {fileID: 65855415632109060}
   m_Layer: 0
-  m_Name: Combat_LODB_PBR
+  m_Name: Knife
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

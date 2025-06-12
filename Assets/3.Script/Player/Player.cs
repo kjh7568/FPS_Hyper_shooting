@@ -11,6 +11,7 @@ public class Player : MonoBehaviour, IDamageAble
     public GameObject GameObject => gameObject;
     public PlayerStat playerStat;
     public Gun myGun;
+    public Gun myMeleeWeapon;
     
     [SerializeField] private Collider mainCollider;
 
