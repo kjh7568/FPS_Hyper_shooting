@@ -345,9 +345,9 @@ Transform:
   m_LocalScale: {x: 0.9999999, y: 1, z: 1.0000002}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7706697274421347719}
   - {fileID: 2928324938364892000}
   - {fileID: 7795804863092948268}
+  - {fileID: 7706697274421347719}
   - {fileID: 8670263906279783964}
   - {fileID: 1340560811837362297}
   - {fileID: 4227898206917196466}
@@ -7774,6 +7774,165 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &7707990011641715543
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7706634187999285681}
+  - component: {fileID: 7675653428911384765}
+  - component: {fileID: 7685784091204934729}
+  m_Layer: 0
+  m_Name: Combat_LODB
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7706634187999285681
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7707990011641715543}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7706697274421347719}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &7675653428911384765
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7707990011641715543}
+  m_Mesh: {fileID: 4300000, guid: e6ec3179ac498194cbdf771d6dbbb2d4, type: 3}
+--- !u!23 &7685784091204934729
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7707990011641715543}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: da5a81d3981db1847b367a02b30d0147, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &7708373977492260391
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7706697274421347719}
+  - component: {fileID: 7644011836736464431}
+  - component: {fileID: 6749334900426759429}
+  m_Layer: 0
+  m_Name: Knife
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &7706697274421347719
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7708373977492260391}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.46877888, y: 0.51012886, z: -0.5068639, w: 0.5129366}
+  m_LocalPosition: {x: 0.104, y: 0.023, z: -0.287}
+  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 7706634187999285681}
+  m_Father: {fileID: 6815902383887626005}
+  m_LocalEulerAnglesHint: {x: 2.076, y: 87.704, z: -87.323}
+--- !u!65 &7644011836736464431
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7708373977492260391}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 35, z: 7}
+  m_Center: {x: 0, y: -1.9, z: 0.72}
+--- !u!114 &6749334900426759429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7708373977492260391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36ab0700cb043414a8d43db64e5beb90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunData: {fileID: 11400000, guid: 7ce594e1629a5404c8b33dc1d31497fd, type: 2}
+  currentLevel: 0
+  currentAmmo: 0
+  currentStat:
+    level: 0
+    damage: 0
+    fireRate: 0
+    reloadTime: 0
+  isOpenPanel: 0
 --- !u!1 &7835152482008398691
 GameObject:
   m_ObjectHideFlags: 0
@@ -8044,6 +8203,9 @@ MonoBehaviour:
   rifleController: {fileID: 9100000, guid: e3d4821af8abbdb45bea5d68f9f5273a, type: 2}
   primaryWeapon: {fileID: 4058150518488954172}
   secondaryWeapon: {fileID: 3861892776674868926}
+  knifeWeapon: {fileID: 6749334900426759429}
+  currentWeapon: {fileID: 0}
+  isPrimary: 1
 --- !u!1 &8184308132583449429
 GameObject:
   m_ObjectHideFlags: 0
@@ -9137,66 +9299,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1001 &7709330655964264491
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 6815902383887626005}
-    m_Modifications:
-    - target: {fileID: 1317388617121292, guid: 2aef0867f8e78cc4d9ad666f62942b1d, type: 3}
-      propertyPath: m_Name
-      value: Knife
-      objectReference: {fileID: 0}
-    - target: {fileID: 4146482183437740, guid: 2aef0867f8e78cc4d9ad666f62942b1d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.104
-      objectReference: {fileID: 0}
-    - target: {fileID: 4146482183437740, guid: 2aef0867f8e78cc4d9ad666f62942b1d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.023
-      objectReference: {fileID: 0}
-    - target: {fileID: 4146482183437740, guid: 2aef0867f8e78cc4d9ad666f62942b1d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.287
-      objectReference: {fileID: 0}
-    - target: {fileID: 4146482183437740, guid: 2aef0867f8e78cc4d9ad666f62942b1d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.5129366
-      objectReference: {fileID: 0}
-    - target: {fileID: 4146482183437740, guid: 2aef0867f8e78cc4d9ad666f62942b1d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.46877888
-      objectReference: {fileID: 0}
-    - target: {fileID: 4146482183437740, guid: 2aef0867f8e78cc4d9ad666f62942b1d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.51012886
-      objectReference: {fileID: 0}
-    - target: {fileID: 4146482183437740, guid: 2aef0867f8e78cc4d9ad666f62942b1d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.5068639
-      objectReference: {fileID: 0}
-    - target: {fileID: 4146482183437740, guid: 2aef0867f8e78cc4d9ad666f62942b1d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 2.076
-      objectReference: {fileID: 0}
-    - target: {fileID: 4146482183437740, guid: 2aef0867f8e78cc4d9ad666f62942b1d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 87.704
-      objectReference: {fileID: 0}
-    - target: {fileID: 4146482183437740, guid: 2aef0867f8e78cc4d9ad666f62942b1d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -87.323
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2aef0867f8e78cc4d9ad666f62942b1d, type: 3}
---- !u!4 &7706697274421347719 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4146482183437740, guid: 2aef0867f8e78cc4d9ad666f62942b1d,
-    type: 3}
-  m_PrefabInstance: {fileID: 7709330655964264491}
-  m_PrefabAsset: {fileID: 0}
