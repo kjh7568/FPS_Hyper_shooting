@@ -1,24 +1,43 @@
+using System;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
+    public static WeaponManager instance;
+
     [SerializeField] private Transform characterModel;
-    
+
     [SerializeField] private Animator animator;
     [SerializeField] private RuntimeAnimatorController pistolController;
     [SerializeField] private RuntimeAnimatorController rifleController;
-    
+
     public Gun primaryWeapon;
     public Gun secondaryWeapon;
-    public static Gun currentWeapon;
+    public Gun knifeWeapon;
+    public Gun currentWeapon;
+
+
+    private static readonly int STAB = Animator.StringToHash("Stab");
 
     private readonly Vector3 rifleStancePosition = new Vector3(0f, -1.5f, -0.07f);
     private readonly Quaternion rifleStanceRotation = new Quaternion(0f, 0f, 0f, 0f);
-    
+
     private readonly Vector3 pistolStancePosition = new Vector3(0f, -1.6f, -0.07f);
     private readonly Quaternion pistolStanceRotation = Quaternion.Euler(0f, 20f, 0f);
-    
-    private enum WeaponSlot { Primary, Secondary }
+
+    private readonly Vector3 knifeStancePosition = new Vector3(0.42f, -0.99f, -0.55f);
+    private readonly Quaternion knifeStanceRotation = Quaternion.Euler(1.85f, -15.75f, 0f);
+
+    private enum WeaponSlot
+    {
+        Primary,
+        Secondary
+    }
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
@@ -38,7 +57,10 @@ public class WeaponManager : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.F))
         {
-            Debug.Log("칼질");
+            characterModel.localPosition = knifeStancePosition;
+            characterModel.localRotation = knifeStanceRotation;
+
+            animator.SetTrigger(STAB);
         }
     }
 
@@ -54,16 +76,17 @@ public class WeaponManager : MonoBehaviour
                 {
                     primaryWeapon.gameObject.SetActive(true);
                     currentWeapon = primaryWeapon;
-                    
+
                     characterModel.localPosition = rifleStancePosition;
                     characterModel.localRotation = rifleStanceRotation;
 
                     animator.SetLayerWeight(0, 1f);
                     animator.SetLayerWeight(1, 0);
                     animator.runtimeAnimatorController = rifleController;
-                    
+
                     Debug.Log($"주무기 장착: {primaryWeapon.name}");
                 }
+
                 break;
 
             case WeaponSlot.Secondary:
@@ -71,16 +94,17 @@ public class WeaponManager : MonoBehaviour
                 {
                     secondaryWeapon.gameObject.SetActive(true);
                     currentWeapon = secondaryWeapon;
-                    
+
                     characterModel.localPosition = pistolStancePosition;
                     characterModel.localRotation = pistolStanceRotation;
                     animator.runtimeAnimatorController = pistolController;
-                    
+
                     animator.SetLayerWeight(0, 0);
                     animator.SetLayerWeight(1, 1f);
 
                     Debug.Log($"보조무기 장착: {secondaryWeapon.name}");
                 }
+
                 break;
         }
     }

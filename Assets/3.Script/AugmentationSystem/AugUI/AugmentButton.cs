@@ -19,7 +19,7 @@ public class AugmentButton : MonoBehaviour
         PlayerController controller = FindObjectOfType<PlayerController>();
         if (controller != null) controller.isOpenPanel = false;
 
-        WeaponManager.currentWeapon.isOpenPanel = false;
+        WeaponManager.instance.currentWeapon.isOpenPanel = false;
         AugmentPanelManager.Instance.ClosePanel();
     }
 }

@@ -45,7 +45,7 @@ public class AugmentInteractable : MonoBehaviour
             Cursor.visible = true;
 
             FindObjectOfType<PlayerController>().isOpenPanel = true;
-            WeaponManager.currentWeapon.isOpenPanel = true;
+            WeaponManager.instance.currentWeapon.isOpenPanel = true;
         }
     }
 

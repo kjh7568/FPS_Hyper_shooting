@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
         if (Player.localPlayer == null) return;
 
         var playerStat = Player.localPlayer.playerStat;
-        var myGun = WeaponManager.currentWeapon;
+        var myGun = WeaponManager.instance.currentWeapon;
 
         hpText.text = $"{playerStat.health} / {playerStat.maxHealth}";
         bulletText.text = $"{myGun.CurrentAmmo} / {myGun.gunData.maxAmmo}";
