@@ -47,6 +47,9 @@ public class WeaponManager : MonoBehaviour
 
     private void Update()
     {
+        var stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        Debug.Log(stateInfo.IsName("Stab"));
+            
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             EquipWeapon(WeaponSlot.Primary);
@@ -55,14 +58,14 @@ public class WeaponManager : MonoBehaviour
         {
             EquipWeapon(WeaponSlot.Secondary);
         }
-        else if (Input.GetKeyDown(KeyCode.F))
+        else if (Input.GetKeyDown(KeyCode.F) && !stateInfo.IsName("Stab"))
         {
             characterModel.localPosition = KnifeStancePosition;
             characterModel.localRotation = KnifeStanceRotation;
 
             currentWeapon.gameObject.SetActive(false);
             knifeWeapon.gameObject.SetActive(true);
-            
+
             animator.SetTrigger(STAB);
         }
     }
@@ -88,7 +91,7 @@ public class WeaponManager : MonoBehaviour
                     animator.runtimeAnimatorController = rifleController;
 
                     isPrimary = true;
-                    
+
                     Debug.Log($"주무기 장착: {primaryWeapon.name}");
                 }
 
@@ -108,7 +111,7 @@ public class WeaponManager : MonoBehaviour
                     animator.SetLayerWeight(1, 1f);
 
                     isPrimary = false;
-                    
+
                     Debug.Log($"보조무기 장착: {secondaryWeapon.name}");
                 }
 
