@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/PROTOFACTOR.meta
+guid: 83c69d6dc010d414484ba72012a0aa26
+========
 guid: 570591aeb92fe644f881c353426caee4
+>>>>>>>> Development:Assets/1.Scene/TestScene.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

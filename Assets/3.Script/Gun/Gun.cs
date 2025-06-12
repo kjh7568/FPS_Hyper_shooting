@@ -18,6 +18,7 @@ public abstract class Gun : MonoBehaviour
     // 증강관련
     protected float ReloadDamageBonus = 0f;
     protected float ReloadDamageTimer = 0f;
+    
     protected virtual void Start()
     {
         InitGun();
