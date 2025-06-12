@@ -13,7 +13,7 @@ public class Rifle : Gun
 
     protected override void Update()
     {
-        base.Update(); // U 키 레벨업 유지
+        base.Update();
 
         if (isReloading)
             return;
@@ -53,14 +53,17 @@ public class Rifle : Gun
     {
         currentAmmo--;
 
-        // Raycast 쏘기
+        float damage = GetFinalDamage(); // ✅ 버프 포함된 데미지 계산
+
+        Debug.Log($"[발사] {gunData.gunName} Lv.{currentLevel} → 데미지: {damage} | 남은 탄약: {currentAmmo}");
+
         Camera cam = Camera.main;
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, 100f))
         {
-            Debug.DrawLine(ray.origin, hit.point, Color.red, 1f); // 디버그용 레이 시각화
+            Debug.DrawLine(ray.origin, hit.point, Color.red, 1f);
 
             if (hit.collider.CompareTag("Zombie"))
             {
@@ -71,10 +74,10 @@ public class Rifle : Gun
                     CombatEvent combatEvent = new CombatEvent();
                     combatEvent.Sender = Player.localPlayer;
                     combatEvent.Receiver = monster;
-                    combatEvent.Damage = (int)currentStat.damage;
+                    combatEvent.Damage = Mathf.RoundToInt(damage); // ✅ 버프 적용된 최종 데미지 사용
                     combatEvent.HitPosition = hit.point;
                     combatEvent.Collider = hit.collider;
-                
+
                     CombatSystem.Instance.AddInGameEvent(combatEvent);
                 }
             }
@@ -88,6 +91,7 @@ public class Rifle : Gun
             Debug.Log("무언가를 맞추지 못함.");
         }
     }
+
 
 
     public override void Reload()
@@ -112,6 +116,8 @@ public class Rifle : Gun
 
         currentAmmo = gunData.maxAmmo;
         isReloading = false;
+
+        OnReloadComplete();
     }
 
 }

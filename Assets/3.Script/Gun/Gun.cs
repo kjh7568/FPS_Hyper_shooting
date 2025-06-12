@@ -15,6 +15,9 @@ public abstract class Gun : MonoBehaviour
 
     public bool isOpenPanel = false;
     
+    // 증강관련
+    protected float ReloadDamageBonus = 0f;
+    protected float ReloadDamageTimer = 0f;
     protected virtual void Start()
     {
         InitGun();
@@ -25,6 +28,17 @@ public abstract class Gun : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.U))
         {
             LevelUp();
+        }
+        // [ 버프 시간 감소 처리]
+        if (ReloadDamageTimer > 0f)
+        {
+            ReloadDamageTimer -= Time.deltaTime;
+            if (ReloadDamageTimer <= 0f)
+            {
+                ReloadDamageBonus = 0f;
+                ReloadDamageTimer = 0f;
+                Debug.Log("[버프 종료] 장전 후 공격력 증가가 끝났습니다.");
+            }
         }
     }
 
@@ -67,6 +81,23 @@ public abstract class Gun : MonoBehaviour
         {
             Debug.Log($"[{gunData.gunName}] 최대 레벨({maxLevel})에 도달했습니다.");
         }
+    }
+    protected virtual void OnReloadComplete()
+    {
+        var stat = GameData.Instance.augmentStat;
+
+        if (stat.reloadDamageBonus > 0f)
+        {
+            ReloadDamageBonus = stat.reloadDamageBonus;
+            ReloadDamageTimer = stat.reloadBuffDuration;
+
+            Debug.Log($"[버프 적용] 장전 후 {ReloadDamageTimer}초간 공격력 +{ReloadDamageBonus}");
+        }
+    }
+
+    protected virtual float GetFinalDamage()
+    {
+        return currentStat.damage + ReloadDamageBonus;
     }
     public abstract void Fire();
     public abstract void Reload();

@@ -4,3 +4,4 @@ ID	Type	Value	Description
 3	MaxHealthUp	10	Increase max health	
 4	AttackPowerUp	10	Increase attack power	
 5	ReloadSpeedUp	1	Reduce reload time
+6	ReloadDamageBuff	10	Increase attack power for 3seconds after reload			
