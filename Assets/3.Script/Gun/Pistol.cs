@@ -9,12 +9,11 @@ public class Pistol : Gun
     private void OnEnable()
     {
         playerController = FindObjectOfType<PlayerController>();
+        isReloading = false;
     }
 
     protected override void Update()
     {
-        base.Update();
-
         if (isReloading)
             return;
 
@@ -39,6 +38,7 @@ public class Pistol : Gun
         // R 키 장전
         if (Input.GetKeyDown(KeyCode.R))
         {
+            Debug.Log("피스톨 r키 눌림");
             Reload();
             playerController.SetReloadAnimation();
         }
@@ -54,8 +54,6 @@ public class Pistol : Gun
         currentAmmo--;
 
         float damage = GetFinalDamage(); // ✅ 버프 포함된 데미지 계산
-
-        Debug.Log($"[발사] {gunData.gunName} Lv.{currentLevel} → 데미지: {damage} | 남은 탄약: {currentAmmo}");
 
         Camera cam = Camera.main;
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);

@@ -6,15 +6,15 @@ public class Rifle : Gun
 {
     private float nextFireTime = 0f;
     private PlayerController playerController;
+
     private void OnEnable()
     {
         playerController = FindObjectOfType<PlayerController>();
+        isReloading = false;
     }
 
     protected override void Update()
     {
-        base.Update();
-
         if (isReloading)
             return;
 
@@ -29,16 +29,14 @@ public class Rifle : Gun
             }
             else
             {
-                playerController.SetShootAnimation(false);
-                
                 Reload();
-                playerController.SetReloadAnimation();
             }
         }
 
         // R 키 장전
         if (Input.GetKeyDown(KeyCode.R))
         {
+            Debug.Log("R키 눌림");
             Reload();
             playerController.SetReloadAnimation();
         }
@@ -54,8 +52,6 @@ public class Rifle : Gun
         currentAmmo--;
 
         float damage = GetFinalDamage(); // ✅ 버프 포함된 데미지 계산
-
-        Debug.Log($"[발사] {gunData.gunName} Lv.{currentLevel} → 데미지: {damage} | 남은 탄약: {currentAmmo}");
 
         Camera cam = Camera.main;
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
@@ -93,21 +89,27 @@ public class Rifle : Gun
     }
 
 
-
     public override void Reload()
     {
+        Debug.Log("함수는 들어옴");
+        
         if (isReloading)
         {
+            Debug.Log("이미 장전중임");
             return;
         }
 
         if (currentAmmo == gunData.maxAmmo)
         {
+            Debug.Log("이미 최대 탄임");
             return;
         }
 
+        playerController.SetShootAnimation(false);
+        playerController.SetReloadAnimation();
         StartCoroutine(ReloadRoutine());
     }
+
     private IEnumerator ReloadRoutine()
     {
         isReloading = true;
@@ -119,5 +121,4 @@ public class Rifle : Gun
 
         OnReloadComplete();
     }
-
 }

@@ -19,7 +19,7 @@ MonoBehaviour:
   - level: 1
     damage: 6
     fireRate: 0.1
-    reloadTime: 0.25
+    reloadTime: 3
   - level: 2
     damage: 7
     fireRate: 0.1

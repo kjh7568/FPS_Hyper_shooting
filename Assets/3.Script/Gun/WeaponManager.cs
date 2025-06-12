@@ -2,10 +2,22 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
+    [SerializeField] private Transform characterModel;
+    
+    [SerializeField] private Animator animator;
+    [SerializeField] private RuntimeAnimatorController pistolController;
+    [SerializeField] private RuntimeAnimatorController rifleController;
+    
     public Gun primaryWeapon;
     public Gun secondaryWeapon;
     public static Gun currentWeapon;
 
+    private readonly Vector3 rifleStancePosition = new Vector3(0f, -1.5f, -0.07f);
+    private readonly Quaternion rifleStanceRotation = new Quaternion(0f, 0f, 0f, 0f);
+    
+    private readonly Vector3 pistolStancePosition = new Vector3(0f, -1.6f, -0.07f);
+    private readonly Quaternion pistolStanceRotation = Quaternion.Euler(0f, 20f, 0f);
+    
     private enum WeaponSlot { Primary, Secondary }
 
     private void Start()
@@ -26,24 +38,6 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
-    // public void SetPrimaryWeapon(GameObject weaponPrefab)
-    // {
-    //     if (currentPrimary != null)
-    //         Destroy(currentPrimary);
-    //
-    //     currentPrimary = Instantiate(weaponPrefab, weaponHolder);
-    //     currentPrimary.SetActive(false);
-    // }
-    //
-    // public void SetSecondaryWeapon(GameObject weaponPrefab)
-    // {
-    //     if (currentSecondary != null)
-    //         Destroy(currentSecondary);
-    //
-    //     currentSecondary = Instantiate(weaponPrefab, weaponHolder);
-    //     currentSecondary.SetActive(false);
-    // }
-
     private void EquipWeapon(WeaponSlot slot)
     {
         if (currentWeapon != null)
@@ -56,6 +50,14 @@ public class WeaponManager : MonoBehaviour
                 {
                     primaryWeapon.gameObject.SetActive(true);
                     currentWeapon = primaryWeapon;
+                    
+                    characterModel.localPosition = rifleStancePosition;
+                    characterModel.localRotation = rifleStanceRotation;
+
+                    animator.SetLayerWeight(0, 1f);
+                    animator.SetLayerWeight(1, 0);
+                    animator.runtimeAnimatorController = rifleController;
+                    
                     Debug.Log($"주무기 장착: {primaryWeapon.name}");
                 }
                 break;
@@ -65,17 +67,17 @@ public class WeaponManager : MonoBehaviour
                 {
                     secondaryWeapon.gameObject.SetActive(true);
                     currentWeapon = secondaryWeapon;
+                    
+                    characterModel.localPosition = pistolStancePosition;
+                    characterModel.localRotation = pistolStanceRotation;
+                    animator.runtimeAnimatorController = pistolController;
+                    
+                    animator.SetLayerWeight(0, 0);
+                    animator.SetLayerWeight(1, 1f);
+
                     Debug.Log($"보조무기 장착: {secondaryWeapon.name}");
                 }
                 break;
         }
-
-       // // 추가: 플레이어에게 현재 무기 알려주기
-       // if (Player.localPlayer != null)
-       // {
-       //     var gun = currentWeapon.GetComponent<Gun>();
-       //     Player.localPlayer.currentGun = gun;
-       // }
     }
-
 }

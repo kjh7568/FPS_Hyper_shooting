@@ -1618,7 +1618,7 @@ Transform:
   m_GameObject: {fileID: 1405233294977742265}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 1.5, z: 0.073}
+  m_LocalPosition: {x: -0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8037,6 +8037,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 075106c9887d7394997b7dbc0ecb6393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterModel: {fileID: 8580684124207292712}
+  animator: {fileID: 2181260456843403951}
+  pistolController: {fileID: 9100000, guid: a3fbaebc1c134ef499606ae77ce8d603, type: 2}
+  rifleController: {fileID: 9100000, guid: e3d4821af8abbdb45bea5d68f9f5273a, type: 2}
   primaryWeapon: {fileID: 4058150518488954172}
   secondaryWeapon: {fileID: 3861892776674868926}
 --- !u!1 &8184308132583449429
@@ -8535,7 +8539,7 @@ Transform:
   m_GameObject: {fileID: 8518909182376835976}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.5, z: -0.073}
+  m_LocalPosition: {x: 0, y: -1.5, z: -0.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8564,7 +8568,7 @@ Animator:
   m_GameObject: {fileID: 8518909182376835976}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: dab9cd6b3aa068b4385111bc9af85bd7, type: 3}
-  m_Controller: {fileID: 9100000, guid: 7123c7d533d1fb24cbe4a9f0463c5d65, type: 2}
+  m_Controller: {fileID: 9100000, guid: e3d4821af8abbdb45bea5d68f9f5273a, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 1
   m_ApplyRootMotion: 0
