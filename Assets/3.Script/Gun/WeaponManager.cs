@@ -76,12 +76,12 @@ public class WeaponManager : MonoBehaviour
                 break;
         }
 
-       //  // 추가: 플레이어에게 현재 무기 알려주기
-       //  if (Player.localPlayer != null)
-       //  {
-       //      var gun = currentEquipped.GetComponent<Gun>();
-       //      Player.localPlayer.myGun = gun;
-       //  }
+       // 추가: 플레이어에게 현재 무기 알려주기
+       if (Player.localPlayer != null)
+       {
+           var gun = currentEquipped.GetComponent<Gun>();
+           Player.localPlayer.myGun = gun;
+       }
     }
 
 }
