@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour, IDamageAble
 {
@@ -10,7 +11,6 @@ public class Player : MonoBehaviour, IDamageAble
     public Collider MainCollider => mainCollider;
     public GameObject GameObject => gameObject;
     public PlayerStat playerStat;
-    public Gun myGun;
     
     [SerializeField] private Collider mainCollider;
 
