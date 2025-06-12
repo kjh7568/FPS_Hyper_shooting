@@ -106,37 +106,71 @@ public class NormalZombieController : MonoBehaviour
         agent.isStopped = true;
     }
 
+    // private IEnumerator WanderRoutine()
+    // {
+    //     isWandering = true;
+    //     
+    //     while (!isChasingPlayer) // 플레이어 발견 시 중단 조건 추가
+    //     {
+    //         animator.SetTrigger(WALK);
+    //
+    //         Vector3 newPos = RandomNavSphere(transform.position, wanderRadius);
+    //         agent.isStopped = false;
+    //         agent.SetDestination(newPos);
+    //
+    //         // 목적지 도착까지 기다림
+    //         while (agent.pathPending || agent.remainingDistance > 0.25f)
+    //         {
+    //             yield return null;
+    //         }
+    //
+    //         // 도착 후 멈춤
+    //         agent.isStopped = true;
+    //
+    //         animator.SetTrigger(IDLE);
+    //
+    //         var stopDuration = Random.Range(3, 7);
+    //         yield return new WaitForSeconds(stopDuration);
+    //     }
+    //
+    //     // 플레이어 발견 시 루프 탈출 후 정리
+    //     isWandering = false;
+    // }
+
     private IEnumerator WanderRoutine()
     {
         isWandering = true;
-        
-        while (!isChasingPlayer) // 플레이어 발견 시 중단 조건 추가
+
+        while (!isChasingPlayer)
         {
+            if (!agent.isOnNavMesh)
+            {
+                Debug.LogWarning("NavMesh 위에 없으므로 방황 루틴 종료");
+                yield break;
+            }
+
             animator.SetTrigger(WALK);
 
             Vector3 newPos = RandomNavSphere(transform.position, wanderRadius);
             agent.isStopped = false;
             agent.SetDestination(newPos);
 
-            // 목적지 도착까지 기다림
-            while (agent.pathPending || agent.remainingDistance > 0.25f)
+            while (agent.pathPending || (agent.isOnNavMesh && agent.remainingDistance > 0.25f))
             {
                 yield return null;
             }
 
-            // 도착 후 멈춤
             agent.isStopped = true;
 
             animator.SetTrigger(IDLE);
 
-            var stopDuration = Random.Range(3, 7);
+            float stopDuration = Random.Range(3, 7);
             yield return new WaitForSeconds(stopDuration);
         }
 
-        // 플레이어 발견 시 루프 탈출 후 정리
         isWandering = false;
     }
-
+    
     private Vector3 RandomNavSphere(Vector3 origin, float dist)
     {
         Vector3 randomDirection = Random.insideUnitSphere * dist;
