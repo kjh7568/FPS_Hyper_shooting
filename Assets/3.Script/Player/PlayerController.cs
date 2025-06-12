@@ -43,6 +43,15 @@ public class PlayerController : MonoBehaviour
         MovePlayer();
         ApplyGravity();
         RotatePlayer();
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            
+        }
+        else if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            
+        }
     }
 
     private void SetCursor()
@@ -117,6 +126,11 @@ public class PlayerController : MonoBehaviour
         isCanDash = true;
     }
 
+    private void SwapWeapon(int keyNumber)
+    {
+        
+    }
+    
     public void SetShootAnimation(bool shoot)
     {
         animator.SetBool(SHOOT, shoot);
