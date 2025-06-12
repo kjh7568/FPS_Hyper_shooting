@@ -125,11 +125,6 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(Player.localPlayer.playerStat.dashCoolTime);
         isCanDash = true;
     }
-
-    private void SwapWeapon(int keyNumber)
-    {
-        
-    }
     
     public void SetShootAnimation(bool shoot)
     {

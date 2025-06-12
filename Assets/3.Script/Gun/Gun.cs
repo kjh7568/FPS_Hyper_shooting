@@ -10,6 +10,7 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] protected int currentAmmo;
     [SerializeField] protected GunLevelStat currentStat;
     protected bool isReloading;
+    
     public int CurrentLevel => currentLevel;
     public int CurrentAmmo => currentAmmo;
 

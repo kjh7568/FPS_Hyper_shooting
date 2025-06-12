@@ -36,6 +36,10 @@ public class WeaponManager : MonoBehaviour
         {
             EquipWeapon(WeaponSlot.Secondary);
         }
+        else if (Input.GetKeyDown(KeyCode.F))
+        {
+            Debug.Log("칼질");
+        }
     }
 
     private void EquipWeapon(WeaponSlot slot)
