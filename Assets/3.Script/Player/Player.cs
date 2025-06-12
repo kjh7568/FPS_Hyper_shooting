@@ -12,10 +12,30 @@ public class Player : MonoBehaviour, IDamageAble
     public PlayerStat playerStat;
     
     [SerializeField] private Collider mainCollider;
+    
+    private Inventory inventory = new Inventory();
 
+    [SerializeField] private ArmorDataSO helmetSO;
+    [SerializeField] private ArmorDataSO chestPlateSO;
+    [SerializeField] private ArmorDataSO glovesSO;
+    [SerializeField] private ArmorDataSO bootsSO;
+    
     private void Awake()
     {
         localPlayer = this;
+    }
+
+    private void Start()
+    {
+        Armor helmet = new Armor(helmetSO);
+        Armor chestPlate = new Armor(chestPlateSO);
+        Armor gloves = new Armor(glovesSO);
+        Armor boots = new Armor(bootsSO);
+        
+        inventory.EquipArmor(helmet);
+        inventory.EquipArmor(chestPlate);
+        inventory.EquipArmor(gloves);
+        inventory.EquipArmor(boots);
     }
 
     public void TakeDamage(CombatEvent combatEvent)

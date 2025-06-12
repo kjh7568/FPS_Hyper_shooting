@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e09acbbab5280643ae5ccb6bf326c2c, type: 3}
+  m_Name: Common_Boots
+  m_EditorClassIdentifier: 
+  armorName: Common_Boots
+  armorType: 3
+  grade: 0
+  levelStats:
+  - level: 1
+    defense: 0
+  icon: {fileID: 21300000, guid: d37ddf0b63eea1241a91b725dcecb8dd, type: 3}
