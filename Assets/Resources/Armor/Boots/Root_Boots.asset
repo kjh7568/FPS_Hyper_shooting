@@ -10,12 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e09acbbab5280643ae5ccb6bf326c2c, type: 3}
-  m_Name: Common_Chestplate
+  m_Name: Root_Boots
   m_EditorClassIdentifier: 
-  armorName: Common_Chestplate
-  armorType: 1
+  armorName: Root_Boots
+  armorType: 3
   grade: 0
+  icon: {fileID: 0}
   levelStats:
   - level: 1
     defense: 1
-  icon: {fileID: 21300000, guid: ea580c15b5bafb240a696a1035f5ea20, type: 3}
+  - level: 2
+    defense: 2
+  - level: 3
+    defense: 3
+  - level: 4
+    defense: 4
+  - level: 5
+    defense: 5
+  - level: 6
+    defense: 6
+  - level: 7
+    defense: 7
+  - level: 8
+    defense: 8
+  - level: 9
+    defense: 9
+  - level: 10
+    defense: 10
+  possibleEffects: 0000000001000000020000000300000004000000

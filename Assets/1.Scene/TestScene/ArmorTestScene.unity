@@ -1188,6 +1188,54 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 258603693}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &269135251
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 269135253}
+  - component: {fileID: 269135252}
+  m_Layer: 0
+  m_Name: Armorgenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &269135252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269135251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5325f442ee626734f9dbd713f1ca0f7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  helmetSO: {fileID: 11400000, guid: 21fc0e30341216543922f1b2d4afa3f1, type: 2}
+  glovesSO: {fileID: 11400000, guid: 55617a48c4a955e49be5ff18dfd9fd1a, type: 2}
+  bootsSO: {fileID: 11400000, guid: d223f287ec2b23f4e9ec4305358ba4df, type: 2}
+  chestplateSO: {fileID: 11400000, guid: e511f037aac3cf041a5a2e48500eed7c, type: 2}
+--- !u!4 &269135253
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269135251}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.26999998, y: 1.01, z: 20.41}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &296607677
 GameObject:
   m_ObjectHideFlags: 0
@@ -5443,3 +5491,4 @@ SceneRoots:
   - {fileID: 2134004844}
   - {fileID: 2044864402}
   - {fileID: 25092179}
+  - {fileID: 269135253}

@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour, IDamageAble
@@ -36,6 +34,14 @@ public class Player : MonoBehaviour, IDamageAble
         inventory.EquipArmor(chestPlate);
         inventory.EquipArmor(gloves);
         inventory.EquipArmor(boots);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            inventory.DebugPrintTotalDefense();
+        }
     }
 
     public void TakeDamage(CombatEvent combatEvent)

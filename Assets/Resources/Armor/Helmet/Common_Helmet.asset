@@ -17,5 +17,5 @@ MonoBehaviour:
   grade: 0
   levelStats:
   - level: 1
-    defense: 0
+    defense: 1
   icon: {fileID: 21300000, guid: 569cd089c9b69ba4580b0d03871291b4, type: 3}

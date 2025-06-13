@@ -3,29 +3,33 @@ using UnityEngine;
 
 public class Inventory
 {
-    private Dictionary<ArmorType, Armor> ArmorSlots = new();
+    private Dictionary<ArmorType, Armor> equippedArmors = new();
 
-    public Inventory()
+    public void EquipArmor(Armor armor)
     {
-        // 4개 슬롯 미리 초기화
-        foreach (ArmorType type in System.Enum.GetValues(typeof(ArmorType)))
+        ArmorType type = armor.Type;
+        if (equippedArmors.ContainsKey(type))
         {
-            ArmorSlots[type] = null;
+            equippedArmors[type] = armor;
+        }
+        else
+        {
+            equippedArmors.Add(type, armor);
         }
     }
 
-    /// 방어구 장착 (해당 부위에 장착됨)
-    public void EquipArmor(Armor armor)
+    public float GetTotalDefense()
     {
-        ArmorType slot = armor.Type;
-        ArmorSlots[slot] = armor;
-
-        Debug.Log($"[장착] {slot} 슬롯에 {armor.data.armorName} (Lv.{armor.currentLevel}) 장착됨");
+        float total = 0f;
+        foreach (var armor in equippedArmors.Values)
+        {
+            total += armor.GetDefense();
+        }
+        return total;
     }
 
-    /// 해당 부위에 장착된 방어구 반환
-    public Armor GetEquippedArmor(ArmorType type)
+    public void DebugPrintTotalDefense()
     {
-        return ArmorSlots.TryGetValue(type, out var armor) ? armor : null;
+        Debug.Log($"[방어구 총합 방어력] {GetTotalDefense()}");
     }
 }
