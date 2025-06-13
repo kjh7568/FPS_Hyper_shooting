@@ -22,6 +22,8 @@ public class WeaponManager : MonoBehaviour
     public Gun currentWeapon;
     public bool isPrimary = true;
 
+    public AnimatorStateInfo stateInfo;
+    
     private static readonly int STAB = Animator.StringToHash("Stab");
     private static readonly int THROW = Animator.StringToHash("Throw");
 
@@ -56,7 +58,7 @@ public class WeaponManager : MonoBehaviour
 
     private void Update()
     {
-        var stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {

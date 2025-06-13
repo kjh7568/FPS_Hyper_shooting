@@ -18,7 +18,7 @@ public class Pistol : Gun
             return;
 
         // 좌클릭 발사
-        if (Input.GetMouseButton(0) && Time.time >= nextFireTime && !isOpenPanel)
+        if (Input.GetMouseButton(0) && Time.time >= nextFireTime && !isOpenPanel && !WeaponManager.instance.stateInfo.IsName("Draw"))
         {
             if (currentAmmo > 0)
             {

@@ -15,7 +15,8 @@ MonoBehaviour:
   armorName: Common_Gloves
   armorType: 2
   grade: 0
+  icon: {fileID: 21300000, guid: 2a8a9b0b4cdf1b748bb207ed0d78c1c5, type: 3}
   levelStats:
   - level: 1
-    defense: 1
-  icon: {fileID: 21300000, guid: 2a8a9b0b4cdf1b748bb207ed0d78c1c5, type: 3}
+    defense: 500
+  possibleEffects: 

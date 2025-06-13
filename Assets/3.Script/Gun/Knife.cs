@@ -6,7 +6,6 @@ public class Knife : Gun
     public override void Fire()
     {
         float damage = GetFinalDamage();
-        Debug.Log($"[칼 휘두름] {gunData.gunName} Lv.{currentLevel} → 데미지: {damage}");
 
         Camera cam = Camera.main;
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
