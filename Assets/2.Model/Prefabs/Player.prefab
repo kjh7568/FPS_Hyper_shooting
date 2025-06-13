@@ -8171,6 +8171,9 @@ MonoBehaviour:
   jumpHeight: 1
   mouseSensitivity: 200
   playerCamera: {fileID: 3381580901997150761}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 8
   animator: {fileID: 2181260456843403951}
   isOpenPanel: 0
 --- !u!143 &2778838429655402514

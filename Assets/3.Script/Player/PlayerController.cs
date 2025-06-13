@@ -20,11 +20,13 @@ public class PlayerController : MonoBehaviour
 
     private float cameraPitch = 0f;
     [SerializeField] private Transform playerCamera;
+    [SerializeField] private LayerMask groundMask;
 
     [Header("Animation Settings")]
     [SerializeField]private Animator animator;
     
     public bool isOpenPanel = false;
+
     
     private void Awake()
     {
@@ -43,15 +45,6 @@ public class PlayerController : MonoBehaviour
         MovePlayer();
         ApplyGravity();
         RotatePlayer();
-
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            
-        }
-        else if(Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            
-        }
     }
 
     private void SetCursor()
@@ -67,8 +60,9 @@ public class PlayerController : MonoBehaviour
 
         characterController.Move(move * (Player.localPlayer.playerStat.moveSpeed * Time.deltaTime));
 
-        if (Input.GetKey(KeyCode.Space) && characterController.isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
+            Debug.Log("스페이스 바 눌림!");
             velocity.y = Mathf.Sqrt(2f * jumpHeight * -gravity);
         }
 
@@ -76,6 +70,24 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(Dash(move));
         }
+    }
+    
+    private bool IsGrounded()
+    {
+        return Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, 0.2f, groundMask);
+    }
+    
+    private void RotatePlayer()
+    {
+        Vector2 mouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")) *
+                             (mouseSensitivity * Time.deltaTime);
+
+        transform.Rotate(Vector3.up * mouseInput.x);
+
+        cameraPitch -= mouseInput.y;
+        cameraPitch = Mathf.Clamp(cameraPitch, -90f, 90f);
+
+        playerCamera.localEulerAngles = new Vector3(cameraPitch, 0f, 0f);
     }
 
     private void ApplyGravity()
@@ -88,19 +100,6 @@ public class PlayerController : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         characterController.Move(velocity * Time.deltaTime);
-    }
-
-    private void RotatePlayer()
-    {
-        Vector2 mouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")) *
-                             (mouseSensitivity * Time.deltaTime);
-
-        transform.Rotate(Vector3.up * mouseInput.x);
-
-        cameraPitch -= mouseInput.y;
-        cameraPitch = Mathf.Clamp(cameraPitch, -90f, 90f);
-
-        playerCamera.localEulerAngles = new Vector3(cameraPitch, 0f, 0f);
     }
 
     private IEnumerator Dash(Vector3 direction)

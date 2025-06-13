@@ -19,8 +19,10 @@ public class Grenade : Gun
     }
 
 
-    public void OnCollisionEnter(Collision collision)
+    public void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.gameObject.name);
+        
         // 오직 Monster 레이어에만 반응
         Collider[] hits = Physics.OverlapSphere(transform.position, 4f, monsterLayer);
 

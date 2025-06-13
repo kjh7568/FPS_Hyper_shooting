@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Scripting;
 using UnityEngine;
 
-public class NormalNormalAttack : StateMachineBehaviour
+public class NormalZombieAttackAction : StateMachineBehaviour
 {
     [Range(0f, 1f)] public float startNormalizedTime;
     [Range(0f, 1f)] public float endNormalizedTime;
