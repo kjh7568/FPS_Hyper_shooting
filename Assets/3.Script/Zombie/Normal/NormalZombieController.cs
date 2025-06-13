@@ -59,18 +59,19 @@ public class NormalZombieController : MonoBehaviour
 
     private void HandleChase(float distance)
     {
-        // 애니메이터가 Attack 상태면 이동 및 추격 로직 전부 스킵
-        var state = animator.GetCurrentAnimatorStateInfo(0);
-        if (state.IsName("Attack"))
-            return;
-
         if (!isChasingPlayer)
+        {
             StartChase();
+        }
 
         if (distance < attackRange)
+        {
             StartAttack();
+        }
         else
+        {
             agent.SetDestination(target.position);
+        }
     }
 
 
