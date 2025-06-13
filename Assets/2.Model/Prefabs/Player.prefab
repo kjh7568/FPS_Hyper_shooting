@@ -6888,6 +6888,7 @@ Transform:
   - {fileID: 5630030623256208563}
   - {fileID: 1675656181724981836}
   - {fileID: 6116013239698581392}
+  - {fileID: 8297777471490375500}
   m_Father: {fileID: 5231701890851017905}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6885210305519125425
@@ -7416,6 +7417,37 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.000000067055225, y: 0.0776686, z: 0.05191478}
     m_Extent: {x: 0.07316083, y: 0.02290447, z: 0.06610012}
   m_DirtyAABB: 0
+--- !u!1 &7374111038629755585
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8297777471490375500}
+  m_Layer: 0
+  m_Name: GrenadePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8297777471490375500
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7374111038629755585}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.07, y: -0, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3825271142097175634}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7395067338478782327
 GameObject:
   m_ObjectHideFlags: 0
@@ -8201,9 +8233,13 @@ MonoBehaviour:
   animator: {fileID: 2181260456843403951}
   pistolController: {fileID: 9100000, guid: a3fbaebc1c134ef499606ae77ce8d603, type: 2}
   rifleController: {fileID: 9100000, guid: e3d4821af8abbdb45bea5d68f9f5273a, type: 2}
+  grenadePrefab: {fileID: 781683980290335973, guid: 50626ed689af39843aba9b38620f9aa5,
+    type: 3}
+  grenadeSpawnPoint: {fileID: 8297777471490375500}
   primaryWeapon: {fileID: 4058150518488954172}
   secondaryWeapon: {fileID: 3861892776674868926}
   knifeWeapon: {fileID: 6749334900426759429}
+  grenadeWeapon: {fileID: 0}
   currentWeapon: {fileID: 0}
   isPrimary: 1
 --- !u!1 &8184308132583449429

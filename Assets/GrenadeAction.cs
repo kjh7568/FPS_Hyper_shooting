@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KnifeAction : StateMachineBehaviour
+public class GrenadeAction : StateMachineBehaviour
 {
     [Range(0f, 1f)] public float startNormalizedTime;
 
@@ -20,7 +20,8 @@ public class KnifeAction : StateMachineBehaviour
         if (!isPassStartNormalizedTime && time >= startNormalizedTime)
         {
             isPassStartNormalizedTime = true;
-            WeaponManager.instance.knifeWeapon.Fire();
+            Debug.Log("수류탄 투척!");
+            Instantiate(WeaponManager.instance.grenadePrefab, WeaponManager.instance.grenadeSpawnPoint.position, Quaternion.identity);
         }
     }
 
@@ -29,7 +30,6 @@ public class KnifeAction : StateMachineBehaviour
         var weaponManager = WeaponManager.instance;
         
         weaponManager.currentWeapon.gameObject.SetActive(true);
-        weaponManager.knifeWeapon.gameObject.SetActive(false);
         
         if (weaponManager.isPrimary)
         {

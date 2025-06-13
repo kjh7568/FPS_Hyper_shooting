@@ -11,14 +11,19 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] private RuntimeAnimatorController pistolController;
     [SerializeField] private RuntimeAnimatorController rifleController;
 
+    public GameObject grenadePrefab;
+    public Transform grenadeSpawnPoint;
+
     public Gun primaryWeapon;
     public Gun secondaryWeapon;
     public Gun knifeWeapon;
-    
+    public Gun grenadeWeapon;
+
     public Gun currentWeapon;
     public bool isPrimary = true;
 
     private static readonly int STAB = Animator.StringToHash("Stab");
+    private static readonly int THROW = Animator.StringToHash("Throw");
 
     public readonly Vector3 RifleStancePosition = new Vector3(0f, -1.5f, -0.07f);
     public readonly Quaternion RifleStanceRotation = new Quaternion(0f, 0f, 0f, 0f);
@@ -28,6 +33,9 @@ public class WeaponManager : MonoBehaviour
 
     public readonly Vector3 KnifeStancePosition = new Vector3(0.42f, -0.99f, -0.55f);
     public readonly Quaternion KnifeStanceRotation = Quaternion.Euler(1.85f, -15.75f, 0f);
+
+    public readonly Vector3 GrenadeStancePosition = new Vector3(0f, -1.5f, -0.3f);
+    public readonly Quaternion GrenadeStanceRotation = Quaternion.Euler(0f, -15f, 0f);
 
     private enum WeaponSlot
     {
@@ -49,7 +57,7 @@ public class WeaponManager : MonoBehaviour
     private void Update()
     {
         var stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-            
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             EquipWeapon(WeaponSlot.Primary);
@@ -58,7 +66,7 @@ public class WeaponManager : MonoBehaviour
         {
             EquipWeapon(WeaponSlot.Secondary);
         }
-        else if (Input.GetKeyDown(KeyCode.F) && !stateInfo.IsName("Stab"))
+        else if (Input.GetKeyDown(KeyCode.F) && !stateInfo.IsName("Stab") && !stateInfo.IsName("Throw"))
         {
             characterModel.localPosition = KnifeStancePosition;
             characterModel.localRotation = KnifeStanceRotation;
@@ -67,6 +75,15 @@ public class WeaponManager : MonoBehaviour
             knifeWeapon.gameObject.SetActive(true);
 
             animator.SetTrigger(STAB);
+        }
+        else if (Input.GetKeyDown(KeyCode.G) && !stateInfo.IsName("Stab") && !stateInfo.IsName("Throw"))
+        {
+            characterModel.localPosition = GrenadeStancePosition;
+            characterModel.localRotation = GrenadeStanceRotation;
+
+            currentWeapon.gameObject.SetActive(false);
+
+            animator.SetTrigger(THROW);
         }
     }
 

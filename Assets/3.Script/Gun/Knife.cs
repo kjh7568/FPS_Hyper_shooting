@@ -2,15 +2,6 @@ using UnityEngine;
 
 public class Knife : Gun
 {
-    // PlayerController는 애니메이션용으로만 쓰면 되고,
-    // 공격 로직은 WeaponManager가 모두 다룬다.
-    private PlayerController playerController;
-
-    private void Awake()
-    {
-        playerController = FindObjectOfType<PlayerController>();
-    }
-
     // WeaponManager가 호출해서 Fire만 실행
     public override void Fire()
     {
@@ -45,11 +36,5 @@ public class Knife : Gun
     public override void Reload()
     {
         Debug.Log("칼은 장전할 수 없습니다.");
-    }
-
-    // WeaponManager가 쿨타임으로 사용하는 프로퍼티
-    public float GetFireRate()
-    {
-        return currentStat.fireRate;
     }
 }
