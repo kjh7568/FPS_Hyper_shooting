@@ -38,7 +38,6 @@ public class Rifle : Gun
         {
             Debug.Log("R키 눌림");
             Reload();
-            playerController.SetReloadAnimation();
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -95,25 +94,16 @@ public class Rifle : Gun
 
 
     public override void Reload()
-    {
-        Debug.Log("함수는 들어옴");
-        
-        if (isReloading)
-        {
-            Debug.Log("이미 장전중임");
-            return;
-        }
-
-        if (currentAmmo == gunData.maxAmmo)
-        {
-            Debug.Log("이미 최대 탄임");
-            return;
-        }
-
-        playerController.SetShootAnimation(false);
-        playerController.SetReloadAnimation();
-        StartCoroutine(ReloadRoutine());
-    }
+         {
+             if (CurrentAmmo >= gunData.maxAmmo)
+             {
+                 Debug.Log("[Rifle] 이미 탄창이 가득 차 있습니다.");
+                 return;
+             }
+             playerController.SetShootAnimation(false);
+             playerController.SetReloadAnimation();
+             StartCoroutine(ReloadRoutine());
+         }
 
     private IEnumerator ReloadRoutine()
     {

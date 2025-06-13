@@ -94,13 +94,9 @@ public class Pistol : Gun
 
     public override void Reload()
     {
-        if (isReloading)
+        if (CurrentAmmo >= gunData.maxAmmo)
         {
-            return;
-        }
-
-        if (currentAmmo == gunData.maxAmmo)
-        {
+            Debug.Log("[Rifle] 이미 탄창이 가득 차 있습니다.");
             return;
         }
 
