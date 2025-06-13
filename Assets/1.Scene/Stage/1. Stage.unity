@@ -1838,7 +1838,7 @@ GameObject:
   - component: {fileID: 680883662}
   - component: {fileID: 680883661}
   - component: {fileID: 680883660}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4962,7 +4962,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f74754b5eecaabe41994b5477e8ff5a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 8112743426044226762, guid: 3f2cc36618ff83b409bfb99cb03eb64b,
+  playerPrefab: {fileID: 8112743426044226762, guid: c77e613beb8eb6d40aef737010078c5f,
     type: 3}
 --- !u!4 &1933234992
 Transform:

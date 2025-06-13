@@ -38,7 +38,7 @@ public class NormalZombieController : MonoBehaviour
     private void Update()
     {
         if (normalZombie.isDead) return;
-        
+
         float distance = Vector3.Distance(transform.position, target.position);
 
         if (ShouldChasePlayer(distance))
@@ -60,17 +60,17 @@ public class NormalZombieController : MonoBehaviour
     private void HandleChase(float distance)
     {
         // 애니메이터가 Attack 상태면 이동 및 추격 로직 전부 스킵
-        var state = animator.GetCurrentAnimatorStateInfo(0);
-        if (state.IsName("Attack"))
-            return;
-
         if (!isChasingPlayer)
             StartChase();
 
         if (distance < attackRange)
+        {
             StartAttack();
+        }
         else
+        {
             agent.SetDestination(target.position);
+        }
     }
 
 
@@ -79,7 +79,7 @@ public class NormalZombieController : MonoBehaviour
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
         if (stateInfo.IsName("Run")) return;
-        
+
         animator.ResetTrigger(ATTACK);
         animator.SetTrigger(RUN);
 
@@ -87,7 +87,7 @@ public class NormalZombieController : MonoBehaviour
         agent.isStopped = false;
 
         agent.speed = normalZombie.zombieStat.moveSpeed;
-        
+
         StopAllCoroutines();
     }
 
@@ -96,7 +96,7 @@ public class NormalZombieController : MonoBehaviour
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
         if (stateInfo.IsName("Attack")) return;
-        
+
         transform.LookAt(target);
 
         animator.ResetTrigger(RUN);
@@ -170,7 +170,7 @@ public class NormalZombieController : MonoBehaviour
 
         isWandering = false;
     }
-    
+
     private Vector3 RandomNavSphere(Vector3 origin, float dist)
     {
         Vector3 randomDirection = Random.insideUnitSphere * dist;
