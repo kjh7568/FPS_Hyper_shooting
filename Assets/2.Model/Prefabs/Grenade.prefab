@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04cf360820de40c1ba53f30ddeb7fc79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunData: {fileID: 0}
+  gunData: {fileID: 11400000, guid: 20b4772f02cad754389dcf4c56be3051, type: 2}
   currentLevel: 0
   currentAmmo: 0
   currentStat:
@@ -110,6 +110,9 @@ MonoBehaviour:
     fireRate: 0
     reloadTime: 0
   isOpenPanel: 0
+  monsterLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &2866986016158962109
 GameObject:
   m_ObjectHideFlags: 0

@@ -81,6 +81,10 @@ public class CombatSystem : MonoBehaviour
         {
             return monsterDic[collider];
         }
+        else
+        {
+            Debug.LogWarning("몬스터를 찾지 못함");
+        }
         
         return null;
     }

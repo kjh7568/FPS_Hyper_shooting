@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Grenade : Gun
 {
+    [SerializeField] private LayerMask monsterLayer;
     private Rigidbody rb;
 
     private void Awake()
@@ -13,12 +14,39 @@ public class Grenade : Gun
 
     protected override void Start()
     {
+        InitGun();
         rb.velocity += Camera.main.transform.forward * 20f;
+    }
+
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        // 오직 Monster 레이어에만 반응
+        Collider[] hits = Physics.OverlapSphere(transform.position, 4f, monsterLayer);
+
+        foreach (var hit in hits)
+        {
+            var target = CombatSystem.Instance.GetMonsterOrNull(hit);
+            if (target != null)
+            {
+                var combatEvent = new CombatEvent
+                {
+                    Sender = Player.localPlayer,
+                    Receiver = target,
+                    Damage = currentStat.damage,
+                    HitPosition = hit.ClosestPoint(transform.position),
+                    Collider = hit.GetComponent<Collider>()
+                };
+                CombatSystem.Instance.AddInGameEvent(combatEvent);
+            }
+        }
+
+        Destroy(gameObject);
     }
     
     public override void Fire()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public override void Reload()
