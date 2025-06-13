@@ -11,7 +11,7 @@ public class Player : MonoBehaviour, IDamageAble
     
     [SerializeField] private Collider mainCollider;
     
-    private Inventory inventory = new Inventory();
+    public Inventory inventory = new Inventory();
 
     [SerializeField] private ArmorDataSO helmetSO;
     [SerializeField] private ArmorDataSO chestPlateSO;
