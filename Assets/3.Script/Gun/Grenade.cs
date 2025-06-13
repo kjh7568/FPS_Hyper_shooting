@@ -13,7 +13,7 @@ public class Grenade : Gun
 
     protected override void Start()
     {
-        rb.velocity += Vector3.forward * 20f;
+        rb.velocity += Camera.main.transform.forward * 20f;
     }
     
     public override void Fire()
