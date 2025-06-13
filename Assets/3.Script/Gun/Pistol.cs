@@ -40,7 +40,7 @@ public class Pistol : Gun
         {
             Debug.Log("피스톨 r키 눌림");
             Reload();
-            playerController.SetReloadAnimation();
+          
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -99,7 +99,7 @@ public class Pistol : Gun
             Debug.Log("[Rifle] 이미 탄창이 가득 차 있습니다.");
             return;
         }
-
+        playerController.SetReloadAnimation();
         StartCoroutine(ReloadRoutine());
     }
     private IEnumerator ReloadRoutine()
