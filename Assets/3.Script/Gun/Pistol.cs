@@ -18,12 +18,13 @@ public class Pistol : Gun
             return;
 
         // 좌클릭 발사
-        if (Input.GetMouseButton(0) && Time.time >= nextFireTime && !isOpenPanel && !WeaponManager.instance.stateInfo.IsName("Draw"))
+        if (Input.GetMouseButtonDown(0) && Time.time >= nextFireTime && !isOpenPanel && !WeaponManager.instance.stateInfo.IsName("Draw"))
         {
             if (currentAmmo > 0)
             {
                 Fire();
                 playerController.SetShootAnimation(true);
+                StartCoroutine(ResetShootBool());
                 nextFireTime = Time.time + currentStat.fireRate;
             }
             else
@@ -96,7 +97,7 @@ public class Pistol : Gun
     {
         if (CurrentAmmo >= gunData.maxAmmo)
         {
-            Debug.Log("[Rifle] 이미 탄창이 가득 차 있습니다.");
+            Debug.Log("이미 탄창이 가득 차 있습니다.");
             return;
         }
         playerController.SetReloadAnimation();
@@ -113,5 +114,10 @@ public class Pistol : Gun
 
         OnReloadComplete();
     }
+ private IEnumerator ResetShootBool()
+ {
+     yield return null;                        
+     playerController.SetShootAnimation(false);
+ }
 
 }
