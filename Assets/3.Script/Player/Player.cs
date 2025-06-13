@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour, IDamageAble
@@ -12,10 +10,38 @@ public class Player : MonoBehaviour, IDamageAble
     public PlayerStat playerStat;
     
     [SerializeField] private Collider mainCollider;
+    
+    private Inventory inventory = new Inventory();
 
+    [SerializeField] private ArmorDataSO helmetSO;
+    [SerializeField] private ArmorDataSO chestPlateSO;
+    [SerializeField] private ArmorDataSO glovesSO;
+    [SerializeField] private ArmorDataSO bootsSO;
+    
     private void Awake()
     {
         localPlayer = this;
+    }
+
+    private void Start()
+    {
+        Armor helmet = new Armor(helmetSO);
+        Armor chestPlate = new Armor(chestPlateSO);
+        Armor gloves = new Armor(glovesSO);
+        Armor boots = new Armor(bootsSO);
+        
+        inventory.EquipArmor(helmet);
+        inventory.EquipArmor(chestPlate);
+        inventory.EquipArmor(gloves);
+        inventory.EquipArmor(boots);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            inventory.DebugPrintTotalDefense();
+        }
     }
 
     public void TakeDamage(CombatEvent combatEvent)

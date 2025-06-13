@@ -8216,7 +8216,12 @@ MonoBehaviour:
     maxHealth: 100
     moveSpeed: 8
     dashCoolTime: 2
+    currentDefense: 0
   mainCollider: {fileID: 2778838429655402514}
+  helmetSO: {fileID: 11400000, guid: 2eacb1e137c8613468c1453399164911, type: 2}
+  chestPlateSO: {fileID: 11400000, guid: 78ba3eaa40bbc77489b25b7c4a15b39b, type: 2}
+  glovesSO: {fileID: 11400000, guid: 98fac4722eec3fe49a472107b3cb6ab1, type: 2}
+  bootsSO: {fileID: 11400000, guid: 943d5ca02f0cdfc4594d3152a173016b, type: 2}
 --- !u!114 &8573341822795982371
 MonoBehaviour:
   m_ObjectHideFlags: 0

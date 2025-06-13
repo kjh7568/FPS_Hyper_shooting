@@ -45,6 +45,11 @@ public class Rifle : Gun
         {
             playerController.SetShootAnimation(false);
         }
+
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            base.LevelUp();
+        }
     }
 
     public override void Fire()
