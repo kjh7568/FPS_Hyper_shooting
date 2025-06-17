@@ -49,7 +49,11 @@ public class GunDataSO : ScriptableObject
             if (stat.level == level)
                 return stat;
         }
+<<<<<<< Updated upstream
         // Debug.LogError($"[GunDataSO] {gunName} 레벨 {level} 데이터가 존재하지 않음.");
+=======
+       //  Debug.LogError($"[GunDataSO] {gunName} 레벨 {level} 데이터가 존재하지 않음.");
+>>>>>>> Stashed changes
         return levelStats.Count > 0 ? levelStats[0] : default;
     }
 }

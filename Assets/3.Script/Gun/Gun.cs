@@ -54,7 +54,6 @@ public abstract class Gun : MonoBehaviour
         GenerateRandomEffects();      // 특수효과 랜덤 부여
         DetermineGrade();             // 등급 결정
         SetStartLevelByGrade();       // 레벨 초기화
-
         ApplyLevel(currentLevel);
 
         Debug.Log($"[{gunData.gunName}] 생성됨 - 등급: {grade}, Lv.{currentLevel}, 효과 {specialEffects.Count}개");
