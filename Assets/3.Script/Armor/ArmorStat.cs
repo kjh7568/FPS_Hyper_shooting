@@ -4,8 +4,14 @@ using UnityEngine;
 [Serializable]
 public class ArmorStat
 {
-    [Header("방어력 관련")]
-    public float totalDefense;
+    public float increaseHealth = 0;
+    public float multiplierHealth = 1f;
+    public float totalDefense = 0;
+    public float multiplierDefense = 1f;
+    public float dashCooldownReduction = 1f;
+    public float reloadSpeedReduction = 1f;
+    public float multiplierAttack = 1f;
+    public float multiplierMovementSpeed = 1f;
 
     public void ResetStat()
     {

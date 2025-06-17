@@ -180,5 +180,9 @@ public class PlayerController : MonoBehaviour
             
             Player.localPlayer.inventory.EquipArmor(item.dropedItem);
         }
+        else
+        {
+            Debug.Log("감지된 오브젝트 없음");
+        }
     }
 }

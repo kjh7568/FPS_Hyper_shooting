@@ -6,6 +6,8 @@ public class Inventory
 {
     private Dictionary<ArmorType, Armor> equippedArmors = new();
 
+    public ArmorStat armorStat = new();
+
     public void EquipArmor(Armor armor)
     {
         ArmorType type = armor.Type;
@@ -14,6 +16,7 @@ public class Inventory
         {
             RemoveEquipmentOption(equippedArmors[type]);
         }
+
         ApplyEquipmentOption(armor);
 
         equippedArmors[type] = armor;
@@ -32,29 +35,37 @@ public class Inventory
 
     public void DebugPrintTotalDefense()
     {
-        Debug.Log($"[방어구 총합 방어력] {GetTotalDefense()}");
+        Debug.Log($"[방어구 총합 방어력] {armorStat.totalDefense}");
     }
 
     private void ApplyEquipmentOption(Armor parts)
     {
+        armorStat.totalDefense += parts.currentStat.defense;
+
         foreach (var option in parts.options)
         {
             switch (option)
             {
                 case SpecialEffect.DashCooldownReduction:
-                    Debug.Log("대쉬 쿨감 옵션 추가");
+                    armorStat.dashCooldownReduction += 0.1f;
                     break;
-                case SpecialEffect.DefenseBoostPercent:
-                    Debug.Log("방증 옵션 추가");
+                case SpecialEffect.MultiplierDefense:
+                    armorStat.multiplierDefense += 0.1f;
                     break;
-                case SpecialEffect.HealthBoostPercent:
-                    Debug.Log("체증 옵션 추가");
+                case SpecialEffect.IncreaseHealth:
+                    armorStat.increaseHealth += 20;
+                    break;
+                case SpecialEffect.MultiplierHealth:
+                    armorStat.multiplierHealth += 0.1f;
                     break;
                 case SpecialEffect.ReloadSpeedReduction:
-                    Debug.Log("장전 쿨감 옵션 추가");
+                    armorStat.reloadSpeedReduction += 0.1f;
                     break;
-                case SpecialEffect.AttackBoostPercent:
-                    Debug.Log("공증 옵션 추가");
+                case SpecialEffect.MultiplierAttackDamage:
+                    armorStat.multiplierAttack += 0.05f;
+                    break;
+                case SpecialEffect.MultiplierMovementSpeed:
+                    armorStat.multiplierMovementSpeed += 0.1f;
                     break;
             }
         }
@@ -62,31 +73,34 @@ public class Inventory
 
     private void RemoveEquipmentOption(Armor parts)
     {
+        armorStat.totalDefense -= parts.currentStat.defense;
+
         foreach (var option in parts.options)
         {
             switch (option)
             {
                 case SpecialEffect.DashCooldownReduction:
-                    Debug.Log("대쉬 쿨감 옵션 제거");
+                    armorStat.dashCooldownReduction -= 0.1f;
                     break;
-                case SpecialEffect.DefenseBoostPercent:
-                    Debug.Log("방증 옵션 제거");
+                case SpecialEffect.MultiplierDefense:
+                    armorStat.multiplierDefense -= 0.1f;
                     break;
-                case SpecialEffect.HealthBoostPercent:
-                    Debug.Log("체증 옵션 제거");
+                case SpecialEffect.IncreaseHealth:
+                    armorStat.increaseHealth -= 20;
+                    break;
+                case SpecialEffect.MultiplierHealth:
+                    armorStat.multiplierHealth -= 0.1f;
                     break;
                 case SpecialEffect.ReloadSpeedReduction:
-                    Debug.Log("장전 쿨감 옵션 제거");
+                    armorStat.reloadSpeedReduction -= 0.1f;
                     break;
-                case SpecialEffect.AttackBoostPercent:
-                    Debug.Log("공증 옵션 제거");
+                case SpecialEffect.MultiplierAttackDamage:
+                    armorStat.multiplierAttack -= 0.05f;
+                    break;
+                case SpecialEffect.MultiplierMovementSpeed:
+                    armorStat.multiplierMovementSpeed -= 0.1f;
                     break;
             }
         }
     }
-        // DashCooldownReduction,   // 대쉬 쿨타임 5% 감소
-        // DefenseBoostPercent,     // 방어력 10% 증가
-        // HealthBoostPercent,      // 체력 10% 증가
-        // ReloadSpeedReduction,    // 재장전 시간 5% 감소
-        // AttackBoostPercent       // 공격력 5% 증가
 }

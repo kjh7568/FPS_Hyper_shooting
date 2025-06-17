@@ -71,10 +71,12 @@ public enum ArmorGrade
 public enum SpecialEffect
 {
     DashCooldownReduction,   // 대쉬 쿨타임 5% 감소
-    DefenseBoostPercent,     // 방어력 10% 증가
-    HealthBoostPercent,      // 체력 10% 증가
+    MultiplierDefense,       // 방어력 10% 증가
+    IncreaseHealth,          // 체력 20 증가
+    MultiplierHealth,        // 체력 10% 증폭
     ReloadSpeedReduction,    // 재장전 시간 5% 감소
-    AttackBoostPercent       // 공격력 5% 증가
+    MultiplierAttackDamage,  // 공격력 5% 증가
+    MultiplierMovementSpeed  // 이동 속도 10% 증가
 }
 
 
