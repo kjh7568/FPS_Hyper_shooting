@@ -20,4 +20,5 @@ MonoBehaviour:
     damage: 40
     fireRate: 3
     reloadTime: 0
+  gunType: 5
   possibleEffects: 

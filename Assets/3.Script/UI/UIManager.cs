@@ -11,8 +11,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text bulletText;
     [SerializeField] private Image hpBar;
 
+    // public bool isOpenPanel = false;
+    // 상점열었을때 PlayerUI 끄다 실패
+    
     private void Update()
     {
+       //  if (isOpenPanel) return;
+       // 상점열었을때 PlayerUI 끄다 실패
+        
         if (Player.localPlayer == null) return;
 
         var playerStat = Player.localPlayer.playerStat;

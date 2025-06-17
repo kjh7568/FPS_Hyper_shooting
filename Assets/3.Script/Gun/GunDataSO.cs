@@ -8,6 +8,7 @@ public class GunDataSO : ScriptableObject
     public GunGrade grade;
     public int maxAmmo;
     public List<GunLevelStat> levelStats;
+    public GunType gunType;
     
     public List<GunSpecialEffect> possibleEffects;
 
@@ -48,7 +49,7 @@ public class GunDataSO : ScriptableObject
             if (stat.level == level)
                 return stat;
         }
-        Debug.LogError($"[GunDataSO] {gunName} 레벨 {level} 데이터가 존재하지 않음.");
+        // Debug.LogError($"[GunDataSO] {gunName} 레벨 {level} 데이터가 존재하지 않음.");
         return levelStats.Count > 0 ? levelStats[0] : default;
     }
 }
@@ -86,6 +87,18 @@ public enum GunSpecialEffect
 
     // 아이템 드롭 확률 10% 증가
     IncreaseItemDropRate
+    
 }
+public enum GunType
+{
+    Rifle,
+    Sniper,
+    Shotgun,
+    Pistol,
+    Grenade,
+    Knife,
+    UMP,
+}
+
 
 

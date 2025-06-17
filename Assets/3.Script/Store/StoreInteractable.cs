@@ -36,7 +36,7 @@ public class StoreInteractable : MonoBehaviour
     {
         if (isPlayerNear && Input.GetKeyDown(KeyCode.E))
         {
-            // StorePanelManager.Instance.OpenPanel();
+            StorePanelManager.Instance.OpenPanel();
             pressETextUI.SetActive(false); // 패널 열면 텍스트 숨김
 
             // 커서 락 해제 및 보이게 설정

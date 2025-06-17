@@ -56,4 +56,5 @@ MonoBehaviour:
     damage: 18
     fireRate: 0.6
     reloadTime: 1.6
+  gunType: 2
   possibleEffects: 00000000010000000200000003000000040000000500000006000000
