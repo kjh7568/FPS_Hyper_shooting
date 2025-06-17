@@ -45,6 +45,11 @@ public class PlayerController : MonoBehaviour
         MovePlayer();
         ApplyGravity();
         RotatePlayer();
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            CheckObjectUnderCursor();
+        }
     }
 
     private void SetCursor()
@@ -133,5 +138,28 @@ public class PlayerController : MonoBehaviour
     public void SetReloadAnimation()
     {
         animator.SetTrigger(RELOAD);
+    }
+    
+    private void CheckObjectUnderCursor()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f));
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 5f)) // 5f는 감지 거리
+        {
+            GameObject target = hit.collider.gameObject;
+            Debug.Log($"커서 아래 감지된 오브젝트: {target.name}");
+
+            // 예시: DroppedItem 스크립트가 붙어있는지 확인
+            DroppedItem item = target.GetComponent<DroppedItem>();
+            if (item != null)
+            {
+                item.PrintArmor();
+            }
+        }
+        else
+        {
+            Debug.Log("감지된 오브젝트 없음");
+        }
     }
 }
