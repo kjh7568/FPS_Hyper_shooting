@@ -50,6 +50,10 @@ public class PlayerController : MonoBehaviour
         {
             CheckObjectUnderCursor();
         }
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            EquipItem();
+        }
     }
 
     private void SetCursor()
@@ -160,6 +164,21 @@ public class PlayerController : MonoBehaviour
         else
         {
             Debug.Log("감지된 오브젝트 없음");
+        }
+    }
+
+    private void EquipItem()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f));
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 5f)) // 5f는 감지 거리
+        {
+            GameObject target = hit.collider.gameObject;
+
+            DroppedItem item = target.GetComponent<DroppedItem>();
+            
+            Player.localPlayer.inventory.EquipArmor(item.dropedItem);
         }
     }
 }
