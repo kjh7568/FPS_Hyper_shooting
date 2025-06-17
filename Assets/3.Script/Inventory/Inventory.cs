@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Inventory
 {
-    private Dictionary<ArmorType, Armor> equippedArmors = new();
+    public Dictionary<ArmorType, Armor> equippedArmors = new();
 
     public ArmorStat armorStat = new();
 
