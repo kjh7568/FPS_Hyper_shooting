@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         if (isOpenPanel) return;
-
+        
         MovePlayer();
         ApplyGravity();
         RotatePlayer();
@@ -144,27 +144,12 @@ public class PlayerController : MonoBehaviour
         isCanDash = true;
     }
     
-    public void SetShootAnimation(bool shoot)
-    {
-        animator.SetBool(SHOOT, shoot);
-    }
-
-    public void SetReloadAnimation()
-    {
-        animator.SetTrigger(RELOAD);
-    }
-
-    public void SetAnimationSpeed(float speed)
-    {
-        animator.speed = 1f + speed;
-    }
-    
     private void CheckObjectUnderCursor()
     {
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f));
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, 5f)) // 5f는 감지 거리
+        if (Physics.Raycast(ray, out hit, 2f)) // 2f는 감지 거리
         {
             GameObject target = hit.collider.gameObject;
             Debug.Log($"커서 아래 감지된 오브젝트: {target.name}");
@@ -187,7 +172,7 @@ public class PlayerController : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f));
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, 5f)) // 5f는 감지 거리
+        if (Physics.Raycast(ray, out hit, 2f)) // 5f는 감지 거리
         {
             GameObject target = hit.collider.gameObject;
 
@@ -200,4 +185,23 @@ public class PlayerController : MonoBehaviour
             Debug.Log("감지된 오브젝트 없음");
         }
     }
+
+    #region Animation
+    
+    public void SetShootAnimation(bool shoot)
+    {
+        animator.SetBool(SHOOT, shoot);
+    }
+
+    public void SetReloadAnimation()
+    {
+        animator.SetTrigger(RELOAD);
+    }
+
+    public void SetAnimationSpeed(float speed)
+    {
+        animator.speed = 1f + speed;
+    }
+
+    #endregion
 }
