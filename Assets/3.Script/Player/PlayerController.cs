@@ -18,6 +18,12 @@ public class PlayerController : MonoBehaviour
     [Header("Mouse Settings")] [SerializeField]
     private float mouseSensitivity = 50f;
 
+    public float MouseSensitivity
+    {
+        get => mouseSensitivity;
+        set => mouseSensitivity = value;
+    }
+
     private float cameraPitch = 0f;
     [SerializeField] private Transform playerCamera;
     [SerializeField] private LayerMask groundMask;
