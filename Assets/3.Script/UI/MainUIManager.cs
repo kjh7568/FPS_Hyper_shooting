@@ -1,13 +1,33 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainUIManager : MonoBehaviour
 {
-    [SerializeField]
-    private 
+    [Header("타켓 패널 컴포넌트")]
+    [SerializeField] private GameObject targetPanel; 
+    [SerializeField] private TMP_Text targetLevelText; 
+    [SerializeField] private TMP_Text targetNameText; 
+    [SerializeField] private TMP_Text targetTierText; 
+    [SerializeField] private Image targetItemImage; 
+    [SerializeField] private TMP_Text targetValueText; 
+    [SerializeField] private TMP_Text[] targetDescriptionTexts;
+    
+    [Header("현재 장비 패널 컴포넌트")]
+    [SerializeField] private GameObject currentPanel; 
+    [SerializeField] private TMP_Text currentLevelText; 
+    [SerializeField] private TMP_Text currentNameText; 
+    [SerializeField] private TMP_Text currentTierText; 
+    [SerializeField] private Image currentItemImage; 
+    [SerializeField] private TMP_Text currentValueText; 
+    [SerializeField] private TMP_Text[] currentDescriptionTexts;
+
+
+    private bool isOpen = false;
     
     void Update()
     {
@@ -32,6 +52,14 @@ public class MainUIManager : MonoBehaviour
     }
     
     private void OpenTargetEquipmentPanel(Armor target)
+    {
+        if (isOpen) return;
+        
+        targetPanel.SetActive(true);
+        StartCoroutine(OpenTargetPanelByAnimation_coroutine());
+    }
+
+    private IEnumerator OpenTargetPanelByAnimation_coroutine()
     {
         
     }
