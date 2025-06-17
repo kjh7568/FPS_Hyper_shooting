@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public abstract class Gun : MonoBehaviour
 {
@@ -20,6 +21,10 @@ public abstract class Gun : MonoBehaviour
     protected float ReloadDamageBonus = 0f;
     protected float ReloadDamageTimer = 0f;
     
+    // 특수효과 및 등급
+    [SerializeField] private GunGrade grade;
+    [SerializeField] private List<GunSpecialEffect> specialEffects = new();
+
     protected virtual void Start()
     {
         InitGun();
@@ -46,8 +51,44 @@ public abstract class Gun : MonoBehaviour
 
     protected void InitGun()
     {
-        // 등급별 시작 레벨
-        currentLevel = gunData.grade switch
+        GenerateRandomEffects();      // 특수효과 랜덤 부여
+        DetermineGrade();             // 등급 결정
+        SetStartLevelByGrade();       // 레벨 초기화
+
+        ApplyLevel(currentLevel);
+
+        Debug.Log($"[{gunData.gunName}] 생성됨 - 등급: {grade}, Lv.{currentLevel}, 효과 {specialEffects.Count}개");
+        foreach (var effect in specialEffects)
+        {
+            Debug.Log($"▶ 특수효과: {effect}");
+        }
+    }
+    private void GenerateRandomEffects()
+    {
+        specialEffects.Clear();
+        List<GunSpecialEffect> pool = new((GunSpecialEffect[])System.Enum.GetValues(typeof(GunSpecialEffect)));
+
+        int effectCount = Random.Range(0, 4); // 0~3개
+        while (specialEffects.Count < effectCount && pool.Count > 0)
+        {
+            int idx = Random.Range(0, pool.Count);
+            specialEffects.Add(pool[idx]);
+            pool.RemoveAt(idx);
+        }
+    }
+    private void DetermineGrade()
+    {
+        switch (specialEffects.Count)
+        {
+            case 0: grade = GunGrade.Normal; break;
+            case 1: grade = GunGrade.Rare; break;
+            case 2: grade = GunGrade.Epic; break;
+            default: grade = GunGrade.Legendary; break;
+        }
+    }
+    private void SetStartLevelByGrade()
+    {
+        currentLevel = grade switch
         {
             GunGrade.Normal => 1,
             GunGrade.Rare => 3,
@@ -55,8 +96,6 @@ public abstract class Gun : MonoBehaviour
             GunGrade.Legendary => 7,
             _ => 1
         };
-
-        ApplyLevel(currentLevel);
     }
     public void ApplyAmmo(int ammo)
     {
@@ -67,7 +106,10 @@ public abstract class Gun : MonoBehaviour
     {
         currentLevel = level;
         currentStat = gunData.GetStatByLevel(level);
-        currentAmmo = gunData.maxAmmo;
+
+        int bonusAmmo = GetBonusAmmoByGrade();
+        currentAmmo = gunData.maxAmmo + bonusAmmo;
+        
         Debug.Log($"{gunData.gunName} (Lv.{currentLevel}) 적용됨");
     }
 
@@ -84,6 +126,17 @@ public abstract class Gun : MonoBehaviour
             Debug.Log($"[{gunData.gunName}] 최대 레벨({maxLevel})에 도달했습니다.");
         }
     }
+    private int GetBonusAmmoByGrade()
+    {
+        return grade switch
+        {
+            GunGrade.Rare => 1,
+            GunGrade.Epic => 3,
+            GunGrade.Legendary => 5,
+            _ => 0
+        };
+    }
+    // 증강 관련 코드임.
     protected virtual void OnReloadComplete()
     {
         var stat = GameData.Instance.augmentStat;
@@ -96,7 +149,6 @@ public abstract class Gun : MonoBehaviour
             Debug.Log($"[버프 적용] 장전 후 {ReloadDamageTimer}초간 공격력 +{ReloadDamageBonus}");
         }
     }
-
     protected virtual float GetFinalDamage()
     {
         return (currentStat.damage + ReloadDamageBonus) * Player.localPlayer.inventory.armorStat.multiplierAttack;

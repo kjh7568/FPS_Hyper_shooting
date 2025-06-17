@@ -17,7 +17,7 @@ MonoBehaviour:
   maxAmmo: 13
   levelStats:
   - level: 1
-    damage: 6
+    damage: 9
     fireRate: 0.1
     reloadTime: 3
   - level: 2
@@ -28,3 +28,4 @@ MonoBehaviour:
     damage: 8
     fireRate: 0.1
     reloadTime: 0.25
+  possibleEffects: 

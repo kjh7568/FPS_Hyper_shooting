@@ -8,6 +8,8 @@ public class GunDataSO : ScriptableObject
     public GunGrade grade;
     public int maxAmmo;
     public List<GunLevelStat> levelStats;
+    
+    public List<GunSpecialEffect> possibleEffects;
 
     // 등급별 시작 / 최대 레벨 정의
     private static readonly Dictionary<GunGrade, (int min, int max)> gradeLevelLimits = new()
@@ -34,12 +36,10 @@ public class GunDataSO : ScriptableObject
 
         if (level < min)
         {
-            Debug.LogWarning($"{gunName} 등급({grade})은 {min}레벨부터 시작. 요청한 {level} → {min}으로 자동 보정됨.");
             level = min;
         }
         else if (level > max)
         {
-            Debug.LogWarning($"{gunName} 등급({grade})은 {max}레벨이 최대. 요청한 {level} → {max}으로 자동 보정됨.");
             level = max;
         }
 
@@ -48,7 +48,6 @@ public class GunDataSO : ScriptableObject
             if (stat.level == level)
                 return stat;
         }
-
         Debug.LogError($"[GunDataSO] {gunName} 레벨 {level} 데이터가 존재하지 않음.");
         return levelStats.Count > 0 ? levelStats[0] : default;
     }
@@ -65,4 +64,28 @@ public struct GunLevelStat
     public float fireRate;
     public float reloadTime;
 }
+public enum GunSpecialEffect
+{
+    // 대쉬 쿨타임 5% 감소
+    DashCooldownReduction,   
+    
+    // 재장전 시간 5% 감소
+    ReloadSpeedReduction,    
+    
+    // 공격력 5% 증가
+    MultiplierAttackDamage,  
+    
+    // 이동 속도 10% 증가
+    MultiplierMovementSpeed,
+
+    // 치명타 확률 5% 증가
+    IncreaseCriticalChance,
+
+    // 치명타 피해 10% 증가
+    IncreaseCriticalDamage,
+
+    // 아이템 드롭 확률 10% 증가
+    IncreaseItemDropRate
+}
+
 

@@ -20,11 +20,4 @@ MonoBehaviour:
     damage: 40
     fireRate: 3
     reloadTime: 0
-  - level: 2
-    damage: 41
-    fireRate: 3
-    reloadTime: 0
-  - level: 3
-    damage: 42
-    fireRate: 3
-    reloadTime: 0
+  possibleEffects: 

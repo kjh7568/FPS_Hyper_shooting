@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunName: NormalShotgun
   grade: 0
-  maxAmmo: 10
+  maxAmmo: 8
   levelStats:
   - level: 1
     damage: 8
-    fireRate: 1
+    fireRate: 1.5
     reloadTime: 2.5
+  possibleEffects: 
