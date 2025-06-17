@@ -51,15 +51,6 @@ public class PlayerController : MonoBehaviour
         MovePlayer();
         ApplyGravity();
         RotatePlayer();
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            CheckObjectUnderCursor();
-        }
-        else if (Input.GetKeyDown(KeyCode.Q))
-        {
-            EquipItem();
-        }
     }
 
     private void SetCursor()
@@ -142,48 +133,6 @@ public class PlayerController : MonoBehaviour
         
         yield return new WaitForSeconds(coolTime);
         isCanDash = true;
-    }
-    
-    private void CheckObjectUnderCursor()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f));
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, 2f)) // 2f는 감지 거리
-        {
-            GameObject target = hit.collider.gameObject;
-            Debug.Log($"커서 아래 감지된 오브젝트: {target.name}");
-
-            // 예시: DroppedItem 스크립트가 붙어있는지 확인
-            DroppedItem item = target.GetComponent<DroppedItem>();
-            if (item != null)
-            {
-                item.PrintArmor();
-            }
-        }
-        else
-        {
-            Debug.Log("감지된 오브젝트 없음");
-        }
-    }
-
-    private void EquipItem()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f));
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, 2f)) // 5f는 감지 거리
-        {
-            GameObject target = hit.collider.gameObject;
-
-            DroppedItem item = target.GetComponent<DroppedItem>();
-            
-            Player.localPlayer.inventory.EquipArmor(item.dropedItem);
-        }
-        else
-        {
-            Debug.Log("감지된 오브젝트 없음");
-        }
     }
 
     #region Animation

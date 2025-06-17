@@ -27,44 +27,78 @@ public class MainUIManager : MonoBehaviour
     [SerializeField] private TMP_Text currentValueText; 
     [SerializeField] private TMP_Text[] currentDescriptionTexts;
 
+    private GameObject currentTarget;
 
     private bool isOpen = false;
     
     void Update()
     {
         IsItemHovered();
+
+        if (isOpen && Input.GetKeyDown(KeyCode.E))
+        {
+            var targetItem = currentTarget.GetComponent<DroppedItem>().dropedItem;
+            var temp = Player.localPlayer.inventory.equippedArmors[targetItem.Type];
+            
+            Player.localPlayer.inventory.EquipArmor(targetItem);
+            currentTarget.GetComponent<DroppedItem>().dropedItem = temp;
+
+            OpenTargetEquipmentPanel(currentTarget.GetComponent<DroppedItem>().dropedItem);
+            OpenCurrentEquipmentPanel(targetItem);
+        }
     }
 
     private void IsItemHovered()
     {
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f));
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, 1.5f)) // 1.5f는 감지 거리
+        
+        if (!Physics.Raycast(ray, out RaycastHit hit, 100f))
         {
-            if (hit.collider.gameObject.CompareTag("DropItem"))
-            {
-                GameObject target = hit.collider.gameObject;
-                
-                //todo 드롭 장비 종류에 따라 오버로딩 할 것
-                OpenTargetEquipmentPanel(target.GetComponent<DroppedItem>().dropedItem);
-            }
-            else
-            {
-                isOpen = false;
-                targetPanel.SetActive(false);
-            }
+            ClosePanelsIfOpen();
+            return;
         }
+
+        if (!hit.collider.CompareTag("DropItem") || hit.distance > 1.5f)
+        {
+            ClosePanelsIfOpen();
+            return;
+        }
+
+        GameObject target = hit.collider.gameObject;
+
+        if (target == currentTarget) return;
+
+        currentTarget = target;
+
+        var droppedItem = target.GetComponent<DroppedItem>();
+        if (droppedItem == null) return;
+
+        targetPanel.SetActive(true);
+        OpenTargetPanelByAnimation(targetPanel.GetComponent<RectTransform>());
+        OpenTargetEquipmentPanel(droppedItem.dropedItem);
+        
+        currentPanel.SetActive(true);
+        OpenCurrentPanelByAnimation(currentPanel.GetComponent<RectTransform>());
+        OpenCurrentEquipmentPanel(Player.localPlayer.inventory.equippedArmors[droppedItem.dropedItem.Type]);
+
+        isOpen = true;
+        targetPanel.SetActive(true);
+        currentPanel.SetActive(true);
+    }
+
+    private void ClosePanelsIfOpen()
+    {
+        if (!isOpen) return;
+
+        isOpen = false;
+        currentTarget = null;
+
+        targetPanel.SetActive(false);
+        currentPanel.SetActive(false);
     }
     
     private void OpenTargetEquipmentPanel(Armor target)
     {
-        if (isOpen) return;
-
-        isOpen = true;
-        targetPanel.SetActive(true);
-        OpenTargetPanelByAnimation_coroutine(targetPanel.GetComponent<RectTransform>());
-
         targetLevelText.text = $"LV. {target.currentStat.level}";
         targetNameText.text = $"{target.data.armorName}";
         targetTierText.text = $"{target.grade.ToString()}";
@@ -74,7 +108,18 @@ public class MainUIManager : MonoBehaviour
         targetItemImage.sprite = target.data.icon;
     }
 
-    private void OpenTargetPanelByAnimation_coroutine(RectTransform targetRect)
+    private void OpenCurrentEquipmentPanel(Armor target)
+    {
+        currentLevelText.text = $"LV. {target.currentStat.level}";
+        currentNameText.text = $"{target.data.armorName}";
+        currentTierText.text = $"{target.grade.ToString()}";
+        currentValueText.text = $"{target.currentStat.defense}";
+        SetDescription(target, currentDescriptionTexts);
+         
+        currentItemImage.sprite = target.data.icon;
+    }
+
+    private void OpenTargetPanelByAnimation(RectTransform targetRect)
     {
         targetRect.localScale = Vector3.one * 0.01f;
 
@@ -82,9 +127,13 @@ public class MainUIManager : MonoBehaviour
         targetRect.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
     }
 
-    private void OpenCurrentEquipmentPanel()
+    private void OpenCurrentPanelByAnimation(RectTransform targetRect)
     {
-        
+        // 초기 위치: 오른쪽 바깥으로 설정 (예: x = 500)
+        targetRect.anchoredPosition = new Vector2(1200f, targetRect.anchoredPosition.y);
+
+        // 등장: 왼쪽으로 슬라이드 이동 (x = 0 위치로)
+        targetRect.DOAnchorPosX(750f, 0.5f).SetEase(Ease.OutCubic);
     }
 
     private void SetDescription(Armor parts, TMP_Text[] descriptions)
