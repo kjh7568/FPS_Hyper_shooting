@@ -2,20 +2,17 @@ using UnityEngine;
 
 public class ArmorGenerator : MonoBehaviour
 {
+    public static ArmorGenerator instance;
+    
     [SerializeField] private GameObject droppedItemPrefab;
-    [SerializeField] private int dropCount = 3;
-    [SerializeField] private float dropRadius = 3f;
 
-    private void Start()
+    private void Awake()
     {
-        Vector3 playerPos = Player.localPlayer.transform.position;
+        instance = this;
+    }
 
-        for (int i = 0; i < dropCount; i++)
-        {
-            Vector2 randomCircle = Random.insideUnitCircle * dropRadius;
-            Vector3 spawnPos = new Vector3(playerPos.x + randomCircle.x, playerPos.y + 1, playerPos.z + randomCircle.y);
-
-            Instantiate(droppedItemPrefab, spawnPos, Quaternion.identity);
-        }
+    public void SpawnItem(Vector3 position)
+    {
+        Instantiate(droppedItemPrefab, position + new Vector3(0, 0.6f, 0), Quaternion.identity, transform);
     }
 }

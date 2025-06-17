@@ -5,21 +5,22 @@ using UnityEngine;
 public class NormalZombie : MonoBehaviour, IMonster
 {
     public ZombieStat ZombieStat => zombieStat;
-    
+
     public ZombieStat zombieStat;
 
     public void Start()
     {
         CombatSystem.Instance.RegisterMonster(this);
     }
+
     public Collider MainCollider => mainCollider;
     public GameObject GameObject => this.gameObject;
-    
+
     [SerializeField] private Collider mainCollider;
-    
+
     public Collider normalAttackCollider;
     public bool isDead = false;
-    
+
     public void TakeDamage(CombatEvent combatEvent)
     {
         zombieStat.health -= combatEvent.Damage;
@@ -28,6 +29,7 @@ public class NormalZombie : MonoBehaviour, IMonster
         {
             isDead = true;
             GetComponent<NormalZombieController>().Die();
+            RandomItemDrop();
             mainCollider.enabled = false;
         }
     }
@@ -37,4 +39,14 @@ public class NormalZombie : MonoBehaviour, IMonster
         throw new System.NotImplementedException();
     }
 
+    private void RandomItemDrop()
+    {
+        var ratio = Random.Range(0, 1000);
+
+        //todo 아이템 드롭확률 구현 되면 적용해볼 것
+        if (ratio < 300)
+        {
+            ArmorGenerator.instance.SpawnItem(transform.position);
+        }
+    }
 }

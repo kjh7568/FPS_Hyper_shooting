@@ -1120,7 +1120,7 @@ GameObject:
   - component: {fileID: 426358953}
   - component: {fileID: 426358952}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: DropManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1140,8 +1140,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   droppedItemPrefab: {fileID: 6711264548501032436, guid: 0bfb4acd2e9dfef4a92e2f53531fc763,
     type: 3}
-  dropCount: 3
-  dropRadius: 3
 --- !u!4 &426358953
 Transform:
   m_ObjectHideFlags: 0
@@ -5357,7 +5355,7 @@ SceneRoots:
   - {fileID: 256656617}
   - {fileID: 238511767}
   - {fileID: 1198926968}
+  - {fileID: 426358953}
   - {fileID: 2134004844}
   - {fileID: 2044864402}
   - {fileID: 25092179}
-  - {fileID: 426358953}
