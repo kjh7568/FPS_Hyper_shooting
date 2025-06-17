@@ -18,23 +18,23 @@ MonoBehaviour:
   icon: {fileID: 0}
   levelStats:
   - level: 1
-    defense: 1
+    defense: 50
   - level: 2
-    defense: 2
+    defense: 100
   - level: 3
-    defense: 3
+    defense: 150
   - level: 4
-    defense: 4
+    defense: 200
   - level: 5
-    defense: 5
+    defense: 250
   - level: 6
-    defense: 6
+    defense: 300
   - level: 7
-    defense: 7
+    defense: 350
   - level: 8
-    defense: 8
+    defense: 400
   - level: 9
-    defense: 9
+    defense: 450
   - level: 10
-    defense: 10
+    defense: 500
   possibleEffects: 0000000001000000020000000300000004000000
