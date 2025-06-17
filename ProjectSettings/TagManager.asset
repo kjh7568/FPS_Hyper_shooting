@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Zombie
+  - DropedItem
   layers:
   - Default
   - TransparentFX

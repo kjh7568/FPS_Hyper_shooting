@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e09acbbab5280643ae5ccb6bf326c2c, type: 3}
-  m_Name: Common_Gloves
+  m_Name: default_Gloves
   m_EditorClassIdentifier: 
-  armorName: Common_Gloves
+  armorName: Gloves
   armorType: 2
   grade: 0
   icon: {fileID: 21300000, guid: 2a8a9b0b4cdf1b748bb207ed0d78c1c5, type: 3}

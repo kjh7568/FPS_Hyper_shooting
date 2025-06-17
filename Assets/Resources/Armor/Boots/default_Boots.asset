@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e09acbbab5280643ae5ccb6bf326c2c, type: 3}
-  m_Name: Common_Boots
+  m_Name: default_Boots
   m_EditorClassIdentifier: 
-  armorName: Common_Boots
+  armorName: Boots
   armorType: 3
   grade: 0
   icon: {fileID: 21300000, guid: d37ddf0b63eea1241a91b725dcecb8dd, type: 3}
