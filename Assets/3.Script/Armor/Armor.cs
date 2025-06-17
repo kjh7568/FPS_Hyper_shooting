@@ -9,7 +9,7 @@ public class Armor
     public ArmorGrade grade => data.grade;
     public ArmorType Type => data.armorType;
 
-    public List<SpecialEffect> effects { get; private set; } = new();
+    public List<SpecialEffect> options { get; private set; } = new();
 
     public ArmorStat Stat { get; private set; }
 
@@ -35,7 +35,7 @@ public class Armor
 
     private void GenerateRandomEffects()
     {
-        effects.Clear();
+        options.Clear();
 
         int effectCount = grade switch
         {
@@ -47,11 +47,11 @@ public class Armor
         };
 
         List<SpecialEffect> pool = data.possibleEffects;
-        while (effects.Count < effectCount && effects.Count < pool.Count)
+        while (options.Count < effectCount && options.Count < pool.Count)
         {
             var pick = pool[Random.Range(0, pool.Count)];
-            if (!effects.Contains(pick))
-                effects.Add(pick);
+            if (!options.Contains(pick))
+                options.Add(pick);
         }
     }
 
@@ -76,6 +76,6 @@ public class Armor
 
     public bool HasEffect(SpecialEffect effect)
     {
-        return effects.Contains(effect);
+        return options.Contains(effect);
     }
 }

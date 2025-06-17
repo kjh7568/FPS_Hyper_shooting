@@ -38,7 +38,7 @@ public class DroppedItem : MonoBehaviour
     
     public void PrintArmor()
     {
-        string effectList = dropedItem.effects.Count > 0 ? string.Join(", ", dropedItem.effects) : "없음";
+        string effectList = dropedItem.options.Count > 0 ? string.Join(", ", dropedItem.options) : "없음";
         Debug.Log($"[{dropedItem.data.armorName}] {dropedItem.grade} {dropedItem.Type} | Lv.{dropedItem.currentLevel} | 방어력: {dropedItem.GetDefense()} | 효과: {effectList}");
     }
 }
