@@ -6,6 +6,7 @@ public class Pistol : Gun
 {
     private float nextFireTime = 0f;
     private PlayerController playerController;
+
     private void OnEnable()
     {
         playerController = FindObjectOfType<PlayerController>();
@@ -18,7 +19,8 @@ public class Pistol : Gun
             return;
 
         // 좌클릭 발사
-        if (Input.GetMouseButtonDown(0) && Time.time >= nextFireTime && !isOpenPanel && !WeaponManager.instance.stateInfo.IsName("Draw"))
+        if (Input.GetMouseButtonDown(0) && Time.time >= nextFireTime && !isOpenPanel &&
+            !WeaponManager.instance.stateInfo.IsName("Draw"))
         {
             if (currentAmmo > 0)
             {
@@ -30,7 +32,7 @@ public class Pistol : Gun
             else
             {
                 playerController.SetShootAnimation(false);
-                
+
                 Reload();
                 playerController.SetReloadAnimation();
             }
@@ -41,7 +43,6 @@ public class Pistol : Gun
         {
             Debug.Log("피스톨 r키 눌림");
             Reload();
-          
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -53,8 +54,6 @@ public class Pistol : Gun
     public override void Fire()
     {
         currentAmmo--;
-
-        float damage = GetFinalDamage(); // ✅ 버프 포함된 데미지 계산
 
         Camera cam = Camera.main;
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
@@ -73,7 +72,7 @@ public class Pistol : Gun
                     CombatEvent combatEvent = new CombatEvent();
                     combatEvent.Sender = Player.localPlayer;
                     combatEvent.Receiver = monster;
-                    combatEvent.Damage = Mathf.RoundToInt(damage); // ✅ 버프 적용된 최종 데미지 사용
+                    combatEvent.Damage = GetFinalDamage(); // ✅ 버프 적용된 최종 데미지 사용
                     combatEvent.HitPosition = hit.point;
                     combatEvent.Collider = hit.collider;
 
@@ -91,8 +90,6 @@ public class Pistol : Gun
         }
     }
 
-
-
     public override void Reload()
     {
         if (CurrentAmmo >= gunData.maxAmmo)
@@ -100,24 +97,26 @@ public class Pistol : Gun
             Debug.Log("이미 탄창이 가득 차 있습니다.");
             return;
         }
+
         playerController.SetReloadAnimation();
         StartCoroutine(ReloadRoutine());
     }
+
     private IEnumerator ReloadRoutine()
     {
         isReloading = true;
 
-        yield return new WaitForSeconds(currentStat.reloadTime);
+        yield return new WaitForSeconds(currentStat.reloadTime * (1 - Player.localPlayer.inventory.armorStat.reloadSpeedReduction));
 
         currentAmmo = gunData.maxAmmo;
         isReloading = false;
 
         OnReloadComplete();
     }
- private IEnumerator ResetShootBool()
- {
-     yield return null;                        
-     playerController.SetShootAnimation(false);
- }
 
+    private IEnumerator ResetShootBool()
+    {
+        yield return null;
+        playerController.SetShootAnimation(false);
+    }
 }

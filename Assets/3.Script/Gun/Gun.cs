@@ -99,7 +99,7 @@ public abstract class Gun : MonoBehaviour
 
     protected virtual float GetFinalDamage()
     {
-        return currentStat.damage + ReloadDamageBonus;
+        return (currentStat.damage + ReloadDamageBonus) * Player.localPlayer.inventory.armorStat.multiplierAttack;
     }
     public abstract void Fire();
     public abstract void Reload();

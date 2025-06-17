@@ -55,8 +55,6 @@ public class Rifle : Gun
     {
         currentAmmo--;
 
-        float damage = GetFinalDamage(); // ✅ 버프 포함된 데미지 계산
-
         Camera cam = Camera.main;
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         RaycastHit hit;
@@ -74,7 +72,7 @@ public class Rifle : Gun
                     CombatEvent combatEvent = new CombatEvent();
                     combatEvent.Sender = Player.localPlayer;
                     combatEvent.Receiver = monster;
-                    combatEvent.Damage = Mathf.RoundToInt(damage); // ✅ 버프 적용된 최종 데미지 사용
+                    combatEvent.Damage = GetFinalDamage(); // ✅ 버프 적용된 최종 데미지 사용
                     combatEvent.HitPosition = hit.point;
                     combatEvent.Collider = hit.collider;
 
@@ -97,19 +95,21 @@ public class Rifle : Gun
          {
              if (CurrentAmmo >= gunData.maxAmmo)
              {
-                 Debug.Log("[Rifle] 이미 탄창이 가득 차 있습니다.");
                  return;
              }
-             playerController.SetShootAnimation(false);
-             playerController.SetReloadAnimation();
+             
              StartCoroutine(ReloadRoutine());
          }
 
     private IEnumerator ReloadRoutine()
     {
         isReloading = true;
-
-        yield return new WaitForSeconds(currentStat.reloadTime);
+        
+        playerController.SetShootAnimation(false);
+        playerController.SetReloadAnimation();
+        playerController.SetAnimationSpeed(Player.localPlayer.inventory.armorStat.reloadSpeedReduction);
+        
+        yield return new WaitForSeconds(currentStat.reloadTime * (1 - Player.localPlayer.inventory.armorStat.reloadSpeedReduction));
 
         currentAmmo = gunData.maxAmmo;
         isReloading = false;

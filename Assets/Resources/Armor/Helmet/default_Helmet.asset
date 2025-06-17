@@ -18,5 +18,5 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 569cd089c9b69ba4580b0d03871291b4, type: 3}
   levelStats:
   - level: 1
-    defense: 500
+    defense: 50
   possibleEffects: 

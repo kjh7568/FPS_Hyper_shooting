@@ -67,7 +67,9 @@ public class PlayerController : MonoBehaviour
         Vector3 inputAxis = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
         Vector3 move = transform.TransformDirection(inputAxis);
 
-        characterController.Move(move * (Player.localPlayer.playerStat.moveSpeed * Time.deltaTime));
+        var totalSpeed = Player.localPlayer.playerStat.moveSpeed * Player.localPlayer.inventory.armorStat.multiplierMovementSpeed * Time.deltaTime;
+        
+        characterController.Move(move * (totalSpeed));
 
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
@@ -130,7 +132,9 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator DashCooldown_Coroutine()
     {
-        yield return new WaitForSeconds(Player.localPlayer.playerStat.dashCoolTime);
+        var coolTime = Player.localPlayer.playerStat.dashCoolTime * (1 - Player.localPlayer.inventory.armorStat.dashCooldownReduction);
+        
+        yield return new WaitForSeconds(coolTime);
         isCanDash = true;
     }
     
@@ -142,6 +146,11 @@ public class PlayerController : MonoBehaviour
     public void SetReloadAnimation()
     {
         animator.SetTrigger(RELOAD);
+    }
+
+    public void SetAnimationSpeed(float speed)
+    {
+        animator.speed = 1f + speed;
     }
     
     private void CheckObjectUnderCursor()

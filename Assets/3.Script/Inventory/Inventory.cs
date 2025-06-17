@@ -35,7 +35,7 @@ public class Inventory
 
     public void DebugPrintTotalDefense()
     {
-        Debug.Log($"[방어구 총합 방어력] {armorStat.totalDefense}");
+        Debug.Log($"[방어구 총합 방어력] {armorStat.totalDefense * armorStat.multiplierDefense}");
     }
 
     private void ApplyEquipmentOption(Armor parts)
