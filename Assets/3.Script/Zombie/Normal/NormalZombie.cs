@@ -30,6 +30,7 @@ public class NormalZombie : MonoBehaviour, IMonster
             isDead = true;
             GetComponent<NormalZombieController>().Die();
             RandomItemDrop();
+            GoldDrop();
             mainCollider.enabled = false;
         }
     }
@@ -46,7 +47,14 @@ public class NormalZombie : MonoBehaviour, IMonster
         //todo 아이템 드롭확률 구현 되면 적용해볼 것
         if (ratio < 300)
         {
-            ArmorGenerator.instance.SpawnItem(transform.position);
+            ItemGenerator.instance.SpawnItem(transform.position);
         }
+    }
+
+    private void GoldDrop()
+    {
+        var goldCount = Random.Range(1, 5);
+        
+        ItemGenerator.instance.SpawnGold(transform.position, goldCount);
     }
 }

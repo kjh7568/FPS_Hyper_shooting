@@ -6749,10 +6749,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4515671605934205372}
   - component: {fileID: 7116260080126133883}
+  - component: {fileID: -3180218069918812042}
   - component: {fileID: 7299374128226269968}
   - component: {fileID: 6650611116803163633}
   - component: {fileID: 8549865180409883748}
-  - component: {fileID: 9152712641285151480}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -6801,6 +6801,29 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!136 &-3180218069918812042
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4375937461884750312}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.8
+  m_Height: 2
+  m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &7299374128226269968
 MonoBehaviour:
@@ -6871,27 +6894,6 @@ MonoBehaviour:
   grenadeWeapon: {fileID: 0}
   currentWeapon: {fileID: 0}
   isPrimary: 1
---- !u!135 &9152712641285151480
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4375937461884750312}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 1
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &4380898700811560446
 GameObject:
   m_ObjectHideFlags: 0

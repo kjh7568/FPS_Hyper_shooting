@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,9 +6,18 @@ using UnityEngine;
 public class AutoPickupController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 20f; // 다가오는 속도
+    
+    private bool isReady = false;
+
+    private void Start()
+    {
+        StartCoroutine(Wait_Coroutine());
+    }
 
     private void Update()
     {
+        if (!isReady) return;
+        
         var detectionRange = Player.localPlayer.playerStat.pickupRadius;
         var playerPosition = Player.localPlayer.transform.position + new Vector3(0, 1f, 0);
 
@@ -27,5 +37,12 @@ public class AutoPickupController : MonoBehaviour
             //todo 수집 효과나 사운드 넣고
             Destroy(gameObject);
         }
+    }
+
+    private IEnumerator Wait_Coroutine()
+    {
+        yield return new WaitForSeconds(1f);
+        
+        isReady = true;
     }
 }
