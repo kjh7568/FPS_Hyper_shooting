@@ -16,5 +16,10 @@ MonoBehaviour:
   weaponType: 0
   grade: 0
   weaponImage: {fileID: 0}
-  levelStats: []
+  levelStats:
+  - level: 1
+    damage: 40
+    fireRate: 0
+    reloadTime: 0
+    magazine: 0
   possibleEffects: 

@@ -19,19 +19,19 @@ MonoBehaviour:
   levelStats:
   - level: 1
     damage: 12
-    fireRate: 1
+    fireRate: 0.15
     reloadTime: 3
-    magazine: 0
+    magazine: 30
   - level: 2
     damage: 13
     fireRate: 0.39
     reloadTime: 2.9
-    magazine: 0
+    magazine: 30
   - level: 3
     damage: 14
     fireRate: 0.38
     reloadTime: 2.8
-    magazine: 0
+    magazine: 30
   - level: 4
     damage: 15
     fireRate: 0.37
@@ -68,4 +68,3 @@ MonoBehaviour:
     reloadTime: 2
     magazine: 0
   possibleEffects: 00000000010000000200000003000000040000000500000006000000
-  maxAmmo: 30

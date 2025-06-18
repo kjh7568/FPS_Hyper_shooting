@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0def17fd6262e4419ed97ecfe1a2487, type: 3}
   m_Name: NormalKnife
   m_EditorClassIdentifier: 
-  gunName: NormalKnife
+  weaponName: 
+  weaponType: 0
   grade: 0
-  maxAmmo: 100
+  weaponImage: {fileID: 0}
   levelStats:
   - level: 1
     damage: 40
     fireRate: 3
     reloadTime: 0
-  gunType: 5
+    magazine: 0
   possibleEffects: 
