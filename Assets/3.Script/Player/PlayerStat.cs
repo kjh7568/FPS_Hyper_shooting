@@ -8,4 +8,5 @@ public class PlayerStat
     public float maxHealth;
     public float moveSpeed;
     public float dashCoolTime;
+    public float pickupRadius;
 }

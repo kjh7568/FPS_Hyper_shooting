@@ -6748,10 +6748,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4515671605934205372}
-  - component: {fileID: 7299374128226269968}
   - component: {fileID: 7116260080126133883}
+  - component: {fileID: 7299374128226269968}
   - component: {fileID: 6650611116803163633}
   - component: {fileID: 8549865180409883748}
+  - component: {fileID: 9152712641285151480}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -6775,27 +6776,6 @@ Transform:
   - {fileID: 6479320625774284882}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 20.009, z: 0}
---- !u!114 &7299374128226269968
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4375937461884750312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4a764cb05543b04da1e4e9b5e54e75e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gravity: -20
-  jumpHeight: 1
-  mouseSensitivity: 200
-  playerCamera: {fileID: 6479320625774284882}
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 8
-  animator: {fileID: 3297913578080717633}
-  isOpenPanel: 0
 --- !u!143 &7116260080126133883
 CharacterController:
   m_ObjectHideFlags: 0
@@ -6822,6 +6802,27 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &7299374128226269968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4375937461884750312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4a764cb05543b04da1e4e9b5e54e75e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravity: -20
+  jumpHeight: 1
+  mouseSensitivity: 200
+  playerCamera: {fileID: 6479320625774284882}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 8
+  animator: {fileID: 3297913578080717633}
+  isOpenPanel: 0
 --- !u!114 &6650611116803163633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6839,6 +6840,7 @@ MonoBehaviour:
     maxHealth: 100
     moveSpeed: 8
     dashCoolTime: 2
+    pickupRadius: 10
   mainCollider: {fileID: 7116260080126133883}
   helmetSO: {fileID: 11400000, guid: 2eacb1e137c8613468c1453399164911, type: 2}
   chestPlateSO: {fileID: 11400000, guid: 78ba3eaa40bbc77489b25b7c4a15b39b, type: 2}
@@ -6863,12 +6865,33 @@ MonoBehaviour:
   grenadePrefab: {fileID: 781683980290335973, guid: 50626ed689af39843aba9b38620f9aa5,
     type: 3}
   grenadeSpawnPoint: {fileID: 4751908366751314377}
-  primaryWeapon: {fileID: 5936917945763991537}
+  primaryWeapon: {fileID: 8388790486473864773}
   secondaryWeapon: {fileID: 9175541099566816500}
   knifeWeapon: {fileID: 4020546009191274165}
   grenadeWeapon: {fileID: 0}
   currentWeapon: {fileID: 0}
   isPrimary: 1
+--- !u!135 &9152712641285151480
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4375937461884750312}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &4380898700811560446
 GameObject:
   m_ObjectHideFlags: 0
@@ -12358,8 +12381,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7511224747781012812}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0021851952, y: -0.00018388398, z: -0.00051549554, w: 0.99999744}
-  m_LocalPosition: {x: 0.25039348, y: -0.021194411, z: -0.059112005}
+  m_LocalRotation: {x: -0.43199584, y: 0.55968595, z: -0.553359, w: 0.4403694}
+  m_LocalPosition: {x: 0.2368, y: -0.0334, z: -0.0412}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12370,7 +12393,7 @@ Transform:
   - {fileID: 1925557890010364337}
   - {fileID: 6243637607302314077}
   m_Father: {fileID: 6744896469459640716}
-  m_LocalEulerAnglesHint: {x: 15.205, y: 84.608, z: -91.418}
+  m_LocalEulerAnglesHint: {x: 13.824, y: 89.985, z: -89.153}
 --- !u!95 &8438087759275112878
 Animator:
   serializedVersion: 5
