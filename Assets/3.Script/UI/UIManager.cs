@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text hpText;
     [SerializeField] private TMP_Text bulletText;
+    [SerializeField] private TMP_Text coinText;
     [SerializeField] private Image hpBar;
 
     // public bool isOpenPanel = false;
@@ -29,7 +30,8 @@ public class UIManager : MonoBehaviour
         
         hpText.text = $"{playerStat.health} / {totalHealth}";
         bulletText.text = $"{myGun.CurrentAmmo} / {myGun.gunData.maxAmmo}";
-
+        coinText.text = $"{Player.localPlayer.coin}";
+        
         hpBar.fillAmount = Mathf.Clamp01(playerStat.health / totalHealth);
         
         Color setColor = hpBar.color;

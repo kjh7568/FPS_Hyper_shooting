@@ -17,6 +17,8 @@ public class Player : MonoBehaviour, IDamageAble
     [SerializeField] private ArmorDataSO chestPlateSO;
     [SerializeField] private ArmorDataSO glovesSO;
     [SerializeField] private ArmorDataSO bootsSO;
+
+    public int coin = 0;
     
     private void Awake()
     {

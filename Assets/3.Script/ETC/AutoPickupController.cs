@@ -36,6 +36,7 @@ public class AutoPickupController : MonoBehaviour
         {
             //todo 수집 효과나 사운드 넣고
             Destroy(gameObject);
+            Player.localPlayer.coin++;
         }
     }
 
