@@ -13,7 +13,7 @@ public class ItemShopPanelUI : MonoBehaviour
     [SerializeField] private TMP_Text reloadTimeText;
     
 
-    public void SetGunData(GunDataSO gun)
+    public void SetGunData(WeaponDataSO gun)
     {
         GunLevelStat stat = gun.GetStatByLevel(1); // 기본 레벨 스탯 사용
 

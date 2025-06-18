@@ -105,7 +105,7 @@ public class MainUIManager : MonoBehaviour
         targetValueText.text = $"{target.currentStat.defense}";
         SetDescription(target, targetDescriptionTexts);
          
-        targetItemImage.sprite = target.data.icon;
+        targetItemImage.sprite = target.data.armorImage;
     }
 
     private void OpenCurrentEquipmentPanel(Armor target)
@@ -116,7 +116,7 @@ public class MainUIManager : MonoBehaviour
         currentValueText.text = $"{target.currentStat.defense}";
         SetDescription(target, currentDescriptionTexts);
          
-        currentItemImage.sprite = target.data.icon;
+        currentItemImage.sprite = target.data.armorImage;
     }
 
     private void OpenTargetPanelByAnimation(RectTransform targetRect)

@@ -1,14 +1,49 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
+
+[System.Serializable]
+public struct ArmorLevelStat
+{
+    public int level;
+    public float defense;
+}
+
+public enum ArmorType
+{
+    Helmet,
+    BodyArmor,
+    Gloves,
+    Boots
+}
+
+public enum ArmorGrade
+{
+    Common,
+    Rare,
+    Epic,
+    Legendary
+}
+
+public enum SpecialEffect
+{
+    DashCooldownReduction,   // 대쉬 쿨타임 5% 감소
+    MultiplierDefense,       // 방어력 10% 증가
+    IncreaseHealth,          // 체력 20 증가
+    MultiplierHealth,        // 체력 10% 증폭
+    ReloadSpeedReduction,    // 재장전 시간 5% 감소
+    MultiplierAttackDamage,  // 공격력 5% 증가
+    MultiplierMovementSpeed  // 이동 속도 10% 증가
+}
 
 [CreateAssetMenu(fileName = "NewArmorData", menuName = "Armor/Create New ArmorData")]
 public class ArmorDataSO : ScriptableObject
 {
-    [Header("기본 정보")]
+    [Header("기본 정보")] 
     public string armorName;
     public ArmorType armorType;
     public ArmorGrade grade;
-    public Sprite icon;
+    public Sprite armorImage;
 
     [Header("레벨별 스탯")]
     public List<ArmorLevelStat> levelStats;
@@ -51,38 +86,4 @@ public class ArmorDataSO : ScriptableObject
         Debug.LogError($"[ArmorDataSO] {armorName} 레벨 {level} 데이터가 존재하지 않음.");
         return levelStats.Count > 0 ? levelStats[0] : default;
     }
-}
-
-public enum ArmorType
-{
-    Helmet,
-    Chestplate,
-    Gloves,
-    Boots
-}
-
-public enum ArmorGrade
-{
-    Common,
-    Rare,
-    Epic,
-    Legendary
-}
-public enum SpecialEffect
-{
-    DashCooldownReduction,   // 대쉬 쿨타임 5% 감소
-    MultiplierDefense,       // 방어력 10% 증가
-    IncreaseHealth,          // 체력 20 증가
-    MultiplierHealth,        // 체력 10% 증폭
-    ReloadSpeedReduction,    // 재장전 시간 5% 감소
-    MultiplierAttackDamage,  // 공격력 5% 증가
-    MultiplierMovementSpeed  // 이동 속도 10% 증가
-}
-
-
-[System.Serializable]
-public struct ArmorLevelStat
-{
-    public int level;
-    public float defense;
 }

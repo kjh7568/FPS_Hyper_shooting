@@ -11,13 +11,13 @@ public class ItemShopLoader : MonoBehaviour
 
     private void LoadWeaponsIntoExistingPanels()
     {
-        GunDataSO[] allGuns = Resources.LoadAll<GunDataSO>("");
+        WeaponDataSO[] allGuns = Resources.LoadAll<WeaponDataSO>("");
         int slotIndex = 0;
 
         foreach (var gun in allGuns)
         {
             if (!gun.name.StartsWith("Root_")) continue;
-            if (gun.gunType == GunType.Knife || gun.gunType == GunType.Grenade) continue;
+            if (gun.gunType == WeaponType.Knife || gun.gunType == WeaponType.Grenade) continue;
 
             if (slotIndex >= panelSlots.Length) break;
 
