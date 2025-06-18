@@ -14,12 +14,12 @@ public class WeaponManager : MonoBehaviour
     public GameObject grenadePrefab;
     public Transform grenadeSpawnPoint;
 
-    public Gun primaryWeapon;
-    public Gun secondaryWeapon;
-    public Gun knifeWeapon;
-    public Gun grenadeWeapon;
+    public WeaponController primaryWeapon;
+    public WeaponController secondaryWeapon;
+    public WeaponController knifeWeapon;
+    // public WeaponController grenadeWeapon;
 
-    public Gun currentWeapon;
+    public WeaponController currentWeapon;
     public bool isPrimary = true;
 
     public AnimatorStateInfo stateInfo;

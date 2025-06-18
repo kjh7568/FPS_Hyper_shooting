@@ -2,26 +2,27 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Grenade : Gun
+public class Grenade : WeaponController
 {
     [SerializeField] private LayerMask monsterLayer;
     private Rigidbody rb;
+    [SerializeField] private WeaponDataSO grenadeRootData; 
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    protected override void Start()
+    private void Start()
     {
-        InitGun();
+        this.weapon = new Weapon(grenadeRootData, WeaponGrade.Common); 
         rb.velocity += Camera.main.transform.forward * 20f;
     }
 
 
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.name);
+        if (other.gameObject.CompareTag("Player")) return;
         
         // 오직 Monster 레이어에만 반응
         Collider[] hits = Physics.OverlapSphere(transform.position, 4f, monsterLayer);
@@ -35,7 +36,7 @@ public class Grenade : Gun
                 {
                     Sender = Player.localPlayer,
                     Receiver = target,
-                    Damage = currentStat.damage,
+                    Damage = weapon.currentStat.damage,
                     HitPosition = hit.ClosestPoint(transform.position),
                     Collider = hit.GetComponent<Collider>()
                 };

@@ -11,7 +11,7 @@ public class Armor
 
     public List<SpecialEffect> options { get; private set; } = new();
 
-    public ArmorStat Stat { get; private set; }
+    public EquipmentStat Stat { get; private set; }
 
     public Armor(ArmorDataSO data)
     {
@@ -29,8 +29,8 @@ public class Armor
     private void Init()
     {
         GenerateRandomEffects(); // 등급에 따른 효과 수만큼 효과 선택
-        ApplyLevel(DetermineStartLevelByGrade());
-        BuildStat();
+        ApplyLevel(data.GetMinLevelForGrade());
+        // BuildStat();
     }
 
     private void GenerateRandomEffects()
@@ -55,12 +55,7 @@ public class Armor
         }
     }
 
-    private int DetermineStartLevelByGrade()
-    {
-        return data.GetMinLevelForGrade(); // Common은 1, Rare는 3 등
-    }
-
-    public void ApplyLevel(int level)
+    private void ApplyLevel(int level)
     {
         currentLevel = level;
         currentStat = data.GetStatByLevel(level);
@@ -68,14 +63,9 @@ public class Armor
 
     public float GetDefense() => currentStat.defense;
 
-    private void BuildStat()
-    {
-        Stat = new ArmorStat();
-        Stat.totalDefense = currentStat.defense;
-    }
-
-    public bool HasEffect(SpecialEffect effect)
-    {
-        return options.Contains(effect);
-    }
+    // private void BuildStat()
+    // {
+    //     Stat = new EquipmentStat();
+    //     Stat.totalDefense = currentStat.defense;
+    // }
 }

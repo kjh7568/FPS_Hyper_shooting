@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [System.Serializable]
-public struct GunLevelStat
+public struct WeaponLevelStat
 {
     public int level;
     public float damage;
@@ -45,17 +46,15 @@ public class WeaponDataSO : ScriptableObject
 {
     [Header("기본 정보")] 
     public string weaponName;
-    public WeaponType gunType;
+    public WeaponType weaponType;
     public WeaponGrade grade;
     public Sprite weaponImage;
 
     [Header("레벨별 스탯")] 
-    public List<GunLevelStat> levelStats;
+    public List<WeaponLevelStat> levelStats;
 
     [Header("가능한 특수효과 풀")] 
     public List<GunSpecialEffect> possibleEffects;
-
-    public int maxAmmo; //?
 
     // 등급별 시작 / 최대 레벨 정의
     private static readonly Dictionary<WeaponGrade, (int min, int max)> gradeLevelLimits = new()
@@ -76,7 +75,7 @@ public class WeaponDataSO : ScriptableObject
         return gradeLevelLimits.TryGetValue(grade, out var limits) ? limits.min : 1;
     }
 
-    public GunLevelStat GetStatByLevel(int level)
+    public WeaponLevelStat GetStatByLevel(int level)
     {
         var (min, max) = gradeLevelLimits[grade];
 

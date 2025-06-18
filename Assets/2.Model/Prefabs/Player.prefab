@@ -1201,17 +1201,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36ab0700cb043414a8d43db64e5beb90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunData: {fileID: 11400000, guid: 5abd56e830c1ba343b3412a291a30f45, type: 2}
-  currentLevel: 0
-  currentAmmo: 0
-  currentStat:
-    level: 0
-    damage: 0
-    fireRate: 0
-    reloadTime: 0
   isOpenPanel: 0
-  grade: 0
-  specialEffects: 
+  knifeRootData: {fileID: 11400000, guid: 17ebf8d835c9d13439db997c92610595, type: 2}
 --- !u!1 &978496722224122049
 GameObject:
   m_ObjectHideFlags: 0
@@ -4417,13 +4408,13 @@ Transform:
   m_LocalScale: {x: 0.9999999, y: 1, z: 1.0000002}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5698955005114382542}
-  - {fileID: 7599910214426275241}
-  - {fileID: 5282418204899718694}
   - {fileID: 9171325603649825860}
+  - {fileID: 5282418204899718694}
+  - {fileID: 7599910214426275241}
+  - {fileID: 5698955005114382542}
+  - {fileID: 5774936878079172632}
   - {fileID: 7498924015989115454}
   - {fileID: 1925402338393342143}
-  - {fileID: 5774936878079172632}
   - {fileID: 4214732452324423087}
   - {fileID: 8693588320013572392}
   - {fileID: 3632314440858347336}
@@ -4784,17 +4775,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d790174309962fb4e9dbbba09fa87123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunData: {fileID: 11400000, guid: deb532b394583384fb4d05c499fcb1c7, type: 2}
-  currentLevel: 0
-  currentAmmo: 0
-  currentStat:
-    level: 0
-    damage: 0
-    fireRate: 0
-    reloadTime: 0
   isOpenPanel: 0
-  grade: 0
-  specialEffects: 
+  pistolRootData: {fileID: 11400000, guid: 1e7d7e7a6c70ba44db2d03a9a29e93fa, type: 2}
 --- !u!1 &2969848580476151737
 GameObject:
   m_ObjectHideFlags: 0
@@ -6971,7 +6953,6 @@ MonoBehaviour:
   primaryWeapon: {fileID: 8388790486473864773}
   secondaryWeapon: {fileID: 9175541099566816500}
   knifeWeapon: {fileID: 4020546009191274165}
-  grenadeWeapon: {fileID: 0}
   currentWeapon: {fileID: 0}
   isPrimary: 1
 --- !u!1 &4380898700811560446
@@ -7197,17 +7178,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7538b5d7931da404ca66ba27c99c94e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunData: {fileID: 11400000, guid: e9e40e71e926c7f4faf05447cce2af42, type: 2}
-  currentLevel: 0
-  currentAmmo: 0
-  currentStat:
-    level: 0
-    damage: 0
-    fireRate: 0
-    reloadTime: 0
   isOpenPanel: 0
-  grade: 0
-  specialEffects: 
+  shotgunRootData: {fileID: 11400000, guid: 976842b7c5bbae64fa03dca70642c8fe, type: 2}
 --- !u!1 &4504096409266622289
 GameObject:
   m_ObjectHideFlags: 0
@@ -8924,7 +8896,7 @@ Transform:
   m_GameObject: {fileID: 5277617681821240938}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.281, y: 0, z: 0}
+  m_LocalPosition: {x: -0.412, y: -0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11047,17 +11019,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f89001c74d01a644b9dcd7574852e8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunData: {fileID: 11400000, guid: 8773e58a91c3bd145b8dbd5ccea2e753, type: 2}
-  currentLevel: 0
-  currentAmmo: 0
-  currentStat:
-    level: 0
-    damage: 0
-    fireRate: 0
-    reloadTime: 0
   isOpenPanel: 0
-  grade: 0
-  specialEffects: 
+  smgRootData: {fileID: 11400000, guid: 6afac02ba7348c740ba096384b732f77, type: 2}
 --- !u!1 &6672536455306622913
 GameObject:
   m_ObjectHideFlags: 0
@@ -11146,17 +11109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 706b4a1663fd2864d80f5b5699fa7760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunData: {fileID: 11400000, guid: 081823c8eac18fe44a4aa4fd0b013c69, type: 2}
-  currentLevel: 0
-  currentAmmo: 0
-  currentStat:
-    level: 0
-    damage: 0
-    fireRate: 0
-    reloadTime: 0
   isOpenPanel: 0
-  grade: 0
-  specialEffects: 
+  rifleRootData: {fileID: 11400000, guid: df38a8222b945fd428166bed240422d9, type: 2}
 --- !u!1 &6700863036046874513
 GameObject:
   m_ObjectHideFlags: 0
@@ -12347,19 +12301,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf9754e2b2c4eba4e84fcdd4752bad4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunData: {fileID: 11400000, guid: 05f09f486079a1b438232c9c80a3b7f6, type: 2}
-  currentLevel: 1
-  currentAmmo: 0
-  currentStat:
-    level: 0
-    damage: 0
-    fireRate: 0
-    reloadTime: 0
   isOpenPanel: 0
-  grade: 0
-  specialEffects: 
   SniperUI: {fileID: 5874422534606126260}
   CrosshairUI: {fileID: 6792297702586340701}
+  sniperRootData: {fileID: 11400000, guid: 5d69494ea5c492b46a6fb71816eb74cb, type: 2}
 --- !u!1 &7326825598916150352
 GameObject:
   m_ObjectHideFlags: 0
@@ -12644,17 +12589,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 706b4a1663fd2864d80f5b5699fa7760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunData: {fileID: 11400000, guid: 49cac8ca4e2dd8543babdc574f2d440c, type: 2}
-  currentLevel: 1
-  currentAmmo: 0
-  currentStat:
-    level: 0
-    damage: 0
-    fireRate: 0
-    reloadTime: 0
   isOpenPanel: 0
-  grade: 0
-  specialEffects: 
+  rifleRootData: {fileID: 11400000, guid: b5bed64021f6449478f48c1b90861702, type: 2}
 --- !u!1 &7521609080505538197
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,13 +23,13 @@ public class UIManager : MonoBehaviour
         if (Player.localPlayer == null) return;
 
         var playerStat = Player.localPlayer.playerStat;
-        var armorStat = Player.localPlayer.inventory.armorStat;
+        var armorStat = Player.localPlayer.inventory.EquipmentStat;
         var myGun = WeaponManager.instance.currentWeapon;
 
         var totalHealth = (playerStat.maxHealth + armorStat.increaseHealth) * armorStat.multiplierHealth;
         
         hpText.text = $"{playerStat.health} / {totalHealth}";
-        bulletText.text = $"{myGun.CurrentAmmo} / {myGun.gunData.maxAmmo}";
+        bulletText.text = $"{myGun.weapon.currentAmmo} / {myGun.weapon.currentStat.magazine}";
         coinText.text = $"{Player.localPlayer.coin}";
         
         hpBar.fillAmount = Mathf.Clamp01(playerStat.health / totalHealth);

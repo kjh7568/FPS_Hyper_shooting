@@ -70,10 +70,10 @@ public class StageManager : MonoBehaviour
             Debug.LogWarning("SpawnPoint 오브젝트를 찾지 못했습니다.");
         }
 
-        Gun gun = FindObjectOfType<Gun>();
-        if (gun != null)
+        var weapon = FindObjectOfType<WeaponController>();
+        if (weapon != null)
         {
-            GameData.Instance.LoadGunState(gun);
+            GameData.Instance.LoadGunState(weapon);
         }
 
         isTransitioning = false;
@@ -81,10 +81,11 @@ public class StageManager : MonoBehaviour
 
     private void SaveCurrentState()
     {
-        Gun gun = FindObjectOfType<Gun>();
-        if (gun != null)
+        var weapon = FindObjectOfType<WeaponController>();
+
+        if (weapon != null)
         {
-            GameData.Instance.SaveGunState(gun);
+            GameData.Instance.SaveGunState(weapon);
         }
     }
 }

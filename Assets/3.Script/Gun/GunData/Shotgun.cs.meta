@@ -3,7 +3,14 @@ guid: 7538b5d7931da404ca66ba27c99c94e5
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - rifleRootData: {fileID: 11400000, guid: b5bed64021f6449478f48c1b90861702, type: 2}
+  - shotgunRootData: {instanceID: 0}
+  - smgRootData: {instanceID: 0}
+  - sniperRootData: {instanceID: 0}
+  - pistolRootData: {instanceID: 0}
+  - knifeRootData: {instanceID: 0}
+  - grenadeRootData: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

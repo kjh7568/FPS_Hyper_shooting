@@ -2,30 +2,37 @@ using System;
 using UnityEngine;
 using System.Collections;
 
-public class Smg : Gun
+public class Smg : WeaponController
 {
     private float nextFireTime = 0f;
     private PlayerController playerController;
+    [SerializeField] private WeaponDataSO smgRootData; 
 
+    private void Awake()
+    {
+        this.weapon = new Weapon(smgRootData, WeaponGrade.Common);
+        weapon.currentAmmo = weapon.currentStat.magazine;
+    }
+    
     private void OnEnable()
     {
         playerController = FindObjectOfType<PlayerController>();
-        isReloading = false;
+        weapon.isReloading = false;
     }
 
-    protected override void Update()
+    private void Update()
     {
-        if (isReloading)
+        if (weapon.isReloading)
             return;
         
         // 좌클릭 발사
         if (Input.GetMouseButton(0) && Time.time >= nextFireTime && !isOpenPanel && !WeaponManager.instance.stateInfo.IsName("Draw"))
         {
-            if (currentAmmo > 0)
+            if (weapon.currentAmmo > 0)
             {
                 Fire();
                 playerController.SetShootAnimation(true);
-                nextFireTime = Time.time + currentStat.fireRate;
+                nextFireTime = Time.time + weapon.currentStat.fireRate;
             }
             else
             {
@@ -44,16 +51,11 @@ public class Smg : Gun
         {
             playerController.SetShootAnimation(false);
         }
-
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            base.LevelUp();
-        }
     }
 
     public override void Fire()
     {
-        currentAmmo--;
+        weapon.currentAmmo--;
 
         float damage = GetFinalDamage(); // ✅ 버프 포함된 데미지 계산
 
@@ -95,7 +97,7 @@ public class Smg : Gun
 
     public override void Reload()
          {
-             if (CurrentAmmo >= gunData.maxAmmo)
+             if (weapon.currentAmmo >= weapon.currentStat.magazine)
              {
                  Debug.Log("[Rifle] 이미 탄창이 가득 차 있습니다.");
                  return;
@@ -107,13 +109,13 @@ public class Smg : Gun
 
     private IEnumerator ReloadRoutine()
     {
-        isReloading = true;
+        weapon.isReloading = true;
 
-        yield return new WaitForSeconds(currentStat.reloadTime);
+        yield return new WaitForSeconds(weapon.currentStat.reloadTime);
 
-        currentAmmo = gunData.maxAmmo;
-        isReloading = false;
+        weapon.currentAmmo = weapon.currentStat.magazine;
+        weapon.isReloading = false;
 
-        OnReloadComplete();
+        // OnReloadComplete();
     }
 }

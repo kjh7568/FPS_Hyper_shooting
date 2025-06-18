@@ -15,7 +15,7 @@ public class ItemShopPanelUI : MonoBehaviour
 
     public void SetGunData(WeaponDataSO gun)
     {
-        GunLevelStat stat = gun.GetStatByLevel(1); // 기본 레벨 스탯 사용
+        WeaponLevelStat stat = gun.GetStatByLevel(1); // 기본 레벨 스탯 사용
 
         weaponNameText.text = $"Name {gun.name}";
         levelText.text = $"level {stat.level}";

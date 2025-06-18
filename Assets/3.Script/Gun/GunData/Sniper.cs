@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Sniper : Gun
+public class Sniper : WeaponController
 {
     private float nextFireTime = 0f;
     private PlayerController playerController;
@@ -15,14 +15,19 @@ public class Sniper : Gun
     private float zoomSensitivity = 50f;
     [SerializeField] private GameObject SniperUI;
     [SerializeField] private GameObject CrosshairUI;
-    
+    [SerializeField] private WeaponDataSO sniperRootData; 
 
+    private void Awake()
+    {
+        this.weapon = new Weapon(sniperRootData, WeaponGrade.Common);
+        weapon.currentAmmo = weapon.currentStat.magazine;
+    }
 
     private void OnEnable()
     {
         playerController = FindObjectOfType<PlayerController>();
         mainCam = Camera.main;
-        isReloading = false;
+        weapon.isReloading = false;
 
         if (mainCam != null)
         {
@@ -32,20 +37,20 @@ public class Sniper : Gun
         originalSensitivity = playerController.MouseSensitivity;
     }
 
-    protected override void Update()
+    protected void Update()
     {
-        if (isReloading)
+        if (weapon.isReloading)
             return;
 
         // 발사
         if (Input.GetMouseButtonDown(0) && Time.time >= nextFireTime && !isOpenPanel && !WeaponManager.instance.stateInfo.IsName("Draw"))
         {
-            if (currentAmmo > 0)
+            if (weapon.currentAmmo > 0)
             {
                 Fire();
                 playerController.SetShootAnimation(true);
                 StartCoroutine(ResetShootBool());
-                nextFireTime = Time.time + currentStat.fireRate;
+                nextFireTime = Time.time + weapon.currentStat.fireRate;
             }
             else
             {
@@ -75,17 +80,11 @@ public class Sniper : Gun
         {
             ZoomOut();
         }
-
-        // 테스트용 레벨업
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            base.LevelUp();
-        }
     }
 
     public override void Fire()
     {
-        currentAmmo--;
+        weapon.currentAmmo--;
 
         float damage = GetFinalDamage();
 
@@ -126,7 +125,7 @@ public class Sniper : Gun
 
     public override void Reload()
     {
-        if (CurrentAmmo >= gunData.maxAmmo)
+        if (weapon.currentAmmo >= weapon.currentStat.magazine)
         {
             Debug.Log("[Sniper] 이미 탄창이 가득 차 있습니다.");
             return;
@@ -139,14 +138,14 @@ public class Sniper : Gun
 
     private IEnumerator ReloadRoutine()
     {
-        isReloading = true;
+        weapon.isReloading = true;
 
-        yield return new WaitForSeconds(currentStat.reloadTime);
+        yield return new WaitForSeconds(weapon.currentStat.reloadTime);
 
-        currentAmmo = gunData.maxAmmo;
-        isReloading = false;
+        weapon.currentAmmo = weapon.currentStat.magazine;
+        weapon.isReloading = false;
 
-        OnReloadComplete();
+        // OnReloadComplete();
     }
 
     private void ZoomIn()

@@ -1,7 +1,15 @@
 using UnityEngine;
 
-public class Knife : Gun
+public class Knife : WeaponController
 {
+    [SerializeField] private WeaponDataSO knifeRootData; 
+
+    private void Awake()
+    {
+        this.weapon = new Weapon(knifeRootData, WeaponGrade.Common);
+        weapon.currentAmmo = weapon.currentStat.magazine;
+    }
+    
     // WeaponManager가 호출해서 Fire만 실행
     public override void Fire()
     {

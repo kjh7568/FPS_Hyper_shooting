@@ -2,30 +2,37 @@ using System;
 using UnityEngine;
 using System.Collections;
 
-public class Rifle : Gun
+public class Rifle : WeaponController
 {
     private float nextFireTime = 0f;
-    private PlayerController playerController;
+    private PlayerController playerController; 
+    [SerializeField] private WeaponDataSO rifleRootData; 
+
+    private void Awake()
+    {
+        weapon = new Weapon(rifleRootData, WeaponGrade.Common);
+        weapon.currentAmmo = weapon.currentStat.magazine;
+    }
 
     private void OnEnable()
     {
         playerController = FindObjectOfType<PlayerController>();
-        isReloading = false;
+        weapon.isReloading = false;
     }
 
-    protected override void Update()
+    private void Update()
     {
-        if (isReloading)
+        if (weapon.isReloading)
             return;
         
         // 좌클릭 발사
         if (Input.GetMouseButton(0) && Time.time >= nextFireTime && !isOpenPanel && !WeaponManager.instance.stateInfo.IsName("Draw"))
         {
-            if (currentAmmo > 0)
+            if (weapon.currentAmmo > 0)
             {
                 Fire();
                 playerController.SetShootAnimation(true);
-                nextFireTime = Time.time + currentStat.fireRate;
+                nextFireTime = Time.time + weapon.currentStat.fireRate;
             }
             else
             {
@@ -44,16 +51,11 @@ public class Rifle : Gun
         {
             playerController.SetShootAnimation(false);
         }
-
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            base.LevelUp();
-        }
     }
 
     public override void Fire()
     {
-        currentAmmo--;
+        weapon.currentAmmo--;
 
         Camera cam = Camera.main;
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
@@ -72,7 +74,7 @@ public class Rifle : Gun
                     CombatEvent combatEvent = new CombatEvent();
                     combatEvent.Sender = Player.localPlayer;
                     combatEvent.Receiver = monster;
-                    combatEvent.Damage = GetFinalDamage(); // ✅ 버프 적용된 최종 데미지 사용
+                    combatEvent.Damage = GetFinalDamage(); // ✅ 버프 적용된 최종 데미지 사용 --> 수정 중이라 바뀜
                     combatEvent.HitPosition = hit.point;
                     combatEvent.Collider = hit.collider;
 
@@ -90,10 +92,9 @@ public class Rifle : Gun
         }
     }
 
-
     public override void Reload()
          {
-             if (CurrentAmmo >= gunData.maxAmmo)
+             if (weapon.currentAmmo >= weapon.currentStat.magazine)
              {
                  return;
              }
@@ -103,17 +104,17 @@ public class Rifle : Gun
 
     private IEnumerator ReloadRoutine()
     {
-        isReloading = true;
+        weapon.isReloading = true;
         
         playerController.SetShootAnimation(false);
         playerController.SetReloadAnimation();
-        playerController.SetAnimationSpeed(Player.localPlayer.inventory.armorStat.reloadSpeedReduction);
+        playerController.SetAnimationSpeed(Player.localPlayer.inventory.EquipmentStat.reloadSpeedReduction);
         
-        yield return new WaitForSeconds(currentStat.reloadTime * (1 - Player.localPlayer.inventory.armorStat.reloadSpeedReduction));
+        yield return new WaitForSeconds(weapon.currentStat.reloadTime * (1 - Player.localPlayer.inventory.EquipmentStat.reloadSpeedReduction));
 
-        currentAmmo = gunData.maxAmmo;
-        isReloading = false;
+        weapon.currentAmmo = weapon.currentStat.magazine;;
+        weapon.isReloading = false;
 
-        OnReloadComplete();
+        // OnReloadComplete();
     }
 }

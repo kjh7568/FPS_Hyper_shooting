@@ -2,32 +2,39 @@ using System;
 using UnityEngine;
 using System.Collections;
 
-public class Pistol : Gun
+public class Pistol : WeaponController
 {
     private float nextFireTime = 0f;
     private PlayerController playerController;
+    [SerializeField] private WeaponDataSO pistolRootData; 
+
+    private void Awake()
+    {
+        this.weapon = new Weapon(pistolRootData, WeaponGrade.Common);        
+        weapon.currentAmmo = weapon.currentStat.magazine;
+    }
 
     private void OnEnable()
     {
         playerController = FindObjectOfType<PlayerController>();
-        isReloading = false;
+        weapon.isReloading = false;
     }
 
-    protected override void Update()
+    private void Update()
     {
-        if (isReloading)
+        if (weapon.isReloading)
             return;
 
         // 좌클릭 발사
         if (Input.GetMouseButtonDown(0) && Time.time >= nextFireTime && !isOpenPanel &&
             !WeaponManager.instance.stateInfo.IsName("Draw"))
         {
-            if (currentAmmo > 0)
+            if (weapon.currentAmmo > 0)
             {
                 Fire();
                 playerController.SetShootAnimation(true);
                 StartCoroutine(ResetShootBool());
-                nextFireTime = Time.time + currentStat.fireRate;
+                nextFireTime = Time.time + weapon.currentStat.fireRate;
             }
             else
             {
@@ -53,7 +60,7 @@ public class Pistol : Gun
 
     public override void Fire()
     {
-        currentAmmo--;
+        weapon.currentAmmo--;
 
         Camera cam = Camera.main;
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
@@ -92,7 +99,7 @@ public class Pistol : Gun
 
     public override void Reload()
     {
-        if (CurrentAmmo >= gunData.maxAmmo)
+        if (weapon.currentAmmo >= weapon.currentStat.magazine)
         {
             Debug.Log("이미 탄창이 가득 차 있습니다.");
             return;
@@ -104,14 +111,14 @@ public class Pistol : Gun
 
     private IEnumerator ReloadRoutine()
     {
-        isReloading = true;
+        weapon.isReloading = true;
 
-        yield return new WaitForSeconds(currentStat.reloadTime * (1 - Player.localPlayer.inventory.armorStat.reloadSpeedReduction));
+        yield return new WaitForSeconds(weapon.currentStat.reloadTime * (1 - Player.localPlayer.inventory.EquipmentStat.reloadSpeedReduction));
 
-        currentAmmo = gunData.maxAmmo;
-        isReloading = false;
+        weapon.currentAmmo = weapon.currentStat.magazine;
+        weapon.isReloading = false;
 
-        OnReloadComplete();
+        // OnReloadComplete();
     }
 
     private IEnumerator ResetShootBool()

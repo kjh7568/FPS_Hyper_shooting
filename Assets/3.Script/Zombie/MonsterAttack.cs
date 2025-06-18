@@ -25,7 +25,7 @@ public class MonsterAttack : MonoBehaviour
             Receiver = Player.localPlayer,
             HitPosition = other.ClosestPoint(transform.position),
             Collider = other,
-            Damage =  zombieStat.damage * damageMultiplier * (1f - (Player.localPlayer.inventory.armorStat.totalDefense * Player.localPlayer.inventory.armorStat.multiplierDefense) * 0.0001f),
+            Damage =  zombieStat.damage * damageMultiplier * (1f - (Player.localPlayer.inventory.EquipmentStat.totalDefense * Player.localPlayer.inventory.EquipmentStat.multiplierDefense) * 0.0001f),
         };
         
         CombatSystem.Instance.AddInGameEvent(combatEvent);

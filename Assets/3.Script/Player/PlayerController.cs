@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
         Vector3 inputAxis = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
         Vector3 move = transform.TransformDirection(inputAxis);
 
-        var totalSpeed = Player.localPlayer.playerStat.moveSpeed * Player.localPlayer.inventory.armorStat.multiplierMovementSpeed * Time.deltaTime;
+        var totalSpeed = Player.localPlayer.playerStat.moveSpeed * Player.localPlayer.inventory.EquipmentStat.multiplierMovementSpeed * Time.deltaTime;
         
         characterController.Move(move * (totalSpeed));
 
@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator DashCooldown_Coroutine()
     {
-        var coolTime = Player.localPlayer.playerStat.dashCoolTime * (1 - Player.localPlayer.inventory.armorStat.dashCooldownReduction);
+        var coolTime = Player.localPlayer.playerStat.dashCoolTime * (1 - Player.localPlayer.inventory.EquipmentStat.dashCooldownReduction);
         
         yield return new WaitForSeconds(coolTime);
         isCanDash = true;

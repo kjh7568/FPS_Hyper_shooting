@@ -30,17 +30,17 @@ public class GameData : MonoBehaviour
         }
     }
 
-    public void SaveGunState(Gun gun)
+    public void SaveGunState(WeaponController wc)
     {
-        savedGunLevel = gun.CurrentLevel;
-        savedCurrentAmmo = gun.CurrentAmmo;
+        savedGunLevel = wc.weapon.currentLevel;
+        savedCurrentAmmo = wc.weapon.currentAmmo;
     }
 
     /// GameData에 저장된 무기 정보를 현재 무기에 복원합니다.
-    public void LoadGunState(Gun gun)
+    public void LoadGunState(WeaponController wc)
     {
-        gun.ApplyLevel(savedGunLevel);
-        gun.ApplyAmmo(savedCurrentAmmo);
+        wc.weapon.ApplyLevel(savedGunLevel);
+        wc.weapon.ApplyAmmo(savedCurrentAmmo);
     }
 
    // public void SavePlayerStats(int health, int shield)

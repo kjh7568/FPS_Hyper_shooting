@@ -4103,7 +4103,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 999057827}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: StorePanelManager, Assembly-CSharp
         m_MethodName: SwitchToArmorUpgrade
         m_Mode: 1
@@ -5378,9 +5378,9 @@ RectTransform:
   - {fileID: 565000282}
   m_Father: {fileID: 1431513263}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1200, y: -375}
   m_SizeDelta: {x: 400, y: 750}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &277899458
@@ -6943,7 +6943,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 999057827}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: StorePanelManager, Assembly-CSharp
         m_MethodName: SwitchToWeaponUpgrade
         m_Mode: 1
@@ -8790,9 +8790,9 @@ RectTransform:
   - {fileID: 1671632698}
   m_Father: {fileID: 1431513263}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1680, y: -375}
   m_SizeDelta: {x: 400, y: 750}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &493263939
@@ -11938,7 +11938,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 999057827}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: StorePanelManager, Assembly-CSharp
         m_MethodName: SwitchToItemShop
         m_Mode: 1
@@ -16152,7 +16152,6 @@ GameObject:
   - component: {fileID: 999057830}
   - component: {fileID: 999057829}
   - component: {fileID: 999057828}
-  - component: {fileID: 999057827}
   m_Layer: 0
   m_Name: Store
   m_TagString: Untagged
@@ -16160,23 +16159,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &999057827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 999057826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 913a3192a360be947b7e306b85fd9863, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  storePanel: {fileID: 1658605007}
-  itemShop: {fileID: 0}
-  weaponUpgrade: {fileID: 841834256}
-  armorUpgrade: {fileID: 661908357}
-  storeSystem: {fileID: 1800016087}
 --- !u!114 &999057828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23307,6 +23289,7 @@ GameObject:
   - component: {fileID: 1431513266}
   - component: {fileID: 1431513265}
   - component: {fileID: 1431513264}
+  - component: {fileID: 1431513267}
   m_Layer: 5
   m_Name: ItemShopPanel
   m_TagString: Untagged
@@ -23401,6 +23384,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1431513262}
   m_CullTransparentMesh: 1
+--- !u!114 &1431513267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431513262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0f398f2d57f61c43849b09f6a40adff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1435499965
 GameObject:
   m_ObjectHideFlags: 0
@@ -23844,9 +23843,9 @@ RectTransform:
   - {fileID: 481812605}
   m_Father: {fileID: 1431513263}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 240, y: -375}
   m_SizeDelta: {x: 400, y: 750}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1482828808
@@ -26974,13 +26973,14 @@ GameObject:
   - component: {fileID: 1658605011}
   - component: {fileID: 1658605010}
   - component: {fileID: 1658605009}
+  - component: {fileID: 1658605012}
   m_Layer: 5
   m_Name: StorePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1658605008
 RectTransform:
   m_ObjectHideFlags: 0
@@ -27058,6 +27058,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1658605007}
   m_CullTransparentMesh: 1
+--- !u!114 &1658605012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658605007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 913a3192a360be947b7e306b85fd9863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  storePanel: {fileID: 1658605007}
+  itemShop: {fileID: 1431513262}
+  weaponUpgrade: {fileID: 841834256}
+  armorUpgrade: {fileID: 661908357}
+  storeSystem: {fileID: 1800016087}
 --- !u!1 &1665802516
 GameObject:
   m_ObjectHideFlags: 0
@@ -32322,9 +32339,9 @@ RectTransform:
   - {fileID: 1300174427}
   m_Father: {fileID: 1431513263}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 720, y: -375}
   m_SizeDelta: {x: 400, y: 750}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2051423054

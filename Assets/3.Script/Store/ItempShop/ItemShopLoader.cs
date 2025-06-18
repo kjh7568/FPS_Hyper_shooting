@@ -17,7 +17,7 @@ public class ItemShopLoader : MonoBehaviour
         foreach (var gun in allGuns)
         {
             if (!gun.name.StartsWith("Root_")) continue;
-            if (gun.gunType == WeaponType.Knife || gun.gunType == WeaponType.Grenade) continue;
+            if (gun.weaponType == WeaponType.Knife || gun.weaponType == WeaponType.Grenade) continue;
 
             if (slotIndex >= panelSlots.Length) break;
 
