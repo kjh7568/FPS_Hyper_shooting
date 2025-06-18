@@ -152,25 +152,25 @@ public class MainUIManager : MonoBehaviour
             switch (option)
             {
                 case SpecialEffect.DashCooldownReduction:
-                    descriptions[idx].text = "대시 쿨타임이 10% 감소합니다";
+                    descriptions[idx].text = "• 대시 쿨타임이 10% 감소합니다";
                     break;
                 case SpecialEffect.MultiplierDefense:
-                    descriptions[idx].text = "방어력이 10% 증가합니다";
+                    descriptions[idx].text = "• 방어력이 10% 증가합니다";
                     break;
                 case SpecialEffect.IncreaseHealth:
-                    descriptions[idx].text = "최대 체력이 20 증가합니다";
+                    descriptions[idx].text = "• 최대 체력이 20 증가합니다";
                     break;
                 case SpecialEffect.MultiplierHealth:
-                    descriptions[idx].text = "최대 체력이 10% 증가합니다";
+                    descriptions[idx].text = "• 최대 체력이 10% 증가합니다";
                     break;
                 case SpecialEffect.ReloadSpeedReduction:
-                    descriptions[idx].text = "재장전 속도가 10% 빨라집니다";
+                    descriptions[idx].text = "• 재장전 속도가 10% 빨라집니다";
                     break;
                 case SpecialEffect.MultiplierAttackDamage:
-                    descriptions[idx].text = "공격력이 5% 증가합니다";
+                    descriptions[idx].text = "• 공격력이 5% 증가합니다";
                     break;
                 case SpecialEffect.MultiplierMovementSpeed:
-                    descriptions[idx].text = "이동 속도가 10% 증가합니다";
+                    descriptions[idx].text = "• 이동 속도가 10% 증가합니다";
                     break;
             }
 

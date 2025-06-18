@@ -24,9 +24,5 @@ public class ItemShopLoader : MonoBehaviour
             panelSlots[slotIndex].SetGunData(gun);
             slotIndex++;
         }
-     
-     
-     
-     
     }
 }

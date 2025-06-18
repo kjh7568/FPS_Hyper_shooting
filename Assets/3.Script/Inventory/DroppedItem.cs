@@ -35,10 +35,4 @@ public class DroppedItem : MonoBehaviour
         else if (roll < 95) return ArmorGrade.Epic;
         else return ArmorGrade.Legendary;
     }
-    
-    public void PrintArmor()
-    {
-        string effectList = dropedItem.options.Count > 0 ? string.Join(", ", dropedItem.options) : "없음";
-        Debug.Log($"[{dropedItem.data.armorName}] {dropedItem.grade} {dropedItem.Type} | Lv.{dropedItem.currentLevel} | 방어력: {dropedItem.GetDefense()} | 효과: {effectList}");
-    }
 }

@@ -9,6 +9,7 @@ public class ItemShopPanelUI : MonoBehaviour
     [SerializeField] private TMP_Text gradeText;
     [SerializeField] private TMP_Text damageText;
     [SerializeField] private TMP_Text fireRateText;
+    [SerializeField] private TMP_Text magazineText;
     [SerializeField] private TMP_Text reloadTimeText;
     
 
