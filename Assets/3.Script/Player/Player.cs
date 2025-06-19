@@ -37,15 +37,7 @@ public class Player : MonoBehaviour, IDamageAble
         inventory.EquipArmor(gloves);
         inventory.EquipArmor(boots);
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            inventory.DebugPrintTotalDefense();
-        }
-    }
-
+    
     public void TakeDamage(CombatEvent combatEvent)
     {
         playerStat.health -= combatEvent.Damage;

@@ -37,6 +37,14 @@ public class MainUIManager : MonoBehaviour
         {
             if (currentTarget.GetComponent<DroppedItem>().isWeapon)
             {
+                var targetItem = currentTarget.GetComponent<DroppedItem>().dropedWeapon;
+                var temp = WeaponManager.instance.currentWeapon.weapon;
+
+                ChangeWeapon(targetItem);
+                currentTarget.GetComponent<DroppedItem>().dropedWeapon = temp;
+
+                OpenTargetEquipmentPanel(currentTarget.GetComponent<DroppedItem>().dropedWeapon);
+                OpenCurrentEquipmentPanel(targetItem);
             }
             else
             {
@@ -128,6 +136,7 @@ public class MainUIManager : MonoBehaviour
         currentPanel.SetActive(false);
     }
 
+
     #region 무기 관련 로직
 
     private void OpenTargetEquipmentPanel(Weapon target)
@@ -135,14 +144,14 @@ public class MainUIManager : MonoBehaviour
         targetFiled.targetLevelText.text = $"LV. {target.currentStat.level}";
         targetFiled.targetNameText.text = $"{target.data.weaponName}";
         targetFiled.targetTierText.text = $"{target.grade.ToString()}";
-        
+
         targetFiled.targetItemImage.sprite = target.data.weaponImage;
-        
+
         targetFiled.targetKnifeInfoPanel.SetActive(false);
         targetFiled.targetGrenadeInfoPanel.SetActive(false);
         targetFiled.targetArmorInfoPanel.SetActive(false);
         targetFiled.targetGunInfoPanel.SetActive(false);
-        
+
         switch (target.Type)
         {
             case WeaponType.Akm:
@@ -152,29 +161,29 @@ public class MainUIManager : MonoBehaviour
             case WeaponType.Ump:
             case WeaponType.Pistol:
                 targetFiled.targetGunInfoPanel.SetActive(true);
-                
+
                 targetFiled.targetGunDamageValueText.text = target.currentStat.damage.ToString();
                 targetFiled.targetGunFireRateValueText.text = target.currentStat.fireRate.ToString();
-                targetFiled.targetGunMagazineSizeValueText.text =  target.currentStat.magazine.ToString();
-                targetFiled.targetGunReloadTimeValueText.text =  target.currentStat.reloadTime.ToString();
-                
+                targetFiled.targetGunMagazineSizeValueText.text = target.currentStat.magazine.ToString();
+                targetFiled.targetGunReloadTimeValueText.text = target.currentStat.reloadTime.ToString();
+
                 break;
             case WeaponType.Knife:
                 targetFiled.targetKnifeInfoPanel.SetActive(true);
-                
+
                 targetFiled.targetKnifeDamageValueText.text = target.currentStat.damage.ToString();
                 targetFiled.targetKnifeFireRateValueText.text = target.currentStat.fireRate.ToString();
-                
+
                 break;
             case WeaponType.Grenade:
                 targetFiled.targetGrenadeInfoPanel.SetActive(true);
-                
+
                 targetFiled.targetGrenadeDamageValueText.text = target.currentStat.damage.ToString();
                 targetFiled.targetGrenadeExplosionRangeValueText.text = $"{target.currentStat.explosionRange}m";
-                
+
                 break;
         }
-        
+
         SetDescription(target, targetFiled.targetDescriptionTexts);
     }
 
@@ -183,14 +192,14 @@ public class MainUIManager : MonoBehaviour
         currentFiled.targetLevelText.text = $"LV. {target.currentStat.level}";
         currentFiled.targetNameText.text = $"{target.data.weaponName}";
         currentFiled.targetTierText.text = $"{target.grade.ToString()}";
-        
+
         currentFiled.targetItemImage.sprite = target.data.weaponImage;
-        
+
         currentFiled.targetKnifeInfoPanel.SetActive(false);
         currentFiled.targetGrenadeInfoPanel.SetActive(false);
         currentFiled.targetArmorInfoPanel.SetActive(false);
         currentFiled.targetGunInfoPanel.SetActive(false);
-        
+
         switch (target.Type)
         {
             case WeaponType.Akm:
@@ -200,29 +209,29 @@ public class MainUIManager : MonoBehaviour
             case WeaponType.Ump:
             case WeaponType.Pistol:
                 currentFiled.targetGunInfoPanel.SetActive(true);
-                
+
                 currentFiled.targetGunDamageValueText.text = target.currentStat.damage.ToString();
                 currentFiled.targetGunFireRateValueText.text = target.currentStat.fireRate.ToString();
-                currentFiled.targetGunMagazineSizeValueText.text =  target.currentStat.magazine.ToString();
-                currentFiled.targetGunReloadTimeValueText.text =  target.currentStat.reloadTime.ToString();
-                
+                currentFiled.targetGunMagazineSizeValueText.text = target.currentStat.magazine.ToString();
+                currentFiled.targetGunReloadTimeValueText.text = target.currentStat.reloadTime.ToString();
+
                 break;
             case WeaponType.Knife:
                 currentFiled.targetKnifeInfoPanel.SetActive(true);
-                
+
                 currentFiled.targetKnifeDamageValueText.text = target.currentStat.damage.ToString();
                 currentFiled.targetKnifeFireRateValueText.text = target.currentStat.fireRate.ToString();
-                
+
                 break;
             case WeaponType.Grenade:
                 currentFiled.targetGrenadeInfoPanel.SetActive(true);
-                
+
                 currentFiled.targetGrenadeDamageValueText.text = target.currentStat.damage.ToString();
                 currentFiled.targetGrenadeExplosionRangeValueText.text = $"{target.currentStat.explosionRange}m";
-                
+
                 break;
         }
-        
+
         SetDescription(target, currentFiled.targetDescriptionTexts);
     }
 
@@ -279,8 +288,110 @@ public class MainUIManager : MonoBehaviour
         }
     }
 
+    private void ChangeWeapon(Weapon target)
+    {
+        //아이템 유형에 따라 웨폰 매니저에 웨폰 컨트롤러의 웨폰 값을 변경
+        //그건 init사용
+        switch (target.Type)
+        {
+            //주무기
+            case WeaponType.Akm:
+            case WeaponType.M4:
+            case WeaponType.Sniper:
+            case WeaponType.Shotgun:
+            case WeaponType.Ump:
+                RemoveWeaponOption(WeaponManager.instance.primaryWeapon.weapon);
+                WeaponManager.instance.primaryWeapon.Init(target);
+                break;
+            //보조무기
+            case WeaponType.Pistol:
+                RemoveWeaponOption(WeaponManager.instance.secondaryWeapon.weapon);
+                WeaponManager.instance.secondaryWeapon.Init(target);
+                break;
+            //칼
+            case WeaponType.Knife:
+                RemoveWeaponOption(WeaponManager.instance.knifeWeapon.weapon);
+                WeaponManager.instance.knifeWeapon.Init(target);
+                break;
+            //수류탄
+            case WeaponType.Grenade:
+                RemoveWeaponOption(WeaponManager.instance.grenadeWeapon.weapon);
+                WeaponManager.instance.grenadeWeapon.Init(target);
+                break;
+        }
+        
+        ApplyWeaponOption(target);
+        
+        //아이템 유형에 따라 무기 모델 변경
+        WeaponManager.instance.ChangeWeapon(target.Type);
+        
+        Player.localPlayer.inventory.EquipmentStat.PrintOption();
+    }
+
+    private void ApplyWeaponOption(Weapon parts)
+    {
+        foreach (var option in parts.options)
+        {
+            switch (option)
+            {
+                case WeaponSpecialEffect.DashCooldownReduction:
+                    Player.localPlayer.inventory.EquipmentStat.dashCooldownReduction += 0.1f;
+                    break;
+                case WeaponSpecialEffect.ReloadSpeedReduction:
+                    Player.localPlayer.inventory.EquipmentStat.reloadSpeedReduction += 0.1f;
+                    break;
+                case WeaponSpecialEffect.MultiplierAttackDamage:
+                    Player.localPlayer.inventory.EquipmentStat.multiplierAttack += 0.05f;
+                    break;
+                case WeaponSpecialEffect.MultiplierMovementSpeed:
+                    Player.localPlayer.inventory.EquipmentStat.multiplierMovementSpeed += 0.1f;
+                    break;
+                case WeaponSpecialEffect.IncreaseCriticalChance:
+                    Player.localPlayer.inventory.EquipmentStat.criticalChance += 10;
+                    break;
+                case WeaponSpecialEffect.IncreaseCriticalDamage:
+                    Player.localPlayer.inventory.EquipmentStat.multiplierCriticalDamage += 0.1f;
+                    break;
+                case WeaponSpecialEffect.IncreaseItemDropRate:
+                    Player.localPlayer.inventory.EquipmentStat.multiplierRareItemChance += 0.1f;
+                    break;
+            }
+        }
+    }
+
+    private void RemoveWeaponOption(Weapon parts)
+    {
+        foreach (var option in parts.options)
+        {
+            switch (option)
+            {
+                case WeaponSpecialEffect.DashCooldownReduction:
+                    Player.localPlayer.inventory.EquipmentStat.dashCooldownReduction -= 0.1f;
+                    break;
+                case WeaponSpecialEffect.ReloadSpeedReduction:
+                    Player.localPlayer.inventory.EquipmentStat.reloadSpeedReduction -= 0.1f;
+                    break;
+                case WeaponSpecialEffect.MultiplierAttackDamage:
+                    Player.localPlayer.inventory.EquipmentStat.multiplierAttack -= 0.05f;
+                    break;
+                case WeaponSpecialEffect.MultiplierMovementSpeed:
+                    Player.localPlayer.inventory.EquipmentStat.multiplierMovementSpeed -= 0.1f;
+                    break;
+                case WeaponSpecialEffect.IncreaseCriticalChance:
+                    Player.localPlayer.inventory.EquipmentStat.criticalChance -= 10;
+                    break;
+                case WeaponSpecialEffect.IncreaseCriticalDamage:
+                    Player.localPlayer.inventory.EquipmentStat.multiplierCriticalDamage -= 0.1f;
+                    break;
+                case WeaponSpecialEffect.IncreaseItemDropRate:
+                    Player.localPlayer.inventory.EquipmentStat.multiplierRareItemChance -= 0.1f;
+                    break;
+            }
+        }
+    }
+
     #endregion
-    
+
     #region 방어구 관련 로직
 
     private void OpenTargetEquipmentPanel(Armor target)
@@ -300,7 +411,7 @@ public class MainUIManager : MonoBehaviour
 
         targetFiled.targetItemImage.sprite = target.data.armorImage;
     }
-    
+
     private void OpenCurrentEquipmentPanel(Armor target)
     {
         currentFiled.targetLevelText.text = $"LV. {target.currentStat.level}";
@@ -318,7 +429,7 @@ public class MainUIManager : MonoBehaviour
 
         currentFiled.targetItemImage.sprite = target.data.armorImage;
     }
-    
+
     private void OpenTargetPanelByAnimation(RectTransform targetRect)
     {
         targetRect.localScale = Vector3.one * 0.01f;
@@ -368,6 +479,6 @@ public class MainUIManager : MonoBehaviour
             idx++;
         }
     }
-    
+
     #endregion
 }

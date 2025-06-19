@@ -20,24 +20,10 @@ public class Inventory
         ApplyEquipmentOption(armor);
 
         equippedArmors[type] = armor;
+
+        EquipmentStat.PrintOption();
     }
-
-    public float GetTotalDefense()
-    {
-        float total = 0f;
-        foreach (var armor in equippedArmors.Values)
-        {
-            total += armor.GetDefense();
-        }
-
-        return total;
-    }
-
-    public void DebugPrintTotalDefense()
-    {
-        Debug.Log($"[방어구 총합 방어력] {EquipmentStat.totalDefense * EquipmentStat.multiplierDefense}");
-    }
-
+    
     private void ApplyEquipmentOption(Armor parts)
     {
         EquipmentStat.totalDefense += parts.currentStat.defense;
