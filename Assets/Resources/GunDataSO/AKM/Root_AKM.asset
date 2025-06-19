@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0def17fd6262e4419ed97ecfe1a2487, type: 3}
   m_Name: Root_AKM
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: legendgogo
   weaponType: 0
   grade: 0
   weaponImage: {fileID: 0}
@@ -36,35 +36,35 @@ MonoBehaviour:
     damage: 15
     fireRate: 0.37
     reloadTime: 2.7
-    magazine: 0
+    magazine: 30
   - level: 5
     damage: 16
     fireRate: 0.36
     reloadTime: 2.6
-    magazine: 0
+    magazine: 30
   - level: 6
     damage: 17
     fireRate: 0.35
     reloadTime: 2.5
-    magazine: 0
+    magazine: 30
   - level: 7
     damage: 18
     fireRate: 0.34
     reloadTime: 2.4
-    magazine: 0
+    magazine: 30
   - level: 8
     damage: 19
     fireRate: 0.33
     reloadTime: 2.3
-    magazine: 0
+    magazine: 30
   - level: 9
     damage: 20
     fireRate: 0.32
     reloadTime: 2.2
-    magazine: 0
+    magazine: 30
   - level: 10
     damage: 22
     fireRate: 0.3
     reloadTime: 2
-    magazine: 0
+    magazine: 30
   possibleEffects: 00000000010000000200000003000000040000000500000006000000

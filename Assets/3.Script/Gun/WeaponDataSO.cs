@@ -91,4 +91,5 @@ public class WeaponDataSO : ScriptableObject
         Debug.LogError($"[GunDataSO] {weaponName} 레벨 {level} 데이터가 존재하지 않음.");
         return levelStats.Count > 0 ? levelStats[0] : default;
     }
+    
 }

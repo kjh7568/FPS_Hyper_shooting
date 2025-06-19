@@ -7,7 +7,17 @@ public abstract class WeaponController : MonoBehaviour
     public Weapon weapon;
     
     public bool isOpenPanel = false;
+    
+    public WeaponDataSO gunData; // 필요시 여기에서 weapon 생성
 
+    private void Start()
+    {
+        // weapon이 null이면 여기서 생성할 수 있어야 함
+        if (weapon == null && gunData != null)
+        {
+            weapon = new Weapon(gunData); // 생성자 필요
+        }
+    }
     protected WeaponGrade GetRandomGrade()
     {
         int roll = Random.Range(0, 100);
@@ -25,4 +35,5 @@ public abstract class WeaponController : MonoBehaviour
     
     public abstract void Fire();
     public abstract void Reload();
+    
 }

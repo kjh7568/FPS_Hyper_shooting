@@ -39,11 +39,14 @@ public class WeaponManager : MonoBehaviour
     public readonly Vector3 GrenadeStancePosition = new Vector3(0f, -1.5f, -0.3f);
     public readonly Quaternion GrenadeStanceRotation = Quaternion.Euler(0f, -15f, 0f);
 
-    private enum WeaponSlot
+    public enum WeaponSlot
     {
         Primary,
-        Secondary
+        Secondary,
+        Melee,
+        Grenade
     }
+
 
     private void Awake()
     {
@@ -90,51 +93,92 @@ public class WeaponManager : MonoBehaviour
     }
 
     private void EquipWeapon(WeaponSlot slot)
-    {
-        if (currentWeapon != null)
-            currentWeapon.gameObject.SetActive(false);
+{
+    if (currentWeapon != null)
+        currentWeapon.gameObject.SetActive(false);
 
+    switch (slot)
+    {
+        case WeaponSlot.Primary:
+            if (primaryWeapon != null)
+            {
+                primaryWeapon.gameObject.SetActive(true);
+                currentWeapon = primaryWeapon;
+
+                characterModel.localPosition = RifleStancePosition;
+                characterModel.localRotation = RifleStanceRotation;
+
+                animator.runtimeAnimatorController = rifleController;
+                animator.SetLayerWeight(0, 1f);
+                animator.SetLayerWeight(1, 0);
+
+                isPrimary = true;
+                Debug.Log($"주무기 장착: {primaryWeapon.name}");
+            }
+            break;
+
+        case WeaponSlot.Secondary:
+            if (secondaryWeapon != null)
+            {
+                secondaryWeapon.gameObject.SetActive(true);
+                currentWeapon = secondaryWeapon;
+
+                characterModel.localPosition = PistolStancePosition;
+                characterModel.localRotation = PistolStanceRotation;
+
+                animator.runtimeAnimatorController = pistolController;
+                animator.SetLayerWeight(0, 0);
+                animator.SetLayerWeight(1, 1f);
+
+                isPrimary = false;
+                Debug.Log($"보조무기 장착: {secondaryWeapon.name}");
+            }
+            break;
+
+        case WeaponSlot.Melee:
+            if (knifeWeapon != null)
+            {
+                knifeWeapon.gameObject.SetActive(true);
+                currentWeapon = knifeWeapon;
+
+                characterModel.localPosition = KnifeStancePosition;
+                characterModel.localRotation = KnifeStanceRotation;
+
+                Debug.Log($"근접무기 장착: {knifeWeapon.name}");
+            }
+            break;
+
+        case WeaponSlot.Grenade:
+            if (grenadeWeapon != null)
+            {
+                grenadeWeapon.gameObject.SetActive(true);
+                currentWeapon = grenadeWeapon;
+
+                characterModel.localPosition = GrenadeStancePosition;
+                characterModel.localRotation = GrenadeStanceRotation;
+
+                Debug.Log($"수류탄 장착: {grenadeWeapon.name}");
+            }
+            break;
+    }
+}
+    public WeaponController GetWeaponBySlot(WeaponSlot slot)
+    {
         switch (slot)
         {
             case WeaponSlot.Primary:
-                if (primaryWeapon != null)
-                {
-                    primaryWeapon.gameObject.SetActive(true);
-                    currentWeapon = primaryWeapon;
-
-                    characterModel.localPosition = RifleStancePosition;
-                    characterModel.localRotation = RifleStanceRotation;
-
-                    animator.SetLayerWeight(0, 1f);
-                    animator.SetLayerWeight(1, 0);
-                    animator.runtimeAnimatorController = rifleController;
-
-                    isPrimary = true;
-
-                    Debug.Log($"주무기 장착: {primaryWeapon.name}");
-                }
-
-                break;
-
+                return primaryWeapon;
             case WeaponSlot.Secondary:
-                if (secondaryWeapon != null)
-                {
-                    secondaryWeapon.gameObject.SetActive(true);
-                    currentWeapon = secondaryWeapon;
-
-                    characterModel.localPosition = PistolStancePosition;
-                    characterModel.localRotation = PistolStanceRotation;
-                    animator.runtimeAnimatorController = pistolController;
-
-                    animator.SetLayerWeight(0, 0);
-                    animator.SetLayerWeight(1, 1f);
-
-                    isPrimary = false;
-
-                    Debug.Log($"보조무기 장착: {secondaryWeapon.name}");
-                }
-
-                break;
+                return secondaryWeapon;
+            case WeaponSlot.Melee:
+                return knifeWeapon;
+            case WeaponSlot.Grenade:
+                return grenadeWeapon;
+            default:
+                return null;
         }
     }
+
+
+
 }

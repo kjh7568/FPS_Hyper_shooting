@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0def17fd6262e4419ed97ecfe1a2487, type: 3}
   m_Name: Root_Knife
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: epicgogo
   weaponType: 5
   grade: 0
   weaponImage: {fileID: 0}
@@ -67,4 +67,4 @@ MonoBehaviour:
     fireRate: 2
     reloadTime: 0
     magazine: 0
-  possibleEffects: 000000000000000000000000000000000000000000000000
+  possibleEffects: 00000000010000000200000003000000040000000500000006000000

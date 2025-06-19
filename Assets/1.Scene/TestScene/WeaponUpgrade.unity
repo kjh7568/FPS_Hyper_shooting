@@ -2400,6 +2400,7 @@ GameObject:
   - component: {fileID: 107077442}
   - component: {fileID: 107077441}
   - component: {fileID: 107077440}
+  - component: {fileID: 107077443}
   m_Layer: 5
   m_Name: Grenade_Panel
   m_TagString: Untagged
@@ -2432,7 +2433,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 240, y: -375}
+  m_AnchoredPosition: {x: 1680, y: -375}
   m_SizeDelta: {x: 400, y: 750}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &107077440
@@ -2447,7 +2448,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc27e743f3b6844192796af23277b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeSystem: {fileID: 1347534397}
+  targetSlot: 3
+  upgradeSystem: {fileID: 107077443}
   itemNameText: {fileID: 169908793}
   itemTierText: {fileID: 1112097696}
   itemLevelText: {fileID: 1886438759}
@@ -2498,6 +2500,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 107077438}
   m_CullTransparentMesh: 1
+--- !u!114 &107077443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107077438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a04b12c2ae8fb54383b16953cb2c23e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &121555280
 GameObject:
   m_ObjectHideFlags: 0
@@ -9846,9 +9860,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 845845059}
-        m_TargetAssemblyTypeName: CurrentWeaponLoader, Assembly-CSharp
+      - m_Target: {fileID: 845845062}
+        m_TargetAssemblyTypeName: UpgradeWeaponSystem, Assembly-CSharp
         m_MethodName: OnClick_LevelUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 845845059}
+        m_TargetAssemblyTypeName: MyWeaponLoader, Assembly-CSharp
+        m_MethodName: RefreshUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11189,9 +11215,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 652465836}
-        m_TargetAssemblyTypeName: CurrentWeaponLoader, Assembly-CSharp
+      - m_Target: {fileID: 652465837}
+        m_TargetAssemblyTypeName: UpgradeWeaponSystem, Assembly-CSharp
         m_MethodName: OnClick_RankUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 652465836}
+        m_TargetAssemblyTypeName: MyWeaponLoader, Assembly-CSharp
+        m_MethodName: RefreshUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11251,6 +11289,7 @@ GameObject:
   - component: {fileID: 611595344}
   - component: {fileID: 611595343}
   - component: {fileID: 611595342}
+  - component: {fileID: 611595345}
   m_Layer: 5
   m_Name: Secondary_Panel
   m_TagString: Untagged
@@ -11283,7 +11322,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 240, y: -375}
+  m_AnchoredPosition: {x: 720, y: -375}
   m_SizeDelta: {x: 400, y: 750}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &611595342
@@ -11298,7 +11337,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc27e743f3b6844192796af23277b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeSystem: {fileID: 1347534397}
+  targetSlot: 1
+  upgradeSystem: {fileID: 611595345}
   itemNameText: {fileID: 1986843855}
   itemTierText: {fileID: 756038160}
   itemLevelText: {fileID: 1070582847}
@@ -11349,6 +11389,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 611595340}
   m_CullTransparentMesh: 1
+--- !u!114 &611595345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611595340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a04b12c2ae8fb54383b16953cb2c23e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &614859500
 GameObject:
   m_ObjectHideFlags: 0
@@ -12082,6 +12134,7 @@ GameObject:
   - component: {fileID: 652465835}
   - component: {fileID: 652465834}
   - component: {fileID: 652465836}
+  - component: {fileID: 652465837}
   m_Layer: 5
   m_Name: Primary_Panel
   m_TagString: Untagged
@@ -12167,7 +12220,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc27e743f3b6844192796af23277b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeSystem: {fileID: 1347534397}
+  targetSlot: 0
+  upgradeSystem: {fileID: 652465837}
   itemNameText: {fileID: 215772639}
   itemTierText: {fileID: 1413073803}
   itemLevelText: {fileID: 1886085072}
@@ -12180,6 +12234,18 @@ MonoBehaviour:
   - {fileID: 1357405006}
   - {fileID: 1551053123}
   - {fileID: 1567283963}
+--- !u!114 &652465837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652465831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a04b12c2ae8fb54383b16953cb2c23e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &656735247
 GameObject:
   m_ObjectHideFlags: 0
@@ -12839,9 +12905,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 107077440}
-        m_TargetAssemblyTypeName: CurrentWeaponLoader, Assembly-CSharp
+      - m_Target: {fileID: 107077443}
+        m_TargetAssemblyTypeName: UpgradeWeaponSystem, Assembly-CSharp
         m_MethodName: OnClick_RankUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 107077440}
+        m_TargetAssemblyTypeName: MyWeaponLoader, Assembly-CSharp
+        m_MethodName: RefreshUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14690,6 +14768,7 @@ GameObject:
   - component: {fileID: 845845061}
   - component: {fileID: 845845060}
   - component: {fileID: 845845059}
+  - component: {fileID: 845845062}
   m_Layer: 5
   m_Name: Knife_Panel
   m_TagString: Untagged
@@ -14722,7 +14801,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 240, y: -375}
+  m_AnchoredPosition: {x: 1200, y: -375}
   m_SizeDelta: {x: 400, y: 750}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &845845059
@@ -14737,7 +14816,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc27e743f3b6844192796af23277b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeSystem: {fileID: 1347534397}
+  targetSlot: 2
+  upgradeSystem: {fileID: 845845062}
   itemNameText: {fileID: 996177716}
   itemTierText: {fileID: 1660305340}
   itemLevelText: {fileID: 2037820440}
@@ -14788,6 +14868,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 845845057}
   m_CullTransparentMesh: 1
+--- !u!114 &845845062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845845057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a04b12c2ae8fb54383b16953cb2c23e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &854800412
 GameObject:
   m_ObjectHideFlags: 0
@@ -15167,9 +15259,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 845845059}
-        m_TargetAssemblyTypeName: CurrentWeaponLoader, Assembly-CSharp
+      - m_Target: {fileID: 845845062}
+        m_TargetAssemblyTypeName: UpgradeWeaponSystem, Assembly-CSharp
         m_MethodName: OnClick_RankUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 845845059}
+        m_TargetAssemblyTypeName: MyWeaponLoader, Assembly-CSharp
+        m_MethodName: RefreshUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -22918,9 +23022,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 611595342}
-        m_TargetAssemblyTypeName: CurrentWeaponLoader, Assembly-CSharp
+      - m_Target: {fileID: 611595345}
+        m_TargetAssemblyTypeName: UpgradeWeaponSystem, Assembly-CSharp
         m_MethodName: OnClick_RankUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 611595342}
+        m_TargetAssemblyTypeName: MyWeaponLoader, Assembly-CSharp
+        m_MethodName: RefreshUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -24679,7 +24795,6 @@ GameObject:
   - component: {fileID: 1347534396}
   - component: {fileID: 1347534395}
   - component: {fileID: 1347534394}
-  - component: {fileID: 1347534397}
   - component: {fileID: 1347534398}
   m_Layer: 5
   m_Name: WeaponUpgrade
@@ -24775,18 +24890,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1347534391}
   m_CullTransparentMesh: 1
---- !u!114 &1347534397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1347534391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a04b12c2ae8fb54383b16953cb2c23e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1347534398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28227,9 +28330,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 611595342}
-        m_TargetAssemblyTypeName: CurrentWeaponLoader, Assembly-CSharp
+      - m_Target: {fileID: 611595345}
+        m_TargetAssemblyTypeName: UpgradeWeaponSystem, Assembly-CSharp
         m_MethodName: OnClick_LevelUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 611595342}
+        m_TargetAssemblyTypeName: MyWeaponLoader, Assembly-CSharp
+        m_MethodName: RefreshUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -33389,9 +33504,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 652465836}
-        m_TargetAssemblyTypeName: CurrentWeaponLoader, Assembly-CSharp
+      - m_Target: {fileID: 652465837}
+        m_TargetAssemblyTypeName: UpgradeWeaponSystem, Assembly-CSharp
         m_MethodName: OnClick_LevelUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 652465836}
+        m_TargetAssemblyTypeName: MyWeaponLoader, Assembly-CSharp
+        m_MethodName: RefreshUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -35163,9 +35290,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 107077440}
-        m_TargetAssemblyTypeName: CurrentWeaponLoader, Assembly-CSharp
+      - m_Target: {fileID: 107077443}
+        m_TargetAssemblyTypeName: UpgradeWeaponSystem, Assembly-CSharp
         m_MethodName: OnClick_LevelUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 107077440}
+        m_TargetAssemblyTypeName: MyWeaponLoader, Assembly-CSharp
+        m_MethodName: RefreshUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -36973,7 +37112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f74754b5eecaabe41994b5477e8ff5a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 4375937461884750312, guid: 70759b6746150fb45b515113d79c3428,
+  playerPrefab: {fileID: 4375937461884750312, guid: e88b1426da9bd764fa917526f75ef5f6,
     type: 3}
 --- !u!4 &1933234992
 Transform:

@@ -3,8 +3,11 @@ using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class CurrentWeaponLoader : MonoBehaviour
+public class MyWeaponLoader : MonoBehaviour
 {
+    [Header("대상 슬롯 지정")]
+    public WeaponManager.WeaponSlot targetSlot;
+
     [Header("업그레이드 시스템")]
     public UpgradeWeaponSystem upgradeSystem;
 
@@ -23,15 +26,16 @@ public class CurrentWeaponLoader : MonoBehaviour
     [Header("옵션 텍스트")]
     public List<TMP_Text> optionTexts;
 
-    public void LoadWeapon(Weapon weapon)
+    public void LoadWeapon()
     {
-        if (weapon == null)
+        var wc = WeaponManager.instance.GetWeaponBySlot(targetSlot);
+        if (wc == null || wc.weapon == null)
         {
-            Debug.LogWarning("[WeaponLoader] 무기 정보 없음");
+            Clear();
             return;
         }
-
-        upgradeSystem.currentWeapon = weapon;
+        // 각 패널 전용 시스템에만 currentWeapon 설정
+        upgradeSystem.currentWeapon = wc.weapon;
         RefreshUI();
     }
 
@@ -78,16 +82,9 @@ public class CurrentWeaponLoader : MonoBehaviour
                 optionTexts[i].text = "";
         }
     }
-
-    public void OnClick_LevelUp()
+    public void OnClick_Refresh()
     {
-        if (upgradeSystem.TryUpgrade())
-            RefreshUI();
+        RefreshUI();
     }
 
-    public void OnClick_RankUp()
-    {
-        if (upgradeSystem.TryUpgradeGrade()) // public으로 공개 필요
-            RefreshUI();
-    }
 }
