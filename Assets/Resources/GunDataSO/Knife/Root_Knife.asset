@@ -13,13 +13,58 @@ MonoBehaviour:
   m_Name: Root_Knife
   m_EditorClassIdentifier: 
   weaponName: 
-  weaponType: 0
+  weaponType: 5
   grade: 0
   weaponImage: {fileID: 0}
   levelStats:
   - level: 1
     damage: 40
-    fireRate: 0
+    fireRate: 3
     reloadTime: 0
     magazine: 0
-  possibleEffects: 
+  - level: 2
+    damage: 41
+    fireRate: 2.9
+    reloadTime: 0
+    magazine: 0
+  - level: 3
+    damage: 42
+    fireRate: 2.8
+    reloadTime: 0
+    magazine: 0
+  - level: 4
+    damage: 43
+    fireRate: 2.7
+    reloadTime: 0
+    magazine: 0
+  - level: 5
+    damage: 44
+    fireRate: 2.6
+    reloadTime: 0
+    magazine: 0
+  - level: 6
+    damage: 45
+    fireRate: 2.5
+    reloadTime: 0
+    magazine: 0
+  - level: 7
+    damage: 46
+    fireRate: 2.4
+    reloadTime: 0
+    magazine: 0
+  - level: 8
+    damage: 47
+    fireRate: 2.3
+    reloadTime: 0
+    magazine: 0
+  - level: 9
+    damage: 48
+    fireRate: 2.2
+    reloadTime: 0
+    magazine: 0
+  - level: 10
+    damage: 50
+    fireRate: 2
+    reloadTime: 0
+    magazine: 0
+  possibleEffects: 000000000000000000000000000000000000000000000000

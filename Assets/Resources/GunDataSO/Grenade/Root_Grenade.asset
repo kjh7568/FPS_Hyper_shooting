@@ -32,4 +32,39 @@ MonoBehaviour:
     fireRate: 0
     reloadTime: 0
     magazine: 0
-  possibleEffects: 
+  - level: 4
+    damage: 50
+    fireRate: 0
+    reloadTime: 0
+    magazine: 0
+  - level: 5
+    damage: 50
+    fireRate: 0
+    reloadTime: 0
+    magazine: 0
+  - level: 6
+    damage: 50
+    fireRate: 0
+    reloadTime: 0
+    magazine: 0
+  - level: 7
+    damage: 50
+    fireRate: 0
+    reloadTime: 0
+    magazine: 0
+  - level: 8
+    damage: 50
+    fireRate: 0
+    reloadTime: 0
+    magazine: 0
+  - level: 9
+    damage: 50
+    fireRate: 0
+    reloadTime: 0
+    magazine: 0
+  - level: 10
+    damage: 50
+    fireRate: 0
+    reloadTime: 0
+    magazine: 0
+  possibleEffects: 00000000010000000200000003000000040000000500000006000000

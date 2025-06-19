@@ -48,7 +48,7 @@ public class Weapon
         ApplyLevel(data.GetMinLevelForGrade());
         // BuildStat();
     }
-    private void GenerateRandomEffects()
+    public void GenerateRandomEffects()
     {
         options.Clear();
         

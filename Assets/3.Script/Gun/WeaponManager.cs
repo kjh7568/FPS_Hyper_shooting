@@ -16,8 +16,8 @@ public class WeaponManager : MonoBehaviour
 
     public WeaponController primaryWeapon;
     public WeaponController secondaryWeapon;
-    public WeaponController knifeWeapon;
-    // public WeaponController grenadeWeapon;
+    public WeaponController knifeWeapon; 
+    public WeaponController grenadeWeapon;
 
     public WeaponController currentWeapon;
     public bool isPrimary = true;

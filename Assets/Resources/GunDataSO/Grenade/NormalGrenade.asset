@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0def17fd6262e4419ed97ecfe1a2487, type: 3}
-  m_Name: NormalKnife
+  m_Name: NormalGrenade
   m_EditorClassIdentifier: 
   weaponName: 
-  weaponType: 5
+  weaponType: 4
   grade: 0
   weaponImage: {fileID: 0}
   levelStats:
   - level: 1
-    damage: 40
-    fireRate: 3
+    damage: 50
+    fireRate: 0
     reloadTime: 0
     magazine: 0
   possibleEffects: 
