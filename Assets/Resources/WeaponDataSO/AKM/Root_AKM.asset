@@ -31,40 +31,40 @@ MonoBehaviour:
     damage: 14
     fireRate: 0.38
     reloadTime: 2.8
-    magazine: 30
+    magazine: 33
   - level: 4
     damage: 15
     fireRate: 0.37
     reloadTime: 2.7
-    magazine: 0
+    magazine: 33
   - level: 5
     damage: 16
     fireRate: 0.36
     reloadTime: 2.6
-    magazine: 0
+    magazine: 36
   - level: 6
     damage: 17
     fireRate: 0.35
     reloadTime: 2.5
-    magazine: 0
+    magazine: 36
   - level: 7
     damage: 18
     fireRate: 0.34
     reloadTime: 2.4
-    magazine: 0
+    magazine: 40
   - level: 8
     damage: 19
     fireRate: 0.33
     reloadTime: 2.3
-    magazine: 0
+    magazine: 40
   - level: 9
     damage: 20
     fireRate: 0.32
     reloadTime: 2.2
-    magazine: 0
+    magazine: 40
   - level: 10
     damage: 22
     fireRate: 0.3
     reloadTime: 2
-    magazine: 0
+    magazine: 40
   possibleEffects: 00000000010000000200000003000000040000000500000006000000

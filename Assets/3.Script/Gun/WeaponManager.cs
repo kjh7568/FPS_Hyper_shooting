@@ -17,13 +17,13 @@ public class WeaponManager : MonoBehaviour
     public WeaponController primaryWeapon;
     public WeaponController secondaryWeapon;
     public WeaponController knifeWeapon;
-    // public WeaponController grenadeWeapon;
+    public WeaponController grenadeWeapon;
 
     public WeaponController currentWeapon;
     public bool isPrimary = true;
 
     public AnimatorStateInfo stateInfo;
-    
+
     private static readonly int STAB = Animator.StringToHash("Stab");
     private static readonly int THROW = Animator.StringToHash("Throw");
 
@@ -39,6 +39,61 @@ public class WeaponManager : MonoBehaviour
     public readonly Vector3 GrenadeStancePosition = new Vector3(0f, -1.5f, -0.3f);
     public readonly Quaternion GrenadeStanceRotation = Quaternion.Euler(0f, -15f, 0f);
 
+    [Header("총기 모델")]
+    [SerializeField] private GameObject akmModel;
+    [SerializeField] private GameObject m4Model;
+    [SerializeField] private GameObject umpModel;
+    [SerializeField] private GameObject sniperModel;
+    [SerializeField] private GameObject shotgunModel;
+    [SerializeField] private GameObject pistolModel;
+
+    public void ChangeWeapon(WeaponType type)
+    {
+        akmModel.SetActive(false);
+        m4Model.SetActive(false);
+        umpModel.SetActive(false);
+        sniperModel.SetActive(false);
+        shotgunModel.SetActive(false);
+        
+        switch (type)
+        {
+            case WeaponType.Akm:
+                akmModel.SetActive(true);
+                primaryWeapon = akmModel.gameObject.GetComponent<WeaponController>(); 
+                currentWeapon = primaryWeapon;
+                break;
+            case WeaponType.M4:
+                m4Model.SetActive(true);
+                primaryWeapon = m4Model.gameObject.GetComponent<WeaponController>(); 
+                currentWeapon = primaryWeapon;
+                break;
+            case WeaponType.Sniper:
+                sniperModel.SetActive(true);
+                primaryWeapon = sniperModel.gameObject.GetComponent<WeaponController>(); 
+                currentWeapon = primaryWeapon;
+                break;
+            case WeaponType.Shotgun:
+                shotgunModel.SetActive(true);
+                primaryWeapon = shotgunModel.gameObject.GetComponent<WeaponController>(); 
+                currentWeapon = primaryWeapon;
+                break;
+            case WeaponType.Ump:
+                umpModel.SetActive(true);
+                primaryWeapon = umpModel.gameObject.GetComponent<WeaponController>(); 
+                currentWeapon = primaryWeapon;
+                break;
+            case WeaponType.Pistol:
+                break;
+            case WeaponType.Grenade:
+                break;
+            case WeaponType.Knife:
+                break;
+        }
+        
+        currentWeapon = primaryWeapon;
+    }
+
+    
     private enum WeaponSlot
     {
         Primary,
@@ -137,4 +192,5 @@ public class WeaponManager : MonoBehaviour
                 break;
         }
     }
+    
 }

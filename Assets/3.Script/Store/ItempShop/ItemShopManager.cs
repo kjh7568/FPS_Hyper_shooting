@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class ItemShopLoader : MonoBehaviour
+public class ItemShopManager : MonoBehaviour
 {
     [SerializeField] private ItemShopPanelUIComponents[] panelSlots; // 이미 있는 3개의 슬롯 할당
 
@@ -135,5 +135,44 @@ public class ItemShopLoader : MonoBehaviour
         return price;
     }
     
+    #endregion
+
+    #region 버튼 동작 로직
+
+    public void OnClickBuyButton(int index)
+    {
+        //돈 있는지 확인하고 없으면 거부
+        if(Player.localPlayer.coin < prices[index]) return;
+        
+        //아이템 유형에 따라 무기 모델 변경
+        WeaponManager.instance.ChangeWeapon(storeWeapons[index].Type);
+        
+        //아이템 유형에 따라 웨폰 매니저에 웨폰 컨트롤러의 웨폰 값을 변경
+        //그건 init사용
+        switch (storeWeapons[index].Type)
+        {
+            //주무기
+            case WeaponType.Akm:
+            case WeaponType.M4:
+            case WeaponType.Sniper:
+            case WeaponType.Shotgun:
+            case WeaponType.Ump:                
+                WeaponManager.instance.primaryWeapon.Init(storeWeapons[index]);
+                break;
+            //보조무기
+            case WeaponType.Pistol:
+                WeaponManager.instance.secondaryWeapon.Init(storeWeapons[index]);
+                break;
+            //칼
+            case WeaponType.Knife:
+                WeaponManager.instance.knifeWeapon.Init(storeWeapons[index]);
+                break;
+            //수류탄
+            case WeaponType.Grenade:
+                WeaponManager.instance.grenadeWeapon.Init(storeWeapons[index]);
+                break;
+        }
+    }
+
     #endregion
 }

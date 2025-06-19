@@ -10,17 +10,19 @@ public struct WeaponLevelStat
     public float fireRate;
     public float reloadTime;
     public int magazine;
+    public float explosionRange;
 }
 
 public enum WeaponType
 {
-    Rifle,
+    Akm,
+    M4,
     Sniper,
     Shotgun,
+    Ump,
     Pistol,
-    Grenade,
     Knife,
-    UMP,
+    Grenade,
 }
 
 public enum WeaponGrade
@@ -30,6 +32,7 @@ public enum WeaponGrade
     Epic,
     Legendary
 }
+
 public enum WeaponSpecialEffect
 {
     DashCooldownReduction,     // 대쉬 쿨타임 5% 감소

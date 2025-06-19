@@ -23,6 +23,12 @@ public abstract class WeaponController : MonoBehaviour
         return (weapon.currentStat.damage/* + ReloadDamageBonus*/) * Player.localPlayer.inventory.EquipmentStat.multiplierAttack;
     }
     
+    public  void Init(Weapon parameter)
+    {
+        weapon = parameter;
+        weapon.currentAmmo = weapon.currentStat.magazine;
+    }
+    
     public abstract void Fire();
     public abstract void Reload();
 }

@@ -25,7 +25,7 @@ public class Grenade : WeaponController
         if (other.gameObject.CompareTag("Player")) return;
         
         // 오직 Monster 레이어에만 반응
-        Collider[] hits = Physics.OverlapSphere(transform.position, 4f, monsterLayer);
+        Collider[] hits = Physics.OverlapSphere(transform.position, 3f, monsterLayer);
 
         foreach (var hit in hits)
         {
