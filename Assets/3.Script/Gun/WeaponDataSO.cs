@@ -30,7 +30,7 @@ public enum WeaponGrade
     Epic,
     Legendary
 }
-public enum GunSpecialEffect
+public enum WeaponSpecialEffect
 {
     DashCooldownReduction,     // 대쉬 쿨타임 5% 감소
     ReloadSpeedReduction,      // 재장전 시간 5% 감소
@@ -54,7 +54,7 @@ public class WeaponDataSO : ScriptableObject
     public List<WeaponLevelStat> levelStats;
 
     [Header("가능한 특수효과 풀")] 
-    public List<GunSpecialEffect> possibleEffects;
+    public List<WeaponSpecialEffect> possibleEffects;
 
     // 등급별 시작 / 최대 레벨 정의
     private static readonly Dictionary<WeaponGrade, (int min, int max)> gradeLevelLimits = new()

@@ -9,7 +9,7 @@ public class Weapon
     public WeaponGrade grade => data.grade;
     public WeaponType Type => data.weaponType;
     
-    public List<GunSpecialEffect> options { get; private set; } = new();
+    public List<WeaponSpecialEffect> options { get; private set; } = new();
 
     public int currentAmmo;
     
@@ -61,7 +61,7 @@ public class Weapon
             _ => 0
         };
 
-        List<GunSpecialEffect> pool = data.possibleEffects;
+        List<WeaponSpecialEffect> pool = data.possibleEffects;
         while (options.Count < effectCount && options.Count < pool.Count)
         {
             var pick = pool[Random.Range(0, pool.Count)];
