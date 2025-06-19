@@ -5,20 +5,16 @@ using UnityEngine;
 public class Grenade : WeaponController
 {
     [SerializeField] private LayerMask monsterLayer;
-    private Rigidbody rb;
     [SerializeField] private WeaponDataSO grenadeRootData; 
+    private Rigidbody rb;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-    }
-
-    private void Start()
-    {
+        
         this.weapon = new Weapon(grenadeRootData, WeaponGrade.Common); 
         rb.velocity += Camera.main.transform.forward * 20f;
     }
-
 
     public void OnTriggerEnter(Collider other)
     {
@@ -36,7 +32,7 @@ public class Grenade : WeaponController
                 {
                     Sender = Player.localPlayer,
                     Receiver = target,
-                    Damage = weapon.currentStat.damage,
+                    Damage = WeaponManager.instance.grenadeWeapon.weapon.currentStat.damage,
                     HitPosition = hit.ClosestPoint(transform.position),
                     Collider = hit.GetComponent<Collider>()
                 };
