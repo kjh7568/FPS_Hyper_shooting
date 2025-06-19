@@ -218,4 +218,66 @@ public class WeaponManager : MonoBehaviour
         
         primaryWeapon.gameObject.SetActive(true);
     }
+    
+    public void ApplyWeaponOption(Weapon parts)
+    {
+        foreach (var option in parts.options)
+        {
+            switch (option)
+            {
+                case WeaponSpecialEffect.DashCooldownReduction:
+                    Player.localPlayer.inventory.EquipmentStat.dashCooldownReduction += 0.1f;
+                    break;
+                case WeaponSpecialEffect.ReloadSpeedReduction:
+                    Player.localPlayer.inventory.EquipmentStat.reloadSpeedReduction += 0.1f;
+                    break;
+                case WeaponSpecialEffect.MultiplierAttackDamage:
+                    Player.localPlayer.inventory.EquipmentStat.multiplierAttack += 0.05f;
+                    break;
+                case WeaponSpecialEffect.MultiplierMovementSpeed:
+                    Player.localPlayer.inventory.EquipmentStat.multiplierMovementSpeed += 0.1f;
+                    break;
+                case WeaponSpecialEffect.IncreaseCriticalChance:
+                    Player.localPlayer.inventory.EquipmentStat.criticalChance += 10;
+                    break;
+                case WeaponSpecialEffect.IncreaseCriticalDamage:
+                    Player.localPlayer.inventory.EquipmentStat.multiplierCriticalDamage += 0.1f;
+                    break;
+                case WeaponSpecialEffect.IncreaseItemDropRate:
+                    Player.localPlayer.inventory.EquipmentStat.multiplierRareItemChance += 0.1f;
+                    break;
+            }
+        }
+    }
+
+    public void RemoveWeaponOption(Weapon parts)
+    {
+        foreach (var option in parts.options)
+        {
+            switch (option)
+            {
+                case WeaponSpecialEffect.DashCooldownReduction:
+                    Player.localPlayer.inventory.EquipmentStat.dashCooldownReduction -= 0.1f;
+                    break;
+                case WeaponSpecialEffect.ReloadSpeedReduction:
+                    Player.localPlayer.inventory.EquipmentStat.reloadSpeedReduction -= 0.1f;
+                    break;
+                case WeaponSpecialEffect.MultiplierAttackDamage:
+                    Player.localPlayer.inventory.EquipmentStat.multiplierAttack -= 0.05f;
+                    break;
+                case WeaponSpecialEffect.MultiplierMovementSpeed:
+                    Player.localPlayer.inventory.EquipmentStat.multiplierMovementSpeed -= 0.1f;
+                    break;
+                case WeaponSpecialEffect.IncreaseCriticalChance:
+                    Player.localPlayer.inventory.EquipmentStat.criticalChance -= 10;
+                    break;
+                case WeaponSpecialEffect.IncreaseCriticalDamage:
+                    Player.localPlayer.inventory.EquipmentStat.multiplierCriticalDamage -= 0.1f;
+                    break;
+                case WeaponSpecialEffect.IncreaseItemDropRate:
+                    Player.localPlayer.inventory.EquipmentStat.multiplierRareItemChance -= 0.1f;
+                    break;
+            }
+        }
+    }
 }

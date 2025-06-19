@@ -300,94 +300,32 @@ public class MainUIManager : MonoBehaviour
             case WeaponType.Sniper:
             case WeaponType.Shotgun:
             case WeaponType.Ump:
-                RemoveWeaponOption(WeaponManager.instance.primaryWeapon.weapon);
+                WeaponManager.instance.RemoveWeaponOption(WeaponManager.instance.primaryWeapon.weapon);
                 WeaponManager.instance.primaryWeapon.Init(target);
                 break;
             //보조무기
             case WeaponType.Pistol:
-                RemoveWeaponOption(WeaponManager.instance.secondaryWeapon.weapon);
+                WeaponManager.instance.RemoveWeaponOption(WeaponManager.instance.secondaryWeapon.weapon);
                 WeaponManager.instance.secondaryWeapon.Init(target);
                 break;
             //칼
             case WeaponType.Knife:
-                RemoveWeaponOption(WeaponManager.instance.knifeWeapon.weapon);
+                WeaponManager.instance.RemoveWeaponOption(WeaponManager.instance.knifeWeapon.weapon);
                 WeaponManager.instance.knifeWeapon.Init(target);
                 break;
             //수류탄
             case WeaponType.Grenade:
-                RemoveWeaponOption(WeaponManager.instance.grenadeWeapon.weapon);
+                WeaponManager.instance.RemoveWeaponOption(WeaponManager.instance.grenadeWeapon.weapon);
                 WeaponManager.instance.grenadeWeapon.Init(target);
                 break;
         }
         
-        ApplyWeaponOption(target);
+        WeaponManager.instance.ApplyWeaponOption(target);
         
         //아이템 유형에 따라 무기 모델 변경
         WeaponManager.instance.ChangeWeapon(target.Type);
         
         Player.localPlayer.inventory.EquipmentStat.PrintOption();
-    }
-
-    private void ApplyWeaponOption(Weapon parts)
-    {
-        foreach (var option in parts.options)
-        {
-            switch (option)
-            {
-                case WeaponSpecialEffect.DashCooldownReduction:
-                    Player.localPlayer.inventory.EquipmentStat.dashCooldownReduction += 0.1f;
-                    break;
-                case WeaponSpecialEffect.ReloadSpeedReduction:
-                    Player.localPlayer.inventory.EquipmentStat.reloadSpeedReduction += 0.1f;
-                    break;
-                case WeaponSpecialEffect.MultiplierAttackDamage:
-                    Player.localPlayer.inventory.EquipmentStat.multiplierAttack += 0.05f;
-                    break;
-                case WeaponSpecialEffect.MultiplierMovementSpeed:
-                    Player.localPlayer.inventory.EquipmentStat.multiplierMovementSpeed += 0.1f;
-                    break;
-                case WeaponSpecialEffect.IncreaseCriticalChance:
-                    Player.localPlayer.inventory.EquipmentStat.criticalChance += 10;
-                    break;
-                case WeaponSpecialEffect.IncreaseCriticalDamage:
-                    Player.localPlayer.inventory.EquipmentStat.multiplierCriticalDamage += 0.1f;
-                    break;
-                case WeaponSpecialEffect.IncreaseItemDropRate:
-                    Player.localPlayer.inventory.EquipmentStat.multiplierRareItemChance += 0.1f;
-                    break;
-            }
-        }
-    }
-
-    private void RemoveWeaponOption(Weapon parts)
-    {
-        foreach (var option in parts.options)
-        {
-            switch (option)
-            {
-                case WeaponSpecialEffect.DashCooldownReduction:
-                    Player.localPlayer.inventory.EquipmentStat.dashCooldownReduction -= 0.1f;
-                    break;
-                case WeaponSpecialEffect.ReloadSpeedReduction:
-                    Player.localPlayer.inventory.EquipmentStat.reloadSpeedReduction -= 0.1f;
-                    break;
-                case WeaponSpecialEffect.MultiplierAttackDamage:
-                    Player.localPlayer.inventory.EquipmentStat.multiplierAttack -= 0.05f;
-                    break;
-                case WeaponSpecialEffect.MultiplierMovementSpeed:
-                    Player.localPlayer.inventory.EquipmentStat.multiplierMovementSpeed -= 0.1f;
-                    break;
-                case WeaponSpecialEffect.IncreaseCriticalChance:
-                    Player.localPlayer.inventory.EquipmentStat.criticalChance -= 10;
-                    break;
-                case WeaponSpecialEffect.IncreaseCriticalDamage:
-                    Player.localPlayer.inventory.EquipmentStat.multiplierCriticalDamage -= 0.1f;
-                    break;
-                case WeaponSpecialEffect.IncreaseItemDropRate:
-                    Player.localPlayer.inventory.EquipmentStat.multiplierRareItemChance -= 0.1f;
-                    break;
-            }
-        }
     }
 
     #endregion
