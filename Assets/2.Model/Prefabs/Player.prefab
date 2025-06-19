@@ -7234,7 +7234,8 @@ MonoBehaviour:
   umpModel: {fileID: 6646817381907189867}
   sniperModel: {fileID: 7280822040280471049}
   shotgunModel: {fileID: 4496539089011743348}
-  pistolModel: {fileID: 0}
+  pistolModel: {fileID: 2968327227002290378}
+  knifeModel: {fileID: 958900055008697200}
 --- !u!1 &4380898700811560446
 GameObject:
   m_ObjectHideFlags: 0

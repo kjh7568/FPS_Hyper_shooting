@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
@@ -46,6 +48,7 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] private GameObject sniperModel;
     [SerializeField] private GameObject shotgunModel;
     [SerializeField] private GameObject pistolModel;
+    [SerializeField] private GameObject knifeModel;
 
     public void ChangeWeapon(WeaponType type)
     {
@@ -92,7 +95,6 @@ public class WeaponManager : MonoBehaviour
         
         currentWeapon = primaryWeapon;
     }
-
     
     private enum WeaponSlot
     {
@@ -107,7 +109,8 @@ public class WeaponManager : MonoBehaviour
 
     private void Start()
     {
-        primaryWeapon.gameObject.SetActive(true);
+        StartCoroutine(LoadWeaponData());
+        
         currentWeapon = primaryWeapon;
     }
 
@@ -192,5 +195,27 @@ public class WeaponManager : MonoBehaviour
                 break;
         }
     }
-    
+
+    private IEnumerator LoadWeaponData()
+    {
+        akmModel.SetActive(true);
+        m4Model.SetActive(true);
+        umpModel.SetActive(true);
+        sniperModel.SetActive(true);
+        shotgunModel.SetActive(true);
+        pistolModel.SetActive(true);
+        knifeModel.SetActive(true);
+        
+        yield return new WaitForSeconds(0.1f);
+        
+        akmModel.SetActive(false);
+        m4Model.SetActive(false);
+        umpModel.SetActive(false);
+        sniperModel.SetActive(false);
+        shotgunModel.SetActive(false);
+        pistolModel.SetActive(false);
+        knifeModel.SetActive(false);        
+        
+        primaryWeapon.gameObject.SetActive(true);
+    }
 }
