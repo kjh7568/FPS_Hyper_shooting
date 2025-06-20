@@ -103,10 +103,19 @@ public class WeaponManager : MonoBehaviour
                 primaryWeapon = weaponToEquip; 
                 break;
             case WeaponType.Pistol:
-                break;
-            case WeaponType.Grenade:
+                weaponToEquip = pistolModel.gameObject.GetComponent<WeaponController>();
+                weaponToEquip.Init(parameter);
+                
+                secondaryWeapon = weaponToEquip; 
                 break;
             case WeaponType.Knife:
+                weaponToEquip = knifeModel.gameObject.GetComponent<WeaponController>();
+                weaponToEquip.Init(parameter);
+                
+                knifeWeapon = weaponToEquip; 
+                break;
+            case WeaponType.Grenade:
+                grenadeWeapon.Init(parameter);
                 break;
         }
         
@@ -190,7 +199,6 @@ public class WeaponManager : MonoBehaviour
                 Debug.Log($"주무기 장착: {primaryWeapon.name}");
             }
             break;
-
             case WeaponSlot.Secondary:
                 if (secondaryWeapon != null)
                 {
@@ -208,7 +216,6 @@ public class WeaponManager : MonoBehaviour
                 Debug.Log($"보조무기 장착: {secondaryWeapon.name}");
             }
             break;
-
         case WeaponSlot.Melee:
             if (knifeWeapon != null)
             {
@@ -221,7 +228,6 @@ public class WeaponManager : MonoBehaviour
                 Debug.Log($"근접무기 장착: {knifeWeapon.name}");
             }
             break;
-
         case WeaponSlot.Grenade:
             if (grenadeWeapon != null)
             {

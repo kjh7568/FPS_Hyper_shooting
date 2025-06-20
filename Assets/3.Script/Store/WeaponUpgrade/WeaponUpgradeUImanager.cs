@@ -8,14 +8,12 @@ public class WeaponUpgradeUImanager : MonoBehaviour
     public MyWeaponLoader knifeLoader;
     public MyWeaponLoader grenadeLoader;
 
-    private void Start()
+    private void OnEnable()
     {
         RefreshAllPanels();
     }
     private void RefreshAllPanels()
     {
-        var wm = WeaponManager.instance;
-
         primaryLoader.LoadWeapon();
         secondaryLoader.LoadWeapon();
         knifeLoader.LoadWeapon();

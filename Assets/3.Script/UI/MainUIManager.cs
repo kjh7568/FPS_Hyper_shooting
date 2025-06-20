@@ -38,7 +38,27 @@ public class MainUIManager : MonoBehaviour
             if (currentTarget.GetComponent<DroppedItem>().isWeapon)
             {
                 var targetItem = currentTarget.GetComponent<DroppedItem>().dropedWeapon;
-                var temp = WeaponManager.instance.currentWeapon.weapon;
+                Weapon temp = null;
+                
+                switch (targetItem.Type)
+                {
+                    case WeaponType.Akm:
+                    case WeaponType.M4:
+                    case WeaponType.Sniper:
+                    case WeaponType.Shotgun:
+                    case WeaponType.Ump:
+                        temp = WeaponManager.instance.primaryWeapon.weapon;
+                        break;
+                    case WeaponType.Pistol:
+                        temp = WeaponManager.instance.secondaryWeapon.weapon;
+                        break;
+                    case WeaponType.Knife:
+                        temp = WeaponManager.instance.knifeWeapon.weapon;
+                        break;
+                    case WeaponType.Grenade:
+                        temp = WeaponManager.instance.grenadeWeapon.weapon;
+                        break;
+                }
 
                 ChangeWeapon(targetItem);
                 currentTarget.GetComponent<DroppedItem>().dropedWeapon = temp;
