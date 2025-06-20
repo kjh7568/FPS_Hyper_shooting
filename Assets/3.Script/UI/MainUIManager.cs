@@ -290,8 +290,7 @@ public class MainUIManager : MonoBehaviour
 
     private void ChangeWeapon(Weapon target)
     {
-        //아이템 유형에 따라 웨폰 매니저에 웨폰 컨트롤러의 웨폰 값을 변경
-        //그건 init사용
+        //옵션 수치 변경
         switch (target.Type)
         {
             //주무기
@@ -301,29 +300,25 @@ public class MainUIManager : MonoBehaviour
             case WeaponType.Shotgun:
             case WeaponType.Ump:
                 WeaponManager.instance.RemoveWeaponOption(WeaponManager.instance.primaryWeapon.weapon);
-                WeaponManager.instance.primaryWeapon.Init(target);
                 break;
             //보조무기
             case WeaponType.Pistol:
                 WeaponManager.instance.RemoveWeaponOption(WeaponManager.instance.secondaryWeapon.weapon);
-                WeaponManager.instance.secondaryWeapon.Init(target);
                 break;
             //칼
             case WeaponType.Knife:
                 WeaponManager.instance.RemoveWeaponOption(WeaponManager.instance.knifeWeapon.weapon);
-                WeaponManager.instance.knifeWeapon.Init(target);
                 break;
             //수류탄
             case WeaponType.Grenade:
                 WeaponManager.instance.RemoveWeaponOption(WeaponManager.instance.grenadeWeapon.weapon);
-                WeaponManager.instance.grenadeWeapon.Init(target);
                 break;
         }
         
         WeaponManager.instance.ApplyWeaponOption(target);
         
-        //아이템 유형에 따라 무기 모델 변경
-        WeaponManager.instance.ChangeWeapon(target.Type);
+        //아이템 유형에 따라 무기 모델 변경 & 웨폰 컨트롤러의 웨폰 값을 변경
+        WeaponManager.instance.ChangeWeapon(target);
         
         Player.localPlayer.inventory.EquipmentStat.PrintOption();
     }

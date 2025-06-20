@@ -50,40 +50,57 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] private GameObject pistolModel;
     [SerializeField] private GameObject knifeModel;
 
-    public void ChangeWeapon(WeaponType type)
+    public void ChangeWeapon(Weapon parameter)
     {
+        WeaponController weaponToEquip;
+        
         akmModel.SetActive(false);
         m4Model.SetActive(false);
         umpModel.SetActive(false);
         sniperModel.SetActive(false);
         shotgunModel.SetActive(false);
         
-        switch (type)
+        switch (parameter.Type)
         {
             case WeaponType.Akm:
                 akmModel.SetActive(true);
-                primaryWeapon = akmModel.gameObject.GetComponent<WeaponController>(); 
-                currentWeapon = primaryWeapon;
+                
+                weaponToEquip = akmModel.gameObject.GetComponent<WeaponController>();
+                weaponToEquip.Init(parameter);
+                
+                primaryWeapon = weaponToEquip; 
                 break;
             case WeaponType.M4:
                 m4Model.SetActive(true);
-                primaryWeapon = m4Model.gameObject.GetComponent<WeaponController>(); 
-                currentWeapon = primaryWeapon;
+                
+                weaponToEquip = m4Model.gameObject.GetComponent<WeaponController>();
+                weaponToEquip.Init(parameter);
+                
+                primaryWeapon = weaponToEquip; 
                 break;
             case WeaponType.Sniper:
                 sniperModel.SetActive(true);
-                primaryWeapon = sniperModel.gameObject.GetComponent<WeaponController>(); 
-                currentWeapon = primaryWeapon;
+                
+                weaponToEquip = sniperModel.gameObject.GetComponent<WeaponController>();
+                weaponToEquip.Init(parameter);
+                
+                primaryWeapon = weaponToEquip; 
                 break;
             case WeaponType.Shotgun:
                 shotgunModel.SetActive(true);
-                primaryWeapon = shotgunModel.gameObject.GetComponent<WeaponController>(); 
-                currentWeapon = primaryWeapon;
+                
+                weaponToEquip = shotgunModel.gameObject.GetComponent<WeaponController>();
+                weaponToEquip.Init(parameter);
+                
+                primaryWeapon = weaponToEquip; 
                 break;
             case WeaponType.Ump:
                 umpModel.SetActive(true);
-                primaryWeapon = umpModel.gameObject.GetComponent<WeaponController>(); 
-                currentWeapon = primaryWeapon;
+                
+                weaponToEquip = umpModel.gameObject.GetComponent<WeaponController>();
+                weaponToEquip.Init(parameter);
+                
+                primaryWeapon = weaponToEquip; 
                 break;
             case WeaponType.Pistol:
                 break;
