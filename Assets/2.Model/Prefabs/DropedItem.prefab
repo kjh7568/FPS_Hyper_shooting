@@ -118,7 +118,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72263551364f498fb91967a10dc819a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isWeapon: 0
   helmetSO: {fileID: 11400000, guid: 21fc0e30341216543922f1b2d4afa3f1, type: 2}
   chestplateSO: {fileID: 11400000, guid: e511f037aac3cf041a5a2e48500eed7c, type: 2}
   glovesSO: {fileID: 11400000, guid: 55617a48c4a955e49be5ff18dfd9fd1a, type: 2}
   bootsSO: {fileID: 11400000, guid: d223f287ec2b23f4e9ec4305358ba4df, type: 2}
+  weapons:
+  - {fileID: 11400000, guid: b5bed64021f6449478f48c1b90861702, type: 2}
+  - {fileID: 11400000, guid: 20b4772f02cad754389dcf4c56be3051, type: 2}
+  - {fileID: 11400000, guid: 17ebf8d835c9d13439db997c92610595, type: 2}
+  - {fileID: 11400000, guid: df38a8222b945fd428166bed240422d9, type: 2}
+  - {fileID: 11400000, guid: 976842b7c5bbae64fa03dca70642c8fe, type: 2}
+  - {fileID: 11400000, guid: 1e7d7e7a6c70ba44db2d03a9a29e93fa, type: 2}
+  - {fileID: 11400000, guid: 5d69494ea5c492b46a6fb71816eb74cb, type: 2}
+  - {fileID: 11400000, guid: 6afac02ba7348c740ba096384b732f77, type: 2}

@@ -1,27 +1,17 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class ItemShopPanelUI : MonoBehaviour
+public class ItemShopPanelUIComponents : MonoBehaviour
 {
-    [SerializeField] private TMP_Text weaponNameText;
-    [SerializeField] private TMP_Text levelText;
-    [SerializeField] private TMP_Text gradeText;
-    [SerializeField] private TMP_Text damageText;
-    [SerializeField] private TMP_Text fireRateText;
-    [SerializeField] private TMP_Text magazineText;
-    [SerializeField] private TMP_Text reloadTimeText;
-    
-
-    public void SetGunData(WeaponDataSO gun)
-    {
-        WeaponLevelStat stat = gun.GetStatByLevel(1); // 기본 레벨 스탯 사용
-
-        weaponNameText.text = $"Name {gun.name}";
-        levelText.text = $"level {stat.level}";
-        gradeText.text = $"Grade {gun.grade}";
-        damageText.text = $"DMG: {stat.damage}";
-        fireRateText.text = $"FR: {stat.fireRate}";
-        reloadTimeText.text = $"RL: {stat.reloadTime}";
-    }
+    public TMP_Text nameText;
+    public TMP_Text levelText;
+    public TMP_Text gradeText;
+    public TMP_Text damageText;
+    public TMP_Text fireRateText;
+    public TMP_Text magazineText;
+    public TMP_Text reloadTimeText;
+    public TMP_Text[] descriptions;
+    public TMP_Text priceText;
 }

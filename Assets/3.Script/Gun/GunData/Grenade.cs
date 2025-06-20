@@ -5,27 +5,23 @@ using UnityEngine;
 public class Grenade : WeaponController
 {
     [SerializeField] private LayerMask monsterLayer;
-    private Rigidbody rb;
     [SerializeField] private WeaponDataSO grenadeRootData; 
+    private Rigidbody rb;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-    }
-
-    private void Start()
-    {
+        
         this.weapon = new Weapon(grenadeRootData, WeaponGrade.Common); 
         rb.velocity += Camera.main.transform.forward * 20f;
     }
-
 
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player")) return;
         
         // 오직 Monster 레이어에만 반응
-        Collider[] hits = Physics.OverlapSphere(transform.position, 4f, monsterLayer);
+        Collider[] hits = Physics.OverlapSphere(transform.position, 3f, monsterLayer);
 
         foreach (var hit in hits)
         {
@@ -36,7 +32,7 @@ public class Grenade : WeaponController
                 {
                     Sender = Player.localPlayer,
                     Receiver = target,
-                    Damage = weapon.currentStat.damage,
+                    Damage = WeaponManager.instance.grenadeWeapon.weapon.currentStat.damage,
                     HitPosition = hit.ClosestPoint(transform.position),
                     Collider = hit.GetComponent<Collider>()
                 };

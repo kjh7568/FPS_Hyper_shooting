@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0def17fd6262e4419ed97ecfe1a2487, type: 3}
   m_Name: Root_Pistol
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: "\uAE30\uBCF8 \uAD8C\uCD1D"
   weaponType: 0
   grade: 0
   weaponImage: {fileID: 0}

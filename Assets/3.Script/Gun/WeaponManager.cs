@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
@@ -16,14 +18,14 @@ public class WeaponManager : MonoBehaviour
 
     public WeaponController primaryWeapon;
     public WeaponController secondaryWeapon;
-    public WeaponController knifeWeapon; 
+    public WeaponController knifeWeapon;
     public WeaponController grenadeWeapon;
 
     public WeaponController currentWeapon;
     public bool isPrimary = true;
 
     public AnimatorStateInfo stateInfo;
-    
+
     private static readonly int STAB = Animator.StringToHash("Stab");
     private static readonly int THROW = Animator.StringToHash("Throw");
 
@@ -39,6 +41,78 @@ public class WeaponManager : MonoBehaviour
     public readonly Vector3 GrenadeStancePosition = new Vector3(0f, -1.5f, -0.3f);
     public readonly Quaternion GrenadeStanceRotation = Quaternion.Euler(0f, -15f, 0f);
 
+    [Header("총기 모델")]
+    [SerializeField] private GameObject akmModel;
+    [SerializeField] private GameObject m4Model;
+    [SerializeField] private GameObject umpModel;
+    [SerializeField] private GameObject sniperModel;
+    [SerializeField] private GameObject shotgunModel;
+    [SerializeField] private GameObject pistolModel;
+    [SerializeField] private GameObject knifeModel;
+
+    public void ChangeWeapon(Weapon parameter)
+    {
+        WeaponController weaponToEquip;
+        
+        akmModel.SetActive(false);
+        m4Model.SetActive(false);
+        umpModel.SetActive(false);
+        sniperModel.SetActive(false);
+        shotgunModel.SetActive(false);
+        
+        switch (parameter.Type)
+        {
+            case WeaponType.Akm:
+                akmModel.SetActive(true);
+                
+                weaponToEquip = akmModel.gameObject.GetComponent<WeaponController>();
+                weaponToEquip.Init(parameter);
+                
+                primaryWeapon = weaponToEquip; 
+                break;
+            case WeaponType.M4:
+                m4Model.SetActive(true);
+                
+                weaponToEquip = m4Model.gameObject.GetComponent<WeaponController>();
+                weaponToEquip.Init(parameter);
+                
+                primaryWeapon = weaponToEquip; 
+                break;
+            case WeaponType.Sniper:
+                sniperModel.SetActive(true);
+                
+                weaponToEquip = sniperModel.gameObject.GetComponent<WeaponController>();
+                weaponToEquip.Init(parameter);
+                
+                primaryWeapon = weaponToEquip; 
+                break;
+            case WeaponType.Shotgun:
+                shotgunModel.SetActive(true);
+                
+                weaponToEquip = shotgunModel.gameObject.GetComponent<WeaponController>();
+                weaponToEquip.Init(parameter);
+                
+                primaryWeapon = weaponToEquip; 
+                break;
+            case WeaponType.Ump:
+                umpModel.SetActive(true);
+                
+                weaponToEquip = umpModel.gameObject.GetComponent<WeaponController>();
+                weaponToEquip.Init(parameter);
+                
+                primaryWeapon = weaponToEquip; 
+                break;
+            case WeaponType.Pistol:
+                break;
+            case WeaponType.Grenade:
+                break;
+            case WeaponType.Knife:
+                break;
+        }
+        
+        currentWeapon = primaryWeapon;
+    }
+    
     public enum WeaponSlot
     {
         Primary,
@@ -47,7 +121,6 @@ public class WeaponManager : MonoBehaviour
         Grenade
     }
 
-
     private void Awake()
     {
         instance = this;
@@ -55,7 +128,8 @@ public class WeaponManager : MonoBehaviour
 
     private void Start()
     {
-        primaryWeapon.gameObject.SetActive(true);
+        StartCoroutine(LoadWeaponData());
+        
         currentWeapon = primaryWeapon;
     }
 
@@ -108,27 +182,27 @@ public class WeaponManager : MonoBehaviour
                 characterModel.localPosition = RifleStancePosition;
                 characterModel.localRotation = RifleStanceRotation;
 
-                animator.runtimeAnimatorController = rifleController;
-                animator.SetLayerWeight(0, 1f);
-                animator.SetLayerWeight(1, 0);
+                    animator.SetLayerWeight(0, 1f);
+                    animator.SetLayerWeight(1, 0);
+                    animator.runtimeAnimatorController = rifleController;
 
                 isPrimary = true;
                 Debug.Log($"주무기 장착: {primaryWeapon.name}");
             }
             break;
 
-        case WeaponSlot.Secondary:
-            if (secondaryWeapon != null)
-            {
-                secondaryWeapon.gameObject.SetActive(true);
-                currentWeapon = secondaryWeapon;
+            case WeaponSlot.Secondary:
+                if (secondaryWeapon != null)
+                {
+                    secondaryWeapon.gameObject.SetActive(true);
+                    currentWeapon = secondaryWeapon;
 
-                characterModel.localPosition = PistolStancePosition;
-                characterModel.localRotation = PistolStanceRotation;
+                    characterModel.localPosition = PistolStancePosition;
+                    characterModel.localRotation = PistolStanceRotation;
+                    animator.runtimeAnimatorController = pistolController;
 
-                animator.runtimeAnimatorController = pistolController;
-                animator.SetLayerWeight(0, 0);
-                animator.SetLayerWeight(1, 1f);
+                    animator.SetLayerWeight(0, 0);
+                    animator.SetLayerWeight(1, 1f);
 
                 isPrimary = false;
                 Debug.Log($"보조무기 장착: {secondaryWeapon.name}");
@@ -179,6 +253,88 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
+    private IEnumerator LoadWeaponData()
+    {
+        akmModel.SetActive(true);
+        m4Model.SetActive(true);
+        umpModel.SetActive(true);
+        sniperModel.SetActive(true);
+        shotgunModel.SetActive(true);
+        pistolModel.SetActive(true);
+        knifeModel.SetActive(true);
+        
+        yield return new WaitForSeconds(0.1f);
+        
+        akmModel.SetActive(false);
+        m4Model.SetActive(false);
+        umpModel.SetActive(false);
+        sniperModel.SetActive(false);
+        shotgunModel.SetActive(false);
+        pistolModel.SetActive(false);
+        knifeModel.SetActive(false);        
+        
+        primaryWeapon.gameObject.SetActive(true);
+    }
+    
+    public void ApplyWeaponOption(Weapon parts)
+    {
+        foreach (var option in parts.options)
+        {
+            switch (option)
+            {
+                case WeaponSpecialEffect.DashCooldownReduction:
+                    Player.localPlayer.inventory.EquipmentStat.dashCooldownReduction += 0.1f;
+                    break;
+                case WeaponSpecialEffect.ReloadSpeedReduction:
+                    Player.localPlayer.inventory.EquipmentStat.reloadSpeedReduction += 0.1f;
+                    break;
+                case WeaponSpecialEffect.MultiplierAttackDamage:
+                    Player.localPlayer.inventory.EquipmentStat.multiplierAttack += 0.05f;
+                    break;
+                case WeaponSpecialEffect.MultiplierMovementSpeed:
+                    Player.localPlayer.inventory.EquipmentStat.multiplierMovementSpeed += 0.1f;
+                    break;
+                case WeaponSpecialEffect.IncreaseCriticalChance:
+                    Player.localPlayer.inventory.EquipmentStat.criticalChance += 10;
+                    break;
+                case WeaponSpecialEffect.IncreaseCriticalDamage:
+                    Player.localPlayer.inventory.EquipmentStat.multiplierCriticalDamage += 0.1f;
+                    break;
+                case WeaponSpecialEffect.IncreaseItemDropRate:
+                    Player.localPlayer.inventory.EquipmentStat.multiplierRareItemChance += 0.1f;
+                    break;
+            }
+        }
+    }
 
-
+    public void RemoveWeaponOption(Weapon parts)
+    {
+        foreach (var option in parts.options)
+        {
+            switch (option)
+            {
+                case WeaponSpecialEffect.DashCooldownReduction:
+                    Player.localPlayer.inventory.EquipmentStat.dashCooldownReduction -= 0.1f;
+                    break;
+                case WeaponSpecialEffect.ReloadSpeedReduction:
+                    Player.localPlayer.inventory.EquipmentStat.reloadSpeedReduction -= 0.1f;
+                    break;
+                case WeaponSpecialEffect.MultiplierAttackDamage:
+                    Player.localPlayer.inventory.EquipmentStat.multiplierAttack -= 0.05f;
+                    break;
+                case WeaponSpecialEffect.MultiplierMovementSpeed:
+                    Player.localPlayer.inventory.EquipmentStat.multiplierMovementSpeed -= 0.1f;
+                    break;
+                case WeaponSpecialEffect.IncreaseCriticalChance:
+                    Player.localPlayer.inventory.EquipmentStat.criticalChance -= 10;
+                    break;
+                case WeaponSpecialEffect.IncreaseCriticalDamage:
+                    Player.localPlayer.inventory.EquipmentStat.multiplierCriticalDamage -= 0.1f;
+                    break;
+                case WeaponSpecialEffect.IncreaseItemDropRate:
+                    Player.localPlayer.inventory.EquipmentStat.multiplierRareItemChance -= 0.1f;
+                    break;
+            }
+        }
+    }
 }
