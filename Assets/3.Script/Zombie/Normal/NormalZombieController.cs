@@ -12,6 +12,8 @@ public class NormalZombieController : MonoBehaviour
 
     public Animator animator;
 
+    public bool isHearing = false;
+    
     private Transform target; // 따라갈 대상 (예: 플레이어)
 
     private NavMeshAgent agent;
@@ -59,7 +61,7 @@ public class NormalZombieController : MonoBehaviour
 
     private bool ShouldChasePlayer(float distance)
     {
-        return isChasingPlayer || distance < detectionRange;
+        return isChasingPlayer || distance < detectionRange || isHearing;
     }
 
     private void HandleChase(float distance)
@@ -78,7 +80,6 @@ public class NormalZombieController : MonoBehaviour
             agent.SetDestination(target.position);
         }
     }
-
 
     private void StartChase()
     {
@@ -111,37 +112,6 @@ public class NormalZombieController : MonoBehaviour
         isChasingPlayer = false;
         agent.isStopped = true;
     }
-
-    // private IEnumerator WanderRoutine()
-    // {
-    //     isWandering = true;
-    //     
-    //     while (!isChasingPlayer) // 플레이어 발견 시 중단 조건 추가
-    //     {
-    //         animator.SetTrigger(WALK);
-    //
-    //         Vector3 newPos = RandomNavSphere(transform.position, wanderRadius);
-    //         agent.isStopped = false;
-    //         agent.SetDestination(newPos);
-    //
-    //         // 목적지 도착까지 기다림
-    //         while (agent.pathPending || agent.remainingDistance > 0.25f)
-    //         {
-    //             yield return null;
-    //         }
-    //
-    //         // 도착 후 멈춤
-    //         agent.isStopped = true;
-    //
-    //         animator.SetTrigger(IDLE);
-    //
-    //         var stopDuration = Random.Range(3, 7);
-    //         yield return new WaitForSeconds(stopDuration);
-    //     }
-    //
-    //     // 플레이어 발견 시 루프 탈출 후 정리
-    //     isWandering = false;
-    // }
 
     private IEnumerator WanderRoutine()
     {

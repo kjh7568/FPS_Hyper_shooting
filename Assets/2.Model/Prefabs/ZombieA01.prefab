@@ -591,11 +591,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zombieStat:
+    name: 
     maxHealth: 50
     damage: 10
     moveSpeed: 6
     isCanRun: 0
   mainCollider: {fileID: 5560361098929785769}
+  monsterLayer:
+    serializedVersion: 2
+    m_Bits: 128
   normalAttackCollider: {fileID: 6359551475671337629}
   isDead: 0
 --- !u!114 &2026857361359727490
@@ -611,6 +615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 8665885458978934230}
+  isHearing: 0
 --- !u!195 &5083551040646691983
 NavMeshAgent:
   m_ObjectHideFlags: 0

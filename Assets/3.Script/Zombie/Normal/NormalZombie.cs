@@ -17,6 +17,7 @@ public class NormalZombie : MonoBehaviour, IMonster
     public GameObject GameObject => this.gameObject;
 
     [SerializeField] private Collider mainCollider;
+    [SerializeField] private LayerMask monsterLayer;
 
     public Collider normalAttackCollider;
     public bool isDead = false;
@@ -25,6 +26,13 @@ public class NormalZombie : MonoBehaviour, IMonster
     {
         zombieStat.health -= combatEvent.Damage;
 
+        Collider[] hits = Physics.OverlapSphere(transform.position, 3f, monsterLayer);
+
+        foreach (Collider hit in hits)
+        {
+            hit.gameObject.GetComponent<NormalZombieController>().isHearing = true;
+        }
+        
         if (zombieStat.health <= 0)
         {
             isDead = true;
