@@ -27,10 +27,10 @@ public class Player : MonoBehaviour, IDamageAble
 
     private void Start()
     {
-        Armor helmet = new Armor(helmetSO);
-        Armor chestPlate = new Armor(chestPlateSO);
-        Armor gloves = new Armor(glovesSO);
-        Armor boots = new Armor(bootsSO);
+        Armor helmet = new Armor(helmetSO, true);
+        Armor chestPlate = new Armor(chestPlateSO,true);
+        Armor gloves = new Armor(glovesSO,true);
+        Armor boots = new Armor(bootsSO,true);
         
         inventory.EquipArmor(helmet);
         inventory.EquipArmor(chestPlate);

@@ -28,6 +28,14 @@ public class Armor
         this.data.grade = overrideGrade;
         Init();
     }
+    public Armor(ArmorDataSO data, bool forceLevel1)
+    {
+        this.data = ScriptableObject.Instantiate(data); // SO 복제
+        if (forceLevel1)
+        {
+            ApplyLevel(1);
+        }
+    }
 
     public void Init()
     {
