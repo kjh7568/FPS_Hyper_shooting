@@ -17,10 +17,25 @@ public class UpgradeArmorSystem : MonoBehaviour
         if (TryUpgradeGrade() == false)
             Debug.Log("[UpgradeArmorSystem] 등급업 불가: 이미 최고 등급입니다.");
     }
+    private int GetArmorLevelUpCost(int currentLevel)
+    {
+        // 1 → 2 = 100, 2 → 3 = 200, ..., 9 → 10 = 900
+        return currentLevel * 100;
+    }
+    private int GetArmorGradeUpCost(ArmorGrade grade)
+    {
+        return grade switch
+        {
+            ArmorGrade.Common    => 300,   // → Rare
+            ArmorGrade.Rare      => 500,   // → Epic
+            ArmorGrade.Epic      => 1000,  // → Legendary
+            _ => 0  // Legendary는 업그레이드 불가
+        };
+    }
+
 
     private bool TryUpgradeLevel()
     {
-        const int cost = 500;
         
         if (currentArmor == null)
         {
@@ -43,7 +58,7 @@ public class UpgradeArmorSystem : MonoBehaviour
             Debug.LogWarning($"[UpgradeArmorSystem] Lv.{next} 데이터가 존재하지 않습니다.");
             return false;
         }
-        
+        int cost = GetArmorLevelUpCost(currentArmor.currentLevel);
         if (Player.localPlayer.coin < cost)
         {
             Debug.LogWarning("[UpgradeArmorSystem] 코인이 부족합니다.");
@@ -60,7 +75,6 @@ public class UpgradeArmorSystem : MonoBehaviour
 
     private bool TryUpgradeGrade()
     {
-        const int cost = 1000;
         
         if (currentArmor == null)
         {
@@ -84,6 +98,8 @@ public class UpgradeArmorSystem : MonoBehaviour
             Debug.LogWarning("[UpgradeArmorSystem] 이미 최고 등급입니다.");
             return false;
         }
+        int cost = GetArmorGradeUpCost(grade);
+        
         if (Player.localPlayer.coin < cost)
         {
             Debug.LogWarning("[UpgradeSystem] 코인이 부족합니다.");

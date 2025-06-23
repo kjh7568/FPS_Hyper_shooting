@@ -26,6 +26,10 @@ public class MyWeaponLoader : MonoBehaviour
 
     [Header("옵션 텍스트")]
     public List<TMP_Text> optionTexts;
+    
+    [Header("업그레이드 비용")]
+    public TMP_Text levelUpCostText;
+    public TMP_Text gradeUpCostText;
 
     public void LoadWeapon()
     {
@@ -52,7 +56,6 @@ public class MyWeaponLoader : MonoBehaviour
         fireRateText.text = "";
         magazineText.text = "";
         reloadTimeText.text = "";
-
         foreach (var txt in optionTexts)
         {
             txt.text = "";
@@ -77,6 +80,10 @@ public class MyWeaponLoader : MonoBehaviour
         magazineText.text    = $"{stat.magazine}";
         reloadTimeText.text  = $"{stat.reloadTime}";
 
+        levelUpCostText.text = $"{GetLevelUpCost(weapon.currentLevel)}";
+        gradeUpCostText.text = weapon.grade == WeaponGrade.Legendary
+            ? $"등급업 불가"
+            : $"{GetGradeUpCost(weapon.grade)}";
         SetOptionDescriptions(weapon);
     }
 
@@ -124,6 +131,21 @@ public class MyWeaponLoader : MonoBehaviour
             }
             idx++;
         }
+    }
+    private int GetLevelUpCost(int level)
+    {
+        return level * 100; // 1->2: 100, 2->3: 200, ...
+    }
+
+    private int GetGradeUpCost(WeaponGrade grade)
+    {
+        return grade switch
+        {
+            WeaponGrade.Common    => 300,
+            WeaponGrade.Rare      => 500,
+            WeaponGrade.Epic      => 1000,
+            _                     => 0 // Legendary 등급은 등급업 불가
+        };
     }
 
     public void OnClick_Refresh()

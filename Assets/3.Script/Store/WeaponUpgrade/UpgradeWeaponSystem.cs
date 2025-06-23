@@ -16,11 +16,23 @@ public class UpgradeWeaponSystem : MonoBehaviour
             Debug.Log("[UpgradeSystem] 등급업 불가: 이미 최고 등급입니다.");
     }
 
-    // 레벨업 시도: 특수효과는 변경하지 않고 레벨만 올림
+    private int GetWeaponLevelUpCost(int currentLevel)
+    {
+        return currentLevel * 100;
+    }
+    private int GetWeaponGradeUpCost(WeaponGrade grade)
+    {
+        return grade switch
+        {
+            WeaponGrade.Common    => 300,   // → Rare
+            WeaponGrade.Rare      => 500,   // → Epic
+            WeaponGrade.Epic      => 1000,  // → Legendary
+            _ => 0  // Legendary는 업그레이드 불가
+        };
+    }
+
     private bool TryUpgradeLevel()
     {
-        const int cost = 500;
-
         if (currentWeapon == null)
         {
             Debug.LogWarning("[UpgradeSystem] 무기 없음");
@@ -36,25 +48,25 @@ public class UpgradeWeaponSystem : MonoBehaviour
             return false;
         }
 
+        int cost = GetWeaponLevelUpCost(curr);
+
         if (Player.localPlayer.coin < cost)
         {
-            Debug.LogWarning("[UpgradeSystem] 코인이 부족합니다.");
+            Debug.LogWarning($"[UpgradeSystem] 코인 부족: 필요 {cost} / 보유 {Player.localPlayer.coin}");
             return false;
         }
 
         Player.localPlayer.coin -= cost;
-
         currentWeapon.ApplyLevel(curr + 1);
-        Debug.Log($"[무기 레벨업] {currentWeapon.data.weaponName} Lv.{curr} → Lv.{curr + 1}");
+        Debug.Log($"[무기 레벨업] {currentWeapon.data.weaponName} Lv.{curr} → Lv.{curr + 1} | -{cost}코인");
         return true;
     }
+
 
 
     // 등급업 시도: 누적으로 한 줄씩 옵션 추가
     private bool TryUpgradeGrade()
     {
-        const int cost = 1000;
-
         if (currentWeapon == null)
         {
             Debug.LogWarning("[UpgradeSystem] 무기 없음");
@@ -77,7 +89,7 @@ public class UpgradeWeaponSystem : MonoBehaviour
             Debug.LogWarning("[UpgradeSystem] 이미 최고 등급입니다.");
             return false;
         }
-
+        int cost = GetWeaponGradeUpCost(grade);
         if (Player.localPlayer.coin < cost)
         {
             Debug.LogWarning("[UpgradeSystem] 코인이 부족합니다.");

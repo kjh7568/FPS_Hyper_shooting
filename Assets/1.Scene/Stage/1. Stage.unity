@@ -2892,6 +2892,8 @@ MonoBehaviour:
   - {fileID: 1100730615}
   - {fileID: 1843767133}
   - {fileID: 1038567342}
+  levelUpCostText: {fileID: 1985300082}
+  gradeUpCostText: {fileID: 528086394}
 --- !u!114 &62741191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13452,6 +13454,8 @@ MonoBehaviour:
   - {fileID: 3962643}
   - {fileID: 1083990978}
   - {fileID: 869715391}
+  levelUpCostText: {fileID: 2065847514}
+  gradeUpCostText: {fileID: 1580573062}
 --- !u!114 &511640999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15109,6 +15113,8 @@ MonoBehaviour:
   - {fileID: 8862007}
   - {fileID: 148782022}
   - {fileID: 1804763875}
+  levelUpCostText: {fileID: 855009118}
+  gradeUpCostText: {fileID: 1819405264}
 --- !u!114 &567705306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20251,6 +20257,8 @@ MonoBehaviour:
   - {fileID: 2077905075}
   - {fileID: 1771265821}
   - {fileID: 1355564325}
+  levelUpCostText: {fileID: 224442265}
+  gradeUpCostText: {fileID: 999313113}
 --- !u!114 &795985525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20372,6 +20380,8 @@ MonoBehaviour:
   - {fileID: 1927032453}
   - {fileID: 6103904}
   - {fileID: 436625093}
+  levelUpCostText: {fileID: 1675811706}
+  gradeUpCostText: {fileID: 1253707638}
 --- !u!114 &797413948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23543,6 +23553,8 @@ MonoBehaviour:
   - {fileID: 1960028716}
   - {fileID: 1749468750}
   - {fileID: 147214889}
+  levelUpCostText: {fileID: 441829425}
+  gradeUpCostText: {fileID: 21767578}
 --- !u!114 &918591636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38360,6 +38372,8 @@ MonoBehaviour:
   - {fileID: 1290559612}
   - {fileID: 533675685}
   - {fileID: 571854172}
+  levelUpCostText: {fileID: 1358430527}
+  gradeUpCostText: {fileID: 178714671}
 --- !u!114 &1478930251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47997,6 +48011,8 @@ MonoBehaviour:
   - {fileID: 734005852}
   - {fileID: 219277196}
   - {fileID: 1630467991}
+  levelUpCostText: {fileID: 3804347}
+  gradeUpCostText: {fileID: 258766841}
 --- !u!114 &1919673738
 MonoBehaviour:
   m_ObjectHideFlags: 0

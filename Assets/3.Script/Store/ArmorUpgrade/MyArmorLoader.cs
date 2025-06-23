@@ -23,6 +23,10 @@ public class MyArmorLoader : MonoBehaviour
     [Header("옵션 텍스트")]
     public List<TMP_Text> optionTexts;
 
+    [Header("업그레이드 비용")]
+    public TMP_Text levelUpCostText;
+    public TMP_Text gradeUpCostText;
+    
     public void Start()
     {
         LoadArmor();
@@ -39,14 +43,8 @@ public class MyArmorLoader : MonoBehaviour
             Clear();
             return;
         }
-
-      // 1) 인벤토리 장착 (스탯 반영용)
-       //  inv.EquipArmor(armor);
-
-        // 2) 업그레이드 시스템에 현재 방어구 연결
          upgradeSystem.currentArmor = armor;
 
-        // 3) UI 갱신
         RefreshUI();
     }
     public void Clear()
@@ -79,6 +77,11 @@ public class MyArmorLoader : MonoBehaviour
         
          // 특수 옵션
          SetOptionDescriptions(armor);
+         
+         levelUpCostText.text = $"{GetLevelUpCost(armor.currentLevel)}";
+         gradeUpCostText.text = armor.grade == ArmorGrade.Legendary
+             ? "등급업 불가"
+             : $"{GetGradeUpCost(armor.grade)}";
     }
 
     private void SetOptionDescriptions(Armor armor)
@@ -134,6 +137,21 @@ public class MyArmorLoader : MonoBehaviour
      public void OnClick_LoadArmor()
      {
          LoadArmor();
+     }
+     private int GetLevelUpCost(int level)
+     {
+         return level * 100; // 1->2: 100, 2->3: 200, ...
+     }
+
+     private int GetGradeUpCost(ArmorGrade grade)
+     {
+         return grade switch
+         {
+             ArmorGrade.Common    => 300,
+             ArmorGrade.Rare      => 500,
+             ArmorGrade.Epic      => 1000,
+             _                     => 0 // Legendary 등급은 등급업 불가
+         };
      }
     
 }
