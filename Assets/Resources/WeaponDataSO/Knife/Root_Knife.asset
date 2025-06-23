@@ -77,4 +77,4 @@ MonoBehaviour:
     reloadTime: 0
     magazine: 0
     explosionRange: 0
-  possibleEffects: 
+  possibleEffects: 00000000010000000200000003000000040000000500000006000000
