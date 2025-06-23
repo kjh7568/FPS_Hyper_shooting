@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 using System.Collections.Generic;
 
 public class MyWeaponLoader : MonoBehaviour
@@ -34,7 +35,6 @@ public class MyWeaponLoader : MonoBehaviour
             Clear();
             return;
         }
-        // 각 패널 전용 시스템에만 currentWeapon 설정
         upgradeSystem.currentWeapon = wc.weapon;
         RefreshUI();
     }
@@ -54,7 +54,10 @@ public class MyWeaponLoader : MonoBehaviour
         reloadTimeText.text = "";
 
         foreach (var txt in optionTexts)
+        {
             txt.text = "";
+            txt.gameObject.SetActive(false);
+        }
     }
 
     public void RefreshUI()
@@ -64,27 +67,67 @@ public class MyWeaponLoader : MonoBehaviour
 
         var stat = weapon.currentStat;
 
-        itemNameText.text = weapon.data.weaponName;
-        itemTierText.text = weapon.grade.ToString();
-        itemLevelText.text = $"Lv. {weapon.currentLevel}";
-        itemImage.sprite = weapon.data.weaponImage;
+        itemNameText.text    = weapon.data.weaponName;
+        itemTierText.text    = weapon.grade.ToString();
+        itemLevelText.text   = $"Lv. {weapon.currentLevel}";
+        itemImage.sprite     = weapon.data.weaponImage;
 
-        damageText.text = $"{stat.damage}";
-        fireRateText.text = $"{stat.fireRate}";
-        magazineText.text = $"{stat.magazine}";
-        reloadTimeText.text = $"{stat.reloadTime}";
+        damageText.text      = $"{stat.damage}";
+        fireRateText.text    = $"{stat.fireRate}";
+        magazineText.text    = $"{stat.magazine}";
+        reloadTimeText.text  = $"{stat.reloadTime}";
 
-        for (int i = 0; i < optionTexts.Count; i++)
+        SetOptionDescriptions(weapon);
+    }
+
+    private void SetOptionDescriptions(Weapon weapon)
+    {
+        // 모든 option 텍스트 비활성화
+        foreach (var txt in optionTexts)
         {
-            if (i < weapon.options.Count)
-                optionTexts[i].text = $"• {weapon.options[i]}";
-            else
-                optionTexts[i].text = "";
+            txt.gameObject.SetActive(false);
+        }
+
+        // 옵션별로 한글 설명 활성화
+        int idx = 0;
+        foreach (var option in weapon.options)
+        {
+            if (idx >= optionTexts.Count) break;
+            var txt = optionTexts[idx];
+            txt.gameObject.SetActive(true);
+
+            switch (option)
+            {
+                case WeaponSpecialEffect.DashCooldownReduction:
+                    txt.text = "• 대시 쿨타임이 10% 감소합니다";
+                    break;
+                case WeaponSpecialEffect.ReloadSpeedReduction:
+                    txt.text = "• 재장전 속도가 10% 빨라집니다";
+                    break;
+                case WeaponSpecialEffect.MultiplierAttackDamage:
+                    txt.text = "• 공격력이 5% 증가합니다";
+                    break;
+                case WeaponSpecialEffect.MultiplierMovementSpeed:
+                    txt.text = "• 이동 속도가 10% 증가합니다";
+                    break;
+                case WeaponSpecialEffect.IncreaseCriticalChance:
+                    txt.text = "• 치명타 확률이 10% 증가합니다";
+                    break;
+                case WeaponSpecialEffect.IncreaseCriticalDamage:
+                    txt.text = "• 치명타 데미지가 10% 증가합니다";
+                    break;
+                case WeaponSpecialEffect.IncreaseItemDropRate:
+                    txt.text = "• 아이템 드롭 확률이 10% 증가합니다";
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            idx++;
         }
     }
+
     public void OnClick_Refresh()
     {
         RefreshUI();
     }
-
 }

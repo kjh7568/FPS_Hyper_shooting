@@ -343,4 +343,39 @@ public class WeaponManager : MonoBehaviour
             }
         }
     }
+    // 새로 추가: 단일 옵션만 적용/제거
+    public void ApplyWeaponOption(WeaponSpecialEffect option)
+        => ApplySingleOption(option, +1f);
+
+    public void RemoveWeaponOption(WeaponSpecialEffect option)
+        => ApplySingleOption(option, -1f);
+
+    private void ApplySingleOption(WeaponSpecialEffect option, float sign)
+    {
+        var stat = Player.localPlayer.inventory.EquipmentStat;
+        switch (option)
+        {
+            case WeaponSpecialEffect.DashCooldownReduction:
+                stat.dashCooldownReduction += 0.1f * sign;
+                break;
+            case WeaponSpecialEffect.ReloadSpeedReduction:
+                stat.reloadSpeedReduction += 0.1f * sign;
+                break;
+            case WeaponSpecialEffect.MultiplierAttackDamage:
+                stat.multiplierAttack += 0.05f * sign;
+                break;
+            case WeaponSpecialEffect.MultiplierMovementSpeed:
+                stat.multiplierMovementSpeed += 0.1f * sign;
+                break;
+            case WeaponSpecialEffect.IncreaseCriticalChance:
+                stat.criticalChance += (int)(10f * sign);
+                break;
+            case WeaponSpecialEffect.IncreaseCriticalDamage:
+                stat.multiplierCriticalDamage += 0.1f * sign;
+                break;
+            case WeaponSpecialEffect.IncreaseItemDropRate:
+                stat.multiplierRareItemChance += 0.1f * sign;
+                break;
+        }
+    }
 }

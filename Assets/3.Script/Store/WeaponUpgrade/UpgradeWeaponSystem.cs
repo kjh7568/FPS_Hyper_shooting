@@ -16,7 +16,7 @@ public class UpgradeWeaponSystem : MonoBehaviour
             Debug.Log("[UpgradeSystem] 등급업 불가: 이미 최고 등급입니다.");
     }
 
-    // 레벨업 시도: 현재 등급의 maxLevel을 넘지 않을 때만 레벨업
+    // 레벨업 시도: 특수효과는 변경하지 않고 레벨만 올림
     private bool TryUpgradeLevel()
     {
         if (currentWeapon == null)
@@ -26,9 +26,8 @@ public class UpgradeWeaponSystem : MonoBehaviour
         }
 
         int curr = currentWeapon.currentLevel;
-        int max = currentWeapon.data.GetMaxLevelForGrade();
+        int max  = currentWeapon.data.GetMaxLevelForGrade();
 
-        // 아직 레벨업 가능 구간이면
         if (curr < max)
         {
             currentWeapon.ApplyLevel(curr + 1);
@@ -36,11 +35,10 @@ public class UpgradeWeaponSystem : MonoBehaviour
             return true;
         }
 
-        // 그 외(== max)에선 레벨업 불가
         return false;
     }
 
-    // 등급업 시도: 현재 등급의 maxLevel(==grade end)에서만 실행
+    // 등급업 시도: 누적으로 한 줄씩 옵션 추가
     private bool TryUpgradeGrade()
     {
         if (currentWeapon == null)
@@ -49,35 +47,37 @@ public class UpgradeWeaponSystem : MonoBehaviour
             return false;
         }
 
-        var data = currentWeapon.data;
+        var data  = currentWeapon.data;
         var grade = data.grade;
-        int curr = currentWeapon.currentLevel;
-        int max = data.GetMaxLevelForGrade();
+        int curr  = currentWeapon.currentLevel;
+        int max   = data.GetMaxLevelForGrade();
 
-        // 만약 아직 maxLevel에 도달 못 했으면 등급업 불가
         if (curr < max)
         {
             Debug.LogWarning($"[UpgradeSystem] Lv.{curr}에서는 등급업 불가. 먼저 Lv.{max}까지 레벨업하세요.");
             return false;
         }
 
-        // Legendary 이상이면 불가
         if (grade == WeaponGrade.Legendary)
         {
             Debug.LogWarning("[UpgradeSystem] 이미 최고 등급입니다.");
             return false;
         }
 
-        // 등급 올리고 레벨 초기화
-        var nextGrade = grade + 1;
-        data.grade = nextGrade;
-
-        // 새 등급의 최소레벨(겹치는 구간) 유지
+        // 등급 상승
+        data.grade = grade + 1;
         int minLevel = data.GetMinLevelForGrade();
-        currentWeapon.GenerateRandomEffects();
         currentWeapon.ApplyLevel(minLevel);
 
-        Debug.Log($"[등급업 성공] {data.weaponName} → {nextGrade}, Lv.{minLevel}");
+        // 새 옵션 한 개만 누적 추가
+        var newOpt = currentWeapon.AddRandomEffect();
+        if (newOpt.HasValue)
+        {
+            WeaponManager.instance.ApplyWeaponOption(newOpt.Value);
+            Debug.Log($"[옵션 추가] {newOpt.Value} 효과가 누적 적용되었습니다.");
+        }
+
+        Debug.Log($"[등급업 성공] {data.weaponName} → {data.grade}, Lv.{minLevel}");
         return true;
     }
 }

@@ -1,5 +1,9 @@
 using UnityEngine;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using Random = UnityEngine.Random;
+
 
 public class Weapon
 {
@@ -68,6 +72,18 @@ public class Weapon
             if (!options.Contains(pick))
                 options.Add(pick);
         }
+    }
+    public WeaponSpecialEffect? AddRandomEffect()
+    {
+        var allEffects = Enum.GetValues(typeof(WeaponSpecialEffect))
+            .Cast<WeaponSpecialEffect>();
+        var available = allEffects.Except(options).ToList();
+        if (available.Count == 0)
+            return null;
+
+        var next = available[Random.Range(0, available.Count)];
+        options.Add(next);
+        return next;
     }
     private void SetStartLevelByGrade()
     {
