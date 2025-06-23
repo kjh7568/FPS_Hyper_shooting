@@ -23,7 +23,7 @@ public class MyArmorLoader : MonoBehaviour
     [Header("옵션 텍스트")]
     public List<TMP_Text> optionTexts;
 
-    void Start()
+    public void Start()
     {
         LoadArmor();
     }
@@ -40,8 +40,8 @@ public class MyArmorLoader : MonoBehaviour
             return;
         }
 
-        // 1) 인벤토리 장착 (스탯 반영용)
-        inv.EquipArmor(armor);
+      // 1) 인벤토리 장착 (스탯 반영용)
+       //  inv.EquipArmor(armor);
 
         // 2) 업그레이드 시스템에 현재 방어구 연결
          upgradeSystem.currentArmor = armor;
@@ -129,6 +129,11 @@ public class MyArmorLoader : MonoBehaviour
      {
              // 레벨업은 옵션 변경 없음 → UI만 갱신
              RefreshUI();
+     }
+
+     public void OnClick_LoadArmor()
+     {
+         LoadArmor();
      }
     
 }
