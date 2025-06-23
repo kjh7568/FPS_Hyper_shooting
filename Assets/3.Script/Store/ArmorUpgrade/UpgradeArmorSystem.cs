@@ -27,16 +27,25 @@ public class UpgradeArmorSystem : MonoBehaviour
         }
 
         int curr = currentArmor.currentLevel;
+        int next = curr + 1;
         int max  = currentArmor.data.GetMaxLevelForGrade();
 
-        if (curr < max)
+        // 먼저 등급별 최대값 검사
+        if (curr >= max)
+            return false;
+
+        // **레벨 데이터 존재 여부 검사**
+        bool hasData = currentArmor.data.levelStats.Exists(s => s.level == next);
+        if (!hasData)
         {
-            currentArmor.ApplyLevel(curr + 1);
-            Debug.Log($"[방어구 레벨업] {currentArmor.data.armorName} Lv.{curr} → Lv.{curr + 1}");
-            return true;
+            Debug.LogWarning($"[UpgradeArmorSystem] Lv.{next} 데이터가 존재하지 않습니다.");
+            return false;
         }
 
-        return false;
+        // 데이터가 있으면 레벨업 실행
+        currentArmor.ApplyLevel(next);
+        Debug.Log($"[방어구 레벨업] {currentArmor.data.armorName} Lv.{curr} → Lv.{next}");
+        return true;
     }
 
     private bool TryUpgradeGrade()
