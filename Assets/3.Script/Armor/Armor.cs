@@ -1,5 +1,8 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Random = UnityEngine.Random;
 
 public class Armor
 {
@@ -26,7 +29,7 @@ public class Armor
         Init();
     }
 
-    private void Init()
+    public void Init()
     {
         GenerateRandomEffects(); // 등급에 따른 효과 수만큼 효과 선택
         ApplyLevel(data.GetMinLevelForGrade());
@@ -55,7 +58,20 @@ public class Armor
         }
     }
 
-    private void ApplyLevel(int level)
+    public SpecialEffect? AddRandomEffect()
+    {
+        var allEffects = Enum.GetValues(typeof(SpecialEffect))
+            .Cast<SpecialEffect>();
+        var available = allEffects.Except(options).ToList();
+        if (available.Count == 0)
+            return null;
+
+        var next = available[Random.Range(0, available.Count)];
+        options.Add(next);
+        return next;
+    }
+
+    public void ApplyLevel(int level)
     {
         currentLevel = level;
         currentStat = data.GetStatByLevel(level);
