@@ -9,6 +9,7 @@ public class MonsterUIManager : MonoBehaviour
 
     [SerializeField] private Camera mainCamera; // 카메라 할당 예정
     [SerializeField] private GameObject hpBarPrefab;
+    [SerializeField] private GameObject BossHPbar;
     [SerializeField] private Transform canvasRoot; // MonsterUICanvas
 
     private void Awake()
@@ -27,5 +28,11 @@ public class MonsterUIManager : MonoBehaviour
         GameObject hpBar = Instantiate(hpBarPrefab, canvasRoot);
         hpBar.GetComponent<MonsterHPUI>().Init(target, mainCamera);
         return hpBar;
+    }
+
+    public void SetBossHpBar(ZombieStat target)
+    {
+        BossHPbar.SetActive(true);
+        BossHPbar.GetComponent<BossHPUI>().Init(target);
     }
 }

@@ -3550,6 +3550,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4616266010827512057}
   - component: {fileID: 5220254149885866690}
+  - component: {fileID: 6242523538999650361}
   m_Layer: 0
   m_Name: BossHpBar
   m_TagString: Untagged
@@ -3564,19 +3565,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2213607616538858820}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 17770.84}
+  m_LocalScale: {x: 20, y: 20, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7277888721666858491}
   - {fileID: 8321235014444683825}
   - {fileID: 1321908486013331102}
-  m_Father: {fileID: 4685092562347558374}
+  m_Father: {fileID: 3493811656668929161}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -45}
+  m_AnchoredPosition: {x: 0, y: 9359.999}
   m_SizeDelta: {x: -20, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5220254149885866690
@@ -3630,6 +3631,20 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6242523538999650361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2213607616538858820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64df947c23735604eb29c1a4834b524b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpSlider: {fileID: 5220254149885866690}
+  nameText: {fileID: 3698159473900585552}
 --- !u!1 &2218508110661382256
 GameObject:
   m_ObjectHideFlags: 0
@@ -5811,6 +5826,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4616266010827512057}
   - {fileID: 8184569123579798421}
   - {fileID: 7537730681178851268}
   - {fileID: 2130932181709228689}
@@ -12469,8 +12485,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4616266010827512057}
+  m_Children: []
   m_Father: {fileID: 4963680881616358659}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -12488,7 +12503,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 5198452498571897832}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -12556,6 +12571,7 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   hpBarPrefab: {fileID: 4933738533936838673, guid: 54cadf449cb5a744e8fa335f4956e714,
     type: 3}
+  BossHPbar: {fileID: 2213607616538858820}
   canvasRoot: {fileID: 4685092562347558374}
 --- !u!1 &6993711077264906187
 GameObject:

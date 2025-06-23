@@ -16,10 +16,10 @@ public class Nasty : MonoBehaviour, IMonster
     [SerializeField] private Collider mainCollider;
 
     private float desiredHealth;
-    
 
     public void Start()
     {
+        MonsterUIManager.instance.SetBossHpBar(ZombieStat);
         CombatSystem.Instance.RegisterMonster(this);
         SetHitAnimationHealth();
     }

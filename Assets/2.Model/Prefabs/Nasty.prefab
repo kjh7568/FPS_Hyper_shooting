@@ -693,8 +693,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalAttackCollider: {fileID: 7358741855575496822}
   smashAttackCollider: {fileID: 5441261615427799247}
+  stunnedCount: 3
   zombieStat:
-    health: 1000
+    name: "\uB124\uC2A4\uD2F0"
     maxHealth: 1000
     damage: 10
     moveSpeed: 10

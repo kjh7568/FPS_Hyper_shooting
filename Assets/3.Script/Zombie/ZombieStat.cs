@@ -6,6 +6,7 @@ using UnityEngine;
 [Serializable]
 public class ZombieStat
 {
+    public string name;
     public float maxHealth;
     public float health
     {
