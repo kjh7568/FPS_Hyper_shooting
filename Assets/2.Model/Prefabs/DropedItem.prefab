@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWeapon: 0
+  isPreviousItem: 0
   helmetSO: {fileID: 11400000, guid: 21fc0e30341216543922f1b2d4afa3f1, type: 2}
   chestplateSO: {fileID: 11400000, guid: e511f037aac3cf041a5a2e48500eed7c, type: 2}
   glovesSO: {fileID: 11400000, guid: 55617a48c4a955e49be5ff18dfd9fd1a, type: 2}

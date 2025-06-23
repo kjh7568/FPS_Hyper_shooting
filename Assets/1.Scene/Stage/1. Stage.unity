@@ -22633,7 +22633,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 2, z: 2}
+  m_Size: {x: 1.3, y: 1.3, z: 1.3}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &999057830
 MeshRenderer:
@@ -33299,6 +33299,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0f398f2d57f61c43849b09f6a40adff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemPrefab: {fileID: 6711264548501032436, guid: 0bfb4acd2e9dfef4a92e2f53531fc763,
+    type: 3}
   panelSlots:
   - {fileID: 1482828810}
   - {fileID: 263450333}
@@ -33312,6 +33314,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 976842b7c5bbae64fa03dca70642c8fe, type: 2}
   - {fileID: 11400000, guid: 5d69494ea5c492b46a6fb71816eb74cb, type: 2}
   - {fileID: 11400000, guid: 6afac02ba7348c740ba096384b732f77, type: 2}
+  buttons:
+  - {fileID: 481812606}
+  - {fileID: 1207713001}
+  - {fileID: 984662633}
   prices: 000000000000000000000000
 --- !u!1 &1435088415
 GameObject:

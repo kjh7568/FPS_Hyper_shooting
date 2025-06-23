@@ -2,17 +2,22 @@ using System;
 using System.Globalization;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class ItemShopManager : MonoBehaviour
 {
+    [SerializeField] private GameObject itemPrefab;
+
     [SerializeField] private ItemShopPanelUIComponents[] panelSlots; // 이미 있는 3개의 슬롯 할당
 
     [SerializeField] private WeaponDataSO[] weapons;
 
+    [SerializeField] private Button[] buttons;
+    
     public Weapon[] storeWeapons = new Weapon[3];
     public int[] prices = new int[3];
-    
+
     private void OnEnable()
     {
         SetStoreItem();
@@ -60,7 +65,8 @@ public class ItemShopManager : MonoBehaviour
             panelSlots[i].damageText.text = storeWeapons[i].currentStat.damage.ToString(CultureInfo.CurrentCulture);
             panelSlots[i].fireRateText.text = storeWeapons[i].currentStat.fireRate.ToString(CultureInfo.CurrentCulture);
             panelSlots[i].magazineText.text = storeWeapons[i].currentStat.magazine.ToString();
-            panelSlots[i].reloadTimeText.text = storeWeapons[i].currentStat.reloadTime.ToString(CultureInfo.CurrentCulture);
+            panelSlots[i].reloadTimeText.text =
+                storeWeapons[i].currentStat.reloadTime.ToString(CultureInfo.CurrentCulture);
             SetDescription(storeWeapons[i], panelSlots[i].descriptions);
             prices[i] = SetPrice(storeWeapons[i], panelSlots[i].priceText);
         }
@@ -74,7 +80,7 @@ public class ItemShopManager : MonoBehaviour
         {
             descriptions[i].gameObject.SetActive(false);
         }
-        
+
         foreach (var option in weapon.options)
         {
             descriptions[idx].gameObject.SetActive(true);
@@ -129,54 +135,81 @@ public class ItemShopManager : MonoBehaviour
                 price = 1000;
                 break;
         }
-        
+
         priceText.text = price.ToString();
-        
+
         return price;
     }
-    
+
     #endregion
 
     #region 버튼 동작 로직
 
     public void OnClickBuyButton(int index)
     {
-        //돈 있는지 확인하고 없으면 거부
-        if(Player.localPlayer.coin < prices[index]) return;
+        
+        if (Player.localPlayer.coin < prices[index]) return; // 금액 부족 시 종료
 
-        Player.localPlayer.coin -= prices[index];        
+        //재구매 불가    
+        buttons[index].interactable = false;
+        
+        // 이전 무기 드롭 생성
+        DropPreviousWeapon(storeWeapons[index].Type);
 
-        //아이템 유형에 따라 웨폰 매니저에 웨폰 컨트롤러의 웨폰 값을 변경
-        //그건 init사용
-        switch (storeWeapons[index].Type)
+        // 비용 차감
+        Player.localPlayer.coin -= prices[index];
+
+        // 새로운 무기 적용
+        WeaponManager.instance.ApplyWeaponOption(storeWeapons[index]);
+        WeaponManager.instance.ChangeWeapon(storeWeapons[index]);
+
+        Player.localPlayer.inventory.EquipmentStat.PrintOption();
+    }
+
+    private void DropPreviousWeapon(WeaponType type)
+    {
+        Vector3 dropPos = GetRandomDropPosition(Player.localPlayer.transform.position, 0.75f);
+        var prevItem = Instantiate(itemPrefab, dropPos, Quaternion.identity);
+        var component = prevItem.GetComponent<DroppedItem>();
+        component.isPreviousItem = true;
+        component.isWeapon = true;
+
+        switch (type)
         {
-            //주무기
             case WeaponType.Akm:
             case WeaponType.M4:
             case WeaponType.Sniper:
             case WeaponType.Shotgun:
-            case WeaponType.Ump:                
-                WeaponManager.instance.RemoveWeaponOption(WeaponManager.instance.primaryWeapon.weapon);
+            case WeaponType.Ump:
+                var primary = WeaponManager.instance.primaryWeapon.weapon;
+                component.dropedWeapon = primary;
+                WeaponManager.instance.RemoveWeaponOption(primary);
                 break;
-            //보조무기
+
             case WeaponType.Pistol:
-                WeaponManager.instance.RemoveWeaponOption(WeaponManager.instance.secondaryWeapon.weapon);
+                var secondary = WeaponManager.instance.secondaryWeapon.weapon;
+                component.dropedWeapon = secondary;
+                WeaponManager.instance.RemoveWeaponOption(secondary);
                 break;
-            //칼
+
             case WeaponType.Knife:
-                WeaponManager.instance.RemoveWeaponOption(WeaponManager.instance.knifeWeapon.weapon);
+                var knife = WeaponManager.instance.knifeWeapon.weapon;
+                component.dropedWeapon = knife;
+                WeaponManager.instance.RemoveWeaponOption(knife);
                 break;
-            //수류탄
+
             case WeaponType.Grenade:
-                WeaponManager.instance.RemoveWeaponOption(WeaponManager.instance.grenadeWeapon.weapon);
+                var grenade = WeaponManager.instance.grenadeWeapon.weapon;
+                component.dropedWeapon = grenade;
+                WeaponManager.instance.RemoveWeaponOption(grenade);
                 break;
         }
-        WeaponManager.instance.ApplyWeaponOption(storeWeapons[index]);
-        
-        //아이템 유형에 따라 무기 모델 변경
-        WeaponManager.instance.ChangeWeapon(storeWeapons[index]);
+    }
 
-        Player.localPlayer.inventory.EquipmentStat.PrintOption();
+    private Vector3 GetRandomDropPosition(Vector3 center, float radius)
+    {
+        Vector2 randomCircle = Random.insideUnitCircle * radius;
+        return center + new Vector3(randomCircle.x, 0f, randomCircle.y);
     }
 
     #endregion

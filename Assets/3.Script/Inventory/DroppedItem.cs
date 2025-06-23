@@ -4,20 +4,25 @@ using UnityEngine;
 
 public class DroppedItem : MonoBehaviour
 {
-    public bool isWeapon;
     
     public Armor dropedArmor;
     public Weapon dropedWeapon;
     
+    public bool isWeapon;
+    public bool isPreviousItem;
+    
     [SerializeField] private ArmorDataSO helmetSO;
     [SerializeField] private ArmorDataSO chestplateSO;
-    [SerializeField] private ArmorDataSO glovesSO;
+    [SerializeField] private ArmorDataSO glovesSO;  
     [SerializeField] private ArmorDataSO bootsSO;
     
     [SerializeField] private WeaponDataSO[] weapons;
-    
+
     void Start()
     {
+        Debug.Log(isPreviousItem);
+        if (isPreviousItem) return;
+        
         if (Random.Range(0, 2) == 0)
         {
             dropedWeapon = GetRandomWeapon();
@@ -30,7 +35,7 @@ public class DroppedItem : MonoBehaviour
         }
     }
 
-    #region 무기류
+    #region 무기
 
     private Weapon GetRandomWeapon()
     {

@@ -32,7 +32,7 @@ public class StorePanelManager : MonoBehaviour
     
     private void Update()
     {
-        if (storePanel.activeSelf && Input.GetKeyDown(KeyCode.Space))
+        if (storePanel.activeSelf && Input.GetKeyDown(KeyCode.Escape))
         {
             ClosePanel();
         }
