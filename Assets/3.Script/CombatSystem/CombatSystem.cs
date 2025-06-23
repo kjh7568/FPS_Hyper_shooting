@@ -93,4 +93,14 @@ public class CombatSystem : MonoBehaviour
     {
         inGameEventQueue.Enqueue(inGameEvent);
     }
+    public bool AreAllMonstersDead()
+    {
+        foreach (var monster in monsterDic.Values)
+        {
+            if (monster is NormalZombie nz && !nz.isDead)
+                return false;
+        }
+        return true;
+    }
+
 }

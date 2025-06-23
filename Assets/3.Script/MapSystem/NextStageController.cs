@@ -14,18 +14,19 @@ public class NextStageController : MonoBehaviour
     {
         if (isDoorOpened) return;
 
-        // 디버그용 수동 키: C를 누르면 문 열림
         if (Input.GetKeyDown(KeyCode.C))
         {
             Debug.Log("C 키 입력: 문 강제 오픈");
             OpenDoor();
         }
-        if (AllZombiesDefeated())
+
+        if (CombatSystem.Instance.AreAllMonstersDead())
         {
             Debug.Log("좀비 전원 처치 완료: 문 오픈");
             OpenDoor();
         }
     }
+
 
     private bool AllZombiesDefeated()
     {
