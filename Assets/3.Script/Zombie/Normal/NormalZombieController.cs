@@ -33,6 +33,7 @@ public class NormalZombieController : MonoBehaviour
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
         normalZombie = GetComponent<NormalZombie>();
+        MonsterUIManager.instance.CreateHPBar(normalZombie);
     }
 
     private void Update()

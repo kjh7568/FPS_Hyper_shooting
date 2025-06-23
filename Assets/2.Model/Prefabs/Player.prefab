@@ -1202,6 +1202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpenPanel: 0
+  gunData: {fileID: 0}
   knifeRootData: {fileID: 11400000, guid: 17ebf8d835c9d13439db997c92610595, type: 2}
 --- !u!1 &978496722224122049
 GameObject:
@@ -1535,6 +1536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpenPanel: 0
+  gunData: {fileID: 0}
   monsterLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -4965,6 +4967,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpenPanel: 0
+  gunData: {fileID: 0}
   pistolRootData: {fileID: 11400000, guid: 1e7d7e7a6c70ba44db2d03a9a29e93fa, type: 2}
 --- !u!1 &2969848580476151737
 GameObject:
@@ -7460,6 +7463,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpenPanel: 0
+  gunData: {fileID: 0}
   shotgunRootData: {fileID: 11400000, guid: 976842b7c5bbae64fa03dca70642c8fe, type: 2}
 --- !u!1 &4504096409266622289
 GameObject:
@@ -10499,6 +10503,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4685092562347558374}
   - {fileID: 3493811656668929161}
   m_Father: {fileID: 6479320625774284882}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11384,6 +11389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpenPanel: 0
+  gunData: {fileID: 0}
   smgRootData: {fileID: 11400000, guid: 6afac02ba7348c740ba096384b732f77, type: 2}
 --- !u!1 &6672536455306622913
 GameObject:
@@ -11474,6 +11480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpenPanel: 0
+  gunData: {fileID: 0}
   rifleRootData: {fileID: 11400000, guid: df38a8222b945fd428166bed240422d9, type: 2}
 --- !u!1 &6700863036046874513
 GameObject:
@@ -12120,6 +12127,124 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 2.5
+--- !u!1 &6970706276315332734
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4685092562347558374}
+  - component: {fileID: 6437128063068631546}
+  - component: {fileID: 6003878366087119401}
+  - component: {fileID: 1607293491206523768}
+  - component: {fileID: 6504369125463343081}
+  m_Layer: 0
+  m_Name: MonsterUICanvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4685092562347558374
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6970706276315332734}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4963680881616358659}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!223 &6437128063068631546
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6970706276315332734}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 1
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!114 &6003878366087119401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6970706276315332734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!114 &1607293491206523768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6970706276315332734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &6504369125463343081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6970706276315332734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0c120d3a270d164fb4473ada28cec7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+  hpBarPrefab: {fileID: 4933738533936838673, guid: 54cadf449cb5a744e8fa335f4956e714,
+    type: 3}
+  canvasRoot: {fileID: 4685092562347558374}
 --- !u!1 &6993711077264906187
 GameObject:
   m_ObjectHideFlags: 0
@@ -12749,6 +12874,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpenPanel: 0
+  gunData: {fileID: 0}
   SniperUI: {fileID: 5874422534606126260}
   CrosshairUI: {fileID: 6792297702586340701}
   sniperRootData: {fileID: 11400000, guid: 5d69494ea5c492b46a6fb71816eb74cb, type: 2}
@@ -13037,6 +13163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpenPanel: 0
+  gunData: {fileID: 0}
   rifleRootData: {fileID: 11400000, guid: b5bed64021f6449478f48c1b90861702, type: 2}
 --- !u!1 &7521609080505538197
 GameObject:
