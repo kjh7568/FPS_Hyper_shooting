@@ -16,7 +16,8 @@ public class MonsterAttack : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
-        
+        if (other.transform.root.gameObject != Player.localPlayer.gameObject) return;
+
         ZombieStat zombieStat = Owner.ZombieStat;
         
         CombatEvent combatEvent = new CombatEvent

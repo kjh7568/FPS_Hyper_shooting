@@ -591,7 +591,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zombieStat:
-    health: 50
     maxHealth: 50
     damage: 10
     moveSpeed: 6
