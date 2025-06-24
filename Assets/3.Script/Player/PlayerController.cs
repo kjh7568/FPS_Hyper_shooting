@@ -17,7 +17,11 @@ public class PlayerController : MonoBehaviour
 
     [Header("Mouse Settings")] [SerializeField]
     private float mouseSensitivity = 50f;
-
+    
+    [Header("사운드 설정")]
+    [SerializeField] private AudioSource footstepSource;
+    [SerializeField] private AudioClip footstepClip;
+    
     public float MouseSensitivity
     {
         get => mouseSensitivity;
@@ -68,9 +72,26 @@ public class PlayerController : MonoBehaviour
         
         characterController.Move(move * (totalSpeed));
 
+        bool isMoving = inputAxis.magnitude > 0.1f && IsGrounded();
+        if (isMoving)
+        {
+            if (!footstepSource.isPlaying)
+            {
+                footstepSource.clip = footstepClip;
+                footstepSource.loop = true;
+                footstepSource.Play();
+            }
+        }
+        else
+        {
+            if (footstepSource.isPlaying)
+            {
+                footstepSource.Stop();
+            }
+        }
+        
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
-            Debug.Log("스페이스 바 눌림!");
             velocity.y = Mathf.Sqrt(2f * jumpHeight * -gravity);
         }
 
