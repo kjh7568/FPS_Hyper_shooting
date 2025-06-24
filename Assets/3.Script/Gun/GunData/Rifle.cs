@@ -12,6 +12,7 @@ public class Rifle : WeaponController
     [Header("사운드 설정")]
     public AudioSource audioSource;
     public AudioClip fireSingle;
+    public AudioClip reloadSingle;
 
     private void Awake()
     {
@@ -118,6 +119,8 @@ public class Rifle : WeaponController
         playerController.SetShootAnimation(false);
         playerController.SetReloadAnimation();
         playerController.SetAnimationSpeed(Player.localPlayer.inventory.EquipmentStat.reloadSpeedReduction);
+        
+        audioSource.PlayOneShot(reloadSingle);
         
         yield return new WaitForSeconds(weapon.currentStat.reloadTime * (1 - Player.localPlayer.inventory.EquipmentStat.reloadSpeedReduction));
 

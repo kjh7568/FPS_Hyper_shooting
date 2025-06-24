@@ -11976,6 +11976,7 @@ MonoBehaviour:
   rifleRootData: {fileID: 11400000, guid: df38a8222b945fd428166bed240422d9, type: 2}
   audioSource: {fileID: 3130917612920569247}
   fireSingle: {fileID: 8300000, guid: 8fd205f74b23b2142be1ff5ade420247, type: 3}
+  reloadSingle: {fileID: 0}
 --- !u!82 &3130917612920569247
 AudioSource:
   m_ObjectHideFlags: 0
@@ -13833,6 +13834,7 @@ MonoBehaviour:
   rifleRootData: {fileID: 11400000, guid: b5bed64021f6449478f48c1b90861702, type: 2}
   audioSource: {fileID: 4440428146121872868}
   fireSingle: {fileID: 8300000, guid: 8fd205f74b23b2142be1ff5ade420247, type: 3}
+  reloadSingle: {fileID: 8300000, guid: 556b736c27560644fac23555cb58571c, type: 3}
 --- !u!82 &4440428146121872868
 AudioSource:
   m_ObjectHideFlags: 0
