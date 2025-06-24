@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82a88f27619d9ca48b7685396de478bc, type: 3}
+  m_Name: HpRegenUp
+  m_EditorClassIdentifier: 
+  coreID: 6
+  coreNameKor: "\uCD08\uB2F9 \uD68C\uBCF5\uB825 \uC99D\uAC00"
+  coreIcon: {fileID: 21300000, guid: 1384e90c76437b347b731eb00d5507c3, type: 3}
+  description: "\uCD08\uB2F9 \uCCB4\uB825\uD68C\uBCF5\uC774 \uC99D\uAC00\uD569\uB2C8\uB2E4"
+  type: 1
+  infoIndex: 5
+  levelStats:
+  - level: 1
+    value: 1
+    price: 5
+    detailDescription: "\uCD08\uB2F9 \uCCB4\uB825\uC774 \uD68C\uBCF5\uC774 1 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  - level: 2
+    value: 1.5
+    price: 10
+    detailDescription: "\uCD08\uB2F9 \uCCB4\uB825\uC774 \uD68C\uBCF5\uC774 1.5 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  - level: 3
+    value: 2
+    price: 15
+    detailDescription: "\uCD08\uB2F9 \uCCB4\uB825\uC774 \uD68C\uBCF5\uC774 2 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  - level: 4
+    value: 2.5
+    price: 20
+    detailDescription: "\uCD08\uB2F9 \uCCB4\uB825\uC774 \uD68C\uBCF5\uC774 2.5 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  - level: 5
+    value: 3
+    price: 25
+    detailDescription: "\uCD08\uB2F9 \uCCB4\uB825\uC774 \uD68C\uBCF5\uC774 3 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  - level: 0
+    value: 0
+    price: 0
+    detailDescription: 

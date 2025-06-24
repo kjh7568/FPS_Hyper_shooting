@@ -24,9 +24,11 @@ public class UIManager : MonoBehaviour
 
         var playerStat = Player.localPlayer.playerStat;
         var armorStat = Player.localPlayer.inventory.EquipmentStat;
+        var coreStat = CoreApplier.Instance.GetCoreStat();
         var myGun = WeaponManager.instance.currentWeapon;
-
-        var totalHealth = (playerStat.maxHealth + armorStat.increaseHealth) * armorStat.multiplierHealth;
+        
+        var totalHealth = (playerStat.maxHealth + armorStat.increaseHealth + coreStat.coreHp) * armorStat.multiplierHealth;
+        // var totalHealth = (playerStat.maxHealth + armorStat.increaseHealth) * armorStat.multiplierHealth;
         
         hpText.text = $"{playerStat.health} / {totalHealth}";
         bulletText.text = $"{myGun.weapon.currentAmmo} / {myGun.weapon.currentStat.magazine}";
@@ -36,7 +38,8 @@ public class UIManager : MonoBehaviour
         
         Color setColor = hpBar.color;
 
-        float ratio = (playerStat.maxHealth - playerStat.health) / (playerStat.maxHealth + armorStat.increaseHealth);
+       //  float ratio = (playerStat.maxHealth - playerStat.health) / (playerStat.maxHealth + armorStat.increaseHealth);
+        float ratio = (totalHealth - playerStat.health) / totalHealth;
 
         setColor.r = ratio;     // 체력 줄수록 빨강 증가
         setColor.g = 1 - ratio; // 체력 줄수록 초록 감소
