@@ -1,12 +1,17 @@
 using System;
 using UnityEngine;
 using System.Collections;
+using Random = UnityEngine.Random;
 
 public class Smg : WeaponController
 {
     private float nextFireTime = 0f;
     private PlayerController playerController;
-    [SerializeField] private WeaponDataSO smgRootData; 
+    [SerializeField] private WeaponDataSO smgRootData;
+
+    [Header("사운드 설정")]
+    public AudioSource audioSource;
+    public AudioClip fireSingle; 
 
     private void Awake()
     {
@@ -31,6 +36,10 @@ public class Smg : WeaponController
             if (weapon.currentAmmo > 0)
             {
                 Fire();
+                
+                audioSource.pitch = Random.Range(0.95f, 1.05f);
+                audioSource.PlayOneShot(fireSingle);
+                
                 playerController.SetShootAnimation(true);
                 nextFireTime = Time.time + weapon.currentStat.fireRate;
             }
