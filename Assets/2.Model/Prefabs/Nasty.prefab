@@ -701,6 +701,8 @@ MonoBehaviour:
     moveSpeed: 10
     isCanRun: 0
   mainCollider: {fileID: 89046488495097727}
+  bloodPrefab: {fileID: 57171193226315786, guid: e157d2169c621ac46af57c72493e7e92,
+    type: 3}
 --- !u!114 &789132819471563456
 MonoBehaviour:
   m_ObjectHideFlags: 0

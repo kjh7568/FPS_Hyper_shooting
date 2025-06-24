@@ -5,9 +5,12 @@ using UnityEngine;
 public class NormalZombie : MonoBehaviour, IMonster
 {
     public ZombieStat ZombieStat => zombieStat;
-
     public ZombieStat zombieStat;
 
+    [SerializeField] private GameObject bloodPrefab;
+
+    private WaitForSeconds delay = new WaitForSeconds(2f);
+    
     public void Start()
     {
         CombatSystem.Instance.RegisterMonster(this);
@@ -26,6 +29,8 @@ public class NormalZombie : MonoBehaviour, IMonster
     {
         zombieStat.health -= combatEvent.Damage;
 
+        StartCoroutine(SpawnAndRemoveBlood(combatEvent.HitPosition));
+        
         Collider[] hits = Physics.OverlapSphere(transform.position, 3f, monsterLayer);
 
         foreach (Collider hit in hits)
@@ -65,5 +70,14 @@ public class NormalZombie : MonoBehaviour, IMonster
         var goldCount = Random.Range(1, 5);
         
         ItemGenerator.instance.SpawnGold(transform.position, goldCount);
+    }
+
+    private IEnumerator SpawnAndRemoveBlood(Vector3 position)
+    {
+        var blood =  Instantiate(bloodPrefab, position, Quaternion.identity);
+
+        yield return delay;
+        
+        Destroy(blood);
     }
 }

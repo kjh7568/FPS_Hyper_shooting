@@ -14,7 +14,9 @@ public class Nasty : MonoBehaviour, IMonster
 
     [SerializeField] private ZombieStat zombieStat;
     [SerializeField] private Collider mainCollider;
+    [SerializeField] private GameObject bloodPrefab;
 
+    private WaitForSeconds delay = new WaitForSeconds(2f);
     private float desiredHealth;
 
     public void Start()
@@ -28,6 +30,8 @@ public class Nasty : MonoBehaviour, IMonster
     {
         zombieStat.health -= combatEvent.Damage;
 
+        StartCoroutine(SpawnAndRemoveBlood(combatEvent.HitPosition));
+        
         if (zombieStat.health <= 0)
         {
             GetComponent<BossController>().SwitchState(new BossDieState());
@@ -52,5 +56,14 @@ public class Nasty : MonoBehaviour, IMonster
     public void TakeHeal(HealEvent combatEvent)
     {
         throw new System.NotImplementedException();
+    }
+
+    private IEnumerator SpawnAndRemoveBlood(Vector3 position)
+    {
+        var blood =  Instantiate(bloodPrefab, position, Quaternion.identity);
+
+        yield return delay;
+        
+        Destroy(blood);
     }
 }
