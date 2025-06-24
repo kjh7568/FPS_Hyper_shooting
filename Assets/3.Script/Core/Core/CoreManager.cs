@@ -1,72 +1,13 @@
 using UnityEngine;
 
-[System.Serializable]
-public class CoreStat
+public class CoreManager : MonoBehaviour
 {
-    // Defense
-    public float coreDefense;
-    public float coreHp;
-    public float coreHpRegion;
-
-    // Attack
-    public float coreDamage;
-    public float primaryDamage;
-    public float secondaryDamage;
-    public float meleeDamage;
-    public float grenadeDamage;
-
-    // Utility
-    public float coinDropChance;
-    public float coinDropRange;
-    public float itemDropChance;
-    public float coreMovementSpeed;
-    public float grenadeCooldown;
-    public float grenadeRange;
-}
-
-public class CoreApplier : MonoBehaviour
-{
-    public static CoreApplier Instance;
-
-    private CoreStat coreStat = new CoreStat();
-
-    private float regenTimer = 0f;
+    public static CoreManager Instance;
+    
     private void Awake()
     {
         if (Instance == null) Instance = this;
     }
-    private void Update()
-    {
-        RegenerateHealthOverTime();
-    }
-
-    private void RegenerateHealthOverTime()
-    {
-        if (Player.localPlayer == null) return;
-
-        var stat      = Player.localPlayer.playerStat;
-        var armorStat = Player.localPlayer.inventory.EquipmentStat;
-        float regen   = coreStat.coreHpRegion;
-        if (regen <= 0f) return;
-
-        // **전체 최대체력 계산 (기본 + 코어 + 방어구)**
-        float totalMax = (stat.maxHealth 
-                          + coreStat.coreHp 
-                          + armorStat.increaseHealth) 
-                         * armorStat.multiplierHealth;
-
-        if (stat.health >= totalMax) return;
-
-        regenTimer += Time.deltaTime;
-        if (regenTimer < 1f) return;
-        regenTimer = 0f;
-
-        stat.health += regen;
-        if (stat.health > totalMax)
-            stat.health = totalMax;
-    }
-
-
 
     public void ApplyCore(CoreDataSO data, int level)
     {
@@ -79,6 +20,8 @@ public class CoreApplier : MonoBehaviour
 
         float value = levelData.value;
 
+        var coreStat = Player.localPlayer.coreStat;
+        
         switch (data.coreID)
         {
             // Attack
@@ -100,7 +43,7 @@ public class CoreApplier : MonoBehaviour
 
             // Defense
             case CoreID.DefUp:
-                coreStat.coreDefense += value;
+                coreStat.coreDefense = value;
                 break;
             case CoreID.HpRegenUp:
                 coreStat.coreHpRegion += value;
@@ -135,10 +78,5 @@ public class CoreApplier : MonoBehaviour
         }
 
         // TODO: PlayerStat.Instance.ApplyCoreStat(coreStat); 여기에 반영할 수도 있음
-    }
-
-    public CoreStat GetCoreStat()
-    {
-        return coreStat;
     }
 }

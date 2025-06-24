@@ -20,26 +20,22 @@ MonoBehaviour:
   infoIndex: 5
   levelStats:
   - level: 1
-    value: 1
+    value: 0.2
     price: 5
-    detailDescription: "\uCD08\uB2F9 \uCCB4\uB825\uC774 \uD68C\uBCF5\uC774 1 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+    detailDescription: "\uCD08\uB2F9 \uCCB4\uB825 \uD68C\uBCF5\uC774 0.2/s \uCD94\uAC00\uB429\uB2C8\uB2E4."
   - level: 2
-    value: 1.5
+    value: 0.35
     price: 10
-    detailDescription: "\uCD08\uB2F9 \uCCB4\uB825\uC774 \uD68C\uBCF5\uC774 1.5 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+    detailDescription: "\uCD08\uB2F9 \uCCB4\uB825 \uD68C\uBCF5\uC774 0.35/s \uCD94\uAC00\uB429\uB2C8\uB2E4."
   - level: 3
-    value: 2
+    value: 0.5
     price: 15
-    detailDescription: "\uCD08\uB2F9 \uCCB4\uB825\uC774 \uD68C\uBCF5\uC774 2 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+    detailDescription: "\uCD08\uB2F9 \uCCB4\uB825 \uD68C\uBCF5\uC774 0.5/s \uCD94\uAC00\uB429\uB2C8\uB2E4."
   - level: 4
-    value: 2.5
+    value: 0.75
     price: 20
-    detailDescription: "\uCD08\uB2F9 \uCCB4\uB825\uC774 \uD68C\uBCF5\uC774 2.5 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+    detailDescription: "\uCD08\uB2F9 \uCCB4\uB825 \uD68C\uBCF5\uC774 0.75/s \uCD94\uAC00\uB429\uB2C8\uB2E4."
   - level: 5
-    value: 3
+    value: 1.2
     price: 25
-    detailDescription: "\uCD08\uB2F9 \uCCB4\uB825\uC774 \uD68C\uBCF5\uC774 3 \uC99D\uAC00\uD569\uB2C8\uB2E4."
-  - level: 0
-    value: 0
-    price: 0
-    detailDescription: 
+    detailDescription: "\uCD08\uB2F9 \uCCB4\uB825 \uD68C\uBCF5\uC774 1.2/s \uCD94\uAC00\uB429\uB2C8\uB2E4."

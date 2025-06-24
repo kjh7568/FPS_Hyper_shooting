@@ -24,7 +24,8 @@ public class UIManager : MonoBehaviour
 
         var playerStat = Player.localPlayer.playerStat;
         var armorStat = Player.localPlayer.inventory.EquipmentStat;
-        var coreStat = CoreApplier.Instance.GetCoreStat();
+        var coreStat = Player.localPlayer.coreStat;
+        
         var myGun = WeaponManager.instance.currentWeapon;
         
         var totalHealth = (playerStat.maxHealth + armorStat.increaseHealth + coreStat.coreHp) * armorStat.multiplierHealth;

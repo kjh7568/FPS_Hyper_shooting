@@ -8,6 +8,7 @@ public class Player : MonoBehaviour, IDamageAble
     public Collider MainCollider => mainCollider;
     public GameObject GameObject => gameObject;
     public PlayerStat playerStat;
+    public CoreStat coreStat;
     
     [SerializeField] private Collider mainCollider;
     
@@ -19,6 +20,8 @@ public class Player : MonoBehaviour, IDamageAble
     [SerializeField] private ArmorDataSO bootsSO;
 
     public int coin = 0;
+    
+    private float regenTimer = 0f;
     
     private void Awake()
     {
@@ -37,7 +40,12 @@ public class Player : MonoBehaviour, IDamageAble
         inventory.EquipArmor(gloves);
         inventory.EquipArmor(boots);
     }
-    
+
+    private void Update()
+    {
+        RegenerateHealthOverTime();
+    }
+
     public void TakeDamage(CombatEvent combatEvent)
     {
         playerStat.health -= combatEvent.Damage;
@@ -52,5 +60,33 @@ public class Player : MonoBehaviour, IDamageAble
     public void TakeHeal(HealEvent combatEvent)
     {
         throw new NotImplementedException();
+    }
+    
+    private void RegenerateHealthOverTime()
+    {
+        if (Player.localPlayer == null) return;
+
+        var coreStat = Player.localPlayer.coreStat;
+        
+        var stat      = Player.localPlayer.playerStat;
+        var armorStat = Player.localPlayer.inventory.EquipmentStat;
+        float regen   = coreStat.coreHpRegion;
+        if (regen <= 0f) return;
+
+        // **전체 최대체력 계산 (기본 + 코어 + 방어구)**
+        float totalMax = (stat.maxHealth 
+                          + coreStat.coreHp 
+                          + armorStat.increaseHealth) 
+                         * armorStat.multiplierHealth;
+
+        if (stat.health >= totalMax) return;
+
+        regenTimer += Time.deltaTime;
+        if (regenTimer < 1f) return;
+        regenTimer = 0f;
+
+        stat.health += regen;
+        if (stat.health > totalMax)
+            stat.health = totalMax;
     }
 }

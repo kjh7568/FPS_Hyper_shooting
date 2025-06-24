@@ -7514,7 +7514,6 @@ GameObject:
   - component: {fileID: 6650611116803163633}
   - component: {fileID: 8549865180409883748}
   - component: {fileID: 6138356356573544447}
-  - component: {fileID: -5199137664814415713}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -7605,6 +7604,21 @@ MonoBehaviour:
     moveSpeed: 8
     dashCoolTime: 2
     pickupRadius: 10
+  coreStat:
+    coreDefense: 0
+    coreHp: 0
+    coreHpRegion: 0
+    coreDamage: 0
+    primaryDamage: 0
+    secondaryDamage: 0
+    meleeDamage: 0
+    grenadeDamage: 0
+    coinDropChance: 0
+    coinDropRange: 0
+    itemDropChance: 0
+    coreMovementSpeed: 0
+    grenadeCooldown: 0
+    grenadeRange: 0
   mainCollider: {fileID: 7116260080126133883}
   helmetSO: {fileID: 11400000, guid: 2eacb1e137c8613468c1453399164911, type: 2}
   chestPlateSO: {fileID: 11400000, guid: 78ba3eaa40bbc77489b25b7c4a15b39b, type: 2}
@@ -7739,18 +7753,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &-5199137664814415713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4375937461884750312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cced92f542968b48b56240867d4df24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4380898700811560446
 GameObject:
   m_ObjectHideFlags: 0
