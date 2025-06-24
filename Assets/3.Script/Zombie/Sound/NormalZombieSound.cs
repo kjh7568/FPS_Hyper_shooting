@@ -18,6 +18,8 @@ public class NormalZombieSound : MonoBehaviour
     
     private Coroutine growlRoutine;
     private Coroutine runLoopRoutine;
+
+    private bool isAlreadyRun = false;
     
     void Start()
     {
@@ -46,6 +48,10 @@ public class NormalZombieSound : MonoBehaviour
     // 🏃‍♂️ 추격 시 루프 사운드 (걷는/뛰는 소리)
     public void PlayRunLoop()
     {
+        if(isAlreadyRun) return;
+
+        isAlreadyRun = true;
+        
         StopAllCoroutines();
 
         if (runLoopClip != null)
