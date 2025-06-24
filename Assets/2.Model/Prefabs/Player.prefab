@@ -1279,6 +1279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOpenPanel: 0
   gunData: {fileID: 0}
+  muzzleFlash: {fileID: 0}
   knifeRootData: {fileID: 11400000, guid: 17ebf8d835c9d13439db997c92610595, type: 2}
   audioSource: {fileID: 3732999758626641469}
   fireSingle: {fileID: 8300000, guid: 182078f8e3dc35045961fa5e3a9b019b, type: 3}
@@ -1711,6 +1712,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOpenPanel: 0
   gunData: {fileID: 0}
+  muzzleFlash: {fileID: 0}
   monsterLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -5249,6 +5251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOpenPanel: 0
   gunData: {fileID: 0}
+  muzzleFlash: {fileID: 0}
   pistolRootData: {fileID: 11400000, guid: 1e7d7e7a6c70ba44db2d03a9a29e93fa, type: 2}
   audioSource: {fileID: 0}
   fireSingle: {fileID: 0}
@@ -7959,6 +7962,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOpenPanel: 0
   gunData: {fileID: 0}
+  muzzleFlash: {fileID: 0}
   shotgunRootData: {fileID: 11400000, guid: 976842b7c5bbae64fa03dca70642c8fe, type: 2}
   audioSource: {fileID: 3772936097893758709}
   fireSingle: {fileID: 8300000, guid: db65bc960e3e4ec4290f6aeae4ac4dd9, type: 3}
@@ -11983,6 +11987,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOpenPanel: 0
   gunData: {fileID: 0}
+  muzzleFlash: {fileID: 0}
   smgRootData: {fileID: 11400000, guid: 6afac02ba7348c740ba096384b732f77, type: 2}
   audioSource: {fileID: 7805515993495290120}
   fireSingle: {fileID: 8300000, guid: 8fd205f74b23b2142be1ff5ade420247, type: 3}
@@ -12173,6 +12178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOpenPanel: 0
   gunData: {fileID: 0}
+  muzzleFlash: {fileID: 0}
   rifleRootData: {fileID: 11400000, guid: df38a8222b945fd428166bed240422d9, type: 2}
   audioSource: {fileID: 3130917612920569247}
   fireSingle: {fileID: 8300000, guid: 8fd205f74b23b2142be1ff5ade420247, type: 3}
@@ -13621,6 +13627,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOpenPanel: 0
   gunData: {fileID: 0}
+  muzzleFlash: {fileID: 0}
   SniperUI: {fileID: 5874422534606126260}
   CrosshairUI: {fileID: 6792297702586340701}
   sniperRootData: {fileID: 11400000, guid: 5d69494ea5c492b46a6fb71816eb74cb, type: 2}
@@ -13988,6 +13995,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8034919450147257680}
   - {fileID: 1559523399927011307}
   - {fileID: 4762529388485376760}
   - {fileID: 4893797959521354403}
@@ -14031,6 +14039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOpenPanel: 0
   gunData: {fileID: 0}
+  muzzleFlash: {fileID: 7262639372914599914}
   rifleRootData: {fileID: 11400000, guid: b5bed64021f6449478f48c1b90861702, type: 2}
   audioSource: {fileID: 4440428146121872868}
   fireSingle: {fileID: 8300000, guid: 8fd205f74b23b2142be1ff5ade420247, type: 3}
@@ -16714,3 +16723,83 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &7497224363676670651
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 9171325603649825860}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 62cc14ff2c39bb84dbaf6154cdbd50a2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0038
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 62cc14ff2c39bb84dbaf6154cdbd50a2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0166
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 62cc14ff2c39bb84dbaf6154cdbd50a2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.4327
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 62cc14ff2c39bb84dbaf6154cdbd50a2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 62cc14ff2c39bb84dbaf6154cdbd50a2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 62cc14ff2c39bb84dbaf6154cdbd50a2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 62cc14ff2c39bb84dbaf6154cdbd50a2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 62cc14ff2c39bb84dbaf6154cdbd50a2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 62cc14ff2c39bb84dbaf6154cdbd50a2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 62cc14ff2c39bb84dbaf6154cdbd50a2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 62cc14ff2c39bb84dbaf6154cdbd50a2,
+        type: 3}
+      propertyPath: m_Name
+      value: SM_MuzzleFlash
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 62cc14ff2c39bb84dbaf6154cdbd50a2, type: 3}
+--- !u!1 &7262639372914599914 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 62cc14ff2c39bb84dbaf6154cdbd50a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 7497224363676670651}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8034919450147257680 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 62cc14ff2c39bb84dbaf6154cdbd50a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 7497224363676670651}
+  m_PrefabAsset: {fileID: 0}

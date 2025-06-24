@@ -10,6 +10,9 @@ public abstract class WeaponController : MonoBehaviour
     
     public WeaponDataSO gunData; // 필요시 여기에서 weapon 생성
 
+    public GameObject muzzleFlash;
+    
+    private WaitForSeconds delay = new  WaitForSeconds(0.05f);
     private void Start()
     {
         // weapon이 null이면 여기서 생성할 수 있어야 함
@@ -18,6 +21,7 @@ public abstract class WeaponController : MonoBehaviour
             weapon = new Weapon(gunData); // 생성자 필요
         }
     }
+    
     protected WeaponGrade GetRandomGrade()
     {
         int roll = Random.Range(0, 100);
@@ -37,6 +41,16 @@ public abstract class WeaponController : MonoBehaviour
     {
         weapon = parameter;
         weapon.currentAmmo = weapon.currentStat.magazine;
+    }
+
+    protected IEnumerator PlayMuzzleFlash()
+    {
+        muzzleFlash.transform.localRotation *= Quaternion.AngleAxis(Random.Range(0, 360), Vector3.right);
+        muzzleFlash.SetActive(true);
+
+        yield return delay;
+        
+        muzzleFlash.SetActive(false);
     }
     
     public abstract void Fire();
