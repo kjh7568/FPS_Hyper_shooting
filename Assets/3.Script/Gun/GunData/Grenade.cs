@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -7,7 +8,11 @@ public class Grenade : WeaponController
     [SerializeField] private LayerMask monsterLayer;
     [SerializeField] private WeaponDataSO grenadeRootData; 
     private Rigidbody rb;
-
+    private bool isAlreadyBomb = false;
+    [Header("사운드 설정")]
+    public AudioSource audioSource;
+    public AudioClip explosionSingle;
+    
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -19,6 +24,9 @@ public class Grenade : WeaponController
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player")) return;
+        if(isAlreadyBomb) return;
+
+        isAlreadyBomb = true;
         
         // 오직 Monster 레이어에만 반응
         Collider[] hits = Physics.OverlapSphere(transform.position, 3f, monsterLayer);
@@ -40,6 +48,13 @@ public class Grenade : WeaponController
             }
         }
 
+        audioSource.PlayOneShot(explosionSingle);
+        StartCoroutine(DelayDestroy());
+    }
+
+    private IEnumerator DelayDestroy()
+    {
+        yield return new WaitForSeconds(3f);        
         Destroy(gameObject);
     }
     
