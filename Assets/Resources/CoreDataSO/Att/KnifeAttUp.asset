@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82a88f27619d9ca48b7685396de478bc, type: 3}
   m_Name: KnifeAttUp
   m_EditorClassIdentifier: 
-  coreName: "\uADFC\uC811\uBB34\uAE30 \uACF5\uACA9\uB825 \uC99D\uAC00"
+  coreID: 3
+  coreNameKor: "\uADFC\uC811\uBB34\uAE30 \uACF5\uACA9\uB825 \uC99D\uAC00"
   coreIcon: {fileID: 21300000, guid: ee40d25cc432cfb48826e2c04209b5a4, type: 3}
   description: "\uADFC\uC811\uBB34\uAE30 \uACF5\uACA9\uB825\uC774 \uC99D\uAC00\uD569\uB2C8\uB2E4."
   type: 0

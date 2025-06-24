@@ -9448,6 +9448,7 @@ GameObject:
   - component: {fileID: 330989942}
   - component: {fileID: 330989941}
   - component: {fileID: 330989940}
+  - component: {fileID: 330989943}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -9557,6 +9558,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330989938}
   m_CullTransparentMesh: 1
+--- !u!114 &330989943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330989938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cced92f542968b48b56240867d4df24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &331006899
 GameObject:
   m_ObjectHideFlags: 0
@@ -11431,7 +11444,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Upgrade
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -16265,7 +16278,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Upgrade
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -17904,7 +17917,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uCF54\uC5B4 \uC0C1\uC138 \uC124\uBA85"
+  m_text: Lv3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f085f477550bdcf4f83d18d2df22803a, type: 2}
   m_sharedMaterial: {fileID: -9105841546676098429, guid: f085f477550bdcf4f83d18d2df22803a,
@@ -31780,7 +31793,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Upgrade
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -32558,6 +32571,7 @@ GameObject:
   - component: {fileID: 1141335119}
   - component: {fileID: 1141335118}
   - component: {fileID: 1141335117}
+  - component: {fileID: 1141335120}
   m_Layer: 5
   m_Name: Button (2)
   m_TagString: Untagged
@@ -32667,6 +32681,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1141335115}
   m_CullTransparentMesh: 1
+--- !u!114 &1141335120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141335115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cced92f542968b48b56240867d4df24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1145744409
 GameObject:
   m_ObjectHideFlags: 0
@@ -39032,6 +39058,7 @@ GameObject:
   - component: {fileID: 1390258510}
   - component: {fileID: 1390258509}
   - component: {fileID: 1390258508}
+  - component: {fileID: 1390258511}
   m_Layer: 5
   m_Name: Button (4)
   m_TagString: Untagged
@@ -39141,6 +39168,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1390258506}
   m_CullTransparentMesh: 1
+--- !u!114 &1390258511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390258506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cced92f542968b48b56240867d4df24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1396433403
 GameObject:
   m_ObjectHideFlags: 0
@@ -42421,7 +42460,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uCF54\uC5B4 \uC0C1\uC138 \uC124\uBA85"
+  m_text: Lv2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f085f477550bdcf4f83d18d2df22803a, type: 2}
   m_sharedMaterial: {fileID: -9105841546676098429, guid: f085f477550bdcf4f83d18d2df22803a,
@@ -42863,7 +42902,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uCF54\uC5B4 \uC0C1\uC138 \uC124\uBA85"
+  m_text: Lv5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f085f477550bdcf4f83d18d2df22803a, type: 2}
   m_sharedMaterial: {fileID: -9105841546676098429, guid: f085f477550bdcf4f83d18d2df22803a,
@@ -47649,6 +47688,7 @@ GameObject:
   - component: {fileID: 1729450046}
   - component: {fileID: 1729450045}
   - component: {fileID: 1729450044}
+  - component: {fileID: 1729450047}
   m_Layer: 5
   m_Name: Button (3)
   m_TagString: Untagged
@@ -47758,6 +47798,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1729450042}
   m_CullTransparentMesh: 1
+--- !u!114 &1729450047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729450042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cced92f542968b48b56240867d4df24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1733679554
 GameObject:
   m_ObjectHideFlags: 0
@@ -49074,7 +49126,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uCF54\uC5B4 \uC0C1\uC138 \uC124\uBA85"
+  m_text: Lv1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f085f477550bdcf4f83d18d2df22803a, type: 2}
   m_sharedMaterial: {fileID: -9105841546676098429, guid: f085f477550bdcf4f83d18d2df22803a,
@@ -50056,7 +50108,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Upgrade
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -51029,6 +51081,7 @@ GameObject:
   - component: {fileID: 1868592793}
   - component: {fileID: 1868592792}
   - component: {fileID: 1868592791}
+  - component: {fileID: 1868592794}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -51138,6 +51191,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1868592789}
   m_CullTransparentMesh: 1
+--- !u!114 &1868592794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868592789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cced92f542968b48b56240867d4df24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1870178447
 GameObject:
   m_ObjectHideFlags: 0
@@ -55574,7 +55639,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Upgrade
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -56420,7 +56485,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uCF54\uC5B4 \uC0C1\uC138 \uC124\uBA85"
+  m_text: Lv4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f085f477550bdcf4f83d18d2df22803a, type: 2}
   m_sharedMaterial: {fileID: -9105841546676098429, guid: f085f477550bdcf4f83d18d2df22803a,

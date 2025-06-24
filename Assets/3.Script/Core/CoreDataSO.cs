@@ -4,12 +4,13 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "NewCoreData", menuName = "Core/CoreData")]
 public class CoreDataSO : ScriptableObject
 {
-    public string coreName;
-    public Sprite coreIcon;                   // 코어 아이콘 이미지
+    public CoreID coreID;              // 내부 식별용 enum
+    public string coreNameKor;         // UI 출력용 한글 이름
+    public Sprite coreIcon;            // 코어 아이콘 이미지
     [TextArea]
-    public string description;
-    public CoreType type;
-    public int infoIndex;
+    public string description;         // 일반 설명
+    public CoreType type;              // 타입 (Attack / Defense / Utility)
+    public int infoIndex;              // UI 출력 위치
 
     public List<CoreLevelData> levelStats = new List<CoreLevelData>();
 
@@ -21,8 +22,8 @@ public class CoreDataSO : ScriptableObject
             CoreLevelData levelData = new CoreLevelData
             {
                 level = i,
-                value = i * 5f, // 예시: +1, +2, ...
-                price = i * 5,  // 5, 10, 15, 20, 25
+                value = i * 5f,
+                price = i * 5,
                 detailDescription = $"레벨 {i} 효과 설명입니다."
             };
             levelStats.Add(levelData);
@@ -45,4 +46,22 @@ public enum CoreType
     Attack,
     Defense,
     Utility
+}
+
+public enum CoreID
+{
+    AttUp,
+    PrimaryAttUp,
+    SecondaryAttUp,
+    KnifeAttUp,
+    GrenadeAttUp,
+    DefUp,
+    HpRegenUp,
+    MaxHpUp,
+    MovementSpeedUp,
+    CoinDropChanceUp,
+    ItemDropChanceUp,
+    CoinGetRangeUp,
+    GrenadeCoolReduce,
+    GrenadeRangeUp
 }

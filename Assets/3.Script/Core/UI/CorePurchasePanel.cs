@@ -59,12 +59,13 @@ public class CorePurchasePanel : MonoBehaviour
     private void Buy(int levelIndex)
     {
         var data = selectedCore.levelStats[levelIndex];
-        Debug.Log($"[{selectedCore.coreName}] {data.level}레벨 구매! 가격: {data.price}G");
+        Debug.Log($"[{selectedCore?.coreNameKor}] {data?.level}레벨 구매! 가격: {data?.price}G");
+       // 비용처리 추가필요
+        CoreApplier.Instance.ApplyCore(selectedCore, data.level);
 
-        // 실제 구매 로직은 나중에 PlayerData.Instance.UseGold(data.price); 등으로 처리
-
-        currentLevel++; // 다음 레벨 구매 가능하게
+        currentLevel++;
         UpdateUI();
-        CoreInfoPanel.Instance.DisplayCore(selectedCore); // Info 갱신
+        CoreInfoPanel.Instance.DisplayCore(selectedCore);
     }
+
 }

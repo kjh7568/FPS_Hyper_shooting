@@ -25,7 +25,7 @@ public class CoreInfoPanel : MonoBehaviour
             return;
         }
 
-        titleText.text = coreData.coreName;
+        titleText.text = coreData.coreNameKor;
         for (int i = 0; i < levelDetailTexts.Length; i++)
         {
             if (i < coreData.levelStats.Count)

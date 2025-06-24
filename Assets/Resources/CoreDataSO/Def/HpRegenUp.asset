@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82a88f27619d9ca48b7685396de478bc, type: 3}
   m_Name: HpRegenUp
   m_EditorClassIdentifier: 
-  coreName: "\uCCB4\uB825\uD68C\uBCF5\uB7C9 \uC99D\uAC00"
+  coreID: 6
+  coreNameKor: "\uCD08\uB2F9 \uD68C\uBCF5\uB825 \uC99D\uAC00"
   coreIcon: {fileID: 21300000, guid: 1384e90c76437b347b731eb00d5507c3, type: 3}
   description: "\uCD08\uB2F9 \uCCB4\uB825\uD68C\uBCF5\uC774 \uC99D\uAC00\uD569\uB2C8\uB2E4"
   type: 1

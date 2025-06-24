@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82a88f27619d9ca48b7685396de478bc, type: 3}
   m_Name: DefUp
   m_EditorClassIdentifier: 
-  coreName: "\uBC29\uC5B4\uB825 \uC99D\uAC00"
+  coreID: 5
+  coreNameKor: "\uBC29\uC5B4\uB825 \uC99D\uAC00"
   coreIcon: {fileID: 21300000, guid: c3c68df45c3afa84fbfdf4b89bce58fc, type: 3}
   description: "\uBC29\uC5B4\uB825 \uC99D\uAC00"
   type: 1
@@ -32,7 +33,7 @@ MonoBehaviour:
     detailDescription: "\uBC29\uC5B4\uB825\uC774 15% \uC99D\uAC00\uD569\uB2C8\uB2E4\t\t"
   - level: 4
     value: 20
-    price: 0
+    price: 20
     detailDescription: "\uBC29\uC5B4\uB825\uC774 20% \uC99D\uAC00\uD569\uB2C8\uB2E4\t\t"
   - level: 5
     value: 25

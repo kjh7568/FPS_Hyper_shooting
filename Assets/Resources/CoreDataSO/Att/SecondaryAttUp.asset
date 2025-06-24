@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82a88f27619d9ca48b7685396de478bc, type: 3}
   m_Name: SecondaryAttUp
   m_EditorClassIdentifier: 
-  coreName: "\uBCF4\uC870\uBB34\uAE30 \uACF5\uACA9\uB825 \uC99D\uAC00"
+  coreID: 2
+  coreNameKor: "\uBCF4\uC870\uBB34\uAE30 \uACF5\uACA9\uB825 \uC99D\uAC00"
   coreIcon: {fileID: 21300000, guid: cf299a7e3919e8c46a32d9e3089dd7be, type: 3}
   description: "\uBCF4\uC870\uBB34\uAE30 \uACF5\uACA9\uB825\uC774 \uC99D\uAC00\uD569\uB2C8\uB2E4."
   type: 0
