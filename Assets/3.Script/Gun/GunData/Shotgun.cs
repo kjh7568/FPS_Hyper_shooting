@@ -7,6 +7,10 @@ public class Shotgun : WeaponController
     private PlayerController playerController;
     [SerializeField] private WeaponDataSO shotgunRootData; 
 
+    [Header("사운드 설정")]
+    public AudioSource audioSource;
+    public AudioClip fireSingle;
+
     private void Awake()
     {
         this.weapon = new Weapon(shotgunRootData, WeaponGrade.Common);
@@ -30,6 +34,10 @@ public class Shotgun : WeaponController
             if (weapon.currentAmmo > 0)
             {
                 Fire();
+                
+                audioSource.pitch = Random.Range(0.95f, 1.05f);
+                audioSource.PlayOneShot(fireSingle);
+                
                 playerController.SetShootAnimation(true);
                 StartCoroutine(ResetShootBool());
                 nextFireTime = Time.time + weapon.currentStat.fireRate;

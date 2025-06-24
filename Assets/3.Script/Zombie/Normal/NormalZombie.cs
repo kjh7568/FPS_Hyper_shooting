@@ -37,6 +37,7 @@ public class NormalZombie : MonoBehaviour, IMonster
         {
             isDead = true;
             GetComponent<NormalZombieController>().Die();
+            GetComponent<NormalZombieSound>().PlayDeathSound();
             RandomItemDrop();
             GoldDrop();
             mainCollider.enabled = false;

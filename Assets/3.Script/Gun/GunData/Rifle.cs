@@ -1,12 +1,18 @@
 using System;
 using UnityEngine;
 using System.Collections;
+using Random = UnityEngine.Random;
 
 public class Rifle : WeaponController
 {
     private float nextFireTime = 0f;
     private PlayerController playerController; 
     [SerializeField] private WeaponDataSO rifleRootData; 
+
+    [Header("사운드 설정")]
+    public AudioSource audioSource;
+    public AudioClip fireSingle;
+    public AudioClip reloadSingle;
 
     private void Awake()
     {
@@ -31,6 +37,10 @@ public class Rifle : WeaponController
             if (weapon.currentAmmo > 0)
             {
                 Fire();
+                
+                audioSource.pitch = Random.Range(0.95f, 1.05f);
+                audioSource.PlayOneShot(fireSingle);
+                
                 playerController.SetShootAnimation(true);
                 nextFireTime = Time.time + weapon.currentStat.fireRate;
             }
@@ -109,6 +119,8 @@ public class Rifle : WeaponController
         playerController.SetShootAnimation(false);
         playerController.SetReloadAnimation();
         playerController.SetAnimationSpeed(Player.localPlayer.inventory.EquipmentStat.reloadSpeedReduction);
+        
+        audioSource.PlayOneShot(reloadSingle);
         
         yield return new WaitForSeconds(weapon.currentStat.reloadTime * (1 - Player.localPlayer.inventory.EquipmentStat.reloadSpeedReduction));
 
