@@ -156,6 +156,8 @@ public class WeaponManager : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.F) && !stateInfo.IsName("Stab") && !stateInfo.IsName("Throw"))
         {
+            
+            
             characterModel.localPosition = KnifeStancePosition;
             characterModel.localRotation = KnifeStanceRotation;
 

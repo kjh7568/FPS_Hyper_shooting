@@ -4,6 +4,10 @@ public class Knife : WeaponController
 {
     [SerializeField] private WeaponDataSO knifeRootData; 
 
+    [Header("사운드 설정")]
+    public AudioSource audioSource;
+    public AudioClip fireSingle;
+    
     private void Awake()
     {
         this.weapon = new Weapon(knifeRootData, WeaponGrade.Common);
@@ -13,6 +17,8 @@ public class Knife : WeaponController
     // WeaponManager가 호출해서 Fire만 실행
     public override void Fire()
     {
+        audioSource.PlayOneShot(fireSingle);
+        
         float damage = GetFinalDamage();
 
         Camera cam = Camera.main;
