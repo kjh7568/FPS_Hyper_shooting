@@ -68,6 +68,7 @@ public class NormalZombieController : MonoBehaviour
     {
         if (!isChasingPlayer)
         {
+            GetComponent<NormalZombieSound>().PlayRunLoop();
             StartChase();
         }
 

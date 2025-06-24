@@ -4,44 +4,78 @@ using UnityEngine;
 
 public class NormalZombieSound : MonoBehaviour
 {
+    [Header("사운드 소스")]
     [SerializeField] private AudioSource audioSource;
-    
+
+    [Header("사운드 클립")]
     [SerializeField] private AudioClip growlClip;
+    [SerializeField] private AudioClip runLoopClip;
     [SerializeField] private AudioClip deathClip;
+
+    [Header("설정")]
+    [SerializeField] private float minGrowlDelay = 3f;
+    [SerializeField] private float maxGrowlDelay = 8f;
     
-    [SerializeField] private float minDelay = 3f;
-    [SerializeField] private float maxDelay = 8f;
+    private Coroutine growlRoutine;
+    private Coroutine runLoopRoutine;
     
-    IEnumerator PlayGrowlLoop()
+    void Start()
+    {
+        StartGrowlLoop();
+    }
+
+    // 🧟 으르렁 루프 시작
+    private void StartGrowlLoop()
+    {
+        StopAllCoroutines();
+        growlRoutine = StartCoroutine(GrowlLoop());
+    }
+
+    private IEnumerator GrowlLoop()
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(minDelay, maxDelay));
-            audioSource.pitch = Random.Range(0.95f, 1.05f); // 피치 변화로 반복감 감소
+            float delay = Random.Range(minGrowlDelay, maxGrowlDelay);
+            yield return new WaitForSeconds(delay);
+
+            audioSource.pitch = Random.Range(0.95f, 1.05f);
             audioSource.PlayOneShot(growlClip);
         }
     }
 
-    void Start()
-    {
-        float initialDelay = Random.Range(0f, 3f); // 각 좀비마다 시작 시간 다르게
-        Invoke(nameof(StartGrowlLoop), initialDelay);
-    }
-
-    void StartGrowlLoop()
-    {
-        StartCoroutine(PlayGrowlLoop());
-    }
-
-    public void StopGrowlLoopAndPlayDeath()
+    // 🏃‍♂️ 추격 시 루프 사운드 (걷는/뛰는 소리)
+    public void PlayRunLoop()
     {
         StopAllCoroutines();
-        audioSource.Stop(); // 현재 사운드 중단
+
+        if (runLoopClip != null)
+        {
+            audioSource.clip = runLoopClip;
+            audioSource.loop = true;
+            audioSource.pitch = 1f;
+            audioSource.Play();
+        }
+        else
+        {
+            Debug.LogWarning("runLoopClip이 비어있습니다!");
+        }
+    }
+
+    // ☠️ 죽을 때 호출
+    public void PlayDeathSound()
+    {
+        StopAllCoroutines();
+        audioSource.Stop();
 
         if (deathClip != null)
         {
-            audioSource.pitch = 1f; // 기본 피치로 되돌림
+            audioSource.loop = false;
+            audioSource.pitch = 1f;
             audioSource.PlayOneShot(deathClip);
+        }
+        else
+        {
+            Debug.LogWarning("deathClip이 비어있습니다!");
         }
     }
 }
