@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MasteryInteractable : MonoBehaviour
+public class CoreInteractable : MonoBehaviour
 {
     [SerializeField] private GameObject pressETextUI; // "Press E" 텍스트 오브젝트
     private bool isPlayerNear = false;
@@ -36,7 +36,7 @@ public class MasteryInteractable : MonoBehaviour
     {
         if (isPlayerNear && Input.GetKeyDown(KeyCode.E))
         {
-            MasteryPanelManager.instance.OpenPanel();
+            CorePanelManager.instance.OpenPanel();
             pressETextUI.SetActive(false); // 패널 열면 텍스트 숨김
 
             // 커서 락 해제 및 보이게 설정
