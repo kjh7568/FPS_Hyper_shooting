@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82a88f27619d9ca48b7685396de478bc, type: 3}
   m_Name: MovementSpeedUp
   m_EditorClassIdentifier: 
-  coreName: MovementSpeedUp
+  coreName: "\uAE30\uBCF8 \uC774\uB3D9\uC18D\uB3C4 \uC99D\uAC00"
   coreIcon: {fileID: 21300000, guid: 6376d6be5cc97c2418fb37470d8cf8fc, type: 3}
   description: "\uAE30\uBCF8 \uC774\uB3D9\uC18D\uB3C4\uAC00 \uC99D\uAC00\uD569\uB2C8\uB2E4."
   type: 2

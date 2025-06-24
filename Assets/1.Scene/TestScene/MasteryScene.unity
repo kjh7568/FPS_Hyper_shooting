@@ -17418,19 +17418,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 639324225}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 639324222}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &639324225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17916,9 +17904,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'LevelDetailDsc
-
-'
+  m_text: "\uCF54\uC5B4 \uC0C1\uC138 \uC124\uBA85"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f085f477550bdcf4f83d18d2df22803a, type: 2}
   m_sharedMaterial: {fileID: -9105841546676098429, guid: f085f477550bdcf4f83d18d2df22803a,
@@ -23268,7 +23254,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: -171.49481, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &847079885
@@ -25834,7 +25820,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CORE NAME
+  m_text: "\uCF54\uC5B4\uB97C \uD074\uB9AD\uD574\uC8FC\uC138\uC694."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f085f477550bdcf4f83d18d2df22803a, type: 2}
   m_sharedMaterial: {fileID: -9105841546676098429, guid: f085f477550bdcf4f83d18d2df22803a,
@@ -25862,8 +25848,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -26145,7 +26131,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 953150632}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 51.78}
+  m_LocalPosition: {x: 0, y: 0, z: -5.93}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -26153,7 +26139,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -964.02, y: -537.67}
+  m_AnchoredPosition: {x: -964, y: -537.67}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &953150634
@@ -29515,6 +29501,7 @@ GameObject:
   - component: {fileID: 1044631065}
   - component: {fileID: 1044631064}
   - component: {fileID: 1044631066}
+  - component: {fileID: 1044631067}
   m_Layer: 5
   m_Name: Info
   m_TagString: Untagged
@@ -29602,6 +29589,29 @@ MonoBehaviour:
   - {fileID: 664408767}
   - {fileID: 2088938384}
   - {fileID: 1527386884}
+--- !u!114 &1044631067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044631062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a9ad24c56c41434b9ac659f5f5bdfd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slots:
+  - button: {fileID: 330989940}
+    costText: {fileID: 1826653595}
+  - button: {fileID: 1868592791}
+    costText: {fileID: 574187114}
+  - button: {fileID: 1141335117}
+    costText: {fileID: 2075067791}
+  - button: {fileID: 1729450044}
+    costText: {fileID: 412080883}
+  - button: {fileID: 1390258508}
+    costText: {fileID: 1104916396}
 --- !u!1 &1046538273
 GameObject:
   m_ObjectHideFlags: 0
@@ -42411,9 +42421,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'LevelDetailDsc
-
-'
+  m_text: "\uCF54\uC5B4 \uC0C1\uC138 \uC124\uBA85"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f085f477550bdcf4f83d18d2df22803a, type: 2}
   m_sharedMaterial: {fileID: -9105841546676098429, guid: f085f477550bdcf4f83d18d2df22803a,
@@ -42855,9 +42863,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'LevelDetailDsc
-
-'
+  m_text: "\uCF54\uC5B4 \uC0C1\uC138 \uC124\uBA85"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f085f477550bdcf4f83d18d2df22803a, type: 2}
   m_sharedMaterial: {fileID: -9105841546676098429, guid: f085f477550bdcf4f83d18d2df22803a,
@@ -49068,9 +49074,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'LevelDetailDsc
-
-'
+  m_text: "\uCF54\uC5B4 \uC0C1\uC138 \uC124\uBA85"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f085f477550bdcf4f83d18d2df22803a, type: 2}
   m_sharedMaterial: {fileID: -9105841546676098429, guid: f085f477550bdcf4f83d18d2df22803a,
@@ -56416,9 +56420,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'LevelDetailDsc
-
-'
+  m_text: "\uCF54\uC5B4 \uC0C1\uC138 \uC124\uBA85"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f085f477550bdcf4f83d18d2df22803a, type: 2}
   m_sharedMaterial: {fileID: -9105841546676098429, guid: f085f477550bdcf4f83d18d2df22803a,
