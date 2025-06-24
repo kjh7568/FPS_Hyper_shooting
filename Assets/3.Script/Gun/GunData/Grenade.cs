@@ -7,6 +7,10 @@ public class Grenade : WeaponController
 {
     [SerializeField] private LayerMask monsterLayer;
     [SerializeField] private WeaponDataSO grenadeRootData; 
+    [SerializeField] private ParticleSystem explosion;
+
+    [SerializeField] private bool isDummy = false;
+    
     private Rigidbody rb;
     private bool isAlreadyBomb = false;
     [Header("사운드 설정")]
@@ -21,12 +25,24 @@ public class Grenade : WeaponController
         rb.velocity += Camera.main.transform.forward * 20f;
     }
 
+    private void Update()
+    {
+        if(isDummy) Destroy(gameObject);
+        
+        // explosion이 활성화 되고, explosion의 파티클이 재생되지 않는 상황이라면
+        if (explosion.gameObject.activeInHierarchy && explosion.isPlaying == false)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player")) return;
         if(isAlreadyBomb) return;
 
         isAlreadyBomb = true;
+        explosion.gameObject.SetActive(true);
         
         // 오직 Monster 레이어에만 반응
         Collider[] hits = Physics.OverlapSphere(transform.position, 3f, monsterLayer);
