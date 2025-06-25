@@ -1,3 +1,5 @@
+using UnityEngine.Serialization;
+
 [System.Serializable]
 public class CoreStat
 {
@@ -14,7 +16,7 @@ public class CoreStat
     public float grenadeDamage;
 
     // Utility
-    public float coinDropChance;
+    public float coinGainMultiplier;
     public float coinDropRange;
     public float itemDropChance;
     public float coreMovementSpeed;
