@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Grenade : WeaponController
 {
+    private const float baseRadius = 3f;
+    
     [SerializeField] private LayerMask monsterLayer;
     [SerializeField] private WeaponDataSO grenadeRootData; 
     [SerializeField] private ParticleSystem explosion;
@@ -43,9 +45,11 @@ public class Grenade : WeaponController
 
         isAlreadyBomb = true;
         explosion.gameObject.SetActive(true);
+
+        var finalRadius = baseRadius * (1 + Player.localPlayer.coreStat.grenadeRange);
         
         // 오직 Monster 레이어에만 반응
-        Collider[] hits = Physics.OverlapSphere(transform.position, 3f, monsterLayer);
+        Collider[] hits = Physics.OverlapSphere(transform.position, finalRadius, monsterLayer);
 
         foreach (var hit in hits)
         {
