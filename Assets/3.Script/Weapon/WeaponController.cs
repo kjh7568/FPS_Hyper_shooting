@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public abstract class WeaponController : MonoBehaviour
 {
@@ -8,7 +11,7 @@ public abstract class WeaponController : MonoBehaviour
     
     public bool isOpenPanel = false;
     
-    public WeaponDataSO gunData; // 필요시 여기에서 weapon 생성
+    public WeaponDataSO weaponData; // 필요시 여기에서 weapon 생성
 
     public GameObject muzzleFlash;
     
@@ -16,9 +19,9 @@ public abstract class WeaponController : MonoBehaviour
     private void Start()
     {
         // weapon이 null이면 여기서 생성할 수 있어야 함
-        if (weapon == null && gunData != null)
+        if (weapon == null && weaponData != null)
         {
-            weapon = new Weapon(gunData); // 생성자 필요
+            weapon = new Weapon(weaponData); // 생성자 필요
         }
     }
     
@@ -32,10 +35,41 @@ public abstract class WeaponController : MonoBehaviour
         else return WeaponGrade.Legendary;
     }
     
-    protected virtual float GetFinalDamage()
+    protected float GetFinalDamage()
     {
-        return (weapon.currentStat.damage/* + ReloadDamageBonus*/) * Player.localPlayer.inventory.EquipmentStat.multiplierAttack;
+        float baseDamage = weapon.currentStat.damage;
+        float attackMultiplier = CalculateAttackMultiplier();
+
+        return baseDamage * attackMultiplier * Player.localPlayer.coreStat.coreDamage;
     }
+
+    private float CalculateAttackMultiplier()
+    {
+        float multiplier = Player.localPlayer.inventory.EquipmentStat.multiplierAttack;
+
+        switch (weaponData.weaponType)
+        {
+            case WeaponType.Akm:
+            case WeaponType.M4:
+            case WeaponType.Sniper:
+            case WeaponType.Shotgun:
+            case WeaponType.Ump:
+                multiplier += Player.localPlayer.coreStat.primaryDamage;
+                break;
+            case WeaponType.Pistol:
+                multiplier += Player.localPlayer.coreStat.secondaryDamage;
+                break;
+            case WeaponType.Knife:
+                multiplier += Player.localPlayer.coreStat.meleeDamage;
+                break;
+            case WeaponType.Grenade:
+                multiplier += Player.localPlayer.coreStat.grenadeDamage;
+                break;
+        }
+
+        return multiplier;
+    }
+
     
     public  void Init(Weapon parameter)
     {
