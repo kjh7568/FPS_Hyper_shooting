@@ -1,14 +1,22 @@
 using UnityEngine;
+using System;
+using System.Collections.Generic;
+
 
 public class NextStageController : MonoBehaviour
 {
+    public static NextStageController Instance;
+
     [Header("문 오브젝트")]
     [SerializeField] private GameObject door;
 
-    [Header("좀비 오브젝트들")]
-    [SerializeField] private GameObject[] zombies;
-
+    private List<GameObject> zombies = new List<GameObject>();
     private bool isDoorOpened = false;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Update()
     {
@@ -27,21 +35,14 @@ public class NextStageController : MonoBehaviour
         }
     }
 
-
-    private bool AllZombiesDefeated()
+    public void SetZombies(List<GameObject> zombieList)
     {
-        foreach (GameObject zombie in zombies)
-        {
-            if (zombie != null)
-                return false;
-        }
-        return true;
+        zombies = zombieList;
     }
 
     private void OpenDoor()
     {
         isDoorOpened = true;
-
         if (door != null)
         {
             door.SetActive(false);
