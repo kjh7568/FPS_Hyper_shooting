@@ -38,16 +38,16 @@ public abstract class WeaponController : MonoBehaviour
     protected float GetFinalDamage()
     {
         float baseDamage = weapon.currentStat.damage;
-        float attackMultiplier = CalculateAttackMultiplier();
+        float attackMultiplier = CalculateAttackMultiplier(weapon.Type);
 
         return baseDamage * attackMultiplier * Player.localPlayer.coreStat.coreDamage;
     }
 
-    private float CalculateAttackMultiplier()
+    private float CalculateAttackMultiplier(WeaponType weaponType)
     {
         float multiplier = Player.localPlayer.inventory.EquipmentStat.multiplierAttack;
 
-        switch (weaponData.weaponType)
+        switch (weaponType)
         {
             case WeaponType.Akm:
             case WeaponType.M4:
