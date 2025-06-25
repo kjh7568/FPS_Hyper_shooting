@@ -17,6 +17,7 @@ public class AugmentData
     public float Value { get; set; }
     public string Description { get; set; }
     public string IconPath { get; set; }
+    public float Weight { get; set; }
 
     public Sprite LoadIcon()
     {

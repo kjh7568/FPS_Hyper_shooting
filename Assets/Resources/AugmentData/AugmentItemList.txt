@@ -1,7 +1,7 @@
-ID	Type	Value	Description	IconPath
-1	MoveSpeedUp	1.5	Increase movement speed	Icons/MoveSpeedUp	
-2	DashCooldownDown	0.5	Reduce dash cooldown	Icons/DashCooldownDown
-3	MaxHealthUp	10	Increase max health	Icons/MaxHealthUp	
-4	AttackPowerUp	10	Increase attack power	Icons/AttackPowerUp		
-5	ReloadSpeedUp	1	Reduce reload time	Icons/ReloadSpeedUp	
-6	ReloadDamageBuff	10	Increase attack power for 3seconds after reload	Icons/ReloadDamageBuff		
+ID	Type	Value	Description	IconPath	Weight
+1	MoveSpeedUp	1.5	Increase movement speed	Icons/MoveSpeedUp	5
+2	DashCooldownDown	0.5	Reduce dash cooldown	Icons/DashCooldownDown	2
+3	MaxHealthUp	10	Increase max health	Icons/MaxHealthUp	4
+4	AttackPowerUp	10	Increase attack power	Icons/AttackPowerUp	3
+5	ReloadSpeedUp	1	Reduce reload time	Icons/ReloadSpeedUp	2
+6	ReloadDamageBuff	10	Power buff after reload	Icons/ReloadDamageBuff	1

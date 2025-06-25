@@ -74,22 +74,21 @@ public class AugmentPanelManager : MonoBehaviour
         if (currentOptions == null || currentOptions.Count == 0)
         {
             var available = allAugments.FindAll(a => !obtainedAugments.Contains(a));
-            Shuffle(available);
-            currentOptions = available.GetRange(0, Mathf.Min(3, available.Count));
+            currentOptions = GetWeightedRandomAugments(available, Mathf.Min(3, available.Count));
         }
 
         for (int i = 0; i < 3; i++)
         {
             if (i >= currentOptions.Count)
             {
-                augmentButtons[i].gameObject.SetActive(false); // 선택할 증강이 부족한 경우 버튼 비활성화
+                augmentButtons[i].gameObject.SetActive(false);
                 continue;
             }
 
             AugmentData data = currentOptions[i];
 
             if (i < augmentButtonTexts.Length)
-                augmentButtonTexts[i].text = ""; // 텍스트 제거
+             //    augmentButtonTexts[i].text = ""; // 텍스트 제거
 
             augmentButtons[i].onClick.RemoveAllListeners();
 
@@ -101,9 +100,7 @@ public class AugmentPanelManager : MonoBehaviour
                 augmentButtons[i].interactable = false;
 
                 if (i == selectedIndex)
-                {
-                    augmentButton.ShowSelectedOverlay(); // 선택 시 강조 이미지 표시
-                }
+                    augmentButton.ShowSelectedOverlay();
             }
             else
             {
@@ -115,13 +112,14 @@ public class AugmentPanelManager : MonoBehaviour
                     hasSelected = true;
 
                     GameData.Instance.augmentStat.Apply(data);
-                    RegisterObtainedAugment(data); // 선택된 증강 저장 + 디버그 출력
+                    RegisterObtainedAugment(data);
 
                     ClosePanel();
                 });
             }
         }
     }
+
 
     private void Shuffle<T>(List<T> list)
     {
@@ -190,4 +188,31 @@ public class AugmentPanelManager : MonoBehaviour
             Debug.Log($"[남은 증강] {a.Type} | Value: {a.Value}");
         }
     }
+    private List<AugmentData> GetWeightedRandomAugments(List<AugmentData> candidates, int count)
+    {
+        List<AugmentData> result = new List<AugmentData>();
+        List<AugmentData> pool = new List<AugmentData>();
+
+        foreach (var data in candidates)
+        {
+            for (int i = 0; i < data.Weight; i++)
+            {
+                pool.Add(data);
+            }
+        }
+
+        Shuffle(pool);
+
+        foreach (var item in pool)
+        {
+            if (!result.Contains(item))
+                result.Add(item);
+
+            if (result.Count >= count)
+                break;
+        }
+
+        return result;
+    }
+
 }
