@@ -20,22 +20,22 @@ MonoBehaviour:
   infoIndex: 5
   levelStats:
   - level: 1
-    value: 2
+    value: 1.02
     price: 5
-    detailDescription: "\uBAA8\uB4E0 \uBB34\uAE30 \uACF5\uACA9\uB825\uC774 2% \uC99D\uAC00\uD569\uB2C8\uB2E4."
+    detailDescription: "\uBAA8\uB4E0 \uBB34\uAE30 \uACF5\uACA9\uB825\uC774 2% \uC99D\uAC00\uD569\uB2C8\uB2E4.(\uACF1\uC5F0\uC0B0)"
   - level: 2
-    value: 4
+    value: 1.04
     price: 10
-    detailDescription: "\uBAA8\uB4E0 \uBB34\uAE30 \uACF5\uACA9\uB825\uC774 4% \uC99D\uAC00\uD569\uB2C8\uB2E4."
+    detailDescription: "\uBAA8\uB4E0 \uBB34\uAE30 \uACF5\uACA9\uB825\uC774 4% \uC99D\uAC00\uD569\uB2C8\uB2E4.(\uACF1\uC5F0\uC0B0)"
   - level: 3
-    value: 6
+    value: 1.06
     price: 15
-    detailDescription: "\uBAA8\uB4E0 \uBB34\uAE30 \uACF5\uACA9\uB825\uC774 6% \uC99D\uAC00\uD569\uB2C8\uB2E4."
+    detailDescription: "\uBAA8\uB4E0 \uBB34\uAE30 \uACF5\uACA9\uB825\uC774 6% \uC99D\uAC00\uD569\uB2C8\uB2E4.(\uACF1\uC5F0\uC0B0)"
   - level: 4
-    value: 8
+    value: 1.08
     price: 20
-    detailDescription: "\uBAA8\uB4E0 \uBB34\uAE30 \uACF5\uACA9\uB825\uC774 8% \uC99D\uAC00\uD569\uB2C8\uB2E4."
+    detailDescription: "\uBAA8\uB4E0 \uBB34\uAE30 \uACF5\uACA9\uB825\uC774 8% \uC99D\uAC00\uD569\uB2C8\uB2E4.(\uACF1\uC5F0\uC0B0)"
   - level: 5
-    value: 10
+    value: 1.1
     price: 25
-    detailDescription: "\uBAA8\uB4E0 \uBB34\uAE30 \uACF5\uACA9\uB825\uC774 10% \uC99D\uAC00\uD569\uB2C8\uB2E4."
+    detailDescription: "\uBAA8\uB4E0 \uBB34\uAE30 \uACF5\uACA9\uB825\uC774 10% \uC99D\uAC00\uD569\uB2C8\uB2E4.(\uACF1\uC5F0\uC0B0)"
