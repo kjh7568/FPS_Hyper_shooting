@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class NormalZombie : MonoBehaviour, IMonster
 {
+    private const int MaxRollValue = 1000;
+    private const float BaseDropRate = 0.3f; // 300 / 1000 = 30%
+
     public ZombieStat ZombieStat => zombieStat;
     public ZombieStat zombieStat;
 
@@ -54,23 +57,26 @@ public class NormalZombie : MonoBehaviour, IMonster
         throw new System.NotImplementedException();
     }
 
-    private const int MaxRollValue = 1000;
-    private const float BaseDropRate = 0.3f; // 300 / 1000 = 30%
-
     private void RandomItemDrop()
     {
         if (Player.localPlayer == null) return;
 
-        float finalDropChance = BaseDropRate * Player.localPlayer.coreStat.itemDropChance;
+        float finalDropChance = CalculateFinalDropChance();
         int roll = Random.Range(0, MaxRollValue);
 
         if (roll < MaxRollValue * finalDropChance)
         {
             ItemGenerator.instance.SpawnItem(transform.position);
         }
+    }
 
-        // Hook: 드롭 확률 공식이 바뀌면 여기만 수정
-        // 예: finalDropChance = ItemDropCalculator.GetFinalChance(playerStat, difficultyLevel);
+    private float CalculateFinalDropChance()
+    {
+        var equipment = Player.localPlayer.inventory.EquipmentStat;
+        var core = Player.localPlayer.coreStat;
+
+        float multiplier = equipment.multiplierRareItemChance + core.itemDropChance;
+        return BaseDropRate * multiplier;
     }
 
     private void GoldDrop()
