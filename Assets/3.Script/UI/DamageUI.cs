@@ -4,31 +4,27 @@ using TMPro;
 
 public class DamageUI : MonoBehaviour
 {
-    private float floatDuration = 1f;     // 몇 초에 걸쳐 올라갈지
-    private float floatHeight = 30f;      // 몇 픽셀 위로 올라갈지
+    private float floatDuration = 1f; // 몇 초에 걸쳐 올라갈지
+    private float floatHeight = 30f; // 몇 픽셀 위로 올라갈지
 
     private RectTransform rectTransform;
     private TMP_Text text;
-    private Camera uiCamera;    
+    private Camera uiCamera;
     private Transform worldParent;
+    private bool isUp = false;
 
     private void Awake()
     {
         uiCamera = GameObject.FindGameObjectWithTag("UICamera")?.GetComponent<Camera>();
-        
+
         rectTransform = GetComponent<RectTransform>();
         text = GetComponent<TMP_Text>();
     }
 
-    private void Start()
-    {
-        //StartCoroutine(FloatUp());
-    }
-
     void Update()
     {
-        if(worldParent == null) return;
-        
+        if (worldParent == null) return;
+
         Vector3 screenPos = Camera.main.WorldToScreenPoint(worldParent.position);
 
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
@@ -37,11 +33,11 @@ public class DamageUI : MonoBehaviour
             Camera.main,
             out var anchoredPos
         );
-        
+
         if (rectTransform != null)
             rectTransform.anchoredPosition = anchoredPos;
     }
-    
+
     private IEnumerator FloatUp()
     {
         Vector2 start = rectTransform.anchoredPosition;
@@ -66,11 +62,11 @@ public class DamageUI : MonoBehaviour
             yield return null;
         }
     }
-    
+
     public void Set(Transform worldParent, Vector3 worldPosition, float damage)
     {
         this.worldParent = worldParent;
-        
+
         if (text != null)
             text.text = Mathf.RoundToInt(damage).ToString();
 
@@ -83,9 +79,8 @@ public class DamageUI : MonoBehaviour
             uiCamera,
             out var anchoredPos
         );
-        
+
         if (rectTransform != null)
             rectTransform.anchoredPosition = anchoredPos;
     }
-
 }

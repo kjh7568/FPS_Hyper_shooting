@@ -63,11 +63,12 @@ public class UIManager : MonoBehaviour
 
         Transform point = new GameObject("HitPoint").transform;
         
-        point.SetParent(combatEvent.Collider.gameObject.transform);
-        
-        float randomDistance = Random.Range(1f, 2f);
+        float randomDistance = Random.Range(0.5f, 1f);
+
         Vector3 randomDir = Random.insideUnitSphere.normalized;
+
         point.position = combatEvent.HitPosition + randomDir * randomDistance;
+        point.SetParent(combatEvent.Collider.gameObject.transform);
         
         uiObj.GetComponent<DamageUI>().Set(point ,combatEvent.HitPosition, damage);
 

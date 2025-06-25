@@ -53,6 +53,8 @@ public class Grenade : WeaponController
 
         foreach (var hit in hits)
         {
+            var damage = WeaponManager.instance.grenadeWeapon.weapon.currentStat.damage;
+            
             var target = CombatSystem.Instance.GetMonsterOrNull(hit);
             if (target != null)
             {
@@ -60,11 +62,13 @@ public class Grenade : WeaponController
                 {
                     Sender = Player.localPlayer,
                     Receiver = target,
-                    Damage = WeaponManager.instance.grenadeWeapon.weapon.currentStat.damage,
+                    Damage = damage,
                     HitPosition = hit.ClosestPoint(transform.position),
                     Collider = hit.GetComponent<Collider>()
                 };
+                
                 CombatSystem.Instance.AddInGameEvent(combatEvent);
+                StartCoroutine(uiManager.PrintDamage_Coroutine(combatEvent, damage));
             }
         }
 
