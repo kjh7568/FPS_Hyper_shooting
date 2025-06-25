@@ -121,7 +121,6 @@ public class UpgradeArmorSystem : MonoBehaviour
 
             Debug.Log($"[옵션 추가] {newOpt.Value} 효과가 누적 적용되었습니다.");
             // 옵션 적용 후 현재 스탯 확인용
-            Player.localPlayer.inventory.EquipmentStat.PrintOption();
         }
 
         Debug.Log($"[등급업 성공] {data.armorName} → {data.grade}, Lv.{minLevel}");

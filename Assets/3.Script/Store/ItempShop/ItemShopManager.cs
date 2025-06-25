@@ -14,7 +14,7 @@ public class ItemShopManager : MonoBehaviour
     [SerializeField] private WeaponDataSO[] weapons;
 
     [SerializeField] private Button[] buttons;
-    
+
     public Weapon[] storeWeapons = new Weapon[3];
     public int[] prices = new int[3];
 
@@ -147,12 +147,11 @@ public class ItemShopManager : MonoBehaviour
 
     public void OnClickBuyButton(int index)
     {
-        
         if (Player.localPlayer.coin < prices[index]) return; // 금액 부족 시 종료
 
         //재구매 불가    
         buttons[index].interactable = false;
-        
+
         // 이전 무기 드롭 생성
         DropPreviousWeapon(storeWeapons[index].Type);
 
@@ -162,8 +161,6 @@ public class ItemShopManager : MonoBehaviour
         // 새로운 무기 적용
         WeaponManager.instance.ApplyWeaponOption(storeWeapons[index]);
         WeaponManager.instance.ChangeWeapon(storeWeapons[index]);
-
-        Player.localPlayer.inventory.EquipmentStat.PrintOption();
     }
 
     private void DropPreviousWeapon(WeaponType type)

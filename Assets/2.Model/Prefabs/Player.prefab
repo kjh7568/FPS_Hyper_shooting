@@ -5940,6 +5940,7 @@ RectTransform:
   - {fileID: 2130932181709228689}
   - {fileID: 8385587181735471721}
   - {fileID: 2920686735893468113}
+  - {fileID: 6875926695482927448}
   m_Father: {fileID: 4963680881616358659}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -6026,6 +6027,9 @@ MonoBehaviour:
   bulletText: {fileID: 4955318243354151725}
   coinText: {fileID: 7799162275507984158}
   hpBar: {fileID: 6796688823675310145}
+  damageUI: {fileID: 7427594315203873494, guid: b540303bc6e0c7548adb333810f1899b,
+    type: 3}
+  damageUIParent: {fileID: 3493811656668929161}
 --- !u!1 &3237156923732557676
 GameObject:
   m_ObjectHideFlags: 0
@@ -7577,7 +7581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: -20
   jumpHeight: 1
-  mouseSensitivity: 200
+  mouseSensitivity: 100
   footstepSource: {fileID: 6138356356573544447}
   footstepClip: {fileID: 8300000, guid: 6e7f11eb7d80d254eadeb53abedf4ff3, type: 3}
   playerCamera: {fileID: 6479320625774284882}
@@ -10397,6 +10401,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8655734769873566968}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5792424106255352989
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6875926695482927448}
+  m_Layer: 5
+  m_Name: DamagePanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6875926695482927448
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5792424106255352989}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3493811656668929161}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5827421813515723183
 GameObject:
   m_ObjectHideFlags: 0
@@ -11099,7 +11138,7 @@ GameObject:
   - component: {fileID: 8063479923807119534}
   m_Layer: 0
   m_Name: UICamera
-  m_TagString: Untagged
+  m_TagString: UICamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

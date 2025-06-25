@@ -82,10 +82,6 @@ public class PlayerController : MonoBehaviour
 
     private float CalculateMoveSpeed(Player player)
     {
-        Debug.Log(player.playerStat.moveSpeed);
-        Debug.Log(player.inventory.EquipmentStat.multiplierMovementSpeed);
-        Debug.Log(player.coreStat.coreMovementSpeed);
-        
         return player.playerStat.moveSpeed *
                player.inventory.EquipmentStat.multiplierMovementSpeed *
                player.coreStat.coreMovementSpeed;

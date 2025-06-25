@@ -16,6 +16,9 @@ public abstract class WeaponController : MonoBehaviour
     public GameObject muzzleFlash;
     
     private WaitForSeconds delay = new  WaitForSeconds(0.05f);
+    
+    protected UIManager uiManager;
+    
     private void Start()
     {
         // weapon이 null이면 여기서 생성할 수 있어야 함
@@ -23,6 +26,8 @@ public abstract class WeaponController : MonoBehaviour
         {
             weapon = new Weapon(weaponData); // 생성자 필요
         }
+
+        uiManager = FindObjectOfType<UIManager>();
     }
     
     protected WeaponGrade GetRandomGrade()
