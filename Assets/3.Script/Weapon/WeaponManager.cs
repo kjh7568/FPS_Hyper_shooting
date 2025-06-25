@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
+    private const float grenadeCooldown = 10f;
+    
     public static WeaponManager instance;
 
     public Transform characterModel;
@@ -41,6 +43,9 @@ public class WeaponManager : MonoBehaviour
     public readonly Vector3 GrenadeStancePosition = new Vector3(0f, -1.5f, -0.3f);
     public readonly Quaternion GrenadeStanceRotation = Quaternion.Euler(0f, -15f, 0f);
 
+    private float currentGrenadeCooldown = 0f;
+    private bool isGrenadeUse = true;
+    
     [Header("총기 모델")]
     [SerializeField] private GameObject akmModel;
     [SerializeField] private GameObject m4Model;
@@ -166,8 +171,10 @@ public class WeaponManager : MonoBehaviour
 
             animator.SetTrigger(STAB);
         }
-        else if (Input.GetKeyDown(KeyCode.G) && !stateInfo.IsName("Stab") && !stateInfo.IsName("Throw"))
+        else if (Input.GetKeyDown(KeyCode.G) && !stateInfo.IsName("Stab") && !stateInfo.IsName("Throw") && isGrenadeUse)
         {
+            StartCoroutine(CoolDownGrenade());
+            
             characterModel.localPosition = GrenadeStancePosition;
             characterModel.localRotation = GrenadeStanceRotation;
 
@@ -379,5 +386,21 @@ public class WeaponManager : MonoBehaviour
                 stat.multiplierRareItemChance += 0.1f * sign;
                 break;
         }
+    }
+
+    private IEnumerator CoolDownGrenade()
+    {
+        var finalGrenadeCooldown = grenadeCooldown * Player.localPlayer.coreStat.grenadeCooldown;
+        
+        currentGrenadeCooldown = 0f;
+        isGrenadeUse = false;
+
+        while (currentGrenadeCooldown < finalGrenadeCooldown)
+        {
+            currentGrenadeCooldown += Time.deltaTime;
+            yield return null;
+        }
+
+        isGrenadeUse = true;
     }
 }

@@ -7617,7 +7617,7 @@ MonoBehaviour:
     coinDropRange: 1
     itemDropChance: 0
     coreMovementSpeed: 1
-    grenadeCooldown: 0
+    grenadeCooldown: 1
     grenadeRange: 0
   mainCollider: {fileID: 7116260080126133883}
   helmetSO: {fileID: 11400000, guid: 2eacb1e137c8613468c1453399164911, type: 2}
