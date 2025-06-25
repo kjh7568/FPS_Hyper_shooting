@@ -26,19 +26,19 @@ public class CoreManager : MonoBehaviour
         {
             // Attack
             case CoreID.AttUp:
-                coreStat.coreDamage += value;
+                coreStat.coreDamage = value;
                 break;
             case CoreID.PrimaryAttUp:
-                coreStat.primaryDamage += value;
+                coreStat.primaryDamage = value;
                 break;
             case CoreID.SecondaryAttUp:
-                coreStat.secondaryDamage += value;
+                coreStat.secondaryDamage = value;
                 break;
             case CoreID.KnifeAttUp:
-                coreStat.meleeDamage += value;
+                coreStat.meleeDamage = value;
                 break;
             case CoreID.GrenadeAttUp:
-                coreStat.grenadeDamage += value;
+                coreStat.grenadeDamage = value;
                 break;
 
             // Defense
@@ -54,22 +54,22 @@ public class CoreManager : MonoBehaviour
 
             // Utility
             case CoreID.MovementSpeedUp:
-                coreStat.coreMovementSpeed += value;
+                coreStat.coreMovementSpeed = value;
                 break;
             case CoreID.CoinDropChanceUp:
-                coreStat.coinDropChance += value;
+                coreStat.coinGainMultiplier = value;
                 break;
             case CoreID.ItemDropChanceUp:
-                coreStat.itemDropChance += value;
+                coreStat.itemDropChance = value;
                 break;
             case CoreID.CoinGetRangeUp:
-                coreStat.coinDropRange += value;
+                coreStat.coinDropRange = value;
                 break;
             case CoreID.GrenadeCoolReduce:
-                coreStat.grenadeCooldown += value;
+                coreStat.grenadeCooldown = value;
                 break;
             case CoreID.GrenadeRangeUp:
-                coreStat.grenadeRange += value;
+                coreStat.grenadeRange = value;
                 break;
 
             default:
