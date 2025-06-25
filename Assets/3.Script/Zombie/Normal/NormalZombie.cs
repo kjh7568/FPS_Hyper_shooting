@@ -54,15 +54,23 @@ public class NormalZombie : MonoBehaviour, IMonster
         throw new System.NotImplementedException();
     }
 
+    private const int MaxRollValue = 1000;
+    private const float BaseDropRate = 0.3f; // 300 / 1000 = 30%
+
     private void RandomItemDrop()
     {
-        var ratio = Random.Range(0, 1000);
+        if (Player.localPlayer == null) return;
 
-        //todo 아이템 드롭확률 구현 되면 적용해볼 것
-        if (ratio < 300)
+        float finalDropChance = BaseDropRate * Player.localPlayer.coreStat.itemDropChance;
+        int roll = Random.Range(0, MaxRollValue);
+
+        if (roll < MaxRollValue * finalDropChance)
         {
             ItemGenerator.instance.SpawnItem(transform.position);
         }
+
+        // Hook: 드롭 확률 공식이 바뀌면 여기만 수정
+        // 예: finalDropChance = ItemDropCalculator.GetFinalChance(playerStat, difficultyLevel);
     }
 
     private void GoldDrop()
