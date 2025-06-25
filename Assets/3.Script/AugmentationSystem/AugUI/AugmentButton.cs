@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class AugmentButton : MonoBehaviour
 {
     [SerializeField] private Image iconImage;
+    [SerializeField] private Image selectedOverlayImage; // ← 오버레이 이미지 슬롯
 
     private AugmentData augmentData;
 
@@ -16,19 +17,20 @@ public class AugmentButton : MonoBehaviour
             Sprite icon = augmentData.LoadIcon();
             iconImage.sprite = icon != null ? icon : GetDefaultIcon();
         }
+
+        if (selectedOverlayImage != null)
+        {
+            selectedOverlayImage.gameObject.SetActive(false); // 초기 비활성화
+        }
     }
 
-    public void OnClick()
+    public void ShowSelectedOverlay()
     {
-        Debug.Log($"선택한 증강: {augmentData.Type}");
-
-        GameData.Instance.augmentStat.Apply(augmentData);
-
-        PlayerController controller = FindObjectOfType<PlayerController>();
-        if (controller != null) controller.isOpenPanel = false;
-
-        WeaponManager.instance.currentWeapon.isOpenPanel = false;
-        AugmentPanelManager.Instance.ClosePanel();
+        if (selectedOverlayImage != null)
+        {
+            selectedOverlayImage.sprite = Resources.Load<Sprite>("Icons/AlreadySelected");
+            selectedOverlayImage.gameObject.SetActive(true);
+        }
     }
 
     private Sprite GetDefaultIcon()

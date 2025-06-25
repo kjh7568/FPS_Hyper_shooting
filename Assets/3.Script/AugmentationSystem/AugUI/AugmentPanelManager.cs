@@ -16,11 +16,14 @@ public class AugmentPanelManager : MonoBehaviour
 
     private List<AugmentData> allAugments;
     private List<AugmentData> currentOptions;
+    private List<AugmentData> obtainedAugments = new List<AugmentData>();
 
     private bool hasRerolled = false;
     public bool HasRerolled => hasRerolled;
 
     private bool hasSelected = false;
+    public bool HasSelected => hasSelected;
+
     private int selectedIndex = -1;
 
     private void Awake()
@@ -70,13 +73,19 @@ public class AugmentPanelManager : MonoBehaviour
     {
         if (currentOptions == null || currentOptions.Count == 0)
         {
-            currentOptions = new List<AugmentData>(allAugments);
-            Shuffle(currentOptions);
-            currentOptions = currentOptions.GetRange(0, 3);
+            var available = allAugments.FindAll(a => !obtainedAugments.Contains(a));
+            Shuffle(available);
+            currentOptions = available.GetRange(0, Mathf.Min(3, available.Count));
         }
 
         for (int i = 0; i < 3; i++)
         {
+            if (i >= currentOptions.Count)
+            {
+                augmentButtons[i].gameObject.SetActive(false); // 선택할 증강이 부족한 경우 버튼 비활성화
+                continue;
+            }
+
             AugmentData data = currentOptions[i];
 
             if (i < augmentButtonTexts.Length)
@@ -90,6 +99,11 @@ public class AugmentPanelManager : MonoBehaviour
             if (hasSelected)
             {
                 augmentButtons[i].interactable = false;
+
+                if (i == selectedIndex)
+                {
+                    augmentButton.ShowSelectedOverlay(); // 선택 시 강조 이미지 표시
+                }
             }
             else
             {
@@ -99,12 +113,14 @@ public class AugmentPanelManager : MonoBehaviour
                 {
                     selectedIndex = capturedIndex;
                     hasSelected = true;
+
                     GameData.Instance.augmentStat.Apply(data);
+                    RegisterObtainedAugment(data); // 선택된 증강 저장 + 디버그 출력
+
                     ClosePanel();
                 });
             }
         }
-
     }
 
     private void Shuffle<T>(List<T> list)
@@ -120,10 +136,20 @@ public class AugmentPanelManager : MonoBehaviour
 
     public void OpenPanel()
     {
+        // 남은 증강이 없다면 열지 않음
+        if (obtainedAugments.Count >= allAugments.Count)
+        {
+            Debug.Log("모든 증강을 이미 선택했습니다.");
+            return;
+        }
+
         SetRandomAugments();
         augmentPanel.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        var controller = FindObjectOfType<PlayerController>();
+        if (controller != null) controller.isOpenPanel = true;
     }
 
     public void ClosePanel()
@@ -131,6 +157,9 @@ public class AugmentPanelManager : MonoBehaviour
         augmentPanel.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        var controller = FindObjectOfType<PlayerController>();
+        if (controller != null) controller.isOpenPanel = false;
     }
 
     public void RerollAugments()
@@ -144,5 +173,21 @@ public class AugmentPanelManager : MonoBehaviour
         hasRerolled = true;
         currentOptions.Clear();
         SetRandomAugments();
+    }
+
+    public void RegisterObtainedAugment(AugmentData data)
+    {
+        if (!obtainedAugments.Contains(data))
+        {
+            obtainedAugments.Add(data);
+        }
+
+        // 디버그: 남은 증강 출력
+        var remaining = allAugments.FindAll(a => !obtainedAugments.Contains(a));
+        Debug.Log($"[증강] 남은 증강 개수: {remaining.Count}");
+        foreach (var a in remaining)
+        {
+            Debug.Log($"[남은 증강] {a.Type} | Value: {a.Value}");
+        }
     }
 }
