@@ -11,10 +11,17 @@ public class AugmentPanelManager : MonoBehaviour
     public static AugmentPanelManager Instance;
 
     [SerializeField] private GameObject augmentPanel;
-    [SerializeField] private Button[] augmentButtons;        // 버튼 3개
-    [SerializeField] private Text[] augmentButtonTexts;      // 각 버튼 설명 텍스트
-    private List<AugmentData> allAugments;                   // TSV에서 불러온 전체 리스트
-    private List<AugmentData> currentOptions;                // 현재 선택지 3개
+    [SerializeField] private Button[] augmentButtons;
+    [SerializeField] private Text[] augmentButtonTexts;
+
+    private List<AugmentData> allAugments;
+    private List<AugmentData> currentOptions;
+
+    private bool hasRerolled = false;
+    public bool HasRerolled => hasRerolled;
+
+    private bool hasSelected = false;
+    private int selectedIndex = -1;
 
     private void Awake()
     {
@@ -23,7 +30,18 @@ public class AugmentPanelManager : MonoBehaviour
 
     private void Start()
     {
-        LoadAugmentsFromTSV(); // 시작 시 1회 로딩
+        LoadAugmentsFromTSV();
+    }
+
+    private void Update()
+    {
+        if (augmentPanel.activeSelf)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space))
+            {
+                ClosePanel();
+            }
+        }
     }
 
     private void LoadAugmentsFromTSV()
@@ -50,26 +68,43 @@ public class AugmentPanelManager : MonoBehaviour
 
     private void SetRandomAugments()
     {
-        currentOptions = new List<AugmentData>(allAugments);
-        Shuffle(currentOptions);
+        if (currentOptions == null || currentOptions.Count == 0)
+        {
+            currentOptions = new List<AugmentData>(allAugments);
+            Shuffle(currentOptions);
+            currentOptions = currentOptions.GetRange(0, 3);
+        }
 
         for (int i = 0; i < 3; i++)
         {
             AugmentData data = currentOptions[i];
 
-            // 1. 텍스트 표시
-            augmentButtonTexts[i].text = $"{data.Type}\n<size=12>{data.Description}</size>";
+            if (i < augmentButtonTexts.Length)
+                augmentButtonTexts[i].text = ""; // 텍스트 제거
 
-            // 2. 버튼 바인딩 초기화
             augmentButtons[i].onClick.RemoveAllListeners();
 
-            // 3. 증강 데이터 바인딩
-            AugmentButton augmentButton = augmentButtons[i].GetComponent<AugmentButton>();
+            var augmentButton = augmentButtons[i].GetComponent<AugmentButton>();
             augmentButton.Initialize(data);
 
-            // 4. OnClick은 AugmentButton 내부 메서드로 연결
-            augmentButtons[i].onClick.AddListener(() => augmentButton.OnClick());
+            if (hasSelected)
+            {
+                augmentButtons[i].interactable = false;
+            }
+            else
+            {
+                int capturedIndex = i;
+                augmentButtons[i].interactable = true;
+                augmentButtons[i].onClick.AddListener(() =>
+                {
+                    selectedIndex = capturedIndex;
+                    hasSelected = true;
+                    GameData.Instance.augmentStat.Apply(data);
+                    ClosePanel();
+                });
+            }
         }
+
     }
 
     private void Shuffle<T>(List<T> list)
@@ -82,6 +117,7 @@ public class AugmentPanelManager : MonoBehaviour
             list[rand] = temp;
         }
     }
+
     public void OpenPanel()
     {
         SetRandomAugments();
@@ -95,5 +131,18 @@ public class AugmentPanelManager : MonoBehaviour
         augmentPanel.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    public void RerollAugments()
+    {
+        if (hasSelected)
+        {
+            Debug.Log("이미 선택해서 리롤할 수 없습니다.");
+            return;
+        }
+
+        hasRerolled = true;
+        currentOptions.Clear();
+        SetRandomAugments();
     }
 }
