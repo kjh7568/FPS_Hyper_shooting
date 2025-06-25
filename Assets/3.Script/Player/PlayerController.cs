@@ -65,14 +65,36 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer()
     {
+        if (Player.localPlayer == null) return;
+
+        Player player = Player.localPlayer;
+
         Vector3 inputAxis = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
-        Vector3 move = transform.TransformDirection(inputAxis);
+        Vector3 moveDirection = transform.TransformDirection(inputAxis); // ← 그대로 사용
 
-        var totalSpeed = Player.localPlayer.playerStat.moveSpeed * Player.localPlayer.inventory.EquipmentStat.multiplierMovementSpeed * Time.deltaTime;
+        float moveSpeed = CalculateMoveSpeed(player);
+        characterController.Move(moveDirection * (moveSpeed * Time.deltaTime));
         
-        characterController.Move(move * (totalSpeed));
+        HandleFootstepSound(inputAxis);
+        HandleJump();
+        HandleDash(moveDirection);
+    }
 
+    private float CalculateMoveSpeed(Player player)
+    {
+        Debug.Log(player.playerStat.moveSpeed);
+        Debug.Log(player.inventory.EquipmentStat.multiplierMovementSpeed);
+        Debug.Log(player.coreStat.coreMovementSpeed);
+        
+        return player.playerStat.moveSpeed *
+               player.inventory.EquipmentStat.multiplierMovementSpeed *
+               player.coreStat.coreMovementSpeed;
+    }
+
+    private void HandleFootstepSound(Vector3 inputAxis)
+    {
         bool isMoving = inputAxis.magnitude > 0.1f && IsGrounded();
+
         if (isMoving)
         {
             if (!footstepSource.isPlaying)
@@ -89,17 +111,24 @@ public class PlayerController : MonoBehaviour
                 footstepSource.Stop();
             }
         }
-        
+    }
+
+    private void HandleJump()
+    {
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             velocity.y = Mathf.Sqrt(2f * jumpHeight * -gravity);
         }
+    }
 
+    private void HandleDash(Vector3 moveDirection)
+    {
         if (Input.GetKey(KeyCode.LeftShift) && isCanDash)
         {
-            StartCoroutine(Dash(move));
+            StartCoroutine(Dash(moveDirection));
         }
     }
+
     
     private bool IsGrounded()
     {

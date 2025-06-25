@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class NormalZombie : MonoBehaviour, IMonster
 {
+    private const int MaxRollValue = 1000;
+    private const float BaseDropRate = 0.3f; // 300 / 1000 = 30%
+
     public ZombieStat ZombieStat => zombieStat;
     public ZombieStat zombieStat;
 
@@ -56,13 +59,24 @@ public class NormalZombie : MonoBehaviour, IMonster
 
     private void RandomItemDrop()
     {
-        var ratio = Random.Range(0, 1000);
+        if (Player.localPlayer == null) return;
 
-        //todo 아이템 드롭확률 구현 되면 적용해볼 것
-        if (ratio < 300)
+        float finalDropChance = CalculateFinalDropChance();
+        int roll = Random.Range(0, MaxRollValue);
+
+        if (roll < MaxRollValue * finalDropChance)
         {
             ItemGenerator.instance.SpawnItem(transform.position);
         }
+    }
+
+    private float CalculateFinalDropChance()
+    {
+        var equipment = Player.localPlayer.inventory.EquipmentStat;
+        var core = Player.localPlayer.coreStat;
+
+        float multiplier = equipment.multiplierRareItemChance + core.itemDropChance;
+        return BaseDropRate * multiplier;
     }
 
     private void GoldDrop()

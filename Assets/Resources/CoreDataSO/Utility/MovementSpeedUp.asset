@@ -15,27 +15,33 @@ MonoBehaviour:
   coreID: 8
   coreNameKor: "\uAE30\uBCF8 \uC774\uB3D9\uC18D\uB3C4 \uC99D\uAC00"
   coreIcon: {fileID: 21300000, guid: 6376d6be5cc97c2418fb37470d8cf8fc, type: 3}
-  description: "\uAE30\uBCF8 \uC774\uB3D9\uC18D\uB3C4\uAC00 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  description: "\uAE30\uBCF8 \uC774\uB3D9\uC18D\uB3C4\uAC00 \uC99D\uAC00\uD569\uB2C8\uB2E4. 
+    (\uACF1\uC5F0\uC0B0)"
   type: 2
   infoIndex: 5
   levelStats:
   - level: 1
-    value: 2
+    value: 1.03
     price: 5
-    detailDescription: "\uAE30\uBCF8 \uC774\uB3D9\uC18D\uB3C4\uAC00 2% \uC99D\uAC00\uD569\uB2C8\uB2E4."
+    detailDescription: "\uAE30\uBCF8 \uC774\uB3D9\uC18D\uB3C4\uAC00 3% \uC99D\uAC00\uD569\uB2C8\uB2E4.
+      (\uACF1\uC5F0\uC0B0)"
   - level: 2
-    value: 4
+    value: 1.06
     price: 10
-    detailDescription: "\uAE30\uBCF8 \uC774\uB3D9\uC18D\uB3C4\uAC00 4% \uC99D\uAC00\uD569\uB2C8\uB2E4."
+    detailDescription: "\uAE30\uBCF8 \uC774\uB3D9\uC18D\uB3C4\uAC00 6% \uC99D\uAC00\uD569\uB2C8\uB2E4.
+      (\uACF1\uC5F0\uC0B0)"
   - level: 3
-    value: 6
+    value: 1.09
     price: 15
-    detailDescription: "\uAE30\uBCF8 \uC774\uB3D9\uC18D\uB3C4\uAC00 6% \uC99D\uAC00\uD569\uB2C8\uB2E4."
+    detailDescription: "\uAE30\uBCF8 \uC774\uB3D9\uC18D\uB3C4\uAC00 9% \uC99D\uAC00\uD569\uB2C8\uB2E4.
+      (\uACF1\uC5F0\uC0B0)"
   - level: 4
-    value: 8
+    value: 1.12
     price: 20
-    detailDescription: "\uAE30\uBCF8 \uC774\uB3D9\uC18D\uB3C4\uAC00 8% \uC99D\uAC00\uD569\uB2C8\uB2E4."
+    detailDescription: "\uAE30\uBCF8 \uC774\uB3D9\uC18D\uB3C4\uAC00 12% \uC99D\uAC00\uD569\uB2C8\uB2E4.
+      (\uACF1\uC5F0\uC0B0)"
   - level: 5
-    value: 10
+    value: 1.15
     price: 25
-    detailDescription: "\uAE30\uBCF8 \uC774\uB3D9\uC18D\uB3C4\uAC00 10% \uC99D\uAC00\uD569\uB2C8\uB2E4."
+    detailDescription: "\uAE30\uBCF8 \uC774\uB3D9\uC18D\uB3C4\uAC00 15% \uC99D\uAC00\uD569\uB2C8\uB2E4.
+      (\uACF1\uC5F0\uC0B0)"

@@ -68,7 +68,7 @@ public class CorePurchasePanel : MonoBehaviour
 
         // 실제 골드/코어 차감 로직 추가할 자리
 
-        CoreApplier.Instance.ApplyCore(selectedCore, data.level);
+        CoreManager.Instance.ApplyCore(selectedCore, data.level);
 
         // **구매한 최고 레벨 업데이트 & 저장**
         currentLevel = levelIndex + 1;
