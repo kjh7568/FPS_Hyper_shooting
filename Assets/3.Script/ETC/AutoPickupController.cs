@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class AutoPickupController : MonoBehaviour
 {
+    private const float PlayerYOffset = 1f;
     private const int BaseCoinValue = 10;
-    
-    [SerializeField] private float moveSpeed = 20f; // 다가오는 속도
+    private const float moveSpeed = 20f; // 다가오는 속도
     
     private bool isReady = false;
 
@@ -18,18 +18,31 @@ public class AutoPickupController : MonoBehaviour
 
     private void Update()
     {
-        if (!isReady) return;
-        
-        var detectionRange = Player.localPlayer.playerStat.pickupRadius;
-        var playerPosition = Player.localPlayer.transform.position + new Vector3(0, 1f, 0);
+        if (!isReady || Player.localPlayer == null) return;
 
+        Transform playerTransform = Player.localPlayer.transform;
+        Vector3 playerPosition = playerTransform.position + Vector3.up * PlayerYOffset;
+
+        float detectionRange = GetPickupRange();
         float distance = Vector3.Distance(transform.position, playerPosition);
 
         if (distance < detectionRange)
         {
-            Vector3 direction = (playerPosition - transform.position).normalized;
-            transform.position += direction * (moveSpeed * Time.deltaTime);
+            MoveTowards(playerPosition);
         }
+    }
+
+    private float GetPickupRange()
+    {
+        var stat = Player.localPlayer.playerStat;
+        var core = Player.localPlayer.coreStat;
+        return stat.pickupRadius * core.coinDropRange;
+    }
+
+    private void MoveTowards(Vector3 targetPosition)
+    {
+        Vector3 direction = (targetPosition - transform.position).normalized;
+        transform.position += direction * (moveSpeed * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
