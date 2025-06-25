@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
         Player player = Player.localPlayer;
 
         Vector3 inputAxis = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
-        Vector3 moveDirection = transform.TransformDirection(inputAxis.normalized);
+        Vector3 moveDirection = transform.TransformDirection(inputAxis); // ← 그대로 사용
 
         float moveSpeed = CalculateMoveSpeed(player);
         characterController.Move(moveDirection * (moveSpeed * Time.deltaTime));
