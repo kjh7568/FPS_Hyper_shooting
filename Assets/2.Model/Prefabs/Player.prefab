@@ -2014,7 +2014,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: cca3ca807d25c1844b79eeb77e944d05, type: 3}
-  m_Type: 1
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
@@ -7684,7 +7684,7 @@ MonoBehaviour:
   playerStat:
     health: 100
     maxHealth: 100
-    moveSpeed: 8
+    moveSpeed: 5
     dashCoolTime: 2
     pickupRadius: 10
   coreStat:
@@ -7708,6 +7708,7 @@ MonoBehaviour:
   glovesSO: {fileID: 11400000, guid: 98fac4722eec3fe49a472107b3cb6ab1, type: 2}
   bootsSO: {fileID: 11400000, guid: 943d5ca02f0cdfc4594d3152a173016b, type: 2}
   coin: 10000
+  core: 0
 --- !u!114 &8549865180409883748
 MonoBehaviour:
   m_ObjectHideFlags: 0

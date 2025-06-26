@@ -14,6 +14,9 @@ public class NormalZombie : MonoBehaviour, IMonster
 
     private WaitForSeconds delay = new WaitForSeconds(2f);
     private bool isAlreadyDrop = false;
+
+    public int minCoin;
+    public int maxCoin;
     
     public void Start()
     {
@@ -84,8 +87,8 @@ public class NormalZombie : MonoBehaviour, IMonster
     {
         if (isAlreadyDrop) return;
         isAlreadyDrop = true;
-        
-        var goldCount = Random.Range(1, 5);
+
+        var goldCount = Random.Range(minCoin, maxCoin + 1);
         
         ItemGenerator.instance.SpawnGold(transform.position, goldCount);
     }
