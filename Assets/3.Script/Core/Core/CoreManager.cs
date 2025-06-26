@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.Rendering.UI;
 
 public class CoreManager : MonoBehaviour
 {
     public static CoreManager Instance;
-    
+
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -21,7 +22,7 @@ public class CoreManager : MonoBehaviour
         float value = levelData.value;
 
         var coreStat = Player.localPlayer.coreStat;
-        
+
         switch (data.coreID)
         {
             // Attack
@@ -70,10 +71,6 @@ public class CoreManager : MonoBehaviour
                 break;
             case CoreID.GrenadeRangeUp:
                 coreStat.grenadeRange = value;
-                break;
-
-            default:
-                Debug.LogWarning($"[CoreApplier] 알 수 없는 CoreID: {data.coreID}");
                 break;
         }
 

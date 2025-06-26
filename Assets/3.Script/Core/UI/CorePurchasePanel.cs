@@ -17,7 +17,9 @@ public class CorePurchasePanel : MonoBehaviour
     [SerializeField] private List<PurchaseSlot> slots;
 
     private CoreDataSO selectedCore;
+
     private int currentLevel;
+
     // **코어별로 “구매한 최고 레벨” 을 저장**
     private Dictionary<CoreID, int> purchasedLevels = new Dictionary<CoreID, int>();
 
@@ -67,14 +69,23 @@ public class CorePurchasePanel : MonoBehaviour
         Debug.Log($"[{selectedCore.coreNameKor}] {data.level}레벨 구매! 가격: {data.price} Core");
 
         // 실제 골드/코어 차감 로직 추가할 자리
+        if (Player.localPlayer.core >= data.price)
+        {
+            Player.localPlayer.core -= data.price;
+            CorePanelManager.instance.SetCoreValue();
 
-        CoreManager.Instance.ApplyCore(selectedCore, data.level);
+            CoreManager.Instance.ApplyCore(selectedCore, data.level);
 
-        // **구매한 최고 레벨 업데이트 & 저장**
-        currentLevel = levelIndex + 1;
-        purchasedLevels[selectedCore.coreID] = currentLevel;
+            // **구매한 최고 레벨 업데이트 & 저장**
+            currentLevel = levelIndex + 1;
+            purchasedLevels[selectedCore.coreID] = currentLevel;
 
-        UpdateUI();
-        CoreInfoPanel.Instance.DisplayCore(selectedCore);
+            UpdateUI();
+            CoreInfoPanel.Instance.DisplayCore(selectedCore);
+        }
+        else
+        {
+            Debug.LogWarning($"[CoreApplier] {selectedCore.coreNameKor} 적용 실패: 코어 포인트 부족");
+        }
     }
 }
