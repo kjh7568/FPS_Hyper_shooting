@@ -1,7 +1,19 @@
-ID	Type	Value	Description
-1	MoveSpeedUp	1.5	Increase movement speed
-2	DashCooldownDown	0.5	Reduce dash cooldown
-3	MaxHealthUp	10	Increase max health	
-4	AttackPowerUp	10	Increase attack power	
-5	ReloadSpeedUp	1	Reduce reload time
-6	ReloadDamageBuff	10	Increase attack power for 3seconds after reload			
+ID	Type	Value	Grade	Description	IconPath	Weight
+1	MoveSpeedUp	0.2	Legend	Increase movement speed	Icons/MoveSpeedUp	1
+2	MoveSpeedUp	0.15	Rare	Increase movement speed	Icons/MoveSpeedUp	3
+3	MoveSpeedUp	0.1	Normal	Increase movement speed	Icons/MoveSpeedUp	5
+4	DashCooldownDown	0.2	Legend	Reduce dash cooldown	Icons/DashCooldownDown	1
+5	DashCooldownDown	0.15	Rare	Reduce dash cooldown	Icons/DashCooldownDown	3
+6	DashCooldownDown	0.1	Normal	Reduce dash cooldown	Icons/DashCooldownDown	5
+7	MaxHealthUp	20.0	Legend	Increase max health	Icons/MaxHealthUp	1
+8	MaxHealthUp	15.0	Rare	Increase max health	Icons/MaxHealthUp	3
+9	MaxHealthUp	10.0	Normal	Increase max health	Icons/MaxHealthUp	5
+10	AttackPowerUp	0.2	Legend	Increase attack power	Icons/AttackPowerUp	1
+11	AttackPowerUp	0.15	Rare	Increase attack power	Icons/AttackPowerUp	3
+12	AttackPowerUp	0.1	Normal	Increase attack power	Icons/AttackPowerUp	5
+13	ReloadSpeedUp	0.2	Legend	Reduce reload time	Icons/ReloadSpeedUp	1
+14	ReloadSpeedUp	0.15	Rare	Reduce reload time	Icons/ReloadSpeedUp	3
+15	ReloadSpeedUp	0.1	Normal	Reduce reload time	Icons/ReloadSpeedUp	5
+16	DefenseUp	0.2	Legend	Increase defense	Icons/DefenseUp	1
+17	DefenseUp	0.15	Rare	Increase defense	Icons/DefenseUp	3
+18	DefenseUp	0.1	Normal	Increase defense	Icons/DefenseUp	5

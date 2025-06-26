@@ -37,6 +37,11 @@ public class AugmentInteractable : MonoBehaviour
     {
         if (isPlayerNear && Input.GetKeyDown(KeyCode.E))
         {
+            if (AugmentPanelManager.Instance.HasSelected)
+            {
+                Debug.Log("이미 증강을 선택했기 때문에 다시 열 수 없습니다.");
+                return;
+            }
             AugmentPanelManager.Instance.OpenPanel();
             pressETextUI.SetActive(false); // 패널 열면 텍스트 숨김
 
@@ -44,8 +49,8 @@ public class AugmentInteractable : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
 
-            FindObjectOfType<PlayerController>().isOpenPanel = true;
-            WeaponManager.instance.currentWeapon.isOpenPanel = true;
+           //  FindObjectOfType<PlayerController>().isOpenPanel = true;
+           //  WeaponManager.instance.currentWeapon.isOpenPanel = true;
         }
     }
 

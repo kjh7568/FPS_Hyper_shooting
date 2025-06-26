@@ -48,7 +48,6 @@ public class StorePanelManager : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-
         FindObjectOfType<PlayerController>().isOpenPanel = true;
         WeaponManager.instance.currentWeapon.isOpenPanel = true;
         // FindObjectOfType<UIManager>().isOpenPanel = false;

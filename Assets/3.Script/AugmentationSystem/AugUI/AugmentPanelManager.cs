@@ -11,10 +11,19 @@ public class AugmentPanelManager : MonoBehaviour
     public static AugmentPanelManager Instance;
 
     [SerializeField] private GameObject augmentPanel;
-    [SerializeField] private Button[] augmentButtons;        // 버튼 3개
-    [SerializeField] private Text[] augmentButtonTexts;      // 각 버튼 설명 텍스트
-    private List<AugmentData> allAugments;                   // TSV에서 불러온 전체 리스트
-    private List<AugmentData> currentOptions;                // 현재 선택지 3개
+    [SerializeField] private Button[] augmentButtons;
+
+    private List<AugmentData> allAugments;
+    private List<AugmentData> currentOptions;
+    private List<AugmentData> obtainedAugments = new List<AugmentData>();
+
+    private bool hasRerolled = false;
+    public bool HasRerolled => hasRerolled;
+
+    private bool hasSelected = false;
+    public bool HasSelected => hasSelected;
+
+    private int selectedIndex = -1;
 
     private void Awake()
     {
@@ -23,7 +32,24 @@ public class AugmentPanelManager : MonoBehaviour
 
     private void Start()
     {
-        LoadAugmentsFromTSV(); // 시작 시 1회 로딩
+        LoadAugmentsFromTSV();
+    }
+
+    private void Update()
+    {
+        if (augmentPanel.activeSelf)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space))
+            {
+                ClosePanel();
+            }
+        }
+        // 디버깅용
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("[디버그] E키 눌림: 강제 리롤");
+            RerollAugments();
+        }
     }
 
     private void LoadAugmentsFromTSV()
@@ -50,27 +76,51 @@ public class AugmentPanelManager : MonoBehaviour
 
     private void SetRandomAugments()
     {
-        currentOptions = new List<AugmentData>(allAugments);
-        Shuffle(currentOptions);
+        if (currentOptions == null || currentOptions.Count == 0)
+        {
+            var available = allAugments.FindAll(a => !obtainedAugments.Contains(a));
+            currentOptions = GetWeightedRandomAugments(available, Mathf.Min(3, available.Count));
+        }
 
         for (int i = 0; i < 3; i++)
         {
+            if (i >= currentOptions.Count)
+            {
+                augmentButtons[i].gameObject.SetActive(false);
+                continue;
+            }
+
             AugmentData data = currentOptions[i];
-
-            // 1. 텍스트 표시
-            augmentButtonTexts[i].text = $"{data.Type}\n<size=12>{data.Description}</size>";
-
-            // 2. 버튼 바인딩 초기화
             augmentButtons[i].onClick.RemoveAllListeners();
 
-            // 3. 증강 데이터 바인딩
-            AugmentButton augmentButton = augmentButtons[i].GetComponent<AugmentButton>();
-            augmentButton.Initialize(data);
+            var augmentButton = augmentButtons[i].GetComponent<AugmentButton>();
+            augmentButton.Initialize(data); // ← 등급 텍스트 포함 표시
 
-            // 4. OnClick은 AugmentButton 내부 메서드로 연결
-            augmentButtons[i].onClick.AddListener(() => augmentButton.OnClick());
+            if (hasSelected)
+            {
+                augmentButtons[i].interactable = false;
+
+                if (i == selectedIndex)
+                    augmentButton.ShowSelectedOverlay();
+            }
+            else
+            {
+                int capturedIndex = i;
+                augmentButtons[i].interactable = true;
+                augmentButtons[i].onClick.AddListener(() =>
+                {
+                    selectedIndex = capturedIndex;
+                    hasSelected = true;
+
+                    GameData.Instance.augmentStat.Apply(data);
+                    RegisterObtainedAugment(data);
+
+                    ClosePanel();
+                });
+            }
         }
     }
+
 
     private void Shuffle<T>(List<T> list)
     {
@@ -82,12 +132,22 @@ public class AugmentPanelManager : MonoBehaviour
             list[rand] = temp;
         }
     }
+
     public void OpenPanel()
     {
+        // 남은 증강이 없다면 열지 않음
+        if (obtainedAugments.Count >= allAugments.Count)
+        {
+            Debug.Log("모든 증강을 이미 선택했습니다.");
+            return;
+        }
+
         SetRandomAugments();
         augmentPanel.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        FindObjectOfType<PlayerController>().isOpenPanel = true;
+        WeaponManager.instance.currentWeapon.isOpenPanel = true;
     }
 
     public void ClosePanel()
@@ -95,5 +155,68 @@ public class AugmentPanelManager : MonoBehaviour
         augmentPanel.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        FindObjectOfType<PlayerController>().isOpenPanel = false;
+        WeaponManager.instance.currentWeapon.isOpenPanel = false;
+      //  Cursor.lockState = CursorLockMode.Locked;
+      //  Cursor.visible = false;
+
+     //   var controller = FindObjectOfType<PlayerController>();
+     //   if (controller != null) controller.isOpenPanel = false;
     }
+
+    public void RerollAugments()
+    {
+        if (hasSelected)
+        {
+            Debug.Log("이미 선택해서 리롤할 수 없습니다.");
+            return;
+        }
+
+        hasRerolled = true;
+        currentOptions.Clear();
+        SetRandomAugments();
+    }
+
+    public void RegisterObtainedAugment(AugmentData data)
+    {
+        if (!obtainedAugments.Contains(data))
+        {
+            obtainedAugments.Add(data);
+        }
+
+        // 디버그: 남은 증강 출력
+        var remaining = allAugments.FindAll(a => !obtainedAugments.Contains(a));
+        Debug.Log($"[증강] 남은 증강 개수: {remaining.Count}");
+        foreach (var a in remaining)
+        {
+            Debug.Log($"[남은 증강] {a.Type} | Value: {a.Value}");
+        }
+    }
+    private List<AugmentData> GetWeightedRandomAugments(List<AugmentData> candidates, int count)
+    {
+        List<AugmentData> result = new List<AugmentData>();
+        List<AugmentData> pool = new List<AugmentData>();
+
+        foreach (var data in candidates)
+        {
+            for (int i = 0; i < data.Weight; i++)
+            {
+                pool.Add(data);
+            }
+        }
+
+        Shuffle(pool);
+
+        foreach (var item in pool)
+        {
+            if (!result.Contains(item))
+                result.Add(item);
+
+            if (result.Count >= count)
+                break;
+        }
+
+        return result;
+    }
+
 }

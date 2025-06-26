@@ -19,10 +19,10 @@ public class CoreInteractable : MonoBehaviour
             if (pressETextUI != null)
             {
                 pressETextUI.SetActive(true);
+                Debug.Log("플레이어가 코어 오브젝트에 닿았습니다.");
             }
         }
     }
-
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
