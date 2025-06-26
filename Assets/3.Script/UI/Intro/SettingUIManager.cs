@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class SettingUIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GameObject buttonPanel;
+    [SerializeField] private GameObject settingPanel;
 
-    // Update is called once per frame
-    void Update()
+    public void OnClickExit()
     {
-        
+        buttonPanel.SetActive(true);
+        settingPanel.SetActive(false);
     }
+    
+    //todo 시간 남으면 볼륨 조절, 감도 조절 만들기
 }
