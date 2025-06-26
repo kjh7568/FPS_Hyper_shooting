@@ -18,7 +18,8 @@ public class Nasty : MonoBehaviour, IMonster
 
     private WaitForSeconds delay = new WaitForSeconds(2f);
     private float desiredHealth;
-
+    private bool isAlreadyDrop = false;
+    
     public void Start()
     {
         MonsterUIManager.instance.SetBossHpBar(ZombieStat);
@@ -35,6 +36,7 @@ public class Nasty : MonoBehaviour, IMonster
         if (zombieStat.health <= 0)
         {
             GetComponent<BossController>().SwitchState(new BossDieState());
+            CoreDrop();
             mainCollider.enabled = false;
         }
         else if (zombieStat.health <= desiredHealth && stunnedCount > 0)
@@ -65,5 +67,15 @@ public class Nasty : MonoBehaviour, IMonster
         yield return delay;
         
         Destroy(blood);
+    }
+    
+    private void CoreDrop()
+    {
+        if (isAlreadyDrop) return;
+        isAlreadyDrop = true;
+        
+        var coreCount = Random.Range(5, 10);
+        
+        ItemGenerator.instance.SpawnCore(transform.position, coreCount);
     }
 }

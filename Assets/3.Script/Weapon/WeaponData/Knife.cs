@@ -19,13 +19,16 @@ public class Knife : WeaponController
     {
         audioSource.PlayOneShot(fireSingle);
         
-        float damage = GetFinalDamage();
-
         Camera cam = Camera.main;
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
+        
         if (Physics.Raycast(ray, out RaycastHit hit, 1.5f))
         {
             Debug.DrawLine(ray.origin, hit.point, Color.red, 1f);
+            
+            var isCritical = IsCritical();
+            var damage = GetFinalDamage(isCritical);
+            
             var target = hit.collider.GetComponent<IDamageAble>();
             if (target != null)
             {
@@ -37,7 +40,9 @@ public class Knife : WeaponController
                     HitPosition = hit.point,
                     Collider = hit.collider
                 };
+                
                 CombatSystem.Instance.AddInGameEvent(combatEvent);
+                StartCoroutine(uiManager.PrintDamage_Coroutine(combatEvent, damage, isCritical));
             }
         }
         else

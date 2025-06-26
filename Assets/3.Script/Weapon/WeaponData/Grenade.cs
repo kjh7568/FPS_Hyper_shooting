@@ -50,9 +50,14 @@ public class Grenade : WeaponController
         
         // 오직 Monster 레이어에만 반응
         Collider[] hits = Physics.OverlapSphere(transform.position, finalRadius, monsterLayer);
-
+        
+        var isCritical = IsCritical(); 
+        
         foreach (var hit in hits)
         {
+            //수류탄은 치명타 없음                       
+            var damage = GetFinalDamage(isCritical);
+            
             var target = CombatSystem.Instance.GetMonsterOrNull(hit);
             if (target != null)
             {
@@ -60,11 +65,13 @@ public class Grenade : WeaponController
                 {
                     Sender = Player.localPlayer,
                     Receiver = target,
-                    Damage = WeaponManager.instance.grenadeWeapon.weapon.currentStat.damage,
+                    Damage = damage,
                     HitPosition = hit.ClosestPoint(transform.position),
                     Collider = hit.GetComponent<Collider>()
                 };
+                
                 CombatSystem.Instance.AddInGameEvent(combatEvent);
+                StartCoroutine(uiManager.PrintDamage_Coroutine(combatEvent, damage, isCritical));
             }
         }
 

@@ -20,8 +20,6 @@ public class Inventory
         ApplyEquipmentOption(armor);
 
         equippedArmors[type] = armor;
-
-        EquipmentStat.PrintOption();
     }
     
     private void ApplyEquipmentOption(Armor parts)

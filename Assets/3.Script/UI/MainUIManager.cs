@@ -339,8 +339,6 @@ public class MainUIManager : MonoBehaviour
         
         //아이템 유형에 따라 무기 모델 변경 & 웨폰 컨트롤러의 웨폰 값을 변경
         WeaponManager.instance.ChangeWeapon(target);
-        
-        Player.localPlayer.inventory.EquipmentStat.PrintOption();
     }
 
     #endregion

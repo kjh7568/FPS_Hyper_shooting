@@ -20,7 +20,6 @@ public class DroppedItem : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(isPreviousItem);
         if (isPreviousItem) return;
         
         if (Random.Range(0, 2) == 0)

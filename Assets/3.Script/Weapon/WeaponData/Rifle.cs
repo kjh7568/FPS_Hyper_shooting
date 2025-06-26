@@ -6,11 +6,10 @@ using Random = UnityEngine.Random;
 public class Rifle : WeaponController
 {
     private float nextFireTime = 0f;
-    private PlayerController playerController; 
-    [SerializeField] private WeaponDataSO rifleRootData; 
+    private PlayerController playerController;
+    [SerializeField] private WeaponDataSO rifleRootData;
 
-    [Header("사운드 설정")]
-    public AudioSource audioSource;
+    [Header("사운드 설정")] public AudioSource audioSource;
     public AudioClip fireSingle;
     public AudioClip reloadSingle;
 
@@ -30,17 +29,18 @@ public class Rifle : WeaponController
     {
         if (weapon.isReloading)
             return;
-        
+
         // 좌클릭 발사
-        if (Input.GetMouseButton(0) && Time.time >= nextFireTime && !isOpenPanel && !WeaponManager.instance.stateInfo.IsName("Draw"))
+        if (Input.GetMouseButton(0) && Time.time >= nextFireTime && !isOpenPanel &&
+            !WeaponManager.instance.stateInfo.IsName("Draw"))
         {
             if (weapon.currentAmmo > 0)
             {
                 Fire();
-                
+
                 audioSource.pitch = Random.Range(0.95f, 1.05f);
                 audioSource.PlayOneShot(fireSingle);
-                
+
                 playerController.SetShootAnimation(true);
                 nextFireTime = Time.time + weapon.currentStat.fireRate;
             }
@@ -68,7 +68,7 @@ public class Rifle : WeaponController
         weapon.currentAmmo--;
 
         StartCoroutine(PlayMuzzleFlash());
-        
+
         Camera cam = Camera.main;
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         RaycastHit hit;
@@ -76,6 +76,10 @@ public class Rifle : WeaponController
         if (Physics.Raycast(ray, out hit, 100f))
         {
             Debug.DrawLine(ray.origin, hit.point, Color.red, 1f);
+
+            var isCritical = IsCritical();
+            
+            var damage = GetFinalDamage(isCritical);
 
             if (hit.collider.CompareTag("Zombie"))
             {
@@ -86,11 +90,12 @@ public class Rifle : WeaponController
                     CombatEvent combatEvent = new CombatEvent();
                     combatEvent.Sender = Player.localPlayer;
                     combatEvent.Receiver = monster;
-                    combatEvent.Damage = GetFinalDamage(); // ✅ 버프 적용된 최종 데미지 사용 --> 수정 중이라 바뀜
+                    combatEvent.Damage = damage; // ✅ 버프 적용된 최종 데미지 사용 --> 수정 중이라 바뀜
                     combatEvent.HitPosition = hit.point;
                     combatEvent.Collider = hit.collider;
 
                     CombatSystem.Instance.AddInGameEvent(combatEvent);
+                    StartCoroutine(uiManager.PrintDamage_Coroutine(combatEvent, damage, isCritical));
                 }
             }
             else
@@ -105,28 +110,30 @@ public class Rifle : WeaponController
     }
 
     public override void Reload()
-         {
-             if (weapon.currentAmmo >= weapon.currentStat.magazine)
-             {
-                 return;
-             }
-             
-             StartCoroutine(ReloadRoutine());
-         }
+    {
+        if (weapon.currentAmmo >= weapon.currentStat.magazine)
+        {
+            return;
+        }
+
+        StartCoroutine(ReloadRoutine());
+    }
 
     private IEnumerator ReloadRoutine()
     {
         weapon.isReloading = true;
-        
+
         playerController.SetShootAnimation(false);
         playerController.SetReloadAnimation();
         playerController.SetAnimationSpeed(Player.localPlayer.inventory.EquipmentStat.reloadSpeedReduction);
-        
-        audioSource.PlayOneShot(reloadSingle);
-        
-        yield return new WaitForSeconds(weapon.currentStat.reloadTime * (1 - Player.localPlayer.inventory.EquipmentStat.reloadSpeedReduction));
 
-        weapon.currentAmmo = weapon.currentStat.magazine;;
+        audioSource.PlayOneShot(reloadSingle);
+
+        yield return new WaitForSeconds(weapon.currentStat.reloadTime *
+                                        (1 - Player.localPlayer.inventory.EquipmentStat.reloadSpeedReduction));
+
+        weapon.currentAmmo = weapon.currentStat.magazine;
+        ;
         weapon.isReloading = false;
 
         // OnReloadComplete();

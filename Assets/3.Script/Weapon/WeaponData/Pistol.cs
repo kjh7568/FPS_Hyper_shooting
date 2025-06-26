@@ -71,6 +71,8 @@ public class Pistol : WeaponController
     {
         weapon.currentAmmo--;
 
+        StartCoroutine(PlayMuzzleFlash());
+
         Camera cam = Camera.main;
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         RaycastHit hit;
@@ -78,6 +80,9 @@ public class Pistol : WeaponController
         if (Physics.Raycast(ray, out hit, 50f))
         {
             Debug.DrawLine(ray.origin, hit.point, Color.red, 1f);
+
+            var isCritical = IsCritical();
+            var damage = GetFinalDamage(isCritical);
 
             if (hit.collider.CompareTag("Zombie"))
             {
@@ -88,11 +93,12 @@ public class Pistol : WeaponController
                     CombatEvent combatEvent = new CombatEvent();
                     combatEvent.Sender = Player.localPlayer;
                     combatEvent.Receiver = monster;
-                    combatEvent.Damage = GetFinalDamage(); // ✅ 버프 적용된 최종 데미지 사용
+                    combatEvent.Damage = damage; // ✅ 버프 적용된 최종 데미지 사용 --> 수정 중이라 바뀜
                     combatEvent.HitPosition = hit.point;
                     combatEvent.Collider = hit.collider;
 
                     CombatSystem.Instance.AddInGameEvent(combatEvent);
+                    StartCoroutine(uiManager.PrintDamage_Coroutine(combatEvent, damage,isCritical));
                 }
             }
             else

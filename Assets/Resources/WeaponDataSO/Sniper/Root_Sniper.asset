@@ -19,52 +19,62 @@ MonoBehaviour:
   levelStats:
   - level: 1
     damage: 100
-    fireRate: 2
+    fireRate: 0.9
     reloadTime: 3
     magazine: 5
+    explosionRange: 0
   - level: 2
     damage: 102
-    fireRate: 1.9
+    fireRate: 0.88
     reloadTime: 2.9
     magazine: 5
+    explosionRange: 0
   - level: 3
     damage: 104
-    fireRate: 1.8
+    fireRate: 0.86
     reloadTime: 2.8
     magazine: 6
+    explosionRange: 0
   - level: 4
     damage: 106
-    fireRate: 1.7
+    fireRate: 0.84
     reloadTime: 2.7
     magazine: 6
+    explosionRange: 0
   - level: 5
     damage: 108
-    fireRate: 1.6
+    fireRate: 0.82
     reloadTime: 2.6
     magazine: 7
+    explosionRange: 0
   - level: 6
     damage: 110
-    fireRate: 1.5
+    fireRate: 0.8
     reloadTime: 2.5
     magazine: 7
+    explosionRange: 0
   - level: 7
     damage: 112
-    fireRate: 1.4
+    fireRate: 0.78
     reloadTime: 2.4
     magazine: 8
+    explosionRange: 0
   - level: 8
     damage: 114
-    fireRate: 1.3
+    fireRate: 0.76
     reloadTime: 2.3
     magazine: 8
+    explosionRange: 0
   - level: 9
     damage: 116
-    fireRate: 1.2
+    fireRate: 0.74
     reloadTime: 2.2
     magazine: 8
+    explosionRange: 0
   - level: 10
     damage: 118
-    fireRate: 1
+    fireRate: 0.72
     reloadTime: 2
     magazine: 8
+    explosionRange: 0
   possibleEffects: 00000000010000000200000003000000040000000500000006000000
