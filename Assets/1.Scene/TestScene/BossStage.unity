@@ -10319,8 +10319,7 @@ MonoBehaviour:
     dashCooldownReduction: 0
     attackPowerBonus: 0
     reloadSpeedBonus: 0
-    reloadDamageBonus: 0
-    reloadBuffDuration: 3
+    defenseBonus: 0
 --- !u!4 &383410006
 Transform:
   m_ObjectHideFlags: 0
@@ -10720,6 +10719,7 @@ MonoBehaviour:
     type: 3}
   droppedGoldPrefab: {fileID: 5064701373022771147, guid: c66c4107c44880740862f47c886e20ac,
     type: 3}
+  droppedCorePrefab: {fileID: 0}
 --- !u!4 &426358953
 Transform:
   m_ObjectHideFlags: 0
@@ -11679,6 +11679,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 447fc3c98f7e721429efdd7faa198be1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iconImage: {fileID: 0}
+  selectedOverlayImage: {fileID: 0}
+  nameText: {fileID: 0}
 --- !u!1 &453025910
 GameObject:
   m_ObjectHideFlags: 0
@@ -11948,6 +11951,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 447fc3c98f7e721429efdd7faa198be1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iconImage: {fileID: 0}
+  selectedOverlayImage: {fileID: 0}
+  nameText: {fileID: 0}
 --- !u!1 &458047726
 GameObject:
   m_ObjectHideFlags: 0
@@ -15207,6 +15213,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 447fc3c98f7e721429efdd7faa198be1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iconImage: {fileID: 0}
+  selectedOverlayImage: {fileID: 0}
+  nameText: {fileID: 0}
 --- !u!4 &557033937 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7760337846062335354, guid: aec12a9c1715c1845af0b67dce470f36,
@@ -21232,12 +21241,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 0}
-  zombies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &818288930
 GameObject:
   m_ObjectHideFlags: 0
@@ -40986,7 +40989,7 @@ Transform:
   m_GameObject: {fileID: 1538298265}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.56, z: -49.2}
+  m_LocalPosition: {x: 0, y: 6.67, z: -12.89}
   m_LocalScale: {x: 1, y: 1, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
