@@ -7,7 +7,6 @@ public class NextStageController : MonoBehaviour
 {
     public static NextStageController Instance;
 
-    [Header("문 오브젝트")]
     [SerializeField] private GameObject door;
 
     private List<GameObject> zombies = new List<GameObject>();
@@ -24,13 +23,13 @@ public class NextStageController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.C))
         {
-            Debug.Log("C 키 입력: 문 강제 오픈");
-            OpenDoor();
+            Debug.Log("C 키 입력: 다음 씬 강제 이동");
+            GoToNextStage();
         }
 
         if (CombatSystem.Instance.AreAllMonstersDead())
         {
-            Debug.Log("좀비 전원 처치 완료: 문 오픈");
+            Debug.Log("좀비 전원 처치 완료: 문 오픈 + 다음 씬 이동 준비");
             OpenDoor();
         }
     }
@@ -39,7 +38,10 @@ public class NextStageController : MonoBehaviour
     {
         zombies = zombieList;
     }
-
+    public void GoToNextStage()
+    {
+        StageManager.Instance.LoadNextScene();
+    }
     private void OpenDoor()
     {
         isDoorOpened = true;

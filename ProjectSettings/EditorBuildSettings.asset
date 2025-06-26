@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/1.Scene/TestScene/0. CoreScene.unity
+    path: Assets/1.Scene/TestScene/CoreScene.unity
     guid: 2e73249b4b8937d4c8bf73f3cbca461b
   - enabled: 0
     path: Assets/1.Scene/Stage/1. Stage.unity
@@ -23,6 +23,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/1.Scene/TestScene/MapDesign2.unity
     guid: 9e999b8650694da46b320861f72dc418
+  - enabled: 1
+    path: Assets/1.Scene/TestScene/MapDesign3.unity
+    guid: 25878cfaea298fa4d9c2c2eb52c8406b
+  - enabled: 1
+    path: Assets/1.Scene/TestScene/MapDesign4.unity
+    guid: 39a0b178faf427447820044549573176
+  - enabled: 1
+    path: Assets/1.Scene/TestScene/MapDesign5.unity
+    guid: 6fdfac01eab101f4299b7ee252ce9f42
   - enabled: 1
     path: Assets/1.Scene/TestScene/BossStage.unity
     guid: 6866c7e2f72f7d34bbb80d9b728a9a30

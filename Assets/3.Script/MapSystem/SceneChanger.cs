@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class SceneChanger : MonoBehaviour
 {
-    [SerializeField] private int nextStageIndex = -1;
     private bool canTrigger = false;
 
     private void Start()
@@ -21,8 +20,8 @@ public class SceneChanger : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            Debug.Log($"씬 전환 요청: 인덱스 {nextStageIndex}");
-            StageManager.Instance.LoadSceneByIndex(nextStageIndex);
+            Debug.Log($"씬 전환 요청됨 (자동 시퀀스)");
+            StageManager.Instance.LoadNextScene();
         }
     }
 }

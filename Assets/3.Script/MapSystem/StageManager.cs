@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class StageManager : MonoBehaviour
 {
     public static StageManager Instance { get; private set; }
 
     private bool isTransitioning = false;
-    private int requestedSceneIndex = -1;
+    private List<string> sceneSequence;
+    private int currentStageIndex = 0;
 
     private void Awake()
     {
@@ -14,29 +16,50 @@ public class StageManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            InitSceneSequence();
         }
         else
         {
             Destroy(gameObject);
         }
+        foreach (var scene in sceneSequence)
+        {
+            Debug.Log($"씬 순서: {scene}");
+        }
     }
 
-    public void LoadSceneByIndex(int index)
+    private void InitSceneSequence()
+    {
+        // 중간 맵 셔플
+        var randomMaps = new List<string> { "MapDesign1", "MapDesign2", "MapDesign3", "MapDesign4", "MapDesign5" };
+        for (int i = randomMaps.Count - 1; i > 0; i--)
+        {
+            int rnd = Random.Range(0, i + 1);
+            (randomMaps[i], randomMaps[rnd]) = (randomMaps[rnd], randomMaps[i]);
+        }
+
+        sceneSequence = new List<string>();
+        sceneSequence.Add("CoreScene");          // 시작
+        sceneSequence.AddRange(randomMaps);      // 랜덤 5개
+        sceneSequence.Add("BossStage");          // 마지막
+    }
+
+    public void LoadNextScene()
     {
         if (isTransitioning) return;
-        if (index < 0 || index >= SceneManager.sceneCountInBuildSettings)
+        if (currentStageIndex >= sceneSequence.Count - 1)
         {
-            Debug.LogWarning("유효하지 않은 씬 인덱스입니다.");
+            Debug.Log("모든 씬을 완료했습니다.");
             return;
         }
 
+        currentStageIndex++;
+        string nextSceneName = sceneSequence[currentStageIndex];
+
         isTransitioning = true;
-        requestedSceneIndex = index;
-
         SaveCurrentState();
-
         SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.LoadScene(index);
+        SceneManager.LoadScene(nextSceneName);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -62,12 +85,6 @@ public class StageManager : MonoBehaviour
             player.transform.position = spawnPos;
 
             if (cc != null) cc.enabled = true;
-
-            Debug.Log($"[StageManager] 플레이어를 스폰 위치로 이동: {spawnPos}");
-        }
-        else
-        {
-            Debug.LogWarning("SpawnPoint 오브젝트를 찾지 못했습니다.");
         }
 
         var weapon = FindObjectOfType<WeaponController>();
@@ -82,7 +99,6 @@ public class StageManager : MonoBehaviour
     private void SaveCurrentState()
     {
         var weapon = FindObjectOfType<WeaponController>();
-
         if (weapon != null)
         {
             GameData.Instance.SaveGunState(weapon);
