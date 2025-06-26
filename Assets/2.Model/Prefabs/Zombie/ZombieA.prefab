@@ -509,7 +509,7 @@ GameObject:
   - component: {fileID: 2026857361359727490}
   - component: {fileID: -3278071713368346854}
   m_Layer: 7
-  m_Name: ZombieA01
+  m_Name: ZombieA
   m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -621,10 +621,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 3.82
+  m_Radius: 0.2
+  m_Height: 1.6
   m_Direction: 1
-  m_Center: {x: 0, y: 1.93, z: 0}
+  m_Center: {x: 0, y: 0.85, z: 0}
 --- !u!54 &-4964300554593008684
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -768,6 +768,8 @@ MonoBehaviour:
     isCanRun: 0
   bloodPrefab: {fileID: 57171193226315786, guid: e157d2169c621ac46af57c72493e7e92,
     type: 3}
+  minCoin: 1
+  maxCoin: 5
   mainCollider: {fileID: 5560361098929785769}
   monsterLayer:
     serializedVersion: 2

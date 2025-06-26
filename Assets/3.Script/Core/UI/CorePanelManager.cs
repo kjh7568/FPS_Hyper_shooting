@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class CorePanelManager : MonoBehaviour
@@ -5,6 +6,8 @@ public class CorePanelManager : MonoBehaviour
     public static CorePanelManager instance;
 
     [SerializeField] private GameObject corePanel;
+    [SerializeField] private TMP_Text core;
+    
 
     private void Awake()
     {
@@ -28,6 +31,8 @@ public class CorePanelManager : MonoBehaviour
     {
         corePanel.SetActive(true);
 
+        SetCoreValue();
+        
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
@@ -35,7 +40,7 @@ public class CorePanelManager : MonoBehaviour
         WeaponManager.instance.currentWeapon.isOpenPanel = true;
     }
 
-    public void ClosePanel()
+    private void ClosePanel()
     {
         corePanel.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
@@ -43,5 +48,10 @@ public class CorePanelManager : MonoBehaviour
 
         FindObjectOfType<PlayerController>().isOpenPanel = false;
         WeaponManager.instance.currentWeapon.isOpenPanel = false;
+    }
+
+    public void SetCoreValue()
+    {
+        core.text = $"{Player.localPlayer.core}";
     }
 }

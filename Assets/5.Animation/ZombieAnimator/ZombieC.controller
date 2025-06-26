@@ -8,7 +8,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Attack
-  m_Speed: 1
+  m_Speed: 0.7
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -7964329953695086457}
@@ -244,7 +244,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ZombieA
+  m_Name: ZombieC
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Death
@@ -312,7 +312,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 4905dbccf6df2ce47b10b960fdb1d924, type: 3}
+  m_Motion: {fileID: 7400000, guid: c8373ec3a2dd0dc42a5ac5684d077550, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -430,7 +430,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 6ce66fcc31ffe26438937b7ebbae0bfe, type: 3}
+  m_Motion: {fileID: 7400000, guid: 25cf38fca56c852459a7b12b39dabb36, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

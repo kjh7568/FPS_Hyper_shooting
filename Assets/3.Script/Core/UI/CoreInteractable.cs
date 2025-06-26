@@ -23,6 +23,7 @@ public class CoreInteractable : MonoBehaviour
             }
         }
     }
+    
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
