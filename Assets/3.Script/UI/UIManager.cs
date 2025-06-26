@@ -56,7 +56,7 @@ public class UIManager : MonoBehaviour
         hpBar.color = setColor;
     }
 
-    public IEnumerator PrintDamage_Coroutine(CombatEvent combatEvent, float damage)
+    public IEnumerator PrintDamage_Coroutine(CombatEvent combatEvent, float damage, bool isCritical)
     {
         // UI 생성
         GameObject uiObj = Instantiate(damageUI, damageUIParent);
@@ -70,7 +70,7 @@ public class UIManager : MonoBehaviour
         point.position = combatEvent.HitPosition + randomDir * randomDistance;
         point.SetParent(combatEvent.Collider.gameObject.transform);
         
-        uiObj.GetComponent<DamageUI>().Set(point ,combatEvent.HitPosition, damage);
+        uiObj.GetComponent<DamageUI>().Set(point ,combatEvent.HitPosition, damage, isCritical);
 
         // 일정 시간 대기 후 삭제    
         yield return delay;

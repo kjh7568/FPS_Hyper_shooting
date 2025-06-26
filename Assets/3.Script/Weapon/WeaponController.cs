@@ -15,7 +15,7 @@ public abstract class WeaponController : MonoBehaviour
 
     public GameObject muzzleFlash;
     
-    private WaitForSeconds delay = new  WaitForSeconds(0.05f);
+    private WaitForSeconds delay = new  WaitForSeconds(0.01f);
     
     protected UIManager uiManager;
     
@@ -39,12 +39,22 @@ public abstract class WeaponController : MonoBehaviour
         else if (roll < 95) return WeaponGrade.Epic;
         else return WeaponGrade.Legendary;
     }
+
+    protected bool IsCritical()
+    {
+        var rate = Random.Range(0, 100);
+        var criticalChance = Player.localPlayer.inventory.EquipmentStat.criticalChance;
+        
+        return rate < criticalChance;
+    }
     
-    protected float GetFinalDamage()
+    protected float GetFinalDamage(bool isCritical)
     {
         float baseDamage = weapon.currentStat.damage;
         float attackMultiplier = CalculateAttackMultiplier(weapon.Type);
 
+        if(isCritical) return  baseDamage * attackMultiplier * Player.localPlayer.coreStat.coreDamage * Player.localPlayer.inventory.EquipmentStat.multiplierCriticalDamage;
+        
         return baseDamage * attackMultiplier * Player.localPlayer.coreStat.coreDamage;
     }
 

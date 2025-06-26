@@ -77,7 +77,9 @@ public class Rifle : WeaponController
         {
             Debug.DrawLine(ray.origin, hit.point, Color.red, 1f);
 
-            var damage = GetFinalDamage();
+            var isCritical = IsCritical();
+            
+            var damage = GetFinalDamage(isCritical);
 
             if (hit.collider.CompareTag("Zombie"))
             {
@@ -93,7 +95,7 @@ public class Rifle : WeaponController
                     combatEvent.Collider = hit.collider;
 
                     CombatSystem.Instance.AddInGameEvent(combatEvent);
-                    StartCoroutine(uiManager.PrintDamage_Coroutine(combatEvent, damage));
+                    StartCoroutine(uiManager.PrintDamage_Coroutine(combatEvent, damage, isCritical));
                 }
             }
             else

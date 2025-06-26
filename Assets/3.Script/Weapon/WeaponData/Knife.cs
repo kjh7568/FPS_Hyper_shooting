@@ -26,7 +26,8 @@ public class Knife : WeaponController
         {
             Debug.DrawLine(ray.origin, hit.point, Color.red, 1f);
             
-            var damage = GetFinalDamage();
+            var isCritical = IsCritical();
+            var damage = GetFinalDamage(isCritical);
             
             var target = hit.collider.GetComponent<IDamageAble>();
             if (target != null)
@@ -41,7 +42,7 @@ public class Knife : WeaponController
                 };
                 
                 CombatSystem.Instance.AddInGameEvent(combatEvent);
-                StartCoroutine(uiManager.PrintDamage_Coroutine(combatEvent, damage));
+                StartCoroutine(uiManager.PrintDamage_Coroutine(combatEvent, damage, isCritical));
             }
         }
         else

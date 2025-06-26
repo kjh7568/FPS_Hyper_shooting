@@ -85,8 +85,9 @@ public class Shotgun : WeaponController
             if (Physics.Raycast(ray, out hit, 50f))
             {
                 Debug.DrawRay(origin, spreadDirection * hit.distance, Color.red, 1f);
-
-                var damage = GetFinalDamage();
+                
+                var isCritical = IsCritical();
+                var damage = GetFinalDamage(isCritical);
 
                 if (hit.collider.CompareTag("Zombie"))
                 {
@@ -102,7 +103,7 @@ public class Shotgun : WeaponController
                         combatEvent.Collider = hit.collider;
 
                         CombatSystem.Instance.AddInGameEvent(combatEvent);
-                        StartCoroutine(uiManager.PrintDamage_Coroutine(combatEvent, damage));
+                        StartCoroutine(uiManager.PrintDamage_Coroutine(combatEvent, damage, isCritical));
                     }
                 }
             }

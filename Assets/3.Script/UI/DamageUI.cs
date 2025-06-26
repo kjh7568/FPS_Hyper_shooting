@@ -63,13 +63,15 @@ public class DamageUI : MonoBehaviour
         }
     }
 
-    public void Set(Transform worldParent, Vector3 worldPosition, float damage)
+    public void Set(Transform worldParent, Vector3 worldPosition, float damage, bool isCritical)
     {
         this.worldParent = worldParent;
 
         if (text != null)
             text.text = Mathf.RoundToInt(damage).ToString();
 
+        text.color = isCritical ? Color.yellow : Color.white;
+        
         // 월드 → 스크린 → 로컬 UI 좌표 변환
         Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPosition);
 

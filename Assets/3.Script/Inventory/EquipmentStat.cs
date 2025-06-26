@@ -13,6 +13,6 @@ public class EquipmentStat
     public float multiplierAttack = 1f;
     public float multiplierMovementSpeed = 1f;
     public int criticalChance = 0;
-    public float multiplierCriticalDamage = 1f;
+    public float multiplierCriticalDamage = 1.5f;
     public float multiplierRareItemChance = 1f;
 }
