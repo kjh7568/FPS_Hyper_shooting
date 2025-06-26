@@ -44,12 +44,6 @@ public class AugmentPanelManager : MonoBehaviour
                 ClosePanel();
             }
         }
-        // 디버깅용
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Debug.Log("[디버그] E키 눌림: 강제 리롤");
-            RerollAugments();
-        }
     }
 
     private void LoadAugmentsFromTSV()
