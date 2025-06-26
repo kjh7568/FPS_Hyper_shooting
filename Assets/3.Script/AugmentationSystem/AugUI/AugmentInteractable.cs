@@ -49,8 +49,8 @@ public class AugmentInteractable : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
 
-            FindObjectOfType<PlayerController>().isOpenPanel = true;
-            WeaponManager.instance.currentWeapon.isOpenPanel = true;
+           //  FindObjectOfType<PlayerController>().isOpenPanel = true;
+           //  WeaponManager.instance.currentWeapon.isOpenPanel = true;
         }
     }
 

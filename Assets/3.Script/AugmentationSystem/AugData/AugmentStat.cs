@@ -9,10 +9,10 @@ public class AugmentStat
     public float dashCooldownReduction;
     public float attackPowerBonus;  
     public float reloadSpeedBonus;
-
+    public float defenseBonus;
     // 희귀
-    public float reloadDamageBonus;
-    public float reloadBuffDuration = 1.5f; // (필요시 TSV 확장)
+   // public float reloadDamageBonus;
+   // public float reloadBuffDuration = 1.5f; // (필요시 TSV 확장)
 
     public void Apply(AugmentData data)
     {
@@ -43,9 +43,9 @@ public class AugmentStat
                 Debug.Log($"[증강 저장] 재장전 속도 증가 +{data.Value} → 누적: {reloadSpeedBonus}");
                 break;
 
-            case AugmentType.ReloadDamageBuff:
-                reloadDamageBonus = data.Value;
-                Debug.Log($"[증강 저장] 장전 후 {reloadBuffDuration}초간 공격력 +{reloadDamageBonus}");
+            case AugmentType.DefenseUp:
+                defenseBonus = data.Value;
+                Debug.Log($"[증강 저장] 방어력 증가{data.Value} → 누적: {defenseBonus}");
                 break;
 
             default:
@@ -63,7 +63,7 @@ public class AugmentStat
             $"대시 쿨타임 감소: {dashCooldownReduction}\n" +
             $"공격력 증가: {attackPowerBonus}\n" +
             $"재장전 속도 증가: {reloadSpeedBonus}\n" +
-            $"장전 후 공격력 증가: {reloadDamageBonus} (지속 {reloadBuffDuration}초)"
+            $"방어력 증가: {defenseBonus} "
         );
     }
 }

@@ -12,7 +12,6 @@ public class AugmentPanelManager : MonoBehaviour
 
     [SerializeField] private GameObject augmentPanel;
     [SerializeField] private Button[] augmentButtons;
-    [SerializeField] private Text[] augmentButtonTexts;
 
     private List<AugmentData> allAugments;
     private List<AugmentData> currentOptions;
@@ -44,6 +43,12 @@ public class AugmentPanelManager : MonoBehaviour
             {
                 ClosePanel();
             }
+        }
+        // 디버깅용
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("[디버그] E키 눌림: 강제 리롤");
+            RerollAugments();
         }
     }
 
@@ -86,14 +91,10 @@ public class AugmentPanelManager : MonoBehaviour
             }
 
             AugmentData data = currentOptions[i];
-
-            if (i < augmentButtonTexts.Length)
-             //    augmentButtonTexts[i].text = ""; // 텍스트 제거
-
             augmentButtons[i].onClick.RemoveAllListeners();
 
             var augmentButton = augmentButtons[i].GetComponent<AugmentButton>();
-            augmentButton.Initialize(data);
+            augmentButton.Initialize(data); // ← 등급 텍스트 포함 표시
 
             if (hasSelected)
             {
@@ -145,9 +146,8 @@ public class AugmentPanelManager : MonoBehaviour
         augmentPanel.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-
-        var controller = FindObjectOfType<PlayerController>();
-        if (controller != null) controller.isOpenPanel = true;
+        FindObjectOfType<PlayerController>().isOpenPanel = true;
+        WeaponManager.instance.currentWeapon.isOpenPanel = true;
     }
 
     public void ClosePanel()
@@ -155,9 +155,13 @@ public class AugmentPanelManager : MonoBehaviour
         augmentPanel.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        FindObjectOfType<PlayerController>().isOpenPanel = false;
+        WeaponManager.instance.currentWeapon.isOpenPanel = false;
+      //  Cursor.lockState = CursorLockMode.Locked;
+      //  Cursor.visible = false;
 
-        var controller = FindObjectOfType<PlayerController>();
-        if (controller != null) controller.isOpenPanel = false;
+     //   var controller = FindObjectOfType<PlayerController>();
+     //   if (controller != null) controller.isOpenPanel = false;
     }
 
     public void RerollAugments()
