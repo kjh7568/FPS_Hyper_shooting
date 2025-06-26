@@ -6,7 +6,7 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     private const float grenadeCooldown = 10f;
-    
+
     public static WeaponManager instance;
 
     public Transform characterModel;
@@ -45,9 +45,8 @@ public class WeaponManager : MonoBehaviour
 
     private float currentGrenadeCooldown = 0f;
     private bool isGrenadeUse = true;
-    
-    [Header("총기 모델")]
-    [SerializeField] private GameObject akmModel;
+
+    [Header("총기 모델")] [SerializeField] private GameObject akmModel;
     [SerializeField] private GameObject m4Model;
     [SerializeField] private GameObject umpModel;
     [SerializeField] private GameObject sniperModel;
@@ -55,77 +54,8 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] private GameObject pistolModel;
     [SerializeField] private GameObject knifeModel;
 
-    public void ChangeWeapon(Weapon parameter)
-    {
-        WeaponController weaponToEquip;
-        
-        akmModel.SetActive(false);
-        m4Model.SetActive(false);
-        umpModel.SetActive(false);
-        sniperModel.SetActive(false);
-        shotgunModel.SetActive(false);
-        
-        switch (parameter.Type)
-        {
-            case WeaponType.Akm:
-                akmModel.SetActive(true);
-                
-                weaponToEquip = akmModel.gameObject.GetComponent<WeaponController>();
-                weaponToEquip.Init(parameter);
-                
-                primaryWeapon = weaponToEquip; 
-                break;
-            case WeaponType.M4:
-                m4Model.SetActive(true);
-                
-                weaponToEquip = m4Model.gameObject.GetComponent<WeaponController>();
-                weaponToEquip.Init(parameter);
-                
-                primaryWeapon = weaponToEquip; 
-                break;
-            case WeaponType.Sniper:
-                sniperModel.SetActive(true);
-                
-                weaponToEquip = sniperModel.gameObject.GetComponent<WeaponController>();
-                weaponToEquip.Init(parameter);
-                
-                primaryWeapon = weaponToEquip; 
-                break;
-            case WeaponType.Shotgun:
-                shotgunModel.SetActive(true);
-                
-                weaponToEquip = shotgunModel.gameObject.GetComponent<WeaponController>();
-                weaponToEquip.Init(parameter);
-                
-                primaryWeapon = weaponToEquip; 
-                break;
-            case WeaponType.Ump:
-                umpModel.SetActive(true);
-                
-                weaponToEquip = umpModel.gameObject.GetComponent<WeaponController>();
-                weaponToEquip.Init(parameter);
-                
-                primaryWeapon = weaponToEquip; 
-                break;
-            case WeaponType.Pistol:
-                weaponToEquip = pistolModel.gameObject.GetComponent<WeaponController>();
-                weaponToEquip.Init(parameter);
-                
-                secondaryWeapon = weaponToEquip; 
-                break;
-            case WeaponType.Knife:
-                weaponToEquip = knifeModel.gameObject.GetComponent<WeaponController>();
-                weaponToEquip.Init(parameter);
-                
-                knifeWeapon = weaponToEquip; 
-                break;
-            case WeaponType.Grenade:
-                grenadeWeapon.Init(parameter);
-                break;
-        }
-        
-        currentWeapon = primaryWeapon;
-    }
+    private UIManager uiManager;
+    private float finalGrenadeCooldown;
     
     public enum WeaponSlot
     {
@@ -143,6 +73,8 @@ public class WeaponManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(LoadWeaponData());
+
+        uiManager = FindObjectOfType<UIManager>();
         
         currentWeapon = primaryWeapon;
     }
@@ -161,8 +93,6 @@ public class WeaponManager : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.F) && !stateInfo.IsName("Stab") && !stateInfo.IsName("Throw"))
         {
-            
-            
             characterModel.localPosition = KnifeStancePosition;
             characterModel.localRotation = KnifeStanceRotation;
 
@@ -174,6 +104,7 @@ public class WeaponManager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.G) && !stateInfo.IsName("Stab") && !stateInfo.IsName("Throw") && isGrenadeUse)
         {
             StartCoroutine(CoolDownGrenade());
+            StartCoroutine(uiManager.DrawGrenadeCoolTime(finalGrenadeCooldown));
             
             characterModel.localPosition = GrenadeStancePosition;
             characterModel.localRotation = GrenadeStanceRotation;
@@ -184,30 +115,103 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
-    private void EquipWeapon(WeaponSlot slot)
-{
-    if (currentWeapon != null)
-        currentWeapon.gameObject.SetActive(false);
-
-    switch (slot)
+    public void ChangeWeapon(Weapon parameter)
     {
-        case WeaponSlot.Primary:
-            if (primaryWeapon != null)
-            {
-                primaryWeapon.gameObject.SetActive(true);
-                currentWeapon = primaryWeapon;
+        WeaponController weaponToEquip;
 
-                characterModel.localPosition = RifleStancePosition;
-                characterModel.localRotation = RifleStanceRotation;
+        akmModel.SetActive(false);
+        m4Model.SetActive(false);
+        umpModel.SetActive(false);
+        sniperModel.SetActive(false);
+        shotgunModel.SetActive(false);
+
+        switch (parameter.Type)
+        {
+            case WeaponType.Akm:
+                akmModel.SetActive(true);
+
+                weaponToEquip = akmModel.gameObject.GetComponent<WeaponController>();
+                weaponToEquip.Init(parameter);
+
+                primaryWeapon = weaponToEquip;
+                break;
+            case WeaponType.M4:
+                m4Model.SetActive(true);
+
+                weaponToEquip = m4Model.gameObject.GetComponent<WeaponController>();
+                weaponToEquip.Init(parameter);
+
+                primaryWeapon = weaponToEquip;
+                break;
+            case WeaponType.Sniper:
+                sniperModel.SetActive(true);
+
+                weaponToEquip = sniperModel.gameObject.GetComponent<WeaponController>();
+                weaponToEquip.Init(parameter);
+
+                primaryWeapon = weaponToEquip;
+                break;
+            case WeaponType.Shotgun:
+                shotgunModel.SetActive(true);
+
+                weaponToEquip = shotgunModel.gameObject.GetComponent<WeaponController>();
+                weaponToEquip.Init(parameter);
+
+                primaryWeapon = weaponToEquip;
+                break;
+            case WeaponType.Ump:
+                umpModel.SetActive(true);
+
+                weaponToEquip = umpModel.gameObject.GetComponent<WeaponController>();
+                weaponToEquip.Init(parameter);
+
+                primaryWeapon = weaponToEquip;
+                break;
+            case WeaponType.Pistol:
+                weaponToEquip = pistolModel.gameObject.GetComponent<WeaponController>();
+                weaponToEquip.Init(parameter);
+
+                secondaryWeapon = weaponToEquip;
+                break;
+            case WeaponType.Knife:
+                weaponToEquip = knifeModel.gameObject.GetComponent<WeaponController>();
+                weaponToEquip.Init(parameter);
+
+                knifeWeapon = weaponToEquip;
+                break;
+            case WeaponType.Grenade:
+                grenadeWeapon.Init(parameter);
+                break;
+        }
+
+        currentWeapon = primaryWeapon;
+    }
+
+    private void EquipWeapon(WeaponSlot slot)
+    {
+        if (currentWeapon != null)
+            currentWeapon.gameObject.SetActive(false);
+
+        switch (slot)
+        {
+            case WeaponSlot.Primary:
+                if (primaryWeapon != null)
+                {
+                    primaryWeapon.gameObject.SetActive(true);
+                    currentWeapon = primaryWeapon;
+
+                    characterModel.localPosition = RifleStancePosition;
+                    characterModel.localRotation = RifleStanceRotation;
 
                     animator.SetLayerWeight(0, 1f);
                     animator.SetLayerWeight(1, 0);
                     animator.runtimeAnimatorController = rifleController;
 
-                isPrimary = true;
-                Debug.Log($"주무기 장착: {primaryWeapon.name}");
-            }
-            break;
+                    isPrimary = true;
+                    Debug.Log($"주무기 장착: {primaryWeapon.name}");
+                }
+
+                break;
             case WeaponSlot.Secondary:
                 if (secondaryWeapon != null)
                 {
@@ -221,36 +225,40 @@ public class WeaponManager : MonoBehaviour
                     animator.SetLayerWeight(0, 0);
                     animator.SetLayerWeight(1, 1f);
 
-                isPrimary = false;
-                Debug.Log($"보조무기 장착: {secondaryWeapon.name}");
-            }
-            break;
-        case WeaponSlot.Melee:
-            if (knifeWeapon != null)
-            {
-                knifeWeapon.gameObject.SetActive(true);
-                currentWeapon = knifeWeapon;
+                    isPrimary = false;
+                    Debug.Log($"보조무기 장착: {secondaryWeapon.name}");
+                }
 
-                characterModel.localPosition = KnifeStancePosition;
-                characterModel.localRotation = KnifeStanceRotation;
+                break;
+            case WeaponSlot.Melee:
+                if (knifeWeapon != null)
+                {
+                    knifeWeapon.gameObject.SetActive(true);
+                    currentWeapon = knifeWeapon;
 
-                Debug.Log($"근접무기 장착: {knifeWeapon.name}");
-            }
-            break;
-        case WeaponSlot.Grenade:
-            if (grenadeWeapon != null)
-            {
-                grenadeWeapon.gameObject.SetActive(true);
-                currentWeapon = grenadeWeapon;
+                    characterModel.localPosition = KnifeStancePosition;
+                    characterModel.localRotation = KnifeStanceRotation;
 
-                characterModel.localPosition = GrenadeStancePosition;
-                characterModel.localRotation = GrenadeStanceRotation;
+                    Debug.Log($"근접무기 장착: {knifeWeapon.name}");
+                }
 
-                Debug.Log($"수류탄 장착: {grenadeWeapon.name}");
-            }
-            break;
+                break;
+            case WeaponSlot.Grenade:
+                if (grenadeWeapon != null)
+                {
+                    grenadeWeapon.gameObject.SetActive(true);
+                    currentWeapon = grenadeWeapon;
+
+                    characterModel.localPosition = GrenadeStancePosition;
+                    characterModel.localRotation = GrenadeStanceRotation;
+
+                    Debug.Log($"수류탄 장착: {grenadeWeapon.name}");
+                }
+
+                break;
+        }
     }
-}
+
     public WeaponController GetWeaponBySlot(WeaponSlot slot)
     {
         switch (slot)
@@ -277,20 +285,20 @@ public class WeaponManager : MonoBehaviour
         shotgunModel.SetActive(true);
         pistolModel.SetActive(true);
         knifeModel.SetActive(true);
-        
+
         yield return new WaitForSeconds(0.1f);
-        
+
         akmModel.SetActive(false);
         m4Model.SetActive(false);
         umpModel.SetActive(false);
         sniperModel.SetActive(false);
         shotgunModel.SetActive(false);
         pistolModel.SetActive(false);
-        knifeModel.SetActive(false);        
-        
+        knifeModel.SetActive(false);
+
         primaryWeapon.gameObject.SetActive(true);
     }
-    
+
     public void ApplyWeaponOption(Weapon parts)
     {
         foreach (var option in parts.options)
@@ -352,6 +360,7 @@ public class WeaponManager : MonoBehaviour
             }
         }
     }
+
     // 새로 추가: 단일 옵션만 적용/제거
     public void ApplyWeaponOption(WeaponSpecialEffect option)
         => ApplySingleOption(option, +1f);
@@ -390,8 +399,8 @@ public class WeaponManager : MonoBehaviour
 
     private IEnumerator CoolDownGrenade()
     {
-        var finalGrenadeCooldown = grenadeCooldown * Player.localPlayer.coreStat.grenadeCooldown;
-        
+        finalGrenadeCooldown = grenadeCooldown * Player.localPlayer.coreStat.grenadeCooldown;
+
         currentGrenadeCooldown = 0f;
         isGrenadeUse = false;
 

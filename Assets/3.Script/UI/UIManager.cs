@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text coinText;
     [SerializeField] private Image hpBar;
 
+    [SerializeField] private Image grenadeCoolTimeImage;
+    
     [SerializeField] private GameObject damageUI;
     [SerializeField] private RectTransform damageUIParent;
 
@@ -76,5 +78,20 @@ public class UIManager : MonoBehaviour
         yield return delay;
 
         Destroy(uiObj);
+    }
+
+    public IEnumerator DrawGrenadeCoolTime(float cooldownTime)
+    {
+        float elapsed = 0f;
+        grenadeCoolTimeImage.fillAmount = 1f;
+
+        while (elapsed < cooldownTime)
+        {
+            elapsed += Time.deltaTime;
+            grenadeCoolTimeImage.fillAmount = Mathf.Clamp01(1f - (elapsed / cooldownTime));
+            yield return null;
+        }
+
+        grenadeCoolTimeImage.fillAmount = 0f;
     }
 }
