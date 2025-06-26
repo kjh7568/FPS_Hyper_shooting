@@ -691,6 +691,56 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 443642045}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &505830441
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 505830443}
+  - component: {fileID: 505830442}
+  m_Layer: 0
+  m_Name: DropManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &505830442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505830441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5325f442ee626734f9dbd713f1ca0f7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  droppedItemPrefab: {fileID: 6711264548501032436, guid: 0bfb4acd2e9dfef4a92e2f53531fc763,
+    type: 3}
+  droppedGoldPrefab: {fileID: 5064701373022771147, guid: c66c4107c44880740862f47c886e20ac,
+    type: 3}
+  droppedCorePrefab: {fileID: 5064701373022771147, guid: 1f3e1896f32e7c54f869c562026537be,
+    type: 3}
+--- !u!4 &505830443
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505830441}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.4224239, y: 5.016391, z: -26.763935}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &595180689
 GameObject:
   m_ObjectHideFlags: 0
@@ -2576,4 +2626,5 @@ SceneRoots:
   - {fileID: 1150767822}
   - {fileID: 1641388839}
   - {fileID: 1570537276}
+  - {fileID: 505830443}
   - {fileID: 1780661635}

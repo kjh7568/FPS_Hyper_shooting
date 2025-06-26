@@ -13,6 +13,7 @@ public class NormalZombie : MonoBehaviour, IMonster
     [SerializeField] private GameObject bloodPrefab;
 
     private WaitForSeconds delay = new WaitForSeconds(2f);
+    private bool isAlreadyDrop = false;
     
     public void Start()
     {
@@ -81,6 +82,9 @@ public class NormalZombie : MonoBehaviour, IMonster
 
     private void GoldDrop()
     {
+        if (isAlreadyDrop) return;
+        isAlreadyDrop = true;
+        
         var goldCount = Random.Range(1, 5);
         
         ItemGenerator.instance.SpawnGold(transform.position, goldCount);

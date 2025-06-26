@@ -20,6 +20,7 @@ public class Player : MonoBehaviour, IDamageAble
     [SerializeField] private ArmorDataSO bootsSO;
 
     public int coin = 0;
+    public int core = 0;
     
     private float regenTimer = 0f;
     
