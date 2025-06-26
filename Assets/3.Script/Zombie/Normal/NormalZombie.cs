@@ -39,11 +39,6 @@ public class NormalZombie : MonoBehaviour, IMonster
         StartCoroutine(SpawnAndRemoveBlood(combatEvent.HitPosition));
         
         Collider[] hits = Physics.OverlapSphere(transform.position, 3f, monsterLayer);
-
-        foreach (Collider hit in hits)
-        {
-            hit.gameObject.GetComponent<NormalZombieController>().isHearing = true;
-        }
         
         if (zombieStat.health <= 0)
         {
@@ -53,6 +48,11 @@ public class NormalZombie : MonoBehaviour, IMonster
             RandomItemDrop();
             GoldDrop();
             mainCollider.enabled = false;
+        }
+
+        foreach (Collider hit in hits)
+        {
+            hit.gameObject.GetComponent<NormalZombieController>().isHearing = true;
         }
     }
 
