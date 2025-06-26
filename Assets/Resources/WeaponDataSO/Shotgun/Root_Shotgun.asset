@@ -18,61 +18,61 @@ MonoBehaviour:
   weaponImage: {fileID: 0}
   levelStats:
   - level: 1
-    damage: 8
+    damage: 7
     fireRate: 0.5
     reloadTime: 2.5
     magazine: 10
     explosionRange: 0
   - level: 2
-    damage: 9
+    damage: 8
     fireRate: 0.5
     reloadTime: 2.4
     magazine: 10
     explosionRange: 0
   - level: 3
-    damage: 10
+    damage: 9
     fireRate: 0.5
     reloadTime: 2.3
     magazine: 11
     explosionRange: 0
   - level: 4
-    damage: 0.2
+    damage: 10
     fireRate: 0.4
     reloadTime: 2.2
     magazine: 11
     explosionRange: 0
   - level: 5
-    damage: 12
+    damage: 11
     fireRate: 0.4
     reloadTime: 2.1
     magazine: 12
     explosionRange: 0
   - level: 6
-    damage: 13
+    damage: 12
     fireRate: 0.4
     reloadTime: 2
     magazine: 12
     explosionRange: 0
   - level: 7
-    damage: 14
+    damage: 13
     fireRate: 0.35
     reloadTime: 1.9
     magazine: 13
     explosionRange: 0
   - level: 8
-    damage: 15
+    damage: 14
     fireRate: 0.35
     reloadTime: 1.8
     magazine: 13
     explosionRange: 0
   - level: 9
-    damage: 16
+    damage: 15
     fireRate: 0.35
     reloadTime: 1.7
     magazine: 13
     explosionRange: 0
   - level: 10
-    damage: 18
+    damage: 16
     fireRate: 0.3
     reloadTime: 1.6
     magazine: 13
