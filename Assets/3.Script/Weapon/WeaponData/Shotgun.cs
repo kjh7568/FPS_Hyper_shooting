@@ -66,7 +66,9 @@ public class Shotgun : WeaponController
     public override void Fire()
     {
         weapon.currentAmmo--;
-
+        
+        StartCoroutine(PlayMuzzleFlash());
+        
         Camera cam = Camera.main;
         Vector3 origin = cam.transform.position;
         Vector3 forward = cam.transform.forward;

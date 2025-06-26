@@ -66,6 +66,8 @@ public class Smg : WeaponController
     {
         weapon.currentAmmo--;
 
+        StartCoroutine(PlayMuzzleFlash());
+        
         Camera cam = Camera.main;
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         RaycastHit hit;
