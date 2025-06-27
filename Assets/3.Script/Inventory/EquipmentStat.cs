@@ -14,5 +14,5 @@ public class EquipmentStat
     public float multiplierMovementSpeed = 1f;
     public int criticalChance = 0;
     public float multiplierCriticalDamage = 1.5f;
-    public float multiplierRareItemChance = 1f;
+    public float multiplierRareItemChance = 1f; 
 }
