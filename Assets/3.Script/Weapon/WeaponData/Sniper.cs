@@ -23,6 +23,9 @@ public class Sniper : WeaponController
 
     private void Awake()
     {
+        
+        
+        
         this.weapon = new Weapon(sniperRootData, WeaponGrade.Common);
         weapon.currentAmmo = weapon.currentStat.magazine;
     }
