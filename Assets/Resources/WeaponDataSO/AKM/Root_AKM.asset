@@ -18,7 +18,7 @@ MonoBehaviour:
   weaponImage: {fileID: 0}
   levelStats:
   - level: 1
-    damage: 15
+    damage: 1000
     fireRate: 0.19
     reloadTime: 3
     magazine: 30

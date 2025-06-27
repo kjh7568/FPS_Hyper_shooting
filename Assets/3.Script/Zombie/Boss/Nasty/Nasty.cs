@@ -35,7 +35,11 @@ public class Nasty : MonoBehaviour, IMonster
         
         if (zombieStat.health <= 0)
         {
-            GetComponent<BossController>().SwitchState(new BossDieState());
+            var controller = GetComponent<BossController>();
+            
+            controller.SwitchState(new BossDieState());
+            StartCoroutine(controller.WaitAfterDeath_Coroutine());
+            
             CoreDrop();
             mainCollider.enabled = false;
         }
@@ -75,6 +79,9 @@ public class Nasty : MonoBehaviour, IMonster
         isAlreadyDrop = true;
         
         var coreCount = Random.Range(5, 10);
+        
+        FindObjectOfType<BossUIManager>().gainedCore += coreCount;
+        Debug.Log(FindObjectOfType<BossUIManager>().gainedCore);
         
         ItemGenerator.instance.SpawnCore(transform.position, coreCount);
     }
