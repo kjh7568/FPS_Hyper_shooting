@@ -21,13 +21,20 @@ public class BossController : MonoBehaviour
 
     public void StartDelay(float delayTime, IBossState nextState)
     {
-        StartCoroutine(Delay_Coroutine(delayTime, nextState));
+        StartCoroutine(StateDelay_Coroutine(delayTime, nextState));
     }
     
-    private IEnumerator Delay_Coroutine(float delayTime, IBossState nextState)
+    private IEnumerator StateDelay_Coroutine(float delayTime, IBossState nextState)
     {
         yield return new WaitForSeconds(delayTime);
         
         SwitchState(nextState);
+    }
+
+    public IEnumerator WaitAfterDeath_Coroutine()
+    {
+        yield return new WaitForSeconds(2f);
+
+        FindObjectOfType<BossUIManager>().OpenBossEndPanel();
     }
 }
