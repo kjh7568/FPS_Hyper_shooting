@@ -184,30 +184,39 @@ public class PlayerStatUIManager : MonoBehaviour
             switch (name)
             {
                 case "PrimaryImageOutline":
-                    Debug.Log("주무기 위에 마우스 있음");
-                    // TODO: primary 관련 처리
-                    SetHoverPanel(WeaponManager.instance.primaryWeapon.weapon);
+                    SetHoverPanelWhitWeapon(WeaponManager.instance.primaryWeapon.weapon);
                     found = true;
                     break;
-
                 case "SecondaryImageOutline":
-                    Debug.Log("보조무기 위에 마우스 있음");
-                    // TODO: secondary 관련 처리
-                    SetHoverPanel(WeaponManager.instance.secondaryWeapon.weapon);
+                    SetHoverPanelWhitWeapon(WeaponManager.instance.secondaryWeapon.weapon);
                     found = true;
                     break;
-
                 case "KnifeImageOutline":
-                    Debug.Log("근접무기 위에 마우스 있음");
-                    // TODO: knife 관련 처리
-                    SetHoverPanel(WeaponManager.instance.knifeWeapon.weapon);
+                    SetHoverPanelWhitWeapon(WeaponManager.instance.knifeWeapon.weapon);
                     found = true;
                     break;
-
                 case "GrenadeImageOutline":
-                    Debug.Log("수류탄 위에 마우스 있음");
-                    // TODO: grenade 관련 처리
-                    SetHoverPanel(WeaponManager.instance.grenadeWeapon.weapon);
+                    SetHoverPanelWhitWeapon(WeaponManager.instance.grenadeWeapon.weapon);
+                    found = true;
+                    break;
+                case "HelmetImageOutline":
+                    Debug.Log("헬멧 위에 마우스 있음");
+                    SetHoverPanelWhitArmor(Player.localPlayer.inventory.equippedArmors[ArmorType.Helmet]);
+                    found = true;
+                    break;
+                case "BodyArmorImageOutline":
+                    Debug.Log("바디 아머 위에 마우스 있음");
+                    SetHoverPanelWhitArmor(Player.localPlayer.inventory.equippedArmors[ArmorType.BodyArmor]);
+                    found = true;
+                    break;
+                case "GlovesImageOutline":
+                    Debug.Log("장갑 위에 마우스 있음");
+                    SetHoverPanelWhitArmor(Player.localPlayer.inventory.equippedArmors[ArmorType.Gloves]);
+                    found = true;
+                    break;
+                case "BootsImageOutline":
+                    Debug.Log("부츠 위에 마우스 있음");
+                    SetHoverPanelWhitArmor(Player.localPlayer.inventory.equippedArmors[ArmorType.Boots]);
                     found = true;
                     break;
             }
@@ -229,7 +238,7 @@ public class PlayerStatUIManager : MonoBehaviour
         }
     }
     
-    private void SetHoverPanel(Weapon target)
+    private void SetHoverPanelWhitWeapon(Weapon target)
     {
         hoverPanelFiled.targetLevelText.text = $"LV. {target.currentStat.level}";
         hoverPanelFiled.targetNameText.text = $"{target.data.weaponName}";
@@ -315,6 +324,66 @@ public class PlayerStatUIManager : MonoBehaviour
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
+            }
+
+            idx++;
+        }
+    }
+    
+    private void SetHoverPanelWhitArmor(Armor target)
+    {
+        hoverPanelFiled.targetLevelText.text = $"LV. {target.currentStat.level}";
+        hoverPanelFiled.targetNameText.text = $"{target.data.armorName}";
+        hoverPanelFiled.targetTierText.text = $"{target.grade.ToString()}";
+
+        hoverPanelFiled.targetGunInfoPanel.SetActive(false);
+        hoverPanelFiled.targetKnifeInfoPanel.SetActive(false);
+        hoverPanelFiled.targetGrenadeInfoPanel.SetActive(false);
+
+        hoverPanelFiled.targetArmorInfoPanel.SetActive(true);
+        hoverPanelFiled.targetArmorValueText.text = $"{target.currentStat.defense}";
+
+        SetDescription(target, hoverPanelFiled.targetDescriptionTexts);
+
+        hoverPanelFiled.targetItemImage.sprite = target.data.armorImage;
+    }
+    
+    private void SetDescription(Armor parts, TMP_Text[] descriptions)
+    {
+        int idx = 0;
+
+        for (int i = 0; i < 3; i++)
+        {
+            descriptions[i].gameObject.SetActive(false);
+        }
+
+        foreach (var option in parts.options)
+        {
+            descriptions[idx].gameObject.SetActive(true);
+
+            switch (option)
+            {
+                case SpecialEffect.DashCooldownReduction:
+                    descriptions[idx].text = "• 대시 쿨타임이 10% 감소합니다";
+                    break;
+                case SpecialEffect.MultiplierDefense:
+                    descriptions[idx].text = "• 방어력이 10% 증가합니다";
+                    break;
+                case SpecialEffect.IncreaseHealth:
+                    descriptions[idx].text = "• 최대 체력이 20 증가합니다";
+                    break;
+                case SpecialEffect.MultiplierHealth:
+                    descriptions[idx].text = "• 최대 체력이 10% 증가합니다";
+                    break;
+                case SpecialEffect.ReloadSpeedReduction:
+                    descriptions[idx].text = "• 재장전 속도가 10% 빨라집니다";
+                    break;
+                case SpecialEffect.MultiplierAttackDamage:
+                    descriptions[idx].text = "• 공격력이 5% 증가합니다";
+                    break;
+                case SpecialEffect.MultiplierMovementSpeed:
+                    descriptions[idx].text = "• 이동 속도가 10% 증가합니다";
+                    break;
             }
 
             idx++;
