@@ -1,15 +1,16 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [System.Serializable]
 public class AugmentStat
 {
     // 아이템
-    public float moveSpeedBonus;
-    public float maxHealthBonus;
-    public float dashCooldownReduction;
-    public float attackPowerBonus;  
-    public float reloadSpeedBonus;
-    public float defenseBonus;
+    [FormerlySerializedAs("moveSpeedBonus")] public float increaseMoveSpeed;
+    [FormerlySerializedAs("maxHealthBonus")] public float plusHp;
+    [FormerlySerializedAs("attackPowerBonus")] public float increaseAttack;  
+    [FormerlySerializedAs("defenseBonus")] public float increaseDefense;
+    [FormerlySerializedAs("reloadSpeedBonus")] public float increaseReloadSpeed;
+    [FormerlySerializedAs("dashCooldownReduction")] public float increaseDashCooldown;
     // 희귀
    // public float reloadDamageBonus;
    // public float reloadBuffDuration = 1.5f; // (필요시 TSV 확장)
@@ -19,33 +20,33 @@ public class AugmentStat
         switch (data.Type)
         {
             case AugmentType.MoveSpeedUp:
-                moveSpeedBonus += data.Value;
-                Debug.Log($"[증강 저장] 이속 +{data.Value} → 누적: {moveSpeedBonus}");
+                increaseMoveSpeed += data.Value;
+                Debug.Log($"[증강 저장] 이속 +{data.Value} → 누적: {increaseMoveSpeed}");
                 break;
 
             case AugmentType.MaxHealthUp:
-                maxHealthBonus += data.Value;
-                Debug.Log($"[증강 저장] 체력 +{data.Value} → 누적: {maxHealthBonus}");
+                plusHp += data.Value;
+                Debug.Log($"[증강 저장] 체력 +{data.Value} → 누적: {plusHp}");
                 break;
 
             case AugmentType.DashCooldownDown:
-                dashCooldownReduction += data.Value;
-                Debug.Log($"[증강 저장] 대시 쿨다운 감소 +{data.Value} → 누적: {dashCooldownReduction}");
+                increaseDashCooldown += data.Value;
+                Debug.Log($"[증강 저장] 대시 쿨다운 감소 +{data.Value} → 누적: {increaseDashCooldown}");
                 break;
 
             case AugmentType.AttackPowerUp:
-                attackPowerBonus += data.Value;
-                Debug.Log($"[증강 저장] 공격력 +{data.Value} → 누적: {attackPowerBonus}");
+                increaseAttack += data.Value;
+                Debug.Log($"[증강 저장] 공격력 +{data.Value} → 누적: {increaseAttack}");
                 break;
 
             case AugmentType.ReloadSpeedUp:
-                reloadSpeedBonus += data.Value;
-                Debug.Log($"[증강 저장] 재장전 속도 증가 +{data.Value} → 누적: {reloadSpeedBonus}");
+                increaseReloadSpeed += data.Value;
+                Debug.Log($"[증강 저장] 재장전 속도 증가 +{data.Value} → 누적: {increaseReloadSpeed}");
                 break;
 
             case AugmentType.DefenseUp:
-                defenseBonus = data.Value;
-                Debug.Log($"[증강 저장] 방어력 증가{data.Value} → 누적: {defenseBonus}");
+                increaseDefense = data.Value;
+                Debug.Log($"[증강 저장] 방어력 증가{data.Value} → 누적: {increaseDefense}");
                 break;
 
             default:
@@ -58,12 +59,12 @@ public class AugmentStat
     {
         Debug.Log(
             $"[누적 증강 상태]\n" +
-            $"이속 증가: {moveSpeedBonus}\n" +
-            $"최대 체력 증가: {maxHealthBonus}\n" +
-            $"대시 쿨타임 감소: {dashCooldownReduction}\n" +
-            $"공격력 증가: {attackPowerBonus}\n" +
-            $"재장전 속도 증가: {reloadSpeedBonus}\n" +
-            $"방어력 증가: {defenseBonus} "
+            $"이속 증가: {increaseMoveSpeed}\n" +
+            $"최대 체력 증가: {plusHp}\n" +
+            $"대시 쿨타임 감소: {increaseDashCooldown}\n" +
+            $"공격력 증가: {increaseAttack}\n" +
+            $"재장전 속도 증가: {increaseReloadSpeed}\n" +
+            $"방어력 증가: {increaseDefense} "
         );
     }
 }

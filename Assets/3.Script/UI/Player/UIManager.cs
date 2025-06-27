@@ -36,9 +36,8 @@ public class UIManager : MonoBehaviour
 
         var myGun = WeaponManager.instance.currentWeapon;
 
-        var totalHealth = (playerStat.maxHealth + armorStat.increaseHealth + coreStat.coreHp) *
-                          armorStat.multiplierHealth;
-        // var totalHealth = (playerStat.maxHealth + armorStat.increaseHealth) * armorStat.multiplierHealth;
+        var totalHealth = (playerStat.maxHealth + armorStat.plusHp + coreStat.plusHp) *
+                          armorStat.increaseHealth;
 
         hpText.text = $"{playerStat.health} / {totalHealth}";
         bulletText.text = $"{myGun.weapon.currentAmmo} / {myGun.weapon.currentStat.magazine}";

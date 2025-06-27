@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    private const float grenadeCooldown = 10f;
+    public float grenadeCooldown = 10f;
 
     public static WeaponManager instance;
 
@@ -306,25 +306,25 @@ public class WeaponManager : MonoBehaviour
             switch (option)
             {
                 case WeaponSpecialEffect.DashCooldownReduction:
-                    Player.localPlayer.inventory.EquipmentStat.dashCooldownReduction += 0.1f;
+                    Player.localPlayer.inventory.EquipmentStat.increaseDashCooldown += 0.1f;
                     break;
                 case WeaponSpecialEffect.ReloadSpeedReduction:
-                    Player.localPlayer.inventory.EquipmentStat.reloadSpeedReduction += 0.1f;
+                    Player.localPlayer.inventory.EquipmentStat.increaseReloadSpeed += 0.1f;
                     break;
                 case WeaponSpecialEffect.MultiplierAttackDamage:
-                    Player.localPlayer.inventory.EquipmentStat.multiplierAttack += 0.05f;
+                    Player.localPlayer.inventory.EquipmentStat.increaseAttack += 0.05f;
                     break;
                 case WeaponSpecialEffect.MultiplierMovementSpeed:
-                    Player.localPlayer.inventory.EquipmentStat.multiplierMovementSpeed += 0.1f;
+                    Player.localPlayer.inventory.EquipmentStat.increaseMovementSpeed += 0.1f;
                     break;
                 case WeaponSpecialEffect.IncreaseCriticalChance:
                     Player.localPlayer.inventory.EquipmentStat.criticalChance += 10;
                     break;
                 case WeaponSpecialEffect.IncreaseCriticalDamage:
-                    Player.localPlayer.inventory.EquipmentStat.multiplierCriticalDamage += 0.1f;
+                    Player.localPlayer.inventory.EquipmentStat.criticalDamage += 0.1f;
                     break;
                 case WeaponSpecialEffect.IncreaseItemDropRate:
-                    Player.localPlayer.inventory.EquipmentStat.multiplierRareItemChance += 0.1f;
+                    Player.localPlayer.inventory.EquipmentStat.increaseItemDropChance += 0.1f;
                     break;
             }
         }
@@ -337,25 +337,25 @@ public class WeaponManager : MonoBehaviour
             switch (option)
             {
                 case WeaponSpecialEffect.DashCooldownReduction:
-                    Player.localPlayer.inventory.EquipmentStat.dashCooldownReduction -= 0.1f;
+                    Player.localPlayer.inventory.EquipmentStat.increaseDashCooldown -= 0.1f;
                     break;
                 case WeaponSpecialEffect.ReloadSpeedReduction:
-                    Player.localPlayer.inventory.EquipmentStat.reloadSpeedReduction -= 0.1f;
+                    Player.localPlayer.inventory.EquipmentStat.increaseReloadSpeed -= 0.1f;
                     break;
                 case WeaponSpecialEffect.MultiplierAttackDamage:
-                    Player.localPlayer.inventory.EquipmentStat.multiplierAttack -= 0.05f;
+                    Player.localPlayer.inventory.EquipmentStat.increaseAttack -= 0.05f;
                     break;
                 case WeaponSpecialEffect.MultiplierMovementSpeed:
-                    Player.localPlayer.inventory.EquipmentStat.multiplierMovementSpeed -= 0.1f;
+                    Player.localPlayer.inventory.EquipmentStat.increaseMovementSpeed -= 0.1f;
                     break;
                 case WeaponSpecialEffect.IncreaseCriticalChance:
                     Player.localPlayer.inventory.EquipmentStat.criticalChance -= 10;
                     break;
                 case WeaponSpecialEffect.IncreaseCriticalDamage:
-                    Player.localPlayer.inventory.EquipmentStat.multiplierCriticalDamage -= 0.1f;
+                    Player.localPlayer.inventory.EquipmentStat.criticalDamage -= 0.1f;
                     break;
                 case WeaponSpecialEffect.IncreaseItemDropRate:
-                    Player.localPlayer.inventory.EquipmentStat.multiplierRareItemChance -= 0.1f;
+                    Player.localPlayer.inventory.EquipmentStat.increaseItemDropChance -= 0.1f;
                     break;
             }
         }
@@ -374,32 +374,32 @@ public class WeaponManager : MonoBehaviour
         switch (option)
         {
             case WeaponSpecialEffect.DashCooldownReduction:
-                stat.dashCooldownReduction += 0.1f * sign;
+                stat.increaseDashCooldown += 0.1f * sign;
                 break;
             case WeaponSpecialEffect.ReloadSpeedReduction:
-                stat.reloadSpeedReduction += 0.1f * sign;
+                stat.increaseReloadSpeed += 0.1f * sign;
                 break;
             case WeaponSpecialEffect.MultiplierAttackDamage:
-                stat.multiplierAttack += 0.05f * sign;
+                stat.increaseAttack += 0.05f * sign;
                 break;
             case WeaponSpecialEffect.MultiplierMovementSpeed:
-                stat.multiplierMovementSpeed += 0.1f * sign;
+                stat.increaseMovementSpeed += 0.1f * sign;
                 break;
             case WeaponSpecialEffect.IncreaseCriticalChance:
                 stat.criticalChance += (int)(10f * sign);
                 break;
             case WeaponSpecialEffect.IncreaseCriticalDamage:
-                stat.multiplierCriticalDamage += 0.1f * sign;
+                stat.criticalDamage += 0.1f * sign;
                 break;
             case WeaponSpecialEffect.IncreaseItemDropRate:
-                stat.multiplierRareItemChance += 0.1f * sign;
+                stat.increaseItemDropChance += 0.1f * sign;
                 break;
         }
     }
 
     private IEnumerator CoolDownGrenade()
     {
-        finalGrenadeCooldown = grenadeCooldown * Player.localPlayer.coreStat.grenadeCooldown;
+        finalGrenadeCooldown = grenadeCooldown * Player.localPlayer.coreStat.increaseCooldown;
 
         currentGrenadeCooldown = 0f;
         isGrenadeUse = false;

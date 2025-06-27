@@ -53,14 +53,14 @@ public abstract class WeaponController : MonoBehaviour
         float baseDamage = weapon.currentStat.damage;
         float attackMultiplier = CalculateAttackMultiplier(weapon.Type);
 
-        if(isCritical) return  baseDamage * attackMultiplier * Player.localPlayer.coreStat.coreDamage * Player.localPlayer.inventory.EquipmentStat.multiplierCriticalDamage;
+        if(isCritical) return  baseDamage * attackMultiplier * Player.localPlayer.coreStat.multiplierAllDamage * Player.localPlayer.inventory.EquipmentStat.criticalDamage;
         
-        return baseDamage * attackMultiplier * Player.localPlayer.coreStat.coreDamage;
+        return baseDamage * attackMultiplier * Player.localPlayer.coreStat.multiplierAllDamage;
     }
 
     private float CalculateAttackMultiplier(WeaponType weaponType)
     {
-        float multiplier = Player.localPlayer.inventory.EquipmentStat.multiplierAttack;
+        float multiplier = Player.localPlayer.inventory.EquipmentStat.increaseAttack;
 
         switch (weaponType)
         {
@@ -69,16 +69,16 @@ public abstract class WeaponController : MonoBehaviour
             case WeaponType.Sniper:
             case WeaponType.Shotgun:
             case WeaponType.Ump:
-                multiplier += Player.localPlayer.coreStat.primaryDamage;
+                multiplier += Player.localPlayer.coreStat.increasePrimaryDamage;
                 break;
             case WeaponType.Pistol:
-                multiplier += Player.localPlayer.coreStat.secondaryDamage;
+                multiplier += Player.localPlayer.coreStat.increaseSecondaryDamage;
                 break;
             case WeaponType.Knife:
-                multiplier += Player.localPlayer.coreStat.meleeDamage;
+                multiplier += Player.localPlayer.coreStat.increaseMeleeDamage;
                 break;
             case WeaponType.Grenade:
-                multiplier += Player.localPlayer.coreStat.grenadeDamage;
+                multiplier += Player.localPlayer.coreStat.increaseGrenadeDamage;
                 break;
         }
 

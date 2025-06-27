@@ -38,7 +38,7 @@ public class AutoPickupController : MonoBehaviour
     {
         var stat = Player.localPlayer.playerStat;
         var core = Player.localPlayer.coreStat;
-        return stat.pickupRadius * core.coinDropRange;
+        return stat.pickupRadius * core.increaseCoinDropRange;
     }
 
     private void MoveTowards(Vector3 targetPosition)
@@ -54,7 +54,7 @@ public class AutoPickupController : MonoBehaviour
 
         if (!isCore)
         {
-            int finalCoin = Mathf.RoundToInt(BaseCoinValue * Player.localPlayer.coreStat.coinGainMultiplier);
+            int finalCoin = Mathf.RoundToInt(BaseCoinValue * Player.localPlayer.coreStat.increaseCoinGain);
             GiveCoinToPlayer(finalCoin);
         }
         else

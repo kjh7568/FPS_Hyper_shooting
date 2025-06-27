@@ -71,14 +71,14 @@ public class Player : MonoBehaviour, IDamageAble
         
         var stat      = Player.localPlayer.playerStat;
         var armorStat = Player.localPlayer.inventory.EquipmentStat;
-        float regen   = coreStat.coreHpRegion;
+        float regen   = coreStat.hpRegion;
         if (regen <= 0f) return;
 
         // **전체 최대체력 계산 (기본 + 코어 + 방어구)**
         float totalMax = (stat.maxHealth 
-                          + coreStat.coreHp 
-                          + armorStat.increaseHealth) 
-                         * armorStat.multiplierHealth;
+                          + coreStat.plusHp 
+                          + armorStat.plusHp) 
+                         * armorStat.increaseHealth;
 
         if (stat.health >= totalMax) return;
 

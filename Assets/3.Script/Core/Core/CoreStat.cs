@@ -7,22 +7,22 @@ public class CoreStat
     //곱연산만 1f로 초기화
     
     [Header("방어 스탯")]
-    public float coreDefense = 1f;
-    public float coreHp;
-    public float coreHpRegion;
+    public float multiplierDefense = 1f;
+    public float plusHp;
+    public float hpRegion;
 
     [Header("공격 스탯")]
-    public float coreDamage = 1f;
-    public float primaryDamage;
-    public float secondaryDamage;
-    public float meleeDamage;
-    public float grenadeDamage;
+    public float multiplierAllDamage = 1f;
+    public float increasePrimaryDamage;
+    public float increaseSecondaryDamage;
+    public float increaseMeleeDamage;
+    public float increaseGrenadeDamage;
 
     [Header("유틸리티 스탯")]
-    public float coinGainMultiplier = 1f;
-    public float coinDropRange = 1f;
-    public float itemDropChance;
-    public float coreMovementSpeed = 1f;
-    public float grenadeCooldown;
-    public float grenadeRange;
+    public float increaseCoinGain = 1f;
+    public float increaseCoinDropRange = 1f;
+    public float increaseItemDropChance;
+    public float multiplierMovementSpeed = 1f;
+    public float increaseCooldown;
+    public float increaseExplosionRange;
 }

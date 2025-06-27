@@ -15,7 +15,7 @@ MonoBehaviour:
   armorName: Chestplate
   armorType: 1
   grade: 0
-  icon: {fileID: 21300000, guid: ea580c15b5bafb240a696a1035f5ea20, type: 3}
+  armorImage: {fileID: 21300000, guid: ea580c15b5bafb240a696a1035f5ea20, type: 3}
   levelStats:
   - level: 1
     defense: 100

@@ -27,50 +27,50 @@ public class CoreManager : MonoBehaviour
         {
             // Attack
             case CoreID.AttUp:
-                coreStat.coreDamage = value;
+                coreStat.multiplierAllDamage = value;
                 break;
             case CoreID.PrimaryAttUp:
-                coreStat.primaryDamage = value;
+                coreStat.increasePrimaryDamage = value;
                 break;
             case CoreID.SecondaryAttUp:
-                coreStat.secondaryDamage = value;
+                coreStat.increaseSecondaryDamage = value;
                 break;
             case CoreID.KnifeAttUp:
-                coreStat.meleeDamage = value;
+                coreStat.increaseMeleeDamage = value;
                 break;
             case CoreID.GrenadeAttUp:
-                coreStat.grenadeDamage = value;
+                coreStat.increaseGrenadeDamage = value;
                 break;
 
             // Defense
             case CoreID.DefUp:
-                coreStat.coreDefense = value;
+                coreStat.multiplierDefense = value;
                 break;
             case CoreID.HpRegenUp:
-                coreStat.coreHpRegion += value;
+                coreStat.hpRegion += value;
                 break;
             case CoreID.MaxHpUp:
-                coreStat.coreHp += value;
+                coreStat.plusHp += value;
                 break;
 
             // Utility
             case CoreID.MovementSpeedUp:
-                coreStat.coreMovementSpeed = value;
+                coreStat.multiplierMovementSpeed = value;
                 break;
             case CoreID.CoinDropChanceUp:
-                coreStat.coinGainMultiplier = value;
+                coreStat.increaseCoinGain = value;
                 break;
             case CoreID.ItemDropChanceUp:
-                coreStat.itemDropChance = value;
+                coreStat.increaseItemDropChance = value;
                 break;
             case CoreID.CoinGetRangeUp:
-                coreStat.coinDropRange = value;
+                coreStat.increaseCoinDropRange = value;
                 break;
             case CoreID.GrenadeCoolReduce:
-                coreStat.grenadeCooldown = value;
+                coreStat.increaseCooldown = value;
                 break;
             case CoreID.GrenadeRangeUp:
-                coreStat.grenadeRange = value;
+                coreStat.increaseExplosionRange = value;
                 break;
         }
 

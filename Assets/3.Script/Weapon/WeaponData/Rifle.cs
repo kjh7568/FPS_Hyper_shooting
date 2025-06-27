@@ -125,12 +125,12 @@ public class Rifle : WeaponController
 
         playerController.SetShootAnimation(false);
         playerController.SetReloadAnimation();
-        playerController.SetAnimationSpeed(Player.localPlayer.inventory.EquipmentStat.reloadSpeedReduction);
+        playerController.SetAnimationSpeed(Player.localPlayer.inventory.EquipmentStat.increaseReloadSpeed);
 
         audioSource.PlayOneShot(reloadSingle);
 
         yield return new WaitForSeconds(weapon.currentStat.reloadTime *
-                                        (1 - Player.localPlayer.inventory.EquipmentStat.reloadSpeedReduction));
+                                        (1 - Player.localPlayer.inventory.EquipmentStat.increaseReloadSpeed));
 
         weapon.currentAmmo = weapon.currentStat.magazine;
         ;

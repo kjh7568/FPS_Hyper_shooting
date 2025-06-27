@@ -31,25 +31,25 @@ public class Inventory
             switch (option)
             {
                 case SpecialEffect.DashCooldownReduction:
-                    EquipmentStat.dashCooldownReduction += 0.1f;
+                    EquipmentStat.increaseDashCooldown += 0.1f;
                     break;
                 case SpecialEffect.MultiplierDefense:
-                    EquipmentStat.multiplierDefense += 0.1f;
+                    EquipmentStat.increaseDefense += 0.1f;
                     break;
                 case SpecialEffect.IncreaseHealth:
-                    EquipmentStat.increaseHealth += 20;
+                    EquipmentStat.plusHp += 20;
                     break;
                 case SpecialEffect.MultiplierHealth:
-                    EquipmentStat.multiplierHealth += 0.1f;
+                    EquipmentStat.increaseHealth += 0.1f;
                     break;
                 case SpecialEffect.ReloadSpeedReduction:
-                    EquipmentStat.reloadSpeedReduction += 0.1f;
+                    EquipmentStat.increaseReloadSpeed += 0.1f;
                     break;
                 case SpecialEffect.MultiplierAttackDamage:
-                    EquipmentStat.multiplierAttack += 0.05f;
+                    EquipmentStat.increaseAttack += 0.05f;
                     break;
                 case SpecialEffect.MultiplierMovementSpeed:
-                    EquipmentStat.multiplierMovementSpeed += 0.1f;
+                    EquipmentStat.increaseMovementSpeed += 0.1f;
                     break;
             }
         }
@@ -64,25 +64,25 @@ public class Inventory
             switch (option)
             {
                 case SpecialEffect.DashCooldownReduction:
-                    EquipmentStat.dashCooldownReduction -= 0.1f;
+                    EquipmentStat.increaseDashCooldown -= 0.1f;
                     break;
                 case SpecialEffect.MultiplierDefense:
-                    EquipmentStat.multiplierDefense -= 0.1f;
+                    EquipmentStat.increaseDefense -= 0.1f;
                     break;
                 case SpecialEffect.IncreaseHealth:
-                    EquipmentStat.increaseHealth -= 20;
+                    EquipmentStat.plusHp -= 20;
                     break;
                 case SpecialEffect.MultiplierHealth:
-                    EquipmentStat.multiplierHealth -= 0.1f;
+                    EquipmentStat.increaseHealth -= 0.1f;
                     break;
                 case SpecialEffect.ReloadSpeedReduction:
-                    EquipmentStat.reloadSpeedReduction -= 0.1f;
+                    EquipmentStat.increaseReloadSpeed -= 0.1f;
                     break;
                 case SpecialEffect.MultiplierAttackDamage:
-                    EquipmentStat.multiplierAttack -= 0.05f;
+                    EquipmentStat.increaseAttack -= 0.05f;
                     break;
                 case SpecialEffect.MultiplierMovementSpeed:
-                    EquipmentStat.multiplierMovementSpeed -= 0.1f;
+                    EquipmentStat.increaseMovementSpeed -= 0.1f;
                     break;
             }
         }
@@ -93,25 +93,25 @@ public class Inventory
         switch (option)
         {
             case SpecialEffect.DashCooldownReduction:
-                EquipmentStat.dashCooldownReduction += 0.1f;
+                EquipmentStat.increaseDashCooldown += 0.1f;
                 break;
             case SpecialEffect.MultiplierDefense:
-                EquipmentStat.multiplierDefense += 0.1f;
+                EquipmentStat.increaseDefense += 0.1f;
                 break;
             case SpecialEffect.IncreaseHealth:
-                EquipmentStat.increaseHealth += 20;
+                EquipmentStat.plusHp += 20;
                 break;
             case SpecialEffect.MultiplierHealth:
-                EquipmentStat.multiplierHealth += 0.1f;
+                EquipmentStat.increaseHealth += 0.1f;
                 break;
             case SpecialEffect.ReloadSpeedReduction:
-                EquipmentStat.reloadSpeedReduction += 0.1f;
+                EquipmentStat.increaseReloadSpeed += 0.1f;
                 break;
             case SpecialEffect.MultiplierAttackDamage:
-                EquipmentStat.multiplierAttack += 0.05f;
+                EquipmentStat.increaseAttack += 0.05f;
                 break;
             case SpecialEffect.MultiplierMovementSpeed:
-                EquipmentStat.multiplierMovementSpeed += 0.1f;
+                EquipmentStat.increaseMovementSpeed += 0.1f;
                 break;
         }
     }
@@ -122,25 +122,25 @@ public class Inventory
         switch (option)
         {
             case SpecialEffect.DashCooldownReduction:
-                EquipmentStat.dashCooldownReduction -= 0.1f;
+                EquipmentStat.increaseDashCooldown -= 0.1f;
                 break;
             case SpecialEffect.MultiplierDefense:
-                EquipmentStat.multiplierDefense -= 0.1f;
+                EquipmentStat.increaseDefense -= 0.1f;
                 break;
             case SpecialEffect.IncreaseHealth:
-                EquipmentStat.increaseHealth -= 20;
+                EquipmentStat.plusHp -= 20;
                 break;
             case SpecialEffect.MultiplierHealth:
-                EquipmentStat.multiplierHealth -= 0.1f;
+                EquipmentStat.increaseHealth -= 0.1f;
                 break;
             case SpecialEffect.ReloadSpeedReduction:
-                EquipmentStat.reloadSpeedReduction -= 0.1f;
+                EquipmentStat.increaseReloadSpeed -= 0.1f;
                 break;
             case SpecialEffect.MultiplierAttackDamage:
-                EquipmentStat.multiplierAttack -= 0.05f;
+                EquipmentStat.increaseAttack -= 0.05f;
                 break;
             case SpecialEffect.MultiplierMovementSpeed:
-                EquipmentStat.multiplierMovementSpeed -= 0.1f;
+                EquipmentStat.increaseMovementSpeed -= 0.1f;
                 break;
         }
     }

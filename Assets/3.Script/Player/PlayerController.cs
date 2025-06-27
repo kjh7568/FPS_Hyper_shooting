@@ -83,8 +83,8 @@ public class PlayerController : MonoBehaviour
     private float CalculateMoveSpeed(Player player)
     {
         return player.playerStat.moveSpeed *
-               player.inventory.EquipmentStat.multiplierMovementSpeed *
-               player.coreStat.coreMovementSpeed;
+               player.inventory.EquipmentStat.increaseMovementSpeed *
+               player.coreStat.multiplierMovementSpeed;
     }
 
     private void HandleFootstepSound(Vector3 inputAxis)
@@ -175,7 +175,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator DashCooldown_Coroutine()
     {
-        var coolTime = Player.localPlayer.playerStat.dashCoolTime * (1 - Player.localPlayer.inventory.EquipmentStat.dashCooldownReduction);
+        var coolTime = Player.localPlayer.playerStat.dashCoolTime * (1 - Player.localPlayer.inventory.EquipmentStat.increaseDashCooldown);
         
         yield return new WaitForSeconds(coolTime);
         isCanDash = true;

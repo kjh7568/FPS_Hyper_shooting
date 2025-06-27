@@ -15,7 +15,7 @@ MonoBehaviour:
   armorName: Boots
   armorType: 3
   grade: 0
-  icon: {fileID: 21300000, guid: d37ddf0b63eea1241a91b725dcecb8dd, type: 3}
+  armorImage: {fileID: 21300000, guid: d37ddf0b63eea1241a91b725dcecb8dd, type: 3}
   levelStats:
   - level: 1
     defense: 50

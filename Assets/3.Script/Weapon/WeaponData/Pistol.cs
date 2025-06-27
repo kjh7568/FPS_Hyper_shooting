@@ -128,7 +128,7 @@ public class Pistol : WeaponController
     {
         weapon.isReloading = true;
 
-        yield return new WaitForSeconds(weapon.currentStat.reloadTime * (1 - Player.localPlayer.inventory.EquipmentStat.reloadSpeedReduction));
+        yield return new WaitForSeconds(weapon.currentStat.reloadTime * (1 - Player.localPlayer.inventory.EquipmentStat.increaseReloadSpeed));
 
         weapon.currentAmmo = weapon.currentStat.magazine;
         weapon.isReloading = false;

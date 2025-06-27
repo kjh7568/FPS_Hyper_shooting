@@ -79,7 +79,7 @@ public class NormalZombie : MonoBehaviour, IMonster
         var equipment = Player.localPlayer.inventory.EquipmentStat;
         var core = Player.localPlayer.coreStat;
 
-        float multiplier = equipment.multiplierRareItemChance + core.itemDropChance;
+        float multiplier = equipment.increaseItemDropChance + core.increaseItemDropChance;
         return BaseDropRate * multiplier;
     }
 
