@@ -6,20 +6,23 @@ public class ZombieSpawnManager : MonoBehaviour
     [Header("스폰 포인트 그룹")]
     [SerializeField] private Transform spawnRoot; // ZombieSpawn 오브젝트
 
-    [Header("좀비 프리팹")]
-    [SerializeField] private GameObject zombiePrefab;
+    [Header("좀비 프리팹 (3종류)")]
+    [SerializeField] private GameObject[] zombiePrefabs;
 
-    [Header("총 좀비 수")]
-    [SerializeField] private int totalZombieCount = 10;
+    [Header("총 좀비 수 (30~50 랜덤)")]
+    private int totalZombieCount;
 
     private List<Transform> spawnPoints = new List<Transform>();
     private List<GameObject> spawnedZombies = new List<GameObject>();
 
     private void Start()
     {
-        // 하위 모든 스폰포인트 가져오기
+        // 스폰 포인트 수집
         foreach (Transform child in spawnRoot)
             spawnPoints.Add(child);
+
+        // 총 좀비 수 랜덤 설정
+        totalZombieCount = Random.Range(30, 51);
 
         SpawnZombies();
     }
@@ -35,19 +38,26 @@ public class ZombieSpawnManager : MonoBehaviour
                 selectedPoints.Add(randomPoint);
         }
 
-        // 총 좀비 수를 3개 지점에 균등 분배
+        // 균등 분배
         int zombiesPerPoint = totalZombieCount / 3;
+        int remaining = totalZombieCount % 3;
+
         for (int i = 0; i < selectedPoints.Count; i++)
         {
-            for (int j = 0; j < zombiesPerPoint; j++)
+            int count = zombiesPerPoint + (i < remaining ? 1 : 0); // 남은 좀비 분배
+            for (int j = 0; j < count; j++)
             {
-                GameObject zombie = Instantiate(zombiePrefab, selectedPoints[i].position, Quaternion.identity);
+                // 좀비 프리팹 중 랜덤 선택
+                GameObject selectedZombiePrefab = zombiePrefabs[Random.Range(0, zombiePrefabs.Length)];
+
+                GameObject zombie = Instantiate(selectedZombiePrefab, selectedPoints[i].position, Quaternion.identity);
                 spawnedZombies.Add(zombie);
-                CombatSystem.Instance.RegisterMonster(zombie.GetComponent<IMonster>()); // CombatSystem 연동
+
+                CombatSystem.Instance.RegisterMonster(zombie.GetComponent<IMonster>());
             }
         }
 
-        // 좀비 배열을 NextStageController에 전달
+        // NextStageController에 등록
         NextStageController.Instance?.SetZombies(spawnedZombies);
     }
 }
