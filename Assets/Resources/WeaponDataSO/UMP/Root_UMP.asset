@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponName: UMP
   weaponType: 4
   grade: 0
-  weaponImage: {fileID: 0}
+  weaponImage: {fileID: 21300000, guid: 2218351e0ae38cd4bbf507b6a364a03d, type: 3}
   levelStats:
   - level: 1
     damage: 2

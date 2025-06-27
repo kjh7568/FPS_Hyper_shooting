@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponName: M4A1
   weaponType: 1
   grade: 0
-  weaponImage: {fileID: 0}
+  weaponImage: {fileID: 21300000, guid: d85b315a74ccfea40be6d7536ae9940e, type: 3}
   levelStats:
   - level: 1
     damage: 10

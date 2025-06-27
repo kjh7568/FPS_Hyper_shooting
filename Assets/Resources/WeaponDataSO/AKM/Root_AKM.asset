@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponName: AKM
   weaponType: 0
   grade: 0
-  weaponImage: {fileID: 0}
+  weaponImage: {fileID: 21300000, guid: 21d9e322180432e449102aed05af6a5d, type: 3}
   levelStats:
   - level: 1
     damage: 1000

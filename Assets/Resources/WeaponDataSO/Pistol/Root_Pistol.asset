@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponName: "\uAE30\uBCF8 \uAD8C\uCD1D"
   weaponType: 5
   grade: 0
-  weaponImage: {fileID: 0}
+  weaponImage: {fileID: 21300000, guid: 8c30fc0abbb24ac498ba53efe03b22a4, type: 3}
   levelStats:
   - level: 1
     damage: 9
