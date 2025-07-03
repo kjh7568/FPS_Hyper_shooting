@@ -35,7 +35,7 @@ public class BossUIManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;        
 
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     #endregion    

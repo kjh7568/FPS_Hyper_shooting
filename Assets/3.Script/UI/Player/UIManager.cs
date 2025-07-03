@@ -30,25 +30,24 @@ public class UIManager : MonoBehaviour
 
         if (Player.localPlayer == null) return;
 
-        var playerStat = Player.localPlayer.playerStat;
-        var armorStat = Player.localPlayer.inventory.EquipmentStat;
-        var coreStat = Player.localPlayer.coreStat;
+        var pStat = Player.localPlayer.playerStat;
+        var eStat = Player.localPlayer.inventory.EquipmentStat;
+        var cStat = Player.localPlayer.coreStat;
+        var aStat = GameData.Instance.augmentStat;
 
         var myGun = WeaponManager.instance.currentWeapon;
 
-        var totalHealth = (playerStat.maxHealth + armorStat.plusHp + coreStat.plusHp) *
-                          armorStat.increaseHealth;
+        var totalHealth = (pStat.maxHealth + eStat.plusHp + cStat.plusHp + aStat.plusHp) * eStat.increaseHealth;
 
-        hpText.text = $"{playerStat.health} / {totalHealth}";
+        hpText.text = $"{pStat.health} / {totalHealth}";
         bulletText.text = $"{myGun.weapon.currentAmmo} / {myGun.weapon.currentStat.magazine}";
         coinText.text = $"{Player.localPlayer.coin}";
 
-        hpBar.fillAmount = Mathf.Clamp01(playerStat.health / totalHealth);
+        hpBar.fillAmount = Mathf.Clamp01(pStat.health / totalHealth);
 
         Color setColor = hpBar.color;
 
-        //  float ratio = (playerStat.maxHealth - playerStat.health) / (playerStat.maxHealth + armorStat.increaseHealth);
-        float ratio = (totalHealth - playerStat.health) / totalHealth;
+        float ratio = (totalHealth - pStat.health) / totalHealth;
 
         setColor.r = ratio; // 체력 줄수록 빨강 증가
         setColor.g = 1 - ratio; // 체력 줄수록 초록 감소

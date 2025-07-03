@@ -43,7 +43,7 @@ public class StageManager : MonoBehaviour
         sceneSequence = new List<string>();
         
         sceneSequence.Add("CoreScene"); // 시작
-        sceneSequence.AddRange(randomMaps); // 랜덤 5개
+        // sceneSequence.AddRange(randomMaps); // 랜덤 5개
         sceneSequence.Add("BossStage"); // 마지막
     }
 

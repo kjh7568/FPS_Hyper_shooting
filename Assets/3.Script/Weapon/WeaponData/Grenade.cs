@@ -29,7 +29,6 @@ public class Grenade : WeaponController
             Destroy(GetComponent<Rigidbody>());
             return;
         }
-        
         rb.velocity += Camera.main.transform.forward * 20f;
     }
 

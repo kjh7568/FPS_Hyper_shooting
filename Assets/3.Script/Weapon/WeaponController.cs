@@ -82,6 +82,8 @@ public abstract class WeaponController : MonoBehaviour
                 break;
         }
 
+        multiplier += GameData.Instance.augmentStat.increaseAttack;
+
         return multiplier;
     }
 

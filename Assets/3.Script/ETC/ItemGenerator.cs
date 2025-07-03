@@ -44,8 +44,8 @@ public class ItemGenerator : MonoBehaviour
 
         for (int i = 0; i < coreCount; i++)
         {
-            GameObject gold = Instantiate(droppedCorePrefab, position, Quaternion.identity);
-            Rigidbody rb = gold.GetComponent<Rigidbody>();
+            GameObject core = Instantiate(droppedCorePrefab, position, Quaternion.identity);
+            Rigidbody rb = core.GetComponent<Rigidbody>();
             rb.drag = 2f;           // 공기 저항
             rb.angularDrag = 5f;
             

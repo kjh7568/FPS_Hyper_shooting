@@ -23,6 +23,6 @@ public class CoreStat
     public float increaseCoinDropRange = 1f;
     public float increaseItemDropChance;
     public float multiplierMovementSpeed = 1f;
-    public float increaseCooldown;
-    public float increaseExplosionRange;
+    public float increaseCooldown = 1f;
+    public float increaseExplosionRange = 1f;
 }
