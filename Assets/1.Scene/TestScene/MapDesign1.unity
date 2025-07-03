@@ -1094,7 +1094,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 707.63214}
+  m_AnchoredPosition: {x: 0, y: 707.0002}
   m_SizeDelta: {x: 0, y: 1600}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &18358018
@@ -9100,6 +9100,7 @@ MonoBehaviour:
   nameText: {fileID: 955106518}
   levelText: {fileID: 1758196824}
   gradeText: {fileID: 1923661196}
+  itemImage: {fileID: 218689765}
   damageText: {fileID: 1101962774}
   fireRateText: {fileID: 831365144}
   magazineText: {fileID: 1076579151}
@@ -22178,6 +22179,7 @@ MonoBehaviour:
   nameText: {fileID: 1305558304}
   levelText: {fileID: 1601641710}
   gradeText: {fileID: 658241298}
+  itemImage: {fileID: 1094022825}
   damageText: {fileID: 438970441}
   fireRateText: {fileID: 1253274719}
   magazineText: {fileID: 1216733589}
@@ -32285,7 +32287,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: e9d6c81ec41d69a488af4ccbfe603435, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -36918,7 +36920,7 @@ GameObject:
   - component: {fileID: 1121169946}
   - component: {fileID: 1121169945}
   m_Layer: 5
-  m_Name: ItemLevelText
+  m_Name: HealCountText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46213,6 +46215,7 @@ MonoBehaviour:
   - {fileID: 481812606}
   - {fileID: 1207713001}
   - {fileID: 984662633}
+  healCountText: {fileID: 1121169945}
   prices: 000000000000000000000000
 --- !u!1 &1435088415
 GameObject:
@@ -47740,6 +47743,7 @@ MonoBehaviour:
   nameText: {fileID: 1506556120}
   levelText: {fileID: 1323956443}
   gradeText: {fileID: 41706993}
+  itemImage: {fileID: 374974034}
   damageText: {fileID: 1966745238}
   fireRateText: {fileID: 1789092971}
   magazineText: {fileID: 1149599096}
@@ -53061,8 +53065,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1597794639}
   m_HandleRect: {fileID: 1597794638}
   m_Direction: 2
-  m_Value: -0.00089403125
-  m_Size: 0.5567265
+  m_Value: -0.00000034531914
+  m_Size: 0.558125
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -53324,7 +53328,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1671632700}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1431513267}
+        m_TargetAssemblyTypeName: ItemShopManager, Assembly-CSharp
+        m_MethodName: OnClickHealButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1671632700
 MonoBehaviour:
   m_ObjectHideFlags: 0

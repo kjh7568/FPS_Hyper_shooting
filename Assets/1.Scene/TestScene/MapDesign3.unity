@@ -1100,7 +1100,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 707.00006}
+  m_AnchoredPosition: {x: 0, y: 707}
   m_SizeDelta: {x: 0, y: 1600}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &24982819
@@ -27135,6 +27135,7 @@ MonoBehaviour:
   nameText: {fileID: 43998549}
   levelText: {fileID: 1043760803}
   gradeText: {fileID: 805287031}
+  itemImage: {fileID: 129508292}
   damageText: {fileID: 589717461}
   fireRateText: {fileID: 723262821}
   magazineText: {fileID: 1198471896}
@@ -51539,7 +51540,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1422207088}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1996230576}
+        m_TargetAssemblyTypeName: ItemShopManager, Assembly-CSharp
+        m_MethodName: OnClickHealButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1422207088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61373,6 +61386,7 @@ MonoBehaviour:
   nameText: {fileID: 1415236000}
   levelText: {fileID: 79627985}
   gradeText: {fileID: 2090845165}
+  itemImage: {fileID: 1628628753}
   damageText: {fileID: 1502852932}
   fireRateText: {fileID: 1911889785}
   magazineText: {fileID: 467494074}
@@ -62947,7 +62961,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: e9d6c81ec41d69a488af4ccbfe603435, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -67717,6 +67731,7 @@ MonoBehaviour:
   - {fileID: 530123708}
   - {fileID: 269903086}
   - {fileID: 553530527}
+  healCountText: {fileID: 1752911048}
   prices: 000000000000000000000000
 --- !u!114 &1996230577
 MonoBehaviour:
@@ -67853,6 +67868,7 @@ MonoBehaviour:
   nameText: {fileID: 2047737705}
   levelText: {fileID: 1817644823}
   gradeText: {fileID: 268707035}
+  itemImage: {fileID: 1594963549}
   damageText: {fileID: 1772069537}
   fireRateText: {fileID: 670453143}
   magazineText: {fileID: 1204714464}
@@ -72052,7 +72068,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 91435544}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.5581178
+  m_Size: 0.55812347
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

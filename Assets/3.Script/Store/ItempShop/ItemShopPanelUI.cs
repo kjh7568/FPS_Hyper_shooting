@@ -8,6 +8,7 @@ public class ItemShopPanelUIComponents : MonoBehaviour
     public TMP_Text nameText;
     public TMP_Text levelText;
     public TMP_Text gradeText;
+    public Image itemImage;
     public TMP_Text damageText;
     public TMP_Text fireRateText;
     public TMP_Text magazineText;

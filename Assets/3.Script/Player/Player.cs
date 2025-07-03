@@ -9,9 +9,9 @@ public class Player : MonoBehaviour, IDamageAble
     public GameObject GameObject => gameObject;
     public PlayerStat playerStat;
     public CoreStat coreStat;
-    
+
     [SerializeField] private Collider mainCollider;
-    
+
     public Inventory inventory = new Inventory();
 
     [SerializeField] private ArmorDataSO helmetSO;
@@ -21,9 +21,9 @@ public class Player : MonoBehaviour, IDamageAble
 
     public int coin = 0;
     public int core = 0;
-    
+
     private float regenTimer = 0f;
-    
+
     private void Awake()
     {
         localPlayer = this;
@@ -32,10 +32,10 @@ public class Player : MonoBehaviour, IDamageAble
     private void Start()
     {
         Armor helmet = new Armor(helmetSO, true);
-        Armor chestPlate = new Armor(chestPlateSO,true);
-        Armor gloves = new Armor(glovesSO,true);
-        Armor boots = new Armor(bootsSO,true);
-        
+        Armor chestPlate = new Armor(chestPlateSO, true);
+        Armor gloves = new Armor(glovesSO, true);
+        Armor boots = new Armor(bootsSO, true);
+
         inventory.EquipArmor(helmet);
         inventory.EquipArmor(chestPlate);
         inventory.EquipArmor(gloves);
@@ -58,26 +58,33 @@ public class Player : MonoBehaviour, IDamageAble
         }
     }
 
-    public void TakeHeal(HealEvent combatEvent)
+    public void TakeHeal(HealEvent healEvent)
     {
-        throw new NotImplementedException();
+        playerStat.health += healEvent.Heal;
+        var totalHealth = (playerStat.maxHealth + inventory.EquipmentStat.plusHp + coreStat.plusHp +
+                           GameData.Instance.augmentStat.plusHp) * inventory.EquipmentStat.increaseHealth;
+
+        if (playerStat.health > totalHealth)
+        {
+            playerStat.health = totalHealth;
+        }
     }
-    
+
     private void RegenerateHealthOverTime()
     {
         if (Player.localPlayer == null) return;
 
         var coreStat = Player.localPlayer.coreStat;
-        
-        var stat      = Player.localPlayer.playerStat;
+
+        var stat = Player.localPlayer.playerStat;
         var armorStat = Player.localPlayer.inventory.EquipmentStat;
-        float regen   = coreStat.hpRegion;
+        float regen = coreStat.hpRegion;
         if (regen <= 0f) return;
 
         // **전체 최대체력 계산 (기본 + 코어 + 방어구)**
-        float totalMax = (stat.maxHealth 
-                          + coreStat.plusHp 
-                          + armorStat.plusHp) 
+        float totalMax = (stat.maxHealth
+                          + coreStat.plusHp
+                          + armorStat.plusHp)
                          * armorStat.increaseHealth;
 
         if (stat.health >= totalMax) return;

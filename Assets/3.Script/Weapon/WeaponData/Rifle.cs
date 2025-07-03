@@ -87,12 +87,14 @@ public class Rifle : WeaponController
 
                 if (monster != null)
                 {
-                    CombatEvent combatEvent = new CombatEvent();
-                    combatEvent.Sender = Player.localPlayer;
-                    combatEvent.Receiver = monster;
-                    combatEvent.Damage = damage; // ✅ 버프 적용된 최종 데미지 사용 --> 수정 중이라 바뀜
-                    combatEvent.HitPosition = hit.point;
-                    combatEvent.Collider = hit.collider;
+                    CombatEvent combatEvent = new CombatEvent
+                    {
+                        Sender = Player.localPlayer,
+                        Receiver = monster,
+                        Damage = damage, // ✅ 버프 적용된 최종 데미지 사용 --> 수정 중이라 바뀜
+                        HitPosition = hit.point,
+                        Collider = hit.collider
+                    };
 
                     CombatSystem.Instance.AddInGameEvent(combatEvent);
                     StartCoroutine(uiManager.PrintDamage_Coroutine(combatEvent, damage, isCritical));

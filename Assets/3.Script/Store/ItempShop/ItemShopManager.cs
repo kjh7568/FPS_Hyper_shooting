@@ -14,11 +14,14 @@ public class ItemShopManager : MonoBehaviour
     [SerializeField] private WeaponDataSO[] weapons;
 
     [SerializeField] private Button[] buttons;
-
+    [SerializeField] private TMP_Text healCountText;
+    
     public Weapon[] storeWeapons = new Weapon[3];
     public int[] prices = new int[3];
 
-    private void OnEnable()
+    private int healCount = 2;
+    
+    private void Start()
     {
         SetStoreItem();
         SetStoreUI();
@@ -65,10 +68,11 @@ public class ItemShopManager : MonoBehaviour
             panelSlots[i].damageText.text = storeWeapons[i].currentStat.damage.ToString(CultureInfo.CurrentCulture);
             panelSlots[i].fireRateText.text = storeWeapons[i].currentStat.fireRate.ToString(CultureInfo.CurrentCulture);
             panelSlots[i].magazineText.text = storeWeapons[i].currentStat.magazine.ToString();
-            panelSlots[i].reloadTimeText.text =
-                storeWeapons[i].currentStat.reloadTime.ToString(CultureInfo.CurrentCulture);
+            panelSlots[i].reloadTimeText.text = storeWeapons[i].currentStat.reloadTime.ToString(CultureInfo.CurrentCulture);
             SetDescription(storeWeapons[i], panelSlots[i].descriptions);
             prices[i] = SetPrice(storeWeapons[i], panelSlots[i].priceText);
+
+            panelSlots[i].itemImage.sprite = storeWeapons[i].data.weaponImage;
         }
     }
 
@@ -209,5 +213,25 @@ public class ItemShopManager : MonoBehaviour
         return center + new Vector3(randomCircle.x, 0f, randomCircle.y);
     }
 
+    public void OnClickHealButton()
+    {
+        if (Player.localPlayer.coin < 100) return;
+        if (healCount == 0) return;
+        
+        Player.localPlayer.coin -= 100;
+        
+        healCount -= 1;
+        healCountText.text = healCount.ToString();
+        
+        var healEvent = new HealEvent
+        {
+            Sender = Player.localPlayer,
+            Receiver = Player.localPlayer,
+            Heal = 30
+        };
+
+        CombatSystem.Instance.AddInGameEvent(healEvent);
+    } 
+        
     #endregion
 }

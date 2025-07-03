@@ -32,7 +32,7 @@ public class StageManager : MonoBehaviour
     private void InitSceneSequence()
     {
         // 중간 맵 셔플
-        var randomMaps = new List<string> { "MapDesign1", "MapDesign2", "MapDesign3", "MapDesign4", "MapDesign5" };
+        var randomMaps = new List<string> { "MapDesign1" /*, "MapDesign2", "MapDesign3", "MapDesign4", "MapDesign5"*/ };
 
         for (int i = randomMaps.Count - 1; i > 0; i--)
         {
