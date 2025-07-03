@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class Grenade : WeaponController
@@ -22,12 +23,19 @@ public class Grenade : WeaponController
         rb = GetComponent<Rigidbody>();
         
         this.weapon = new Weapon(grenadeRootData, WeaponGrade.Common); 
+        
+        if (isDummy)
+        {
+            Destroy(GetComponent<Rigidbody>());
+            return;
+        }
+        
         rb.velocity += Camera.main.transform.forward * 20f;
     }
 
     private void Update()
     {
-        if(isDummy) Destroy(gameObject);
+        if (isDummy) return;
         
         // explosion이 활성화 되고, explosion의 파티클이 재생되지 않는 상황이라면
         if (explosion.gameObject.activeInHierarchy && explosion.isPlaying == false)
