@@ -6,8 +6,8 @@ public class BossHPUI : MonoBehaviour
 {
     private ZombieStat target;
 
-    [SerializeField] private Slider hpSlider; // 🎯 Slider 사용
-    [SerializeField] private TMP_Text nameText; // 🎯 Slider 사용
+    [SerializeField] private Slider hpSlider;
+    [SerializeField] private TMP_Text nameText;
 
     public void Init(ZombieStat target)
     {
@@ -19,6 +19,8 @@ public class BossHPUI : MonoBehaviour
         {
             hpSlider.maxValue = target.maxHealth;
         }
+        
+        hpSlider.gameObject.SetActive(true);
     }
 
     void LateUpdate()
@@ -30,5 +32,10 @@ public class BossHPUI : MonoBehaviour
         {
             hpSlider.value = target.health;
         }
+    }
+
+    public void OffHpBar()
+    {
+        hpSlider.gameObject.SetActive(false);
     }
 }

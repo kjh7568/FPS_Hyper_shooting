@@ -41,6 +41,9 @@ public class Nasty : MonoBehaviour, IMonster
             StartCoroutine(controller.WaitAfterDeath_Coroutine());
             
             CoreDrop();
+            
+            FindObjectOfType<BossHPUI>().OffHpBar();
+            
             mainCollider.enabled = false;
         }
         else if (zombieStat.health <= desiredHealth && stunnedCount > 0)
