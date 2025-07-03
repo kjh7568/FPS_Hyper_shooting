@@ -21,7 +21,7 @@ public class CorePanelManager : MonoBehaviour
 
     private void Update()
     {
-        if (corePanel.activeSelf && Input.GetKeyDown(KeyCode.Space))
+        if (corePanel.activeSelf && Input.GetKeyDown(KeyCode.Escape))
         {
             ClosePanel();
         }

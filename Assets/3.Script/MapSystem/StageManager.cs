@@ -34,16 +34,16 @@ public class StageManager : MonoBehaviour
         // 중간 맵 셔플
         var randomMaps = new List<string> { "MapDesign1", "MapDesign2", "MapDesign3", "MapDesign4", "MapDesign5" };
 
-        // for (int i = randomMaps.Count - 1; i > 0; i--)
-        // {
-        //     int rnd = Random.Range(0, i + 1);
-        //     (randomMaps[i], randomMaps[rnd]) = (randomMaps[rnd], randomMaps[i]);
-        // }
+        for (int i = randomMaps.Count - 1; i > 0; i--)
+        {
+            int rnd = Random.Range(0, i + 1);
+            (randomMaps[i], randomMaps[rnd]) = (randomMaps[rnd], randomMaps[i]);
+        }
 
         sceneSequence = new List<string>();
         
         sceneSequence.Add("CoreScene"); // 시작
-        // sceneSequence.AddRange(randomMaps); // 랜덤 5개
+        sceneSequence.AddRange(randomMaps); // 랜덤 5개
         sceneSequence.Add("BossStage"); // 마지막
     }
 
