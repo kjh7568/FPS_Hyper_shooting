@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour, IDamageAble
@@ -54,7 +55,7 @@ public class Player : MonoBehaviour, IDamageAble
         if (playerStat.health <= 0)
         {
             //todo 플레이어 사망 처리
-            Debug.Log("플레이어 사망처리 할 것");
+            StartCoroutine(DelayDie());
         }
     }
 
@@ -96,5 +97,17 @@ public class Player : MonoBehaviour, IDamageAble
         stat.health += regen;
         if (stat.health > totalMax)
             stat.health = totalMax;
+    }
+
+    private IEnumerator DelayDie()
+    {
+        var pc = GetComponent<PlayerController>();
+
+        pc.SetDieAnimation();
+        pc.isOpenPanel = true;
+        
+        yield return new WaitForSeconds(1f);
+        
+        FindObjectOfType<PlayerDeadPanel>().OpenDiePanel();
     }
 }

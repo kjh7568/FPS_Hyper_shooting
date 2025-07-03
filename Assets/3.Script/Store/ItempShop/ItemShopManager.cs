@@ -231,7 +231,7 @@ public class ItemShopManager : MonoBehaviour
         };
 
         CombatSystem.Instance.AddInGameEvent(healEvent);
-    } 
+    }
         
     #endregion
 }

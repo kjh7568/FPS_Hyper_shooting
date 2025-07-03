@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     private static readonly int RELOAD = Animator.StringToHash("Reload");
     private static readonly int SHOOT = Animator.StringToHash("Shoot");
+    private static readonly int DIE = Animator.StringToHash("Die");
     private CharacterController characterController;
 
     [Header("Movement Settings")] private const float DASH_SPEED = 20f;
@@ -125,7 +126,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    
     private bool IsGrounded()
     {
         return Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, 0.2f, groundMask);
@@ -196,6 +196,11 @@ public class PlayerController : MonoBehaviour
     public void SetAnimationSpeed(float speed)
     {
         animator.speed = 1f + speed;
+    }
+
+    public void SetDieAnimation()
+    {
+        animator.SetTrigger(DIE);
     }
 
     #endregion

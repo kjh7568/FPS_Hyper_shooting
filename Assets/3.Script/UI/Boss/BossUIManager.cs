@@ -19,7 +19,6 @@ public class BossUIManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         
-        //todo 보스 이미지 셋팅도 해야함
         coreCountText.text = gainedCore.ToString();
 
         bossPanel.SetActive(true);
