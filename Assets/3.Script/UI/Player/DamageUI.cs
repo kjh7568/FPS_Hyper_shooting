@@ -11,7 +11,6 @@ public class DamageUI : MonoBehaviour
     private TMP_Text text;
     private Camera uiCamera;
     private Transform worldParent;
-    private bool isUp = false;
 
     private void Awake()
     {
