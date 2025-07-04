@@ -3227,14 +3227,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1799167277344593107}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.006762554, z: -0, w: 0.9999771}
-  m_LocalPosition: {x: -0.5283505, y: -5.0944996, z: -19.226307}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalPosition: {x: -1.9920794, y: -5.0644994, z: -16.65794}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6539047767025781345}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0.775, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!143 &3076300749689530802
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3303,20 +3303,20 @@ MonoBehaviour:
     dashCoolTime: 2
     pickupRadius: 10
   coreStat:
-    multiplierDefense: 1
-    plusHp: 0
-    hpRegion: 0
-    multiplierAllDamage: 1
-    increasePrimaryDamage: 0
-    increaseSecondaryDamage: 0
-    increaseMeleeDamage: 0
-    increaseGrenadeDamage: 0
-    increaseCoinGain: 1
-    increaseCoinDropRange: 1
-    increaseItemDropChance: 0
-    multiplierMovementSpeed: 1
-    increaseCooldown: 1
-    increaseExplosionRange: 1
+    coreDefense: 1
+    coreHp: 0
+    coreHpRegion: 0
+    coreDamage: 1
+    primaryDamage: 0
+    secondaryDamage: 0
+    meleeDamage: 0
+    grenadeDamage: 0
+    coinGainMultiplier: 1
+    coinDropRange: 1
+    itemDropChance: 0
+    coreMovementSpeed: 1
+    grenadeCooldown: 1
+    grenadeRange: 0
   mainCollider: {fileID: 3076300749689530802}
   helmetSO: {fileID: 11400000, guid: 2eacb1e137c8613468c1453399164911, type: 2}
   chestPlateSO: {fileID: 11400000, guid: 78ba3eaa40bbc77489b25b7c4a15b39b, type: 2}
@@ -3336,7 +3336,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 075106c9887d7394997b7dbc0ecb6393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grenadeCooldown: 10
   characterModel: {fileID: 3025865838340037790}
   animator: {fileID: 6777957367769307756}
   pistolController: {fileID: 9100000, guid: a3fbaebc1c134ef499606ae77ce8d603, type: 2}

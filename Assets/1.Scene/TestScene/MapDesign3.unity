@@ -61378,9 +61378,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRoot: {fileID: 1790387904}
-  zombiePrefab: {fileID: 1671875972223192689, guid: 35c5c94d2d45468468c2ce976534efc2,
-    type: 3}
-  totalZombieCount: 3
+  zombiePrefabs:
+  - {fileID: 1671875972223192689, guid: 35c5c94d2d45468468c2ce976534efc2, type: 3}
+  - {fileID: 1224858185493806415, guid: 6d13a382aa2f1bc48bda644ef89549dd, type: 3}
+  - {fileID: 2350005233920504704, guid: 661e71d6d11f4964081b98c1d97f29cf, type: 3}
 --- !u!4 &1790387904
 Transform:
   m_ObjectHideFlags: 0
