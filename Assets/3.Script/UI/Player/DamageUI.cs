@@ -6,6 +6,7 @@ public class DamageUI : MonoBehaviour
 {
     private float floatDuration = 1f; // 몇 초에 걸쳐 올라갈지
     private float floatHeight = 30f; // 몇 픽셀 위로 올라갈지
+    [SerializeField] private float screenOffsetRadius = 300f; // 픽셀 단위 반경
 
     private RectTransform rectTransform;
     private TMP_Text text;
@@ -20,22 +21,22 @@ public class DamageUI : MonoBehaviour
         text = GetComponent<TMP_Text>();
     }
 
-    void Update()
-    {
-        if (worldParent == null) return;
+   // void Update()
+   // {
+   //     if (worldParent == null) return;
 
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(worldParent.position);
+   //     Vector3 screenPos = Camera.main.WorldToScreenPoint(worldParent.position);
 
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            rectTransform.parent as RectTransform,
-            screenPos,
-            Camera.main,
-            out var anchoredPos
-        );
+   //     RectTransformUtility.ScreenPointToLocalPointInRectangle(
+   //         rectTransform.parent as RectTransform,
+   //         screenPos,
+   //         Camera.main,
+   //         out var anchoredPos
+   //     );
 
-        if (rectTransform != null)
-            rectTransform.anchoredPosition = anchoredPos;
-    }
+   //     if (rectTransform != null)
+   //         rectTransform.anchoredPosition = anchoredPos;
+   // }
 
     private IEnumerator FloatUp()
     {
@@ -60,20 +61,25 @@ public class DamageUI : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
+        Destroy(gameObject); // 애니메이션 종료 후 제거
     }
 
     public void Set(Transform worldParent, Vector3 worldPosition, float damage, bool isCritical)
     {
         this.worldParent = worldParent;
 
-        if (text != null)
-            text.text = Mathf.RoundToInt(damage).ToString();
-
+        text.text = Mathf.RoundToInt(damage).ToString();
         text.color = isCritical ? Color.yellow : Color.white;
-        
-        // 월드 → 스크린 → 로컬 UI 좌표 변환
+
+        // 1) 월드 → 스크린 좌표 변환
         Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPosition);
 
+        // 2) 스크린 좌표계 내에서 랜덤 오프셋 추가
+        Vector2 randomOffset = Random.insideUnitCircle * screenOffsetRadius;
+        screenPos.x += randomOffset.x;
+        screenPos.y += randomOffset.y;
+
+        // 3) 로컬 UI 좌표로 변환
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             rectTransform.parent as RectTransform,
             screenPos,
@@ -81,7 +87,7 @@ public class DamageUI : MonoBehaviour
             out var anchoredPos
         );
 
-        if (rectTransform != null)
-            rectTransform.anchoredPosition = anchoredPos;
+        rectTransform.anchoredPosition = anchoredPos;
+        StartCoroutine(FloatUp());
     }
 }
