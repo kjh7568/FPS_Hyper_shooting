@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 0.5
+  m_AmbientIntensity: 0
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 79e0359a2feae3b4a8dda74a3d2e39ec, type: 2}
@@ -25639,7 +25639,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1581919577}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.5579532
+  m_Size: 0.5581177
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -39805,9 +39805,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRoot: {fileID: 1168285683}
-  zombiePrefab: {fileID: 1671875972223192689, guid: 35c5c94d2d45468468c2ce976534efc2,
-    type: 3}
-  totalZombieCount: 1
+  zombiePrefabs:
+  - {fileID: 1671875972223192689, guid: 35c5c94d2d45468468c2ce976534efc2, type: 3}
+  - {fileID: 1224858185493806415, guid: 6d13a382aa2f1bc48bda644ef89549dd, type: 3}
+  - {fileID: 2350005233920504704, guid: 661e71d6d11f4964081b98c1d97f29cf, type: 3}
 --- !u!1 &1175237898
 GameObject:
   m_ObjectHideFlags: 0
@@ -66490,7 +66491,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 707.00006}
+  m_AnchoredPosition: {x: 0, y: 707}
   m_SizeDelta: {x: 0, y: 1600}
   m_Pivot: {x: 0, y: 1}
 --- !u!1001 &1957756302

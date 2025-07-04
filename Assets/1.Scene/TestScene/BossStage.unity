@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 0.35
+  m_AmbientIntensity: 0
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 79e0359a2feae3b4a8dda74a3d2e39ec, type: 2}
@@ -8265,6 +8265,7 @@ MonoBehaviour:
   nameText: {fileID: 955106518}
   levelText: {fileID: 1758196824}
   gradeText: {fileID: 1923661196}
+  itemImage: {fileID: 0}
   damageText: {fileID: 1101962774}
   fireRateText: {fileID: 831365144}
   magazineText: {fileID: 1076579151}
@@ -19544,6 +19545,7 @@ MonoBehaviour:
   nameText: {fileID: 1305558304}
   levelText: {fileID: 1601641710}
   gradeText: {fileID: 658241298}
+  itemImage: {fileID: 0}
   damageText: {fileID: 438970441}
   fireRateText: {fileID: 1253274719}
   magazineText: {fileID: 1216733589}
@@ -49626,6 +49628,7 @@ MonoBehaviour:
   - {fileID: 481812606}
   - {fileID: 1207713001}
   - {fileID: 984662633}
+  healCountText: {fileID: 0}
   prices: 000000000000000000000000
 --- !u!1 &1435088415
 GameObject:
@@ -50976,6 +50979,7 @@ MonoBehaviour:
   nameText: {fileID: 1506556120}
   levelText: {fileID: 1323956443}
   gradeText: {fileID: 41706993}
+  itemImage: {fileID: 0}
   damageText: {fileID: 1966745238}
   fireRateText: {fileID: 1789092971}
   magazineText: {fileID: 1149599096}
